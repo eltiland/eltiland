@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding table for course listener and field invitor to user</comment>
+        <sql>
+            CREATE TABLE "public"."course_listener_user" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "listener_id" NUMERIC NOT NULL,
+            "user_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "listener_id","user_id" )
+            , CONSTRAINT "course_listener_user__id_key" UNIQUE( "_id" ) );
+
+            ALTER TABLE "public"."course_listener_user" ADD CONSTRAINT "user_listener" FOREIGN KEY ( "listener_id"
+            ) REFERENCES "public"."course_listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_listener_user" ADD CONSTRAINT "listener_user" FOREIGN KEY ( "user_id" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."user" DROP COLUMN "invitor";
+        </sql>
+    </changeSet>
+</databaseChangeLog>

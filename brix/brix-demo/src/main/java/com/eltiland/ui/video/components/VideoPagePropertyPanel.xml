@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Свойства страницы видео</entry>
+    <entry key="pageCountHeader">Количество видео на одной странице:</entry>
+    <entry key="propertySaveMessage">Изменения свойств страницы успешно сохранены</entry>
+
+    <entry key="minValueError">Ошибка - минимальное допустимое значение - 1.</entry>
+</properties>

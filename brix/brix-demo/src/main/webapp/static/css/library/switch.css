@@ -1,0 +1,65 @@
+.switch_view {
+    float: right;
+}
+
+.switch_view .switch_button {
+    float: left;
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.switch_view .active {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.switch_view .switch_button:hover {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.switch_view .icon {
+    width: 13px;
+    height: 13px;
+    float: left;
+}
+
+.switch_view .switch_button:hover .label {
+    text-decoration: underline;
+}
+
+.switch_view .label {
+    float: left;
+    color: #0078AE;
+    font-family: Arial, Helvetica, sans_serif;
+    font-size: 12px;
+    margin-left: 3px;
+    margin-right: 6px;
+}
+
+.switch_view .list:hover .icon {
+    background: url("../../images/library/switch/list-active.png");
+}
+
+.switch_view .list .icon {
+    background: url("../../images/library/switch/list-noactive.png");
+}
+
+.switch_view .gallery:hover .icon {
+    background: url("../../images/library/switch/gallery-active.png");
+}
+
+.switch_view .gallery .icon {
+    background: url("../../images/library/switch/gallery-noactive.png");
+}
+
+.switch_view .grid:hover .icon {
+    background: url("../../images/library/switch/grid-active.png");
+}
+
+.switch_view .grid .icon {
+    background: url("../../images/library/switch/grid-noactive.png");
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="view_param_panel">
+        <form wicket:id="form" style="float: left">
+            <table>
+                <tr>
+                    <td>
+                        <div class="sort_label">
+                            <wicket:message key="sortLabel"></wicket:message>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sort_field" wicket:id="selectSort"></div>
+                    </td>
+                    <td>
+                        <div class="sort_button" wicket:id="sortButton">
+                            <wicket:message key="sort"></wicket:message>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div wicket:id="switchViewPanel"></div>
+    </div>
+</wicket:panel>
+</body>
+</html>

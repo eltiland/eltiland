@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Inserting start forum groups</comment>
+        <insert tableName="group" schemaName="forum">
+            <column name="_prototype" value="GENERAL"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Общие форумы"/>
+        </insert>
+        <insert tableName="group" schemaName="forum">
+            <column name="_prototype" value="COURSE"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Форумы курсов"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

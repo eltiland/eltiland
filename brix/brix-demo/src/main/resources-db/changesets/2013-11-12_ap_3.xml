@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Deleting all link to files for messages of RIB</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id_by_name(peiname text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where name=peiname;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <sql>
+            DELETE FROM message_file WHERE message_id IN (SELECT _id FROM message WHERE creator =
+            get_user_id_by_email('klub_yum@mail.ru'));
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Deleting all messages of RIB</comment>
+        <sql>
+            DELETE FROM message WHERE creator = get_user_id_by_email('klub_yum@mail.ru');
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Deleting all paid invoices of RIB</comment>
+        <sql>
+            DELETE FROM paid_service_invoice WHERE creator = get_user_id_by_email('klub_yum@mail.ru');
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Broke links between VPEI teachers and pei</comment>
+        <sql>
+            DELETE FROM teacher_group WHERE group_id IN (SELECT _id FROM "group" WHERE
+            pei=get_pei_id_by_name('Виртуальный детский сад'));
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Remove activities</comment>
+        <sql>
+            DELETE FROM message_file WHERE message_id IN (SELECT _id FROM message WHERE activity IN (SELECT _id FROM
+            activity WHERE group_id IN (SELECT _id FROM "group" WHERE pei=get_pei_id_by_name('Виртуальный детский сад'))));
+            DELETE FROM message WHERE activity IN (SELECT _id FROM activity WHERE group_id IN (SELECT _id FROM "group"
+            WHERE pei=get_pei_id_by_name('Виртуальный детский сад')));
+            DELETE FROM activity WHERE group_id IN (SELECT _id FROM "group" WHERE pei=get_pei_id_by_name('Виртуальный детский сад'));
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="aleksey.plotnikov">
+        <comment>Broke links between childs and VPEI pei</comment>
+        <sql>
+            DELETE FROM child_group WHERE group_id IN (SELECT _id FROM "group" WHERE pei=get_pei_id_by_name('Виртуальный детский сад'));
+        </sql>
+    </changeSet>
+    <changeSet id="6" author="aleksey.plotnikov">
+        <comment>Broke links between age_group and VPEI pei groups</comment>
+        <sql>
+            DELETE FROM agegroup_group WHERE group_id IN (SELECT _id FROM "group" WHERE
+            pei=get_pei_id_by_name('Виртуальный детский сад'));
+        </sql>
+    </changeSet>
+    <changeSet id="7" author="aleksey.plotnikov">
+        <comment>Removing groups of VPEI.</comment>
+        <sql>
+            DELETE FROM "group" WHERE pei=get_pei_id_by_name('Виртуальный детский сад');
+        </sql>
+    </changeSet>
+    <changeSet id="8" author="aleksey.plotnikov">
+        <comment>Broke link beetween child and VPEI.</comment>
+        <sql>
+            DELETE FROM child_pei WHERE pei_id=get_pei_id_by_name('Виртуальный детский сад');
+        </sql>
+    </changeSet>
+    <changeSet id="9" author="aleksey.plotnikov">
+        <comment>Specialists of the VPEI became simple users</comment>
+        <sql>
+            UPDATE "user" SET "type"='User' WHERE pei=get_pei_id_by_name('Виртуальный детский сад');
+            UPDATE "user" SET pei=NULL WHERE pei=get_pei_id_by_name('Виртуальный детский сад');
+        </sql>
+    </changeSet>
+    <changeSet id="10" author="aleksey.plotnikov">
+        <comment>Killing VPEI!!</comment>
+        <sql>
+            DELETE FROM pei WHERE _id=get_pei_id_by_name('Виртуальный детский сад');
+        </sql>
+    </changeSet>
+    <changeSet id="11" author="aleksey.plotnikov">
+        <comment>Killing Rogoshkina!!</comment>
+        <sql>
+            DELETE FROM "user" WHERE _id=get_user_id_by_email('klub_yum@mail.ru');
+        </sql>
+    </changeSet>
+    <changeSet id="12" author="aleksey.plotnikov">
+        <comment>Killing second Rogoshkina!!</comment>
+        <sql>
+            DELETE FROM record_targetaudience WHERE record_id IN (SELECT _id FROM record WHERE author =
+            get_user_id_by_email('lib_eltiland@mail.ru'));
+            DELETE FROM record WHERE author = get_user_id_by_email('lib_eltiland@mail.ru');
+            DELETE FROM "user" WHERE _id = get_user_id_by_email('lib_eltiland@mail.ru')
+        </sql>
+    </changeSet>
+</databaseChangeLog>

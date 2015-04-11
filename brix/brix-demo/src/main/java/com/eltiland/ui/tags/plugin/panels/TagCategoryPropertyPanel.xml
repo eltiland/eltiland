@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="titleCreate">Новая категория тегов</entry>
+    <entry key="titleEdit">Редактирование названия категории</entry>
+    <entry key="name">Название</entry>
+</properties>

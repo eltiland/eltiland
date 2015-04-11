@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="selector.header">Выбор типа нового элемента</entry>
+
+    <entry key="document">Документ</entry>
+
+    <entry key="ELTDocumentCourseItem.class">Документ</entry>
+    <entry key="ELTPresentationCourseItem.class">Презентация</entry>
+    <entry key="ELTTestCourseItem.class">Тест</entry>
+    <entry key="ELTVideoCourseItem.class">Видео</entry>
+    <entry key="ELTWebinarCourseItem.class">Вебинар</entry>
+    <entry key="ELTGroupCourseItem.class">Группа элементов</entry>
+</properties>
+

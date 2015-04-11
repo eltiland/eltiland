@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="editHeader">Редактирование профиля</entry>
+    <entry key="nameHeader">Фамилия Имя Отчество</entry>
+    <entry key="emailHeader">Электронная почта:</entry>
+    <entry key="addressHeader">Адрес:</entry>
+    <entry key="phoneHeader">Телефон:</entry>
+    <entry key="skypeHeader">Skype:</entry>
+    <entry key="aboutHeader">Информация о себе:</entry>
+    <entry key="achieveHeader">Достижения:</entry>
+    <entry key="companyHeader">Место работы:</entry>
+    <entry key="jobHeader">Должность:</entry>
+    <entry key="expHeader">Опыт работы (лет):</entry>
+
+    <entry key="changePassword">Изменить пароль</entry>
+    <entry key="saveMessage">Данные пользователя успешно сохранены.</entry>
+    <entry key="changePassMessage">Пароль успешно изменен.</entry>
+</properties>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="alexander.litvinenko">
+        <comment>Create table for youtube video record</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE youtube_video_record
+            (
+            video_id text NOT NULL,
+            _id numeric NOT NULL,
+            CONSTRAINT youtube_video_record_pkey PRIMARY KEY (_id ),
+            CONSTRAINT fk2685143126bfc6bd FOREIGN KEY (_id)
+            REFERENCES record (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE youtube_video_record
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="1" author="alexander.litvinenko">
+        <comment>Register article mime type</comment>
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/youtube.video"/>
+            <column name="icon_name" value="ICONS_VIDEO"/>
+            <column name="resource_key" value="YOUTUBE_VIDEO"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

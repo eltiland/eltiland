@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="dialogHeader">Добавление пользователя</entry>
+    <entry key="headerLabel">Регистрация на вебинар</entry>
+    <entry key="errorAlreadyExists">Данный пользователь уже присутствует в списке приглашаемых на вебинар.</entry>
+    <entry key="userName">Пользователь</entry>
+</properties>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Данный блок курса является платным.</entry>
+    <entry key="payBlockAccess">Оплатить доступ к блоку "%s"</entry>
+    <entry key="payCourseAccess">Оплатить доступ полностью ко всему курсу</entry>
+
+    <entry key="attachedFiles">Прикрепленные файлы:</entry>
+
+    <entry key="payLabel">Стоимость:</entry>
+    <entry key="payValue">%s руб.</entry>
+
+    <entry key="controlMessage">Переход к этому элементу возможен только после изучения всех материалов данного курса.
+        Если Вы готовы перейти к подготовке к зачету и/или к самому зачету, нажмите кнопку далее.
+    </entry>
+
+    <entry key="showMessage">Далее</entry>
+    <entry key="interval">Доступ к элементу будет открыт с %s по %s</entry>
+</properties>

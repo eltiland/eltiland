@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="on.tooltip">Отключить необходимость подачи заявки на курс</entry>
+    <entry key="off.tooltip">Включить необходимость подачи заявки на курс</entry>
+    <entry key="lock.tooltip">Закрыть возможность записи на курс</entry>
+    <entry key="unlock.tooltip">Открыть возможность записи на курс</entry>
+    <entry key="remove.tooltip">Удалить заявку</entry>
+    <entry key="edit.tooltip">Установить номер оферты</entry>
+    <entry key="apply.tooltip">Подтвердить заявку</entry>
+    <entry key="download.tooltip">Скачать файлы пользователя</entry>
+    <entry key="upload.tooltip">Загрузить файлы для пользователя</entry>
+    <entry key="pay.tooltip">Разрешить оплату пользователю</entry>
+    <entry key="listener.tooltip">Перевести в слушатели</entry>
+
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="contactColumn">Общие данные</entry>
+    <entry key="typeColumn">Тип</entry>
+    <entry key="statusColumn">Статус</entry>
+    <entry key="organizationColumn">Место работы</entry>
+
+    <entry key="NEW">Новая заявка</entry>
+    <entry key="APPROVED">Подтвержден</entry>
+    <entry key="PAYS">Оплачивает</entry>
+    <entry key="CONFIRMED">Слушатель курса</entry>
+
+    <entry key="PHYSICAL">Физическое лицо</entry>
+    <entry key="LEGAL">Юридическое лицо</entry>
+    <entry key="MOSCOW">Портал поставщиков</entry>
+
+    <entry key="activated">Активирован</entry>
+    <entry key="no_activated">Не активирован</entry>
+
+    <entry key="select.user.header">Список слушателей</entry>
+    <entry key="offer.header">Номер оферты</entry>
+    <entry key="files.user.header">Файлы пользователя</entry>
+    <entry key="files.author.header">Файлы, доступные пользователю</entry>
+
+    <entry key="error.no.documents">Ошибка - не загружены документы курса.</entry>
+    <entry key="error.no.requisites">Ошибка - не установлены реквизиты оплаты курса.</entry>
+    <entry key="error.no.files">Данный пользователь не загрузил ни одного документа для данного курса.</entry>
+
+    <entry key="message.listener">Пользователь переведен в статус слушателя.</entry>
+</properties>
+
+

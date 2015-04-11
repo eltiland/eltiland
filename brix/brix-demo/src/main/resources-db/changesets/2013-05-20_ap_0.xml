@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Add table for questions/answers</comment>
+        <sql>
+            CREATE TABLE "public"."faq" (
+            "_prototype" CHARACTER VARYING( 31 ) NOT NULL,
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "answer" CHARACTER VARYING( 2048 ) NOT NULL,
+            "number" INTEGER NOT NULL,
+            "question" CHARACTER VARYING( 2048 ) NOT NULL,
+            PRIMARY KEY ( "_id" ),
+            CONSTRAINT _prototype_enum CHECK (((_prototype)::text = ANY (ARRAY[('PARENT'::character varying)::text, ('TEACHER'::character varying)::text])))
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

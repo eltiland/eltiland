@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Добавление нового вопроса</entry>
+    <entry key="qLabel">Текст вопроса</entry>
+    <entry key="questionSubject">Вопрос от пользователя</entry>
+    <entry key="sendButtonLabel">Отправить</entry>
+    <entry key="emailLabel">Ваша электронная почта:</entry>
+    <entry key="emailText">Создан вопрос от %s</entry>
+    <entry key="emailSendError">Ошибка при отправке электронного письма</entry>
+</properties>

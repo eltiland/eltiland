@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating table course_paid_invoice</comment>
+        <sql>
+            CREATE TABLE "public"."course_paid_invoice" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "creationDate" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "price" NUMERIC( 19, 2 ) NOT NULL,
+            "status" BOOLEAN DEFAULT 'false' NOT NULL,
+            "course" NUMERIC,
+            "item" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Creating table course_payment</comment>
+        <sql>
+            CREATE TABLE "public"."course_payment" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "payDate" TIMESTAMP WITHOUT TIME ZONE,
+            "price" NUMERIC( 19, 2 ) NOT NULL,
+            "status" BOOLEAN DEFAULT 'false' NOT NULL,
+            "invoice" NUMERIC,
+            "listener" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Creating links</comment>
+        <sql>
+            ALTER TABLE "public"."course_payment" ADD CONSTRAINT "payment_invoice" FOREIGN KEY ( "invoice" )
+            REFERENCES "public"."course_paid_invoice" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_paid_invoice" ADD CONSTRAINT "invoice_item" FOREIGN KEY ( "item" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_paid_invoice" ADD CONSTRAINT "invoice_course" FOREIGN KEY ( "course" )
+            REFERENCES "public"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_payment" ADD CONSTRAINT "payment_user" FOREIGN KEY ( "listener" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

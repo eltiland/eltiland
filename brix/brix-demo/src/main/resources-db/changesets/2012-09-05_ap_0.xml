@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Add table for many-to-many with child-pei</comment>
+
+        <sql>
+            CREATE TABLE child_pei
+            (
+            child_id numeric(20,0) NOT NULL,
+            pei_id numeric(20,0) NOT NULL,
+            CONSTRAINT pk_child_pei PRIMARY KEY (child_id , pei_id ),
+            CONSTRAINT fk_child_id FOREIGN KEY (child_id)
+            REFERENCES child (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT fk_pei_id FOREIGN KEY (pei_id)
+            REFERENCES pei (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE child_pei
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Data migration</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE OR REPLACE FUNCTION movepeichild() RETURNS void AS $$
+            DECLARE entity RECORD;
+            BEGIN
+
+            -- table "_option"
+            FOR entity IN SELECT * FROM public.child
+            LOOP
+            -- move child.pei to new table
+            INSERT INTO public.child_pei(child_id, pei_id) VALUES (entity._id, entity.pei);
+            END LOOP;
+
+
+            END;
+            $$ LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION movepeichild()
+            OWNER TO eltiland;
+        </sql>
+        <sql>
+            SELECT "movepeichild"();
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Remove pei filed from child</comment>
+
+        <dropForeignKeyConstraint constraintName="fk_child_pei" baseTableName="child"/>
+        <dropColumn tableName="child" columnName="pei"/>
+    </changeSet>
+
+</databaseChangeLog>

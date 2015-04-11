@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Вход и регистрация на вебинар</entry>
+    <entry key="email">Электронная почта</entry>
+    <entry key="password">Пароль</entry>
+    <entry key="login">Вход</entry>
+    <entry key="apply">Подтвердить</entry>
+
+    <entry key="name">Имя</entry>
+    <entry key="surname">Фамилия</entry>
+    <entry key="patronymic">Отчество</entry>
+
+    <entry key="errorRegistered">Ошибка, пользователь с данным email уже зарегистрирован на данный вебинар.</entry>
+    <entry key="errorLogin">Ошибка, неправильный логин/пароль.</entry>
+
+    <entry key="signupFreeMessage">Вы успено добавлены на указанный бесплатный вебинар. Ссылка на участие отправлена Вам
+        на почту. Также ссылку можно увидеть в панели "Вебинары" Вашего профиля на портале "Элтиленд".
+    </entry>
+    <entry key="signupPaidMessage">Заявка на участие в платном вебинаре подана, ожидайте ссылку для оплату на ваш адрес
+        электронной почты.
+    </entry>
+</properties>

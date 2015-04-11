@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="alexander.cherednichenko">
+        <comment>
+            Add group link to activity. Adding from: to messages.
+        </comment>
+
+        <sql>
+            delete from message;
+        </sql>
+        <sql>
+            delete from activity;
+        </sql>
+        <addColumn tableName="activity">
+            <column name="group_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_activity_group"
+                                 baseTableName="activity" baseColumnNames="group_id"
+                                 referencedTableName="group" referencedColumnNames="_id"/>
+        <addColumn tableName="message">
+            <column name="recipient" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_message_recipient"
+                                 baseTableName="message" baseColumnNames="recipient"
+                                 referencedTableName="user" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet author="alexander.cherednichenko" id="2">
+        <dropNotNullConstraint tableName="postal_address" columnName="postal_code"/>
+    </changeSet>
+
+</databaseChangeLog>

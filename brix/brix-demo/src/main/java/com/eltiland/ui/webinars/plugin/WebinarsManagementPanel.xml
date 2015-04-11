@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="announcementTab">Анонсы</entry>
+    <entry key="creationTab">Создание вебинара</entry>
+    <entry key="paymentTab">Платежи</entry>
+    <entry key="historyTab">История</entry>
+    <entry key="recordTab">Записи вебинаров</entry>
+    <entry key="userTab">Пользователи</entry>
+    <entry key="invoiceTab">Запросы на создание вебинара</entry>
+
+    <entry key="errorAPIAccess">Ошибка доступа к API Webinar.ru!</entry>
+</properties>

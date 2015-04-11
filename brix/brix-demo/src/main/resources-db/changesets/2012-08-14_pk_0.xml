@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="pavel.knorr">
+        <comment>Add link to the Pei into child table</comment>
+
+        <addColumn schemaName="public" tableName="child">
+            <column name="pei" type="Decimal(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint constraintName="fk_child_pei" baseTableName="child" baseColumnNames="pei"
+                                 referencedTableName="pei" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

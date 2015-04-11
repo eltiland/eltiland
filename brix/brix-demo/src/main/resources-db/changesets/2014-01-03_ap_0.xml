@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Function, returning max order of the slider image</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.slider_max()
+            RETURNS INTEGER as $$
+            DECLARE
+            result INTEGER;
+            entity RECORD;
+            BEGIN
+            result := -1;
+            FOR entity IN SELECT * FROM public.slider
+            LOOP
+            IF entity.image_order > result THEN
+            result := entity.image_order;
+            END IF;
+            END LOOP;
+            RETURN result + 1;
+            END
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Function-trigger for adding slider image</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.slider_add_trigger()
+            RETURNS TRIGGER as $$
+            BEGIN
+            NEW.image_order := slider_max();
+            RETURN NEW;
+            END
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Function-trigger for removing slider image</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.slider_remove_trigger()
+            RETURNS TRIGGER as $$
+            DECLARE
+            iOrder INTEGER;
+            i INTEGER;
+            BEGIN
+            iOrder := OLD.image_order;
+            FOR i IN iOrder+1 .. slider_max()-1
+            LOOP
+            UPDATE slider SET image_order = image_order - 1 WHERE image_order = i;
+            END LOOP;
+            RETURN OLD;
+            END
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Triggers for add/remove slider image</comment>
+        <sql>
+            CREATE TRIGGER add_trigger BEFORE INSERT ON "public"."slider" FOR EACH ROW EXECUTE PROCEDURE
+            slider_add_trigger();
+            CREATE TRIGGER remove_trigger BEFORE DELETE ON "public"."slider" FOR EACH ROW EXECUTE PROCEDURE
+            slider_remove_trigger();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

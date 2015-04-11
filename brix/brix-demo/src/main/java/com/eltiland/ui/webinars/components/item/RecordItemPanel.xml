@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="record">ЗАПИСЬ ВЕБИНАРА</entry>
+
+    <entry key="open">ЗАПИСЬ ВЕБИНАРА ОПЛАЧЕНА</entry>
+    <entry key="closed">ЗАПИСЬ ВЕБИНАРА НЕ ОПЛАЧЕНА. СТОИМОСТЬ - %s РУБ.</entry>
+
+    <entry key="download.action">Скачать сертификат</entry>
+    <entry key="pay.action">Оплатить</entry>
+</properties>

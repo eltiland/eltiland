@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Added new entity RecordMaterialType</comment>
+
+        <createTable tableName="record_material_type">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <insert tableName="record_material_type" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Нормативный документ"/>
+        </insert>
+        <insert tableName="record_material_type" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Программно-методический документ"/>
+        </insert>
+
+        <addColumn tableName="record">
+            <column name="record_material_type" type="DECIMAL(20, 0)"/>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_record_material_type"
+                                 baseTableName="record" baseColumnNames="record_material_type"
+                                 referencedTableName="record_material_type" referencedColumnNames="_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

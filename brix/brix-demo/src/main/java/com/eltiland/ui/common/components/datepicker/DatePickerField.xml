@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="datePickerConversionError">Ошибка - неправильный формат даты!</entry>
+    <entry key="issuedRequired">Instructions should be issued first!</entry>
+    <entry key="issuedAfterRequired">Date has to be after Instructions Issued On!</entry>
+
+    <entry key="requiredByRequired">Required By should be set first!</entry>
+    <entry key="commencedOnRequired">Commenced On should be set first!</entry>
+    <entry key="requiredByDateAfterExtendedUntil">Date has to be after Required By!</entry>
+    <entry key="commencedOnAfterCompletedUntil">Date has to be after or equal to Commenced On!</entry>
+    <entry key="completedOnDateInPastOrToday">Has to be in the past!</entry>
+</properties>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding older age group to Our Graduates and CYT</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_age_group_id(age integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "child_age_group" where age_group=age;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="child_age_group" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="age_group" value="8"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(8)"/>
+            <column name="group_id" valueComputed="get_group_id('Клуб Юных Мыслителей')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(8)"/>
+            <column name="group_id" valueComputed="get_group_id('Наши выпускники')"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

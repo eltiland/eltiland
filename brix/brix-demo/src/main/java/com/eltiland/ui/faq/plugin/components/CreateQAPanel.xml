@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Новый вопрос-ответ</entry>
+
+    <entry key="categoryLabel">Категория:</entry>
+    <entry key="questionLabel">Вопрос:</entry>
+    <entry key="answerLabel">Ответ:</entry>
+
+    <entry key="saveButtonLabel">Сохранить</entry>
+</properties>

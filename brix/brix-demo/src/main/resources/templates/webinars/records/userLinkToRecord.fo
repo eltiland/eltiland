@@ -1,0 +1,9 @@
+<h3>Добрый день!</h3>
+
+<p>Ссылка на запись вебинара "${webinar_name}":</p>
+#foreach( $record_link in $record_links)
+    <p><a href="${record_link}">${record_link}</a></p>
+#end
+
+<p>Пароль для доступа к записи - ${password}</p>
+<p>С уважением, администрация портала "Элтиленд".</p>

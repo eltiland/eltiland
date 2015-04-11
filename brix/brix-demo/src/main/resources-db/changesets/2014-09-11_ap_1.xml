@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Function, migrating video information of course items to separate table</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.migrate_video()
+            RETURNS void AS $$
+            DECLARE
+            item RECORD;
+            BEGIN
+            FOR item IN SELECT * FROM public.courseitem LOOP
+            IF item._prototype='VIDEO' THEN
+            INSERT INTO public.course_video_item(_id, description, index, item, link, name) VALUES
+            (nextval('hibernate_sequence'), '', 0, item._id, item.link, item.name);
+            END IF;
+            END LOOP;
+            END
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <sql>
+            SELECT migrate_video();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

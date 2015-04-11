@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>fix errors in last changeset</comment>
+        <dropForeignKeyConstraint constraintName="fk_pei_avatar" baseTableName="pei"/>
+        <dropColumn tableName="pei" columnName="avatar"/>
+        <sql>
+            ALTER TABLE pei
+            ADD CONSTRAINT fk1b1143770d143 FOREIGN KEY (avatar__id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">Пользователь</entry>
+    <entry key="courseColumn">Курс</entry>
+    <entry key="testColumn">Тест</entry>
+    <entry key="limitTab">Достигшие предела попыток</entry>
+
+    <entry key="searchUser">Поиск пользователя</entry>
+    <entry key="notFounded">Пользователи не найдены</entry>
+</properties>

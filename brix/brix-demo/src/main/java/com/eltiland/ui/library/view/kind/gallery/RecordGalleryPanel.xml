@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="LibraryDocumentRecord.type">ДОКУМЕНТ</entry>
+    <entry key="LibraryPresentationRecord.type">ПРЕЗЕНТАЦИЯ</entry>
+    <entry key="LibraryImageRecord.type">КАРТИНКА</entry>
+    <entry key="LibraryArchiveRecord.type">АРХИВ</entry>
+    <entry key="LibraryVideoRecord.type">ВИДЕО</entry>
+
+    <entry key="previewError">Данная запись не может быть просмотрена.</entry>
+</properties>

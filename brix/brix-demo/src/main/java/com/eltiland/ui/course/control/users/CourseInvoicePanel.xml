@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="contactColumn">Общие данные</entry>
+    <entry key="typeColumn">Тип</entry>
+    <entry key="statusColumn">Статус</entry>
+    <entry key="organizationColumn">Место работы</entry>
+
+    <entry key="NEW">Новая заявка</entry>
+    <entry key="APPROVED">Подтвержден</entry>
+    <entry key="PAYS">Оплачивает</entry>
+    <entry key="CONFIRMED">Слушатель курса</entry>
+
+    <entry key="applyTooltip">Подтвердить заявку</entry>
+    <entry key="removeTooltip">Удалить</entry>
+    <entry key="downloadTooltip">Скачать документы пользователя</entry>
+    <entry key="payTooltip">Разрешить пользователю оплату курса</entry>
+    <entry key="fullTooltip">Перевести пользователя в слушатели курса</entry>
+    <entry key="editTooltip">Установить номер оферты</entry>
+    <entry key="editPaymentTooltip">Изменить реквизиты оплаты</entry>
+    <entry key="uploadTooltip">Загрузить документ для пользователя</entry>
+    <entry key="sendTooltip">Отправить сообщение пользователям</entry>
+    <entry key="addTooltip">Добавить пользователя на курс</entry>
+    <entry key="onTooltip">Открыть регистрацию на курс</entry>
+    <entry key="offTooltip">Закрыть регистрацию на курс</entry>
+
+    <entry key="notFounded">Заявок не найдено</entry>
+
+    <entry key="deleteMessage">Данный пользователь удален из слушателей курса.</entry>
+    <entry key="approvedMessage">Заявка данного пользователя подтверждена.</entry>
+    <entry key="payMessage">Пользователю отправлены реквизиты оплаты.</entry>
+    <entry key="acceptMessage">Пользователь переведен в слушатели курса.</entry>
+    <entry key="uploadMessage">Файл успешно загружен.</entry>
+    <entry key="sendMessage">Сообщение успешно отправлено.</entry>
+    <entry key="addedMessage">Пользователи успешно добавлены.</entry>
+    <entry key="onMessage">Регистрация на текущую сессию курса открыта.</entry>
+    <entry key="offMessage">Регистрация на текущую сессию курса закрыта.</entry>
+
+    <entry key="selectUser">Выбор пользователя</entry>
+    <entry key="searchUser">Поиск пользователя</entry>
+
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="emailColumn">Электронная почта</entry>
+
+    <entry key="error.exists">Пользователь %d уже присутствует на курсе.</entry>
+
+    <entry key="email.data">Электронная почта - %s</entry>
+    <entry key="phone.data">Телефон - %s</entry>
+</properties>

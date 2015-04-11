@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="activate">Активация пользователя</entry>
+
+    <entry key="loginAction">ВОЙТИ</entry>
+
+    <entry key="successMessage">Поздравляем! Вы успешно зарегистрировались на портале ЭЛТИЛЕНД. Добро пожаловать в
+        Личный кабинет.
+    </entry>
+
+    <entry key="passwordEqualsError">Ошибка! Пароли должны совпадать</entry>
+</properties>

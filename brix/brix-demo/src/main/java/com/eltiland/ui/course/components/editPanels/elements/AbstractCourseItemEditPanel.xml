@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="attachMessage">Прикрепленные файлы:</entry>
+
+    <entry key="setControlTooltip">Пометить элемент как оценивающий.</entry>
+    <entry key="resetControlTooltip">Снять пометку "оценивающий".</entry>
+    <entry key="accessTooltip">Установить лимит доступа по датам к элементу</entry>
+
+    <entry key="invoiceMessage">Диапазон дат доступа к элементу установлен.</entry>
+</properties>

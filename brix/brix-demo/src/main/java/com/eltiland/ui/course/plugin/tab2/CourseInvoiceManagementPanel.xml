@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameLabel">Название курса</entry>
+    <entry key="dateLabel">Дата создания</entry>
+    <entry key="authorLabel">Автор</entry>
+    <entry key="priceLabel">Стоимость (руб.)</entry>
+    <entry key="infoLabel">Информация</entry>
+
+    <entry key="applyTooltip">Подвтердить запрос</entry>
+    <entry key="removeTooltip">Отклонить запрос</entry>
+
+    <entry key="deleteActionMessage">Запрос на создание курса успешно отклонен.</entry>
+    <entry key="applyActionMessage">Запрос на создание курса успешно подтвержден.</entry>
+</properties>

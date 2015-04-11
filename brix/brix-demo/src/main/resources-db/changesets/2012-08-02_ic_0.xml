@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Add record icon field</comment>
+
+        <addColumn tableName="record" schemaName="public">
+            <column name="icon_file" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint constraintName="fk_icon_file"
+                                 baseTableName="record" baseColumnNames="icon_file"
+                                 referencedTableName="file" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>
+            Add previewBody field to File entity.
+            WARNING!!! All data from File and FileBody will be lost!!!
+        </comment>
+
+        <delete tableName="file" schemaName="public"/>
+        <delete tableName="file_body" schemaName="public"/>
+
+        <addColumn tableName="file" schemaName="public">
+            <column name="preview_body" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint constraintName="fk_preview_body"
+                                 baseTableName="file" baseColumnNames="preview_body"
+                                 referencedTableName="file_body" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

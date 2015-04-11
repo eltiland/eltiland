@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Участники вебинара "%s":</entry>
+
+    <entry key="fioColumnTitle">ФИО</entry>
+    <entry key="emailColumnTitle">Email</entry>
+    <entry key="priceColumnTitle">Стоимость (руб.)</entry>
+    <entry key="statusColumnTitle">Статус</entry>
+    <entry key="actionColumnTitle">Действия</entry>
+    <entry key="roleColumnTitle">Роль</entry>
+
+    <entry key="CONFIRMED">Подтвержден</entry>
+    <entry key="PAYS">Оплачивает</entry>
+
+    <entry key="capacity">Текущая вместимость аккаунта - %s человек.</entry>
+    <entry key="confirmedCount">Подтверждено на данный момент - %s человек.</entry>
+    <entry key="messageInviteSended">Пользователю отправлено приглашение на участие в вебинаре.</entry>
+
+    <entry key="checkAllUsers">Проверить всех пользователей</entry>
+    <entry key="inviteUsers">Пригласить пользователей</entry>
+    <entry key="checkMessage">Проверка успешна - все зарегистрированные пользователи присутствуют на вебинаре.</entry>
+    <entry key="addMessage">Пользователи добавлены на вебинар.</entry>
+</properties>

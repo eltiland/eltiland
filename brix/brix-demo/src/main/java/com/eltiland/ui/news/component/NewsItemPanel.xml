@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="moreLink">читать</entry>
+    <entry key="newsItemType">Новость</entry>
+    <entry key="announcementType">Анонс</entry>
+    <entry key="newsArchive">Все анонсы и новости</entry>
+    <entry key="saved">Новость была изменена</entry>
+</properties>

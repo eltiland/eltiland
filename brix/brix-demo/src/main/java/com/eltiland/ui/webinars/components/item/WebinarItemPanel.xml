@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="webinar">ВЕБИНАР</entry>
+
+    <entry key="date_start">Дата проведения - %s</entry>
+
+    <entry key="open">ДОСТУП К ВЕБИНАРУ ОТКРЫТ</entry>
+    <entry key="closed">УЧАСТИЕ В ВЕБИНАРЕ НЕ ОПЛАЧЕНО. СТОИМОСТЬ - %s РУБ.</entry>
+
+    <entry key="download.action">Скачать сертификат</entry>
+    <entry key="preview.action">Показать ссылку</entry>
+    <entry key="pay.action">Оплатить</entry>
+</properties>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addedQuestionMessage">Ваш вопрос отправлен администрации сайта.</entry>
+
+    <entry key="addLabel">Задать вопрос</entry>
+    <entry key="help">Нажмите на вопрос, чтобы увидеть ответ</entry>
+    <entry key="searchButton">Поиск</entry>
+</properties>

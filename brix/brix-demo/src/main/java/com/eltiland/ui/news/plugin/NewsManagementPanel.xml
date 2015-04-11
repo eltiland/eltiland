@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="titleColumn">Название</entry>
+    <entry key="dateColumn">Дата</entry>
+    <entry key="bodyColumn">Содержание</entry>
+    <entry key="typeColumn">Тип</entry>
+    <entry key="addNewsItem">Добавить</entry>
+    <entry key="deleteSelected">Удалить выбранные новости</entry>
+    <entry key="updatedSuccessfully">Новость успешно изменена!</entry>
+    <entry key="titleLabel">Название:</entry>
+    <entry key="dateLabel">Дата:</entry>
+    <entry key="announcementLabel">Анонс:</entry>
+    <entry key="bodyLabel">Содержание:</entry>
+    <entry key="editNewsPanelHeader">Редактирование новости</entry>
+    <entry key="createdSuccessfullyMessage">Новость успешно создана</entry>
+    <entry key="editedSuccessfullyMessage">Новость успешно изменена</entry>
+    <entry key="previewTooltip">Предпросмотр новости</entry>
+    <entry key="editTooltip">Редактировать новость</entry>
+    <entry key="removeTooltip">Удалить новость</entry>
+    <entry key="isAnnounce">Анонс</entry>
+    <entry key="isNews">Новость</entry>
+    <entry key="createNewsPanelHeader">Новая новость</entry>
+</properties>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Set unsubscribe code</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            UPDATE subscriber SET unsubscribe = substring(md5(random()::text) from 1 for 10) WHERE unsubscribe is null;
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Add not null constraint for unsubscribe</comment>
+        <addNotNullConstraint tableName="subscriber" columnName="unsubscribe"/>
+    </changeSet>
+</databaseChangeLog>

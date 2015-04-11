@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+
+<wicket:panel>
+
+    <span class="elti-inline-editor-label">
+        <span wicket:id="asteriskRequired" class="elti-required-asterisk">&#8727;</span>
+        <span wicket:id="headerLabel">[Title:]</span></span>
+    <span wicket:id="editButton" class="elti-linkbutton">
+        <wicket:message key="edit"/>
+    </span>
+
+
+    <div wicket:id="titleContainer">
+        <div wicket:id="titleLabel" class="elti-inline-editor-title-label">[Title]</div>
+    </div>
+    <div wicket:id="editorContainer" class="elti-inline-editor">
+        <wicket:child/>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

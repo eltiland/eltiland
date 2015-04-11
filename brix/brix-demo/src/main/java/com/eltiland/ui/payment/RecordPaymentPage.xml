@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="headerLabel">Оплата записи вебинара "%s"</entry>
+    <entry key="priceLabel">Стоимость:</entry>
+    <entry key="priceValue">%s руб.</entry>
+</properties>

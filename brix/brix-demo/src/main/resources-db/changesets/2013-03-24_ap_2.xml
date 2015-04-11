@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Added IB ad teacher of new CYT</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_user_id(user_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where name=user_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_by_email(inEmail text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where email=inEmail;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_by_name(inName text, peiId integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=inName and pei=peiId;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_user_id('Рогожкина Ирина Борисовна')"/>
+            <column name="group_id"
+                    valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <sql>
+            DROP FUNCTION get_user_id(user_name text)
+        </sql>
+
+        <sql>
+            DROP FUNCTION get_pei_by_email(inEmail text)
+        </sql>
+
+        <sql>
+            DROP FUNCTION get_group_by_name(inName text, peiId integer)
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

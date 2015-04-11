@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+
+    <select wicket:id="internalSelector" style="display:none;"></select>
+
+    <span class="elti-inline-editor-label" wicket:id="titleLabel"></span>
+    <span wicket:id="editButton" class="elti-linkbutton">
+        <wicket:message key="addNew"/>
+    </span>
+
+    <div class="elti-inline-editor">
+        <select style="display:none" size="1" wicket:id="dropDownAddElement"></select>
+    </div>
+
+    <div wicket:id="choiceContainer" class="choice-container"></div>
+
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Add user to SiperPei group</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id(pei_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where name=pei_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_teacher_id() returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where pei=get_pei_id('Электронный детский сад ЭЛТИК');
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('Детская Газета')"/>
+        </insert>
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('Клуб Юных Мыслителей')"/>
+        </insert>
+        <sql>
+            DROP FUNCTION get_group_id(group_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_pei_id(pei_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_teacher_id()
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

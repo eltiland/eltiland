@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding autoregistrational virtual groups to super PEI</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id(pei_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where name=pei_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_teacher_id() returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where pei=get_pei_id('Виртуальный детский сад');
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_age_group_id(age integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "child_age_group" where age_group=age;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <sql>
+            ALTER TABLE public.group
+            DROP CONSTRAINT _prototype_enum;
+
+            ALTER TABLE public.group
+            ADD CONSTRAINT _prototype_enum CHECK (_prototype::text = ANY (ARRAY['CONTEST'::character varying::text,
+            'GROUP'::character varying::text, 'SECTION'::character varying::text]));
+        </sql>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 2 до 3"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 3 до 4"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 4 до 5"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 5 до 6"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 6 до 7"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="От 7 до 8"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="name" value="Наши выпускники"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Виртуальный детский сад')"/>
+            <column name="autoreg" value="true"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 2 до 3')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 3 до 4')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 4 до 5')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 5 до 6')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 6 до 7')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('От 7 до 8')"/>
+        </insert>
+
+        <insert tableName="teacher_group" schemaName="public">
+            <column name="teacher_id" valueComputed="get_teacher_id()"/>
+            <column name="group_id" valueComputed="get_group_id('Наши выпускники')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(1)"/>
+            <column name="group_id" valueComputed="get_group_id('От 1 до 2')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(2)"/>
+            <column name="group_id" valueComputed="get_group_id('От 2 до 3')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(3)"/>
+            <column name="group_id" valueComputed="get_group_id('От 3 до 4')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(4)"/>
+            <column name="group_id" valueComputed="get_group_id('От 4 до 5')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(5)"/>
+            <column name="group_id" valueComputed="get_group_id('От 5 до 6')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(6)"/>
+            <column name="group_id" valueComputed="get_group_id('От 6 до 7')"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(7)"/>
+            <column name="group_id" valueComputed="get_group_id('От 7 до 8')"/>
+        </insert>
+
+        <sql>
+            DROP FUNCTION get_group_id(group_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_teacher_id()
+        </sql>
+        <sql>
+            DROP FUNCTION get_pei_id(pei_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_age_group_id(age integer)
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

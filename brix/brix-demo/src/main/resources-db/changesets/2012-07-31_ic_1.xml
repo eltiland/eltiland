@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Create table for lesson record entity</comment>
+
+        <createTable tableName="lesson_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="goal" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mission" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="equipmentAndMaterials" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finalPart" type="text">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Create table for many to many relation LessonRecord - Record</comment>
+
+        <createTable tableName="lessonrecord_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="lesson_record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_lesson_record"
+                                 baseTableName="lessonrecord_record" baseColumnNames="lesson_record_id"
+                                 referencedTableName="lesson_record" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="lessonrecord_record" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

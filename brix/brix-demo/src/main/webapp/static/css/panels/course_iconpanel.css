@@ -1,0 +1,112 @@
+/**************************************************************************************************/
+/* Styles for panel of setting/modifying paid invoice.
+/**************************************************************************************************/
+.course_icon_panel {
+    display: table;
+}
+
+.course_icon_panel > .image {
+    width: 400px;
+    display: table-cell;
+}
+
+.course_icon_panel > .info {
+    width: 400px;
+    display: table-cell;
+    border-bottom: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    vertical-align: top;
+}
+
+.course_icon_panel > .info > .label {
+    background-color: #079ee7;
+    color: white;
+    text-align: center;
+    padding: 3px;
+    font-family: "a_Campus";
+}
+
+.course_icon_panel > .info > .training_label {
+    background-color: #FF9923 !important;
+}
+
+.course_icon_panel > .info > .name {
+    font-family: Courier New;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    padding: 2px;
+    text-transform: uppercase;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.course_icon_panel > .info > .author {
+    text-align: center;
+    font-weight: bold;
+    color: #079ee7;
+    cursor: pointer;
+    display: table;
+    margin: 0 auto;
+    padding-top: 2px;
+    height: 21px;
+}
+
+.course_icon_panel > .info > .dates {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+}
+
+.course_icon_panel > .info > .about {
+    height: 35px;
+    width: 120px;
+    vertical-align: middle;
+    float: right;
+    text-align: center;
+    background-color: #027fb9;
+    cursor: pointer;
+}
+
+.course_icon_panel > .info > .about > .text {
+    margin-top: 10px;
+    color: white;
+    font-family: "a_Campus";
+}
+
+.course_icon_panel > .info > .training {
+    float: left;
+    width: 120px;
+    text-align: center;
+    color: white;
+    font-family: "a_Campus";
+    font-size: 15px;
+    height: 35px;
+}
+
+.course_icon_panel > .info > .action {
+    float: left;
+    width: 130px;
+    padding: 3px;
+    color: white;
+    font-family: "a_Campus";
+    height: 29px;
+    background: #5f9ea0;
+}
+
+.course_icon_panel > .info > .action > .caption {
+    margin-top: 5px !important;
+    display: table;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.course_icon_panel > .info > .dates > .opened {
+    color: #FF9923 !important;
+}
+
+.course_icon_panel > .info > .dates > .closed {
+    color: red !important;
+}

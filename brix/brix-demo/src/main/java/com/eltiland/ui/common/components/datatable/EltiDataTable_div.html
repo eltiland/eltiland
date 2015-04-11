@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <wicket:remove><!--TODO: Add styles for this layout--></wicket:remove>
+    <div wicket:id="caption"></div>
+    <div wicket:id="topToolbars" class="thead">
+        <wicket:container wicket:id="toolbars"/>
+    </div>
+
+    <div wicket:id="body">
+        <div wicket:id="rows" class="row">
+            <div wicket:id="cells" class="cell">
+                <div wicket:id="cell">[cell]</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div wicket:id="bottomToolbars" class="bottomToolbar">
+        <wicket:container wicket:id="toolbars"/>
+    </div>
+</wicket:panel>
+</body>
+</html>

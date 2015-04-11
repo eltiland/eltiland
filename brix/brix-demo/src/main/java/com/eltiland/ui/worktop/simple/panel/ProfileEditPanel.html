@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form wicket:id="form">
+        <div class="block left">
+            <div class="blockData" wicket:id="nameField"></div>
+            <div class="blockData" wicket:id="emailField"></div>
+            <div class="blockData" wicket:id="addressField"></div>
+            <div class="blockData" wicket:id="phoneField"></div>
+            <div class="blockData" wicket:id="skypeField"></div>
+            <div class="blockData" wicket:id="companyField"></div>
+            <div class="blockData" wicket:id="jobField"></div>
+            <div class="blockData" wicket:id="expField"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="block right">
+            <div class="blockData" wicket:id="aboutField"></div>
+            <div class="blockData" wicket:id="achieveField"></div>
+        </div>
+        <div class="clear"></div>
+        <div>
+            <button style="margin-top: 10px" wicket:id="saveButton">
+                <wicket:message key="save"></wicket:message>
+            </button>
+            <button wicket:id="changePassButton">
+                <wicket:message key="changePassword"></wicket:message>
+            </button>
+        </div>
+    </form>
+
+    <div wicket:id="changePassDialog"></div>
+</wicket:panel>
+</body>
+</html>

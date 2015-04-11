@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating table course_question</comment>
+        <sql>
+            CREATE TABLE "public"."course_test_question" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "number" INTEGER NOT NULL,
+            "text" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" NUMERIC,
+            "section" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Creating table course_result</comment>
+        <sql>
+            CREATE TABLE "public"."course_test_result" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "max" INTEGER NOT NULL,
+            "min" INTEGER NOT NULL,
+            "value" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Creating table course_section</comment>
+        <sql>
+            CREATE TABLE "public"."course_test_section" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "text" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Creating table course_variant</comment>
+        <sql>
+            CREATE TABLE "public"."course_test_variant" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "number" INTEGER NOT NULL,
+            "value" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Creating link between tables</comment>
+        <sql>
+            ALTER TABLE "public"."course_test_question" ADD CONSTRAINT "question_section" FOREIGN KEY ( "section" )
+            REFERENCES "public"."course_test_section" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_test_question" ADD CONSTRAINT "question_item" FOREIGN KEY ( "item" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_test_result" ADD CONSTRAINT "result_item" FOREIGN KEY ( "item" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_test_section" ADD CONSTRAINT "section_item" FOREIGN KEY ( "item" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_test_variant" ADD CONSTRAINT "variant_item" FOREIGN KEY ( "item" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

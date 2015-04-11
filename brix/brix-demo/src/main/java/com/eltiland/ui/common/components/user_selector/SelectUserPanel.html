@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="webinar-select">
+        <div class="label">
+            <wicket:message key="selectHeader"></wicket:message>
+        </div>
+
+        <input wicket:id="searchField" class="text">
+        <button wicket:id="searchButton" class="searchButton">
+            <wicket:message key="search"/>
+        </button>
+
+        <wicket:enclosure child="grid">
+            <div class="label">
+                <wicket:message key="resultsLabel"></wicket:message>
+            </div>
+            <div wicket:id="grid" class="label"></div>
+        </wicket:enclosure>
+
+        <a wicket:id="registerLink">
+            <wicket:message key="addUserLabel"></wicket:message>
+        </a>
+    </div>
+    <div wicket:id="registerDialog"></div>
+</wicket:extend>
+</body>
+</html>

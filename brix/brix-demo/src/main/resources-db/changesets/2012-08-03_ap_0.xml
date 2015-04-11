@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Change length of some fields in profile tables</comment>
+        <sql>
+            ALTER TABLE pei ALTER COLUMN email TYPE character varying(255);
+            ALTER TABLE pei ALTER COLUMN manager TYPE character varying(255);
+            ALTER TABLE pei ALTER COLUMN name TYPE character varying(255);
+            ALTER TABLE pei ALTER COLUMN phone TYPE character varying(255);
+            ALTER TABLE pei ALTER COLUMN description TYPE character varying(1024);
+            ALTER TABLE "user" ALTER COLUMN name TYPE character varying(255);
+            ALTER TABLE "user" ALTER COLUMN information TYPE character varying(1024);
+            ALTER TABLE "user" ALTER COLUMN publication TYPE character varying(1024);
+            ALTER TABLE child ALTER COLUMN name TYPE character varying(255);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+
+    <div class="elti-icon-container">
+        <div class="icon-aligner">
+            <a wicket:id="openLink">
+                <img wicket:id="imageContainer" alt=""/>
+            </a>
+        </div>
+    </div>
+    <div class="description">
+        <div class="type" wicket:id="typeLabel">[Type]</div>
+        <div>
+            <div class="name clipped" wicket:id="nameLabel">[Name]</div>
+            <div class="download-arrow" wicket:id="downloadLink"></div>
+        </div>
+
+        <wicket:enclosure child="deleteLink">
+            <div class="cross">
+                <a wicket:id="deleteLink">
+                    <wicket:message key="closeLink"/>
+                </a>
+            </div>
+        </wicket:enclosure>
+    </div>
+    <wicket:child/>
+
+</wicket:panel>
+</body>
+</html>

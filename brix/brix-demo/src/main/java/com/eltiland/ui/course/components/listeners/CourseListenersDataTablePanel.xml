@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="emailColumn">Email</entry>
+    <entry key="priceColumn">Оплаченная стоимость курса</entry>
+    <entry key="payDateColumn">Дата оплаты</entry>
+
+    <entry key="priceValue">%s руб.</entry>
+    <entry key="freeValue">бесплатно</entry>
+
+    <entry key="cancelAction">отменить бесплатный доступ</entry>
+    <entry key="editAction">редактирование стоимости курса</entry>
+</properties>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="topicTabLabel">Название</entry>
+    <entry key="descriptionTabLabel">Описание</entry>
+    <entry key="startDateTabLabel">Дата</entry>
+    <entry key="managerTabLabel">Ведущий</entry>
+    <entry key="certTabLabel">Сертификат</entry>
+
+    <entry key="send.yes">Отправлен</entry>
+    <entry key="send.no">Не отправлен</entry>
+
+    <entry key="memberTooltip">Список участников</entry>
+    <entry key="editTooltip">Редактировать краткое описание вебиара для сертификата</entry>
+    <entry key="uploadTooltip">Прикрепить файлы к отправляемому письму</entry>
+    <entry key="sendTooltip">Отправить сообщение участникам</entry>
+    <entry key="certificateTooltip">Отправить сертификат участникам</entry>
+
+    <entry key="saveMessage">Данные вебинара сохранены.</entry>
+    <entry key="sendMessage">Сообщение отправлено</entry>
+    <entry key="sentCert">Сертификат отправлен</entry>
+
+    <entry key="send.error">Невозможно отправить сертификат - не прикреплена запись.</entry>
+</properties>

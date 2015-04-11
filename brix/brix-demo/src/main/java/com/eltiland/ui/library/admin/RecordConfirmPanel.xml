@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">Название записи</entry>
+    <entry key="dateColumn">Дата добавления</entry>
+    <entry key="authorColumn">Автор</entry>
+    <entry key="typeColumn">Тип</entry>
+
+    <entry key="LibraryDocumentRecord.class">Документ</entry>
+    <entry key="LibraryImageRecord.class">Картинка</entry>
+    <entry key="LibraryPresentationRecord.class">Презентация</entry>
+    <entry key="LibraryArchiveRecord.class">Архив</entry>
+    <entry key="LibraryVideoRecord.class">Видео</entry>
+
+    <entry key="recordRemovedMessage">Запись удалена.</entry>
+    <entry key="recordAppliedMessage">Запись опубликована.</entry>
+
+    <entry key="searchRecord">Поиск записи</entry>
+</properties>

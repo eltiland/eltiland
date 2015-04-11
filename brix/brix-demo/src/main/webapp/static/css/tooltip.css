@@ -1,0 +1,22 @@
+#tooltip {
+    vertical-align: middle;
+    padding: 10px;
+    z-index: 20100;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+#tooltip.normal {
+    background-color: #fe8e33;
+    border: 1px solid #dad9d9;
+}
+
+#tooltip.error {
+    background-color: #cc0000;
+    border: 1px solid #990000;
+}

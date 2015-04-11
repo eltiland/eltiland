@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="no.files">Файлы не найдены</entry>
+
+    <entry key="download.tooltip">Скачать файл</entry>
+
+    <entry key="name.column">Название</entry>
+    <entry key="date.column">Дата загрузки</entry>
+    <entry key="user.column">Автор</entry>
+</properties>

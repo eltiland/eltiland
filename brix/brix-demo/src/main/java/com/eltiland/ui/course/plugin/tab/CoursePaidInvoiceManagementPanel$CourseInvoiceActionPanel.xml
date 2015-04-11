@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="deleteAction">Отклонить</entry>
+    <entry key="applyAction">Принять</entry>
+    <entry key="editAction">Изменить сумму</entry>
+
+    <entry key="deleteActionMessage">Запрос на платные услуги для курса успешно отклонен.</entry>
+    <entry key="applyActionMessage">Запрос на платные услуги для курса успешно подтвержден.</entry>
+    <entry key="editActionMessage">Запрос на платные услуги для курса сохранен.</entry>
+</properties>

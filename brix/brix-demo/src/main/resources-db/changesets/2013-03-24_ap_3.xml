@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding age groups to new CYT</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_age_group_id(age integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "child_age_group" where age_group=age;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_by_email(inEmail text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where email=inEmail;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_by_name(inName text, peiId integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=inName and pei=peiId;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(1)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(2)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(3)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(4)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(5)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(6)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(7)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+        <insert tableName="agegroup_group" schemaName="public">
+            <column name="agegroup_id" valueComputed="get_age_group_id(8)"></column>
+            <column name="group_id" valueComputed="get_group_by_name('Клуб Юных Мыслителей', get_pei_by_email('eltik@vdm.ru'))"/>
+        </insert>
+
+
+        <sql>
+            DROP FUNCTION get_age_group_id(age integer)
+        </sql>
+
+        <sql>
+            DROP FUNCTION get_pei_by_email(inEmail text)
+        </sql>
+
+        <sql>
+            DROP FUNCTION get_group_by_name(inName text, peiId integer)
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

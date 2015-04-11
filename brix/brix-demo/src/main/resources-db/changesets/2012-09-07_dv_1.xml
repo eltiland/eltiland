@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Increase teacher SuperPEI</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id(pei_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where name=pei_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <update tableName="user">
+            <column name="position" value="0"/>
+
+            <where>pei=get_pei_id('Электронный детский сад ЭЛТИК')</where>
+        </update>
+
+        <sql>
+            DROP FUNCTION get_pei_id(pei_name text)
+        </sql>
+
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Localization user position</comment>
+
+        <update tableName="position">
+            <column name="name" value="Руководитель"/>
+
+            <where>name='manager'</where>
+        </update>
+        <update tableName="position">
+            <column name="name" value="Воспитатель"/>
+
+            <where>name='educator'</where>
+        </update>
+
+    </changeSet>
+</databaseChangeLog>

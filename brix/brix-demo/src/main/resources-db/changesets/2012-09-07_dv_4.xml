@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Update address line SuperPEI</comment>
+        <update tableName="postal_address">
+            <column name="address_line" value="Осенний бульвар, д. 12, к. 9"/>
+            <where>address_line='улица Домодедовская, дом 20, корпус 3'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

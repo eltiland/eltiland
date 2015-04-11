@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createMessage">Запрос на создание элемента "Вебинар" отправлен администратору.</entry>
+    <entry key="inWorkMessage">Запрос на создание отправлен администрации портала.</entry>
+</properties>

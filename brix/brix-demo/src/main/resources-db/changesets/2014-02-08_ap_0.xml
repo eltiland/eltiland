@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Function for fill jump orders</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.jump_order()
+            RETURNS void AS $$
+            DECLARE
+            item RECORD;
+            entity RECORD;
+            val INTEGER;
+            BEGIN
+            FOR item IN SELECT * FROM public.course_test_result LOOP
+            val := 0;
+            FOR entity IN SELECT * FROM public.course_test_jump LOOP
+            IF entity.result = item._id THEN
+            UPDATE public.course_test_jump SET jump_order = val WHERE _id=entity._id;
+            val := val + 1;
+            END IF;
+            END LOOP;
+            END LOOP;
+            END
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <sql>
+            SELECT jump_order();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

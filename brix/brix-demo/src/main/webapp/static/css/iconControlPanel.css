@@ -1,0 +1,274 @@
+.iconControlPanel .button {
+    width: 0;
+    float: left;
+}
+
+.iconControlPanel .button .image:hover {
+    border: 1px black solid;
+    background-color: #C0D0F8;
+}
+
+.iconControlPanel .button .image16:hover {
+    border: 1px black solid;
+    background-color: #C0D0F8;
+}
+
+.iconControlPanel .button .image {
+    width: 24px;
+    height: 24px;
+    cursor: pointer !important;
+}
+
+.iconControlPanel .button .image16 {
+    width: 22px;
+    height: 22px;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    cursor: pointer !important;
+}
+
+.iconControlPanel .button .add {
+    background: url("../images/actions/24x24/add.png");
+}
+
+.iconControlPanel .button .edit {
+    background: url("../images/actions/24x24/edit.png");
+}
+
+.iconControlPanel .button .close {
+    background: url("../images/actions/24x24/close.png");
+}
+
+.iconControlPanel .button .open {
+    background: url("../images/actions/24x24/open.png");
+}
+
+.iconControlPanel .button .save {
+    background: url("../images/actions/24x24/save.png");
+}
+
+.iconControlPanel .button .settings {
+    background: url("../images/actions/24x24/settings.png");
+}
+
+.iconControlPanel .button .cancel {
+    background: url("../images/actions/24x24/remove.png");
+}
+
+.iconControlPanel .button .apply {
+    background: url("../images/actions/24x24/apply.png");
+}
+
+.iconControlPanel .button .send {
+    background: url("../images/actions/24x24/send.png");
+}
+
+.iconControlPanel .button .message {
+    background: url("../images/actions/24x24/message.png");
+}
+
+.iconControlPanel .button .print_enabled {
+    background: url("../images/actions/24x24/print_enabled.png");
+}
+
+.iconControlPanel .button .print_disabled {
+    background: url("../images/actions/24x24/print_disabled.png");
+}
+
+.iconControlPanel .button .look {
+    background: url("../images/actions/24x24/look.png");
+}
+
+.iconControlPanel .button .activeUser {
+    background: url("../images/actions/24x24/active_user.png");
+}
+
+.iconControlPanel .button .disableUser {
+    background: url("../images/actions/24x24/disactive_user.png");
+}
+
+.iconControlPanel .button .up {
+    background: url("../images/actions/24x24/move_up.png");
+}
+
+.iconControlPanel .button .down {
+    background: url("../images/actions/24x24/move_down.png");
+}
+
+.iconControlPanel .button .tag {
+    background: url("../images/actions/24x24/tag.png");
+}
+
+.iconControlPanel .button .upload {
+    background: url("../images/actions/24x24/upload.png");
+}
+
+.iconControlPanel .button .on {
+    background: url("../images/actions/24x24/on.png");
+}
+
+.iconControlPanel .button .off {
+    background: url("../images/actions/24x24/off.png");
+}
+
+.iconControlPanel .button .calendar {
+    background: url("../images/actions/24x24/calendar.png");
+}
+
+.iconControlPanel .button .attach {
+    background: url("../images/actions/24x24/attach.png");
+}
+
+.iconControlPanel .button .print {
+    background: url("../images/actions/24x24/print.png");
+}
+
+.iconControlPanel .button .control_set {
+    background: url("../images/actions/24x24/control_set.png");
+}
+
+.iconControlPanel .button .control_reset {
+    background: url("../images/actions/24x24/control_reset.png");
+}
+
+.iconControlPanel .button .cancel16 {
+    background: url("../images/actions/16x16/close_16x16.png");
+}
+
+.iconControlPanel .button .edit16 {
+    background: url("../images/actions/16x16/edit_16x16.png");
+}
+
+.iconControlPanel .button .question16 {
+    background: url("../images/actions/16x16/question_16x16.png");
+}
+
+.iconControlPanel .button .variant16 {
+    background: url("../images/actions/16x16/variant_16x16.png");
+}
+
+.iconControlPanel .button .result16 {
+    background: url("../images/actions/16x16/result_16x16.png");
+}
+
+.iconControlPanel .button .up16 {
+    background: url("../images/actions/16x16/up_16x16.png");
+}
+
+.iconControlPanel .button .down16 {
+    background: url("../images/actions/16x16/down_16x16.png");
+}
+
+.iconControlPanel .button .jump16 {
+    background: url("../images/actions/16x16/jump_16x16.png");
+}
+
+.iconControlPanel .button .add16 {
+    background: url("../images/actions/16x16/add_16x16.png");
+}
+
+.iconControlPanel .button .download16 {
+    background: url("../images/actions/16x16/download_16x16.png");
+}
+
+.iconControlPanel .button .play16 {
+    background: url("../images/actions/16x16/play_16x16.png");
+}
+
+.iconControlPanel .button .apply16 {
+    background: url("../images/actions/16x16/apply_16x16.png");
+}
+
+.iconControlPanel .button .children16 {
+    background: url("../images/actions/16x16/children_16x16.png");
+}
+
+.iconControlPanel .button .info16 {
+    background: url("../images/actions/16x16/info_16x16.png");
+}
+
+.iconControlPanel .button .preview16 {
+    background: url("../images/actions/16x16/preview_16x16.png");
+}
+
+.iconControlPanel .button .pagePreview16 {
+    background: url("../images/actions/16x16/page_preview_16x16.png");
+}
+
+.iconControlPanel .button .exportExcel16 {
+    background: url("../images/actions/16x16/export_excel_16x16.png");
+}
+
+.iconControlPanel .button .controlSet16 {
+    background: url("../images/actions/16x16/control_set_16x16.png");
+}
+
+.iconControlPanel .button .controlReset16 {
+    background: url("../images/actions/16x16/control_reset_16x16.png");
+}
+
+.iconControlPanel .button .pay16 {
+    background: url("../images/actions/16x16/pay_16x16.png");
+}
+
+.iconControlPanel .button .full_apply16 {
+    background: url("../images/actions/16x16/full_apply_16x16.png");
+}
+
+.iconControlPanel .button .edit_payment16 {
+    background: url("../images/actions/16x16/edit_payment_16x16.png");
+}
+
+.iconControlPanel .button .upload16 {
+    background: url("../images/actions/16x16/upload_16x16.png");
+}
+
+.iconControlPanel .button .send16 {
+    background: url("../images/actions/16x16/send_16x16.png");
+}
+
+.iconControlPanel .button .users16 {
+    background: url("../images/actions/16x16/users_16x16.png");
+}
+
+.iconControlPanel .button .certificate16 {
+    background: url("../images/actions/16x16/certificate_16x16.png");
+}
+
+.iconControlPanel .button .profile16 {
+    background: url("../images/actions/16x16/profile_16x16.png");
+}
+
+.iconControlPanel .button .on16 {
+    background: url("../images/actions/16x16/on_16x16.png");
+}
+
+.iconControlPanel .button .off16 {
+    background: url("../images/actions/16x16/off_16x16.png");
+}
+
+.iconControlPanel .button .settings16 {
+    background: url("../images/actions/16x16/settings_16x16.png");
+}
+
+.iconControlPanel .button .lock16 {
+    background: url("../images/actions/16x16/open_16x16.png");
+}
+
+.iconControlPanel .button .unlock16 {
+    background: url("../images/actions/16x16/unlock_16x16.png");
+}
+
+.iconControlPanel .button .time16 {
+    background: url("../images/actions/16x16/time_16x16.png");
+}
+
+.iconControlPanel .button .course16 {
+    background: url("../images/actions/16x16/course_16x16.png");
+}
+
+.iconControlPanel .whitespace16 {
+    height: 16px;
+    width: 7px;
+    float: left;
+}

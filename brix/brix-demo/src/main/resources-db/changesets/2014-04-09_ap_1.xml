@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating filling function to webinars</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION public.fillwebinardesc() returns void AS $$
+            DECLARE entity RECORD;
+            begin
+            FOR entity IN SELECT * FROM public.webinar
+            LOOP
+            UPDATE public.webinar SET shortdesc = description WHERE _id = entity._id;
+            END LOOP;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Filling short descriptions</comment>
+        <sql>
+            SELECT "fillwebinardesc"();
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <addNotNullConstraint tableName="webinar" columnName="shortdesc"/>
+    </changeSet>
+</databaseChangeLog>

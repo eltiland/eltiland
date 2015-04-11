@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="igor.cherednichenko">
+        <comment>Refactoring for User (add role LibEditor)</comment>
+        <addColumn tableName="user" schemaName="public">
+            <column name="is_lib_editor" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Set editor role for Rogozkina I.B. and password as email</comment>
+        <update tableName="user">
+            <column name="is_lib_editor" valueBoolean="true"/>
+            <column name="password" value="8dab3d24a5a92b7d1f3a412cb1002e141324b01b"/>
+            <where>email='klub_yum@mail.ru'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Fix authorization for Rogozkina I.B.</comment>
+        <update tableName="user">
+            <column name="confirmationdate" valueComputed="now()"/>
+            <where>email='klub_yum@mail.ru'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="3" author="igor.cherednichenko">
+        <comment>Fix group for virtual pei</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_curriculum_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select group_curriculum into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <update tableName="group">
+            <column name="_prototype" value="SECTION"/>
+            <column name="section_curriculum" valueComputed="get_group_curriculum_id('Клуб Юных Мыслителей')"/>
+            <where>_id=get_group_id('Клуб Юных Мыслителей')</where>
+        </update>
+        <update tableName="group">
+            <column name="group_curriculum" value="null"/>
+            <where>_id=get_group_id('Клуб Юных Мыслителей')</where>
+        </update>
+
+        <sql>
+            DROP FUNCTION get_group_id(group_name text);
+            DROP FUNCTION get_group_curriculum_id(group_name text);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

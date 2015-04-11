@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="open">Доступ открыт</entry>
+    <entry key="closed">Доступ закрыт</entry>
+    <entry key="date.limit">Время доступа к блоку: %s - %s</entry>
+</properties>

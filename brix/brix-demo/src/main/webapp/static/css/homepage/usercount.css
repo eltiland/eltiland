@@ -1,0 +1,42 @@
+.user_count_panel {
+    height: 110px;
+    width: 265px;
+    border: #d3d3d3 1px solid;
+    background: white;
+}
+
+.user_count_panel .numbers {
+    margin-top: 10px;
+}
+
+.user_count_panel .message {
+    word-wrap: break-word;
+    width: 270px;
+    text-align: center;
+    margin-top: 65px;
+    font-family: "a_Campus" !important;
+    color: #ff6a1c;
+}
+
+.user_count_panel .numbers .number {
+    float: left;
+    font-family: "a_Campus" !important;
+    font-size: 35px !important;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 46%, #ededed 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(46%, #f6f6f6), color-stop(100%, #ededed)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 46%, #ededed 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 46%, #ededed 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 46%, #ededed 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 46%, #ededed 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#ededed', GradientType = 0); /* IE6-9 */
+    border: 1px solid #d3d3d3;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+}

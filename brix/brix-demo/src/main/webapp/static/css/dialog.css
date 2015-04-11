@@ -1,0 +1,35 @@
+/*   -------   Styles for dialog panel   -------   */
+/**************************************************************************************************/
+.dialog_panel {
+    border: 1px solid #d3d3d3;
+}
+
+.dialog_panel > .header {
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    display: table;
+    border: none;
+    color: black;
+}
+
+.dialog_panel > .header > .bar {
+    display: table-cell;
+    width: 15px;
+    background-color: rgb(255, 106, 28);
+}
+
+.dialog_panel > .header > .message {
+    display: table-cell;
+    font-size: 25px;
+    font-family: "a_Campus";
+    padding-left: 20px;
+}
+
+.dialog_panel > .content {
+    margin: 10px;
+}
+
+.dialog_panel > .content .actions {
+    margin-top: 10px;
+}

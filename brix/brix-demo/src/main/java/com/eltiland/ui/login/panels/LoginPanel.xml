@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="login">Вход</entry>
+
+    <entry key="loginAction">ВОЙТИ</entry>
+    <entry key="forgetAction">Забыли пароль?</entry>
+    <entry key="registerAction">Регистрация</entry>
+
+    <entry key="loginError">Такая комбинация e-mail и пароля не найдена.</entry>
+</properties>

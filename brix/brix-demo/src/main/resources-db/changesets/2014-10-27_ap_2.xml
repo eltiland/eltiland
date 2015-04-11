@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding table for course listener and field invitor to user</comment>
+        <sql>
+            CREATE TABLE "public"."course_listener" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "kind" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "offer" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default",
+            "status" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "listener" NUMERIC,
+            "session" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+            ALTER TABLE "public"."user" ADD COLUMN "invitor" NUMERIC;
+            ALTER TABLE "public"."user" ADD CONSTRAINT "invitor_listener" FOREIGN KEY ( "invitor" ) REFERENCES
+            "public"."course_listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_listener" ADD CONSTRAINT "listener_user" FOREIGN KEY ( "listener" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_listener" ADD CONSTRAINT "listener_session" FOREIGN KEY ( "session" )
+            REFERENCES "public"."course_session" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="descriptionAuto">(регистрация на курс происходит автоматически)</entry>
+    <entry key="descriptionSubmit">(регистрация на курс происходит только после подтверждения администратором)</entry>
+
+    <entry key="offConfirmation">Вы действительно хотите отменить подверждение администратором для слушателей данного
+        курса?
+    </entry>
+    <entry key="onConfirmation">Вы действительно хотите включить подтверждение администратором для слушателей данного
+        курса?
+    </entry>
+
+    <entry key="noFullVersionMessage">У данного курса нет полной версии.</entry>
+
+    <entry key="onTooltip">Включить</entry>
+    <entry key="offTooltip">Отключить</entry>
+</properties>

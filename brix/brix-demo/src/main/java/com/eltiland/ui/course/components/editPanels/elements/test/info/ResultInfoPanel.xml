@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="interval">(от %d до %d баллов)</entry>
+    <entry key="value">(%d баллов)</entry>
+    <entry key="jump">Переход на вопрос %s </entry>
+    <entry key="prev">Предыдущие вопросы: </entry>
+    <entry key="finish"> - завершение теста</entry>
+    <entry key="right">Отмечен как правильный</entry>
+</properties>

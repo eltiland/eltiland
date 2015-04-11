@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="topicTabLabel">Название</entry>
+    <entry key="descriptionTabLabel">Описание</entry>
+    <entry key="startDateTabLabel">Дата/время начала</entry>
+    <entry key="managerTabLabel">Ведущий</entry>
+    <entry key="deadlineDateTabLabel">Дата/время окончания регистрации</entry>
+    <entry key="courseLabel">Курс</entry>
+</properties>

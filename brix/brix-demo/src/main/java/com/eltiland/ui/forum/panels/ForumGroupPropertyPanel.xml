@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createHeader">Новая группа форумов</entry>
+    <entry key="editHeader">Редактирование группы</entry>
+    <entry key="groupName">Название группы</entry>
+
+    <entry key="errorGroupExists">Ошибка - группа с данным названием уже существует!</entry>
+</properties>

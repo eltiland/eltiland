@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="unsubscribeLabel">Вы действительно хотите отписаться от рассылки портала "Элтиленд"?</entry>
+    <entry key="unsubscribeMessage">Вы успешно отписались от рассылки портала "Элтиленд".</entry>
+</properties>

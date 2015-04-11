@@ -1,0 +1,134 @@
+.tags {
+    display: table;
+}
+
+.tags .categoryTable {
+    display: table-cell;
+}
+
+.tags .tagTable {
+    display: table-cell;
+    vertical-align: top;
+    padding-left: 20px;
+}
+
+.tags .title {
+    font-size: 17px;
+    margin-top: 16px;
+    float: left;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.tags .addButton {
+    float: left;
+    margin-top: 10px;
+}
+
+.tags .grid {
+    margin-top: 10px;
+    width: 460px;
+}
+
+.tags .tagGrid {
+    margin-top: 10px;
+}
+
+.tags .grid .imxt-cell {
+    cursor: pointer;
+}
+
+.tag_category {
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.tag_category .name {
+    font-weight: bold;
+    text-align: center;
+}
+
+.tag_panel .checkbox {
+    float: left;
+}
+
+.tag_panel .tagname {
+    float: left;
+}
+
+.tag_list {
+    display: table;
+    margin: 0 auto;
+}
+
+.tag_list .panel {
+    float: left;
+    margin: 5px;
+}
+
+.tag {
+    cursor: pointer;
+}
+
+.tag .name {
+    background-color: rgb(250, 250, 103);
+    padding: 2px;
+    border: 1px darkgray solid;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.tag .selected {
+    background-color: blue !important;
+    color: white !important;
+}
+
+.tag_filter {
+    margin: 10px;
+}
+
+.tag_filter .title {
+    font-family: "a_Campus";
+    text-align: left;
+    font-size: 16px;
+    float: left;
+}
+
+.tag_filter .showLink {
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    font-family: "a_Campus";
+    font-size: 12px;
+    margin-top: 3px;
+    color: darkred;
+}
+
+.tag_filter .data {
+    padding: 3px;
+    margin-top: 10px;
+    width: 100%;
+    border: #d3d3d3 1px solid;
+    -webkit-box-shadow: 0px 5px 5px rgba(48, 50, 50, 0.52);
+    -moz-box-shadow: 0px 5px 5px rgba(48, 50, 50, 0.52);
+    box-shadow: 0px 5px 5px rgba(48, 50, 50, 0.52);
+}
+
+.tag_filter .category {
+    padding-bottom: 3px;
+    border-bottom: 1px #d3d3d3 solid;
+}
+
+.tag_filter .category .name {
+    float: left;
+    font-family: "a_Campus";
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.tag_filter .category .tag .name {
+    font-family: sans-serif;
+    margin: 3px;
+}

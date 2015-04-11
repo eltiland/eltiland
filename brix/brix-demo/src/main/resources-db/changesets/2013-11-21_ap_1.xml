@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Fields contetnt and header for message</comment>
+        <sql>
+            ALTER TABLE "forum"."message" ADD COLUMN "header" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default"
+            NOT NULL;
+            ALTER TABLE "forum"."message" ADD COLUMN "content" TEXT COLLATE "pg_catalog"."default" NOT NULL;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

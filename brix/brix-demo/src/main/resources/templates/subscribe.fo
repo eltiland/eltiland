@@ -1,0 +1,4 @@
+${mail_text}
+
+<p style="font-size: 8px">Для того, чтобы перестать получать письма рассылки, перейдите по
+    ссылке <a href="${unsubscribe_link}">${unsubscribe_link}</a></p>

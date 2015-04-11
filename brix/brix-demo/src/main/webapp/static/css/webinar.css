@@ -1,0 +1,223 @@
+.webinarPage .header {
+    font-size: 19px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.webinarPage .grid {
+    padding: 8px;
+}
+
+.webinarPage .myWebinars {
+    float: right;
+}
+
+.webinarPage .noWebinar {
+    font-size: 19px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.webinarHeader {
+    font-weight: bold;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.webinarPaymentPage {
+    padding: 20px;
+    border: 8px ridge lightblue;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color: rgb(245, 255, 255);
+}
+
+.webinarInfo {
+    width: 100%;
+    float: left;
+    padding: 15px;
+}
+
+.webinarInfo .fieldName {
+    width: 20%;
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+
+.webinarInfo .priceName {
+    width: 20%;
+    float: left;
+    color: red;
+    font-weight: bold;
+}
+
+.webinarInfo .fieldData {
+    width: 80%;
+    float: left;
+}
+
+.whitespace {
+    height: 24px;
+    width: 24px;
+    float: left;
+}
+
+.whitespace16 {
+    height: 16px;
+    width: 16px;
+    float: left;
+}
+
+.webinarRegister .notRegistered .text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.webinarRegister .notRegistered .enterButton {
+    margin-left: 27px;
+}
+
+.webinarRegister .notRegistered .breaker {
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.webinarPanel {
+    width: 100%;
+    height: 120px;
+
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(47%, #f6f6f6), color-stop(100%, #ededed)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#ededed', GradientType = 0); /* IE6-9 */
+
+    color: #000000;
+    border: 1px solid lightgray;
+}
+
+.webinarPanel:hover {
+    border: 3px solid gray;
+}
+
+.webinarPanel .name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.webinarPanel .description {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.webinarPanel .price {
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+.webinarPanel .linkLabel {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.webinarProfilePanel .payMessage {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: darkred;
+}
+
+.webinarProfilePanel .confirmedMessage {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #006400;
+}
+
+.webinar_moderational .label {
+    margin: 3px;
+}
+
+.webinar_moderational .checkButton {
+    margin-bottom: 5px;
+    float: left;
+    margin-right: 70px !important;
+}
+
+.webinar_moderational .inviteButton {
+    float: left;
+}
+
+.webinar_moderational .searchField {
+    float: left;
+    margin-right: 20px;
+}
+
+.webinar_moderational .searchButton {
+    float: left;
+}
+
+.webinar_certificate .sended {
+    font-weight: bold;
+    color: green;
+}
+
+.webinar_certificate .notsended {
+    font-weight: bold;
+    color: red;
+}
+
+.webinar_certificate .iconControlPanel {
+    display: table;
+    margin: 0 auto;
+    width: 150px;
+    margin-top: 10px;
+}
+
+.webinar-select .label {
+    font-size: 10px;
+}
+
+.webinar-select .text {
+    float: left;
+    height: 22px;
+    width: 260px;
+}
+
+.webinar-select .searchButton {
+    margin-left: 10px;
+}
+
+.webinar_user {
+    font-weight: bold;
+    margin: 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+.webinar-filter {
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.webinar-filter .header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.webinar-filter .filter {
+    margin-bottom: 5px;
+}

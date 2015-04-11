@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="incorrectLinkError">Ссылка не актуальна. Возможно профиль данного специалиста уже активирован.</entry>
+    <entry key="noActualError">Ссылка не актуальна.</entry>
+    <entry key="dateEndedError">Ошибка! Срок дейстивия ссылки на активацию аккаунта пользователя истек!</entry>
+</properties>

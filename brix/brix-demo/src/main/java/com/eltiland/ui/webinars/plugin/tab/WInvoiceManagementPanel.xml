@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="actionTabLabel">Действия</entry>
+
+    <entry key="messageDeleteSuccess">Вебинар успешно удален</entry>
+    <entry key="messageApplySuccess">Вебинар успешно подтвержден</entry>
+    <entry key="messageEditSuccess">Данные вебинара успешно сохранены</entry>
+    <entry key="messageDeleteFail">Ошибка удаления вебинара</entry>
+</properties>

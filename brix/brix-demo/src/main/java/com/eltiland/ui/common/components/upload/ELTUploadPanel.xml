@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="choseFileMessage">Выберите файл:</entry>
+    <entry key="saveButtonLabel">Загрузить</entry>
+    <entry key="uploadFileFiled.Required">Вы не выбрали файл!</entry>
+    <entry key="undefinedError">Не удалось загрузить файл, попробуйте снова.</entry>
+    <entry key="uploadTooLargeForSingleFile">Файл '${fileName}' слишком большой. Максимально допустимый размер файла
+        ${maxSize} мегабайт.
+    </entry>
+    <entry key="incorrectFileFormat">Файл '${fileName}' имееет неизвестный формат файла.</entry>
+    <entry key="incorrectFileName">Файл '${fileName}' имеет запрещенное имя.</entry>
+    <entry key="errorUploadingFiles">Файл не загружен!</entry>
+    <entry key="completeUploadingFiles">Файл успешно загружен!</entry>
+</properties>

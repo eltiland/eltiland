@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createHeader">Новый форум</entry>
+    <entry key="editHeader">Редактирование форума</entry>
+
+    <entry key="nameField">Название форума</entry>
+    <entry key="descriptionField">Комментарии:</entry>
+</properties>

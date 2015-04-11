@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="emailColumn">Email</entry>
+    <entry key="phoneColumn">Телефон</entry>
+    <entry key="dateColumn">Дата платежа</entry>
+    <entry key="priceColumn">Сумма</entry>
+    <entry key="magazineColumn">Журналы</entry>
+
+    <entry key="reportTooltip">Скачать отчет</entry>
+</properties>

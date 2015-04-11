@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="invoiceTab">Запросы</entry>
+    <entry key="controlTab">Управление</entry>
+    <entry key="paidInvoicesTab">Запросы на платные услуги</entry>
+    <entry key="paidPaymentsTab">Платежи</entry>
+    <entry key="courseInvoiceTab">Запросы на доступ к курсу</entry>
+    <entry key="testTab">Тесты</entry>
+</properties>

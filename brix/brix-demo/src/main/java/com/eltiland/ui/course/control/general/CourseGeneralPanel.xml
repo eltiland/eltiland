@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="data.menu">Данные курса</entry>
+    <entry key="start.menu">Стартовая страница</entry>
+    <entry key="video.menu">Стартовое видео</entry>
+    <entry key="image.menu">Картинка</entry>
+    <entry key="reg.menu">Регистрационные данные</entry>
+</properties>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="pavel.androschuk">
+        <comment>Add address data</comment>
+        <sql>
+            drop table if exists pei_file cascade;
+            drop table if exists child_pei cascade;
+
+            update pei set address = 'Москва, Осенний бульвар, д. 16, к. 3' where _id = 2140;
+            update pei set address = 'Москва, Алтуфьевское шоссе, дом 56-Б' where _id = 2370;
+            update pei set address = 'Зеленоград, к. 1547' where _id = 2430;
+            update pei set address = 'Москва, Зеленоград, Корпус 1467' where _id = 2431;
+            update pei set address = 'Москва, Корнейчука, 22А' where _id = 2670;
+            update pei set address = 'Москва, Зеленоград, КОРПУС 1547' where _id = 2671;
+            update pei set address = 'Зеленоград, корпус 1547' where _id = 2672;
+            update pei set address = 'Москва, Домдедовская 20 корп.3' where _id = 2760;
+            update pei set address = 'Москва, улГончарова д13а' where _id = 2764;
+            update pei set address = 'Москва, ул. Барышиха, д.20, корп 1' where _id = 2765;
+            update pei set address = 'Москва, Ясный пр., д.10, к.2' where _id = 3740;
+            update pei set address = 'Москва, ул. Тихомирова, дом 13' where _id = 3741;
+            update pei set address = 'Москва, Домодедовская, д. 20, корп. 3, 2-ой офисный подъезд' where _id = 3742;
+            update pei set address = 'Москва, Перервинский бульвар, д.20, к2' where _id = 3743;
+            update pei set address = 'Москва, Ореховый бульвар 67-3' where _id = 3830;
+            update pei set address = 'Москва, Улица Пестеля ,дом 2Б' where _id = 3831;
+            update pei set address = 'Москва, Алтуфьевское шоссе, 91-Б' where _id = 3832;
+            update pei set address = 'Москва, Мирской пер. д.9' where _id = 4070;
+            update pei set address = 'Москва, ул. Бестужевых, д. 13-а' where _id = 4510;
+            update pei set address = 'Москва, Радужная д 5' where _id = 4512;
+            update pei set address = 'Москва, ул.Цюрупы дом 22 А' where _id = 5240;
+            update pei set address = 'Тюмень, Моторостроителей, 3' where _id = 6220;
+            update pei set address = 'Москва, Мичуринский проспект, дом 5, корп 2, 3' where _id = 6890;
+            update pei set address = 'г. Москва, ул. Цюрупы, д. 15, корп. 1' where _id = 6891;
+            update pei set address = 'Москва, 1-ый Люсиновский пер.,д.5' where _id = 6892;
+            update pei set address = 'г. Королев, ул. Космонавтов 16' where _id = 6893;
+            update pei set address = 'Ермолино, Мичурино 3' where _id = 6895;
+            update pei set address = 'Ермолино, Мичурино д.3' where _id = 6896;
+            update pei set address = 'г. Москва, Косинская 4А' where _id = 6897;
+            update pei set address = 'Москва, Петровско-Разумовская аллея дом 20' where _id = 6898;
+            update pei set address = 'Москва, улица Озерная, дом 29/2' where _id = 6899;
+            update pei set address = 'Москва, Зоологический пер.д10' where _id = 8970;
+            update pei set address = 'Шуя, ленина 77' where _id = 9140;
+            update pei set address = 'г. Москва, ул. Бехтерева 27/2' where _id = 9141;
+            update pei set address = 'Москва, Зеленоград, Березовая аллея, д.1а' where _id = 9670;
+            update pei set address = 'г. Москва, Академика Челомея, 8б' where _id = 9671;
+            update pei set address = 'Москва, ул.Барышиха 15/1' where _id = 9672;
+            update pei set address = 'г. Москва, 1- ый Войковский пр.д.4 к.2' where _id = 9673;
+            update pei set address = 'г. Москва, ул. Фестивальная 61-А' where _id = 10980;
+            update pei set address = 'Москва, ул. Нагорная дом 32 корпус 2' where _id = 11880;
+            update pei set address = 'г. Москва, ул.Бажова, д.22' where _id = 12390;
+            update pei set address = 'Москва, Ломоносовский проспект д. 14' where _id = 12590;
+            update pei set address = 'москва, маршала Полубоярова, д.6, к.2' where _id = 12591;
+            update pei set address = 'г. Москва, ул. Машкова, д. 3а' where _id = 12592;
+            update pei set address = 'г.Москва, улица Шолохова дом19 корпус1' where _id = 13170;
+            update pei set address = 'Калачинск, Калинина, 80' where _id = 13340;
+            update pei set address = 'МО, Красногорский р-н, д. Грибаново, д.24' where _id = 13470;
+            update pei set address = 'Нижнекамск, пр.Мира, 66' where _id = 13610;
+            update pei set address = 'Москва, Госпитальный вал, 3А' where _id = 13660;
+            update pei set address = 'Подольск, Садовая,д.5' where _id = 15170;
+            update pei set address = 'г.Москва, Бирюлевская дом 30 корпус 2' where _id = 15340;
+            update pei set address = 'москва, Варшавское шоссе дом 86 копр.2' where _id = 15341;
+            update pei set address = 'г. Москва, ул. Алма-Атинская д. 10 корп.2' where _id = 15342;
+            update pei set address = 'г. Москва, Новочеркасский бульвар, дом № 24' where _id = 15420;
+            update pei set address = 'г.Москва, Коломенская ул.,д.27,корп.2' where _id = 15421;
+            update pei set address = 'Пенза, проспект Строителей 156А' where _id = 15630;
+            update pei set address = 'Москва, Добровольческая д.28' where _id = 15631;
+            update pei set address = 'г. Москва, мещанская 13' where _id = 15700;
+            update pei set address = 'с.Протопоповка, школьная 1' where _id = 15950;
+            update pei set address = 'Москва, ул. Академика Анохина, д.4 кор 6' where _id = 16180;
+            update pei set address = 'г. Москва, улица Красноярская дом 3 корпус 3' where _id = 16181;
+            update pei set address = 'москва, нежинская 8' where _id = 16182;
+            update pei set address = 'г. Москва, ул. Трофимова, д.11' where _id = 16183;
+            update pei set address = 'Моква, ул.Перовкая 52А' where _id = 16184;
+            update pei set address = 'Тамбов, Н.Вирты, 94' where _id = 16420;
+            update pei set address = 'г. Москва, Шелепихинское шоссе д.13, к.2А Шелепихинская набережная, д.4, кор. 2'
+            where _id = 16421;
+            update pei set address = 'Москва, Университетский проспект, дом 21, строение 5' where _id = 16422;
+            update pei set address = 'Москва, 3-яИнституская улд.12,к.2' where _id = 16660;
+            update pei set address = 'Новосибирск, Новая, 22' where _id = 16880;
+            update pei set address = 'Междуреченск Кемеровская область, Ул. Октябрьская д.17' where _id = 16881;
+            update pei set address = 'г. Москва, ул.3-я Парковая д.61А' where _id = 17100;
+            update pei set address = 'г. Москва, Абрамцевская ул. , 13' where _id = 17101;
+            update pei set address = 'Санкт-Петербург, 1 Березовая аллея, д.5' where _id = 17102;
+            update pei set address = 'г. Москва, Улица Молодцова 21' where _id = 17103;
+            update pei set address = 'г. Москва, Нагатинская набережная д.46 корп.1' where _id = 17104;
+            update pei set address = 'Ростов на Дону, Королева 1/3' where _id = 17105;
+            update pei set address = 'Ханты-Мансийск, Рознина 70' where _id = 17106;
+            update pei set address = 'Санкт-Петербург, Загребский бульвар, дом 31, корпус 2' where _id = 17390;
+            update pei set address = 'Орел, ул. Картукова, 10 а' where _id = 17440;
+            update pei set address = 'п.Степной, Зеленая,30 г' where _id = 17441;
+            update pei set address = 'Серпухов, Ракова, дом 6' where _id = 17442;
+            update pei set address = 'Красноярский край, Назаровский район, п.Степной, ул.Садовая 12' where _id = 17443;
+            update pei set address = 'Москва, Челябинская, д.26' where _id = 17940;
+            update pei set address = 'Москва, Садовническая набережная, д.13' where _id = 17941;
+            update pei set address = 'г. Москва, ул. Тихомирова д. 13 к. 2' where _id = 18170;
+            update pei set address = 'Москва, 5-ая Кожуховская д. 27, корп. 2' where _id = 18171;
+            update pei set address = 'Москва, Вешняковская улица' where _id = 18172;
+            update pei set address = 'краснодар, 30-й Иркутской дивизии,12' where _id = 18173;
+            update pei set address = 'Краснодар, Московская, 76' where _id = 18510;
+            update pei set address = 'Железнодорожный, Маяковского, 6' where _id = 18550;
+            update pei set address = 'Павлово, ул. Транспортная, 20' where _id = 18551;
+            update pei set address = 'Димитровград, пр. Ленина 31Б' where _id = 18830;
+            update pei set address = 'Бийск, 232 Стрелковая дивизия' where _id = 18831;
+            update pei set address = 'г. Воркута, ул. Ленина 54 А' where _id = 18960;
+            update pei set address = 'Бронницы, переулок Комсомольский,58' where _id = 19080;
+            update pei set address = 'Озерск, ул.Дзержинского,д.4' where _id = 19081;
+            update pei set address = 'г. Москва, Сиреневый бульвар. дом 69А' where _id = 19082;
+            update pei set address = 'г. Москва, Фурманный пер. д.8' where _id = 19083;
+            update pei set address = 'г. Москва, Ясный проезд, д.5Б' where _id = 19084;
+            update pei set address = 'Оренбург, Центральная 20 а' where _id = 19085;
+            update pei set address = 'Москва, Корнейчука. дом 58 Б' where _id = 19086;
+            update pei set address = 'Москва, Суздальская, 40А,38' where _id = 19087;
+            update pei set address = 'г. Москва, ул. Генерала Белова д. 55 кор. 2' where _id = 19088;
+            update pei set address = 'г. Москва, Краснодонская,д.37' where _id = 19089;
+            update pei set address = 'г. Москва, Святоозерская, д 20' where _id = 19390;
+            update pei set address = 'москва, Авиамотрная,32' where _id = 19391;
+            update pei set address = 'г. Москва, ул. Пестеля, д. 2Б' where _id = 19392;
+            update pei set address = 'г. Москва, ул. Рудневка, д. 26' where _id = 19540;
+            update pei set address = 'Москва, Борисовский проезд, дом 46, корп.3' where _id = 19541;
+            update pei set address = 'г. Москва, Анадырский проезд' where _id = 19542;
+            update pei set address = 'Санкт-Петербург, Малая Балканская, 32 корп.2' where _id = 19543;
+            update pei set address = 'Калининградская область, поселок Заречье, дом 11' where _id = 19544;
+            update pei set address = 'г. Москва, Борисовский проезд дом 5 кор.1' where _id = 19545;
+            update pei set address = 'г.Москва, Улица Маршала Захарова, дом11 корп.2' where _id = 19546;
+            update pei set address = 'г. Москва, 2-я Новорублевская дом 15 корпус 3' where _id = 19547;
+            update pei set address = 'г. Москва, Мурановская 6 А' where _id = 19548;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

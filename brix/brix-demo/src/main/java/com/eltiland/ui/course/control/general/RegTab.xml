@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="type.label">Параметр</entry>
+    <entry key="status.label">Статус</entry>
+    <entry key="caption.label">Подсказка</entry>
+
+    <entry key="COMPANY.type">Место работы</entry>
+    <entry key="JOB.type">Должность</entry>
+    <entry key="ADDRESS.type">Почтовый адрес</entry>
+    <entry key="PHONE.type">Телефон</entry>
+    <entry key="EXPERIENCE.type">Стаж</entry>
+
+    <entry key="NO.status">Параметр отсутствует</entry>
+    <entry key="ACTIVE.status">Параметр присутствует, необязателен для ввода</entry>
+    <entry key="REQUIRED.status">Параметр присутствует, обязателен для ввода</entry>
+
+    <entry key="action.req">Сделать обязательным</entry>
+    <entry key="action.noreq">Сделать необязательным</entry>
+    <entry key="action.remove">Удалить</entry>
+    <entry key="action.add">Добавить</entry>
+    <entry key="action.edit">Редактировать подсказку</entry>
+
+</properties>

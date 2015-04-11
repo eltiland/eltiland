@@ -1,0 +1,26 @@
+.course_item {
+
+}
+
+.course_item > .header {
+    width: 100%;
+    text-align: center;
+    background-color: #f1f7fd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-family: "a_Campus";
+    color: #757575;
+}
+
+.course_item > .actions {
+    float: right;
+    display: table;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.course_item > .actions > .button {
+    display: table-cell;
+    padding-right: 5px;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form wicket:id="searchForm" action="#" method="post">
+        <div class="floatLeft" style="line-height:24px;vertical-align:middle;margin-right:5px;">
+            <div title="" class="">
+                <wicket:message key="labelLookFor"/>
+            </div>
+        </div>
+        <div class="floatLeft" style="width:200px;margin-right:10px;">
+            <input wicket:id="searchPatternField" type="text" name="search_pattern">
+        </div>
+
+        <div class="floatLeft">
+            <span wicket:id="findButton"></span>
+        </div>
+        <wicket:child/>
+    </form>
+</wicket:panel>
+</body>
+</html>

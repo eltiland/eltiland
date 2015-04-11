@@ -1,0 +1,153 @@
+.login_page {
+    border: #d3d3d3 1px solid;
+    background: white;
+    -webkit-box-shadow: 0 5px 5px rgba(48, 50, 50, 0.52);
+    -moz-box-shadow: 0 5px 5px rgba(48, 50, 50, 0.52);
+    box-shadow: 0 5px 5px rgba(48, 50, 50, 0.52);
+    padding: 15px;
+}
+
+.login_page .error {
+    font-weight: bold;
+    color: red;
+}
+
+.login_page .form {
+    float: left;
+}
+
+.login_page .form .buttons {
+    clear: both;
+    padding-top: 20px;
+}
+
+/*   -------   Styles for login panel   -------   */
+/**************************************************************************************************/
+.login_main_panel {
+    margin: 0 auto;
+    display: table;
+    width: 400px;
+    height: 310px;
+    border: 1px solid #d3d3d3;
+}
+
+.login_main_panel > .header {
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    display: table;
+}
+
+.login_main_panel > .error {
+    color: red;
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 18px;
+}
+
+.login_main_panel > .header > .bar {
+    display: table-cell;
+    width: 15px;
+    background-color: rgb(255, 106, 28);
+}
+
+.login_main_panel > .header > .message {
+    display: table-cell;
+    width: 385px;
+    font-size: 30px;
+    font-family: "a_Campus";
+    padding-left: 20px;
+}
+
+.login_main_panel > .content {
+    margin: 0 auto;
+    display: table;
+    margin-top: 15px;
+}
+
+.login_main_panel > .content .input_element {
+    display: table;
+    margin-bottom: 15px;
+}
+
+.login_main_panel > .content .input_element .input {
+    width: 295px;
+    height: 40px;
+    display: table-cell;
+    border: none;
+    background-color: #f8f8f8 !important;
+    padding-left: 15px;
+    font-family: monospace;
+    font-size: 15px;
+    border-bottom: 2px solid #ECECEC;
+    border-left: 1px solid #ECECEC;
+    border-top: 1px solid #ECECEC;
+}
+
+.login_main_panel > .content .input_element .input:focus {
+
+    outline: none !important;
+}
+
+.login_main_panel > .content .input_element .image {
+    width: 40px;
+    /*height: 23px;*/
+    background-color: #f8f8f8;
+    background-repeat: no-repeat;
+    display: table-cell;
+    border-bottom: 2px solid #ECECEC;
+    border-right: 1px solid #ECECEC;
+    border-top: 1px solid #ECECEC;
+}
+
+.login_main_panel > .content .input_element .email {
+    background-image: url("../../images/login/email.png");
+}
+
+.login_main_panel > .content .input_element .key {
+    background-image: url("../../images/login/key.png");
+}
+
+.login_main_panel > .content .input_element .user {
+    background-image: url("../../images/login/user.png");
+}
+
+.login_main_panel > .content button {
+    width: 350px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.login_main_panel > .actions {
+    margin-top: 25px;
+    display: table;
+    margin-left: 15px;
+    width: 353px;
+    margin-bottom: 10px;
+}
+
+.login_main_panel > .actions > .action {
+    display: table-cell;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login_main_panel > .actions > .forget {
+    color: #a9a9a9;
+}
+
+.login_main_panel > .actions > .register {
+    color: rgb(255, 106, 28);
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #f8f8f8 inset;
+}
+
+.activate-error {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+

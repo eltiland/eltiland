@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="questionCreated">Создан вопрос</entry>
+    <entry key="questionAnswered">Ответ на ваш вопрос</entry>
+    <entry key="robotFromName">Элтиленд</entry>
+    <entry key="robotFromEmail">noreply@eltiland.ru</entry>
+    <entry key="SuperPeiRegistrationRequest">Запрос на регистрацию в кружок</entry>
+    <entry key="RejectionRegistrationPei">Отклонение запроса на регистрацию ДОУ</entry>
+    <entry key="DeleteChildOfGroup">Удаление ребенка из группы</entry>
+    <entry key="AddedChildInGroup">Добавление ребенка в группу</entry>
+    <entry key="teacherRegistrationRequest">Запрос на подтверждение специалиста ДОУ</entry>
+    <entry key="teacherRegistrationRequestForAdmin">Запрос на подтверждение специалиста ДОУ (КОПИЯ)</entry>
+    <entry key="peiRegistrationConfirmed">Учетная запись ДОУ подтверждена!</entry>
+    <entry key="magazineSubscribeRequest">Запрос на подписку газеты “Дневник приключений Элтика и друзей”</entry>
+    <entry key="lawyerQuetionsRequest">Элтиленд. Вопрос от специалиста ДОУ</entry>
+    <entry key="SuperPeiRegistrationRequest">Запрос на регистрацию в кружок</entry>
+    <entry key="parentConfirmationEmail">Добро пожаловать в Элтиленд!</entry>
+    <entry key="parentNextChildConfirmation">Рады снова пригласить Вас в Элтиленд.</entry>
+    <entry key="teacherAccountCreatedConfirmation">Подтверждение регистрации сотрудника ДОУ в Элтиленд</entry>
+    <entry key="userConfirmation">Подтверждение регистрации пользователя в Элтиленд</entry>
+    <entry key="resetPasswordRequest">Запрос на сброс пароля</entry>
+    <entry key="toAdminCreatePei">Запрос на регистрацию нового ДОУ</entry>
+    <entry key="toParentNewMessage">Новое сообщение от</entry>
+    <entry key="toUserDeleted">Ваш профиль удален с портала Элтиленд.</entry>
+    <entry key="toUserAutoConfirm">Ваш профиль на портале Элтиленд активирован.</entry>
+
+    <entry key="paidToAdminCreateInvoice">Запрос на создание платной группы</entry>
+    <entry key="paidToUserCancelInvoice">Ваш запрос на создание платной группы отклонен администрацией</entry>
+    <entry key="paidToUserCancelPriceInvoice">Ваш запрос на изменение стоимости платных услуг отклонен администрацией
+    </entry>
+    <entry key="paidToUserCancelIntervalInvoice">Ваш запрос на продление платных услуг отклонен администрацией</entry>
+    <entry key="paidToUserCancelCancelInvoice">Ваш запрос на отмену платных услуг отклонен администрацией</entry>
+    <entry key="paidToUserCancelGroup">Платные услуги в группе %s отменены администрацией</entry>
+    <entry key="paidToUserEditInvoice">Ваш запрос на создание платной группы отредактирован администрацией</entry>
+    <entry key="paidToAdminCreateCancelInvoice">Запрос на отмену платных услуг</entry>
+    <entry key="paidToAdminCreatePriceInvoice">Запрос на изменение стоимости платных услуг</entry>
+    <entry key="paidToAdminCreateIntervalInvoice">Запрос на продление платных услуг</entry>
+    <entry key="paidToUserApplyPriceInvoice">Ваш запрос на изменение стоимости платных услуг одобрен
+        администрацией
+    </entry>
+    <entry key="paidToUserApplyIntervalInvoice">Ваш запрос на продление платных услуг одобрен администрацией</entry>
+    <entry key="paidToUserApplyCreateInvoice">Ваш запрос на создание платной группы одобрен администрацией</entry>
+    <entry key="paidToUserApplyCancelInvoice">Ваш запрос на отмену платных услуг одобрен администрацией</entry>
+    <entry key="paidToUserLeaveGroup">Уведомление об отказе от платных услуг</entry>
+    <entry key="paidSuccesstoUserAndParent">Уведомление об успешной оплате услуг</entry>
+    <entry key="paidFailtoParent">Уведомление об ошибке оплаты</entry>
+
+    <entry key="webinarInvitation">Подтверждение участия в вебинаре</entry>
+    <entry key="recordInvitation">Доступ к записи вебинара</entry>
+    <entry key="recordLink">Ccылка на запись вебинара</entry>
+    <entry key="webinarRequest">Запрос на участие в вебинаре</entry>
+    <entry key="webinarManagerApply">Вы назначены ведущим вебинара %s</entry>
+    <entry key="webinarDeny">Ваш запрос на участие в вебинаре отклонен</entry>
+    <entry key="webinarCreateToAdmin">Создан вебинар %s</entry>
+    <entry key="webinarChangePrice">Изменение стоимости участия в вебинаре</entry>
+    <entry key="webinarChangeRole">Изменение роли участника в вебинаре</entry>
+    <entry key="webinarCertificate">Сертификат об участии в вебинаре</entry>
+    <entry key="webinarListenersMessage">Сообщение слушателям вебинара</entry>
+
+    <entry key="courseInvoiceToCreate">Запрос на создание курса</entry>
+    <entry key="courseApplyToUser">Ваш запрос на создание курса подтвержден администрацией</entry>
+    <entry key="courseDenyToUser">Ваш запрос на создание курса отклонен администрацией</entry>
+    <entry key="courseAccessInvoice">Запрос на доступ к курсу</entry>
+    <entry key="courseInvoiceDenied">Ваш запрос на доступ к курсу отклонен администрацией</entry>
+    <entry key="courseInvoiceGranted">Ваш запрос на доступ к курсу потдтвержден администрацией</entry>
+    <entry key="courseMessage">Сообщение от слушателя курса</entry>
+    <entry key="courseListenerMessage">Сообщение слушателю курса</entry>
+    <entry key="coursePayMessage">Сообщение об оплате курса</entry>
+
+    <entry key="trainingCourseInvoice">Заявка на регистрацию на курс повышения квалификации</entry>
+    <entry key="trainingInvoiceAccepted">Заявка на регистрацию на курс подтверждена</entry>
+    <entry key="trainingInvoiceDeclined">Заявка на регистрацию на курс отклонена</entry>
+    <entry key="trainingInvoicePayAccepted">Реквизиты оплаты курса повышения квалификации</entry>
+    <entry key="trainingListenerAccepted">Доступ к курсу повышения квалификации</entry>
+
+    <entry key="magazineDownload">Ссылка для доступа к журналам</entry>
+    <entry key="magazineBuy">Отчет о покупке журнала</entry>
+</properties>

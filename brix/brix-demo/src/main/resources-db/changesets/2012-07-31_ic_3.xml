@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Add unique constraint for many to many relation tables</comment>
+
+        <addUniqueConstraint tableName="record_recordtag" columnNames="record_id, record_tag_id"/>
+        <addUniqueConstraint tableName="record_targetaudience" columnNames="record_id, target_audience_id"/>
+        <addUniqueConstraint tableName="record_childagegroup" columnNames="record_id, child_age_group_id"/>
+        <addUniqueConstraint tableName="collectionrecord_record" columnNames="record_id, collection_record_id"/>
+        <addUniqueConstraint tableName="taskrecord_record" columnNames="record_id, task_record_id"/>
+        <addUniqueConstraint tableName="lessonrecord_record" columnNames="record_id, lesson_record_id"/>
+        <addUniqueConstraint tableName="curriculumrecordsection_record"
+                             columnNames="record_id, curriculum_record_section_id"/>
+    </changeSet>
+
+</databaseChangeLog>

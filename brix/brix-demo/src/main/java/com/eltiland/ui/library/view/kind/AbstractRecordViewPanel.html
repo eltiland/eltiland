@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="mainContainer">
+        <div class="count_records">
+            <div wicket:id="countLabel"></div>
+        </div>
+        <div wicket:id="collectionContainer" class="current_collection">
+            <div wicket:id="name" class="col_name"></div>
+            <div wicket:id="description" class="col_desc"></div>
+        </div>
+        <div wicket:id="navigatorTop"></div>
+        <div wicket:id="listContainer">
+            <wicket:container wicket:id="list">
+                <div wicket:id="item"></div>
+            </wicket:container>
+        </div>
+        <div class="clear"></div>
+        <div wicket:id="navigatorDown"></div>
+    </div>
+</wicket:panel>
+</body>
+</html>

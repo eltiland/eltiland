@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="record_panel">
+        <div class="authorLabel">
+            <wicket:message key="authorLabel"></wicket:message>
+        </div>
+        <div wicket:id="author" class="authorName"></div>
+        <div class="clear"></div>
+        <div class="authorLabel">
+            <wicket:message key="dateLabel"></wicket:message>
+        </div>
+        <div wicket:id="date" class="authorName"></div>
+        <div class="clear"></div>
+        <div wicket:id="tagPanel" class="tagPanel"></div>
+        <div class="clear"></div>
+        <div wicket:id="collectionContainer" class="collection">
+            <div style="float: left">
+                <wicket:message key="recordCollection"></wicket:message>
+            </div>
+            <wicket:container wicket:id="collectionList">
+                <div wicket:id="collectionName" class="collection_name"></div>
+            </wicket:container>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div wicket:id="tagSelectDialog"></div>
+    <div wicket:id="collectionSelector"></div>
+</wicket:extend>
+</body>
+</html>

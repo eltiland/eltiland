@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="deleteAction">Удалить письмо</entry>
+    <entry key="editAction">Редактировать</entry>
+    <entry key="sendAction">Отослать текущим подписчикам</entry>
+    <entry key="sendConfirm">Вы действительно хотите отправить данное письмо всем зарегистрированным подписчикам?
+    </entry>
+</properties>

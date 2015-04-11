@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="subscribeTitle">Подписка на Детскую газету "Дневник приключений Элтика и друзей"
+    </entry>
+    <entry key="subscribeIntro">На этой странице вы можете оформить подписку на Детскую газету "
+        Дневник приключений Элтика и друзей".
+    </entry>
+    <entry key="subscribeDescription">Заполните форму регистрации.
+        После этого наш администратор свяжется с вами для согласования условий оплаты и доставки.
+    </entry>
+    <entry key="subscribeSpecialRequirements">Обратите внимание, что групповая подписка возможна только
+        при заказе {0} и более комплектов газеты.
+    </entry>
+    <entry key="peiNameTitle">Название ДОУ</entry>
+
+    <entry key="peiAddressTitle">Почтовый адрес ДОУ</entry>
+    <entry key="addressTitle">Почтовый адрес</entry>
+
+    <entry key="peiEmailTitle">Адрес электронной почты</entry>
+    <entry key="peiPrincipalTitle">Ф.И.О. контактного лица</entry>
+    <entry key="peiTelephoneTitle">Контактный телефон</entry>
+    <entry key="magazineCountTitle">Кол-во комплектов газеты</entry>
+    <entry key="subscribePeriodTitle">Номеров подписки</entry>
+    <entry key="groupField">Заказчик</entry>
+    <entry key="offerLabel">Оферта</entry>
+    <entry key="offerText">Здесь будет оферта</entry>
+    <entry key="offerApproveLabel">С условиями индивидуальной подписки ознакомлен</entry>
+    <entry key="offerApproveError">Для получения подписки Вам нужно ознакомиться с условиями индивидуальной подписки
+    </entry>
+
+    <entry key="requestWasSentSuccessfully">Запрос успешно отправлен!</entry>
+    <entry key="requestSentLabel">Ваш запрос на оформление подписки успешно отправлен администратору портала. В
+        ближайшее время он свяжется с Вами для подтверждения запроса.
+    </entry>
+</properties>

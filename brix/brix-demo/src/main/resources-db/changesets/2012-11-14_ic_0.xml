@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="igor.cherednichenko">
+        <comment>Add flag for copyright agreements</comment>
+
+        <addColumn tableName="user" schemaName="public">
+            <column name="copyright_accepted" type="BOOLEAN" defaultValue="false"/>
+        </addColumn>
+
+        <update tableName="user" schemaName="public">
+            <column name="copyright_accepted" value="false"/>
+        </update>
+
+        <addNotNullConstraint tableName="user" schemaName="public" columnName="copyright_accepted"/>
+
+    </changeSet>
+</databaseChangeLog>

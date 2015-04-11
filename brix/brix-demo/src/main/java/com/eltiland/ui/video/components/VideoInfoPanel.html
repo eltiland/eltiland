@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="videoInfo">
+        <div class="header" wicket:id="name"></div>
+        <div wicket:id="player"></div>
+        <div wicket:id="controlPanel" class="control">
+            <div class="text">
+                <wicket:message key="control"></wicket:message>
+            </div>
+
+            <div class="iconControlPanel">
+                <a class="button" wicket:id="tagButton">
+                    <div class="image tag"></div>
+                </a>
+
+                <div class="whitespace"></div>
+                <a class="button" wicket:id="editButton">
+                    <div class="image edit"></div>
+                </a>
+
+                <div class="whitespace"></div>
+                <a class="button" wicket:id="removeButton">
+                    <div class="image cancel"></div>
+                </a>
+            </div>
+        </div>
+        <div class="info" wicket:id="description"></div>
+        <div class="author" wicket:id="authorContainer">
+            <a wicket:id="authorLink">
+                <div wicket:id="author"></div>
+            </a>
+        </div>
+        <div wicket:id="tagListPanel"></div>
+        <div class="clear"></div>
+
+        <div wicket:id="editDialog"></div>
+        <div wicket:id="tagEditDialog"></div>
+    </div>
+</wicket:panel>
+</body>
+</html>

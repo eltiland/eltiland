@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="add.tooltip">Добавить блок в конец курса</entry>
+    <entry key="preview.tooltip">Предпросмотр курса</entry>
+    <entry key="edit.tooltip">Переименовать блок</entry>
+    <entry key="up.tooltip">Поднять на 1 позицию</entry>
+    <entry key="down.tooltip">Опустить на 1 позицию</entry>
+    <entry key="time.tooltip">Установить время доступа к блоку</entry>
+    <entry key="users.tooltip">Установить права доступа к блоку</entry>
+    <entry key="lock.tooltip">Закрыть доступ к блоку</entry>
+    <entry key="unlock.tooltip">Открыть доступ к блоку</entry>
+
+    <entry key="empty.course">Пустой курс</entry>
+
+    <entry key="name.column">Блок курса</entry>
+    <entry key="settings.column">Доступ к блоку</entry>
+
+    <entry key="interval.header">Интервал доступа к блоку</entry>
+</properties>
+

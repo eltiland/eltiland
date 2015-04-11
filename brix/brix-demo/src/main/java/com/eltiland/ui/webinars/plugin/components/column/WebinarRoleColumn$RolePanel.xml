@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="MODERATOR">Модератор</entry>
+    <entry key="OBSERVER">Обозреватель</entry>
+    <entry key="MEMBER">Участник</entry>
+
+    <entry key="changeRoleMessage">Роль пользователя в вебинаре успешно изменена</entry>
+</properties>

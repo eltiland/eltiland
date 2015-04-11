@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="denyAction">Отклонить</entry>
+    <entry key="denyApplyMessage">Вы уверены, что хотите отменить участие данного пользователя в вебинаре?</entry>
+</properties>

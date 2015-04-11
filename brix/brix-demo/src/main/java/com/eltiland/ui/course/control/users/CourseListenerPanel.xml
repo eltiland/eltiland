@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="contactColumn">Общие данные</entry>
+    <entry key="typeColumn">Тип</entry>
+    <entry key="organizationColumn">Место работы</entry>
+    <entry key="statusColumn">Итоговый тест</entry>
+
+    <entry key="completed">Пройден</entry>
+    <entry key="not_completed">Не пройден</entry>
+
+    <entry key="sendTooltip">Отправить сообщение пользователям</entry>
+
+    <entry key="sendMessage">Сообщение успешно отправлено.</entry>
+</properties>

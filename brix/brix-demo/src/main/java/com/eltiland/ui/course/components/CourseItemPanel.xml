@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="authorLabel">Автор - %s</entry>
+    <entry key="course">КУРС</entry>
+    <entry key="enter">Перейти к курсу</entry>
+    <entry key="settings">Управление</entry>
+    <entry key="download">Скачать договор</entry>
+    <entry key="upload">Загрузить документы</entry>
+    <entry key="pay">Показать реквизиты оплаты</entry>
+    <entry key="payment">Скачать счет</entry>
+
+    <entry key="NEW">Заявка находится на рассмотрении администрации портала.</entry>
+    <entry key="APPROVED">Заявка подтверждена администрацией.</entry>
+    <entry key="PAYS">Заявка подвтерждена администрацией. Доступны реквизиты оплаты курса.</entry>
+    <entry key="PAYS_OFFER">Заявка подвтерждена администрацией. Номер оферты - %s</entry>
+    <entry key="CONFIRMED">Участие в курсе оплачено.</entry>
+
+    <entry key="noFile">Ошибка - файл не загружен.</entry>
+    <entry key="uploadedMessage">Документ успешно загружен. Ожидайте подтверждения администрацией</entry>
+
+    <entry key="accessLater">Доступ к курсу будет открыт %s</entry>
+</properties>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="answerHeader">Ответ на вопрос пользователя</entry>
+    <entry key="aLabel">Ответ:</entry>
+    <entry key="qLabel">Текст вопроса:</entry>
+    <entry key="emailSendError">Ошибка при отправке электронного письма</entry>
+</properties>

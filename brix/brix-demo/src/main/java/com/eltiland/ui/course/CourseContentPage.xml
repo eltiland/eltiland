@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="demoAddition"> (демо-версия)</entry>
+
+    <entry key="paidBlock">Данный блок курса является платным.</entry>
+    <entry key="control">Управление</entry>
+
+    <entry key="send">Связаться с автором</entry>
+    <entry key="support">Обратная связь</entry>
+    <entry key="sendMessage">Ваше сообщение успешно отправлено!</entry>
+</properties>

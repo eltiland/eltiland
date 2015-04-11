@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="igor.cherednichenko">
+        <comment>Remove constraint for length of text field</comment>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="description"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="email"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="manager"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="name"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="phone"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="website"/>
+        <modifyDataType tableName="pei" schemaName="public" newDataType="text" columnName="groupcount"/>
+    </changeSet>
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Remove constraint for length of text field</comment>
+        <modifyDataType tableName="postal_address" schemaName="public" newDataType="text" columnName="city"/>
+        <modifyDataType tableName="postal_address" schemaName="public" newDataType="text" columnName="address_line"/>
+        <modifyDataType tableName="postal_address" schemaName="public" newDataType="text" columnName="postal_code"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Remove constraint for length of text field</comment>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="name"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="achieve"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="information"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="publication"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="password"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="address"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="phone"/>
+        <modifyDataType tableName="user" schemaName="public" newDataType="text" columnName="email"/>
+    </changeSet>
+
+</databaseChangeLog>

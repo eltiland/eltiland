@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="igor.cherednichenko">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from record_category where category = 'Проектная деятельность';
+            </sqlCheck>
+        </preConditions>
+
+        <comment>Add new record category item</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION category_targetaudience(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from target_audience where target_audience.target=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Проектная деятельность"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Воспитателям')"/>
+        </insert>
+
+        <sql endDelimiter=";">
+            drop function category_targetaudience(search_path text);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+
+    <div class="elti-image-area-selector">
+        <form wicket:id="imageAreaParamForm">
+            <input wicket:id="x" type="hidden" name="x"/>
+            <input wicket:id="y" type="hidden" name="y"/>
+            <input wicket:id="width" type="hidden" name="width"/>
+            <input wicket:id="height" type="hidden" name="height"/>
+            <img wicket:id="image" class="jsUsedImageToResize elti-image-to-select" style="min-width: 100px;"/>
+
+            <div class="clear"></div>
+
+            <div style="margin-top: 10px; text-align: center">
+                <button wicket:id="submit" class="jsUsedImageAreaSelectorSubmit elti-cut-image-button">
+                    <wicket:message key="new"/>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

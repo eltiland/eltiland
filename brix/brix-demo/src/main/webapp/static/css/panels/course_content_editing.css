@@ -1,0 +1,24 @@
+/**************************************************************************************************/
+/* Styles for panel for the course content editing.
+/**************************************************************************************************/
+.course-content-editing {
+    width: 95%;
+    margin: 0 auto;
+    display: table;
+}
+
+.course-content-editing > .control {
+    width: 95%;
+    margin: 0 auto;
+    display: table;
+    background-color: #efefef;
+    height: 30px;
+    border: 2px solid #0078AE;
+    border-radius: 5px;
+    margin-bottom: 6px;
+}
+
+.course-content-editing > .control > .iconControlPanel {
+    margin-left: 5px;
+    margin-top: 1px;
+}

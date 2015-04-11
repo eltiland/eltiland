@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="physical">Договор для физического лица:</entry>
+    <entry key="legal">Договор для юридического лица:</entry>
+    <entry key="reqisites">Реквизиты для оплаты:</entry>
+</properties>

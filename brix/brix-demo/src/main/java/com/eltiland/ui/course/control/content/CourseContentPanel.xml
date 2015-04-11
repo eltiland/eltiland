@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="general">Общая информация</entry>
+    <entry key="start">Стартовая страница</entry>
+    <entry key="demo">Демо версия</entry>
+    <entry key="full">Полная версия</entry>
+
+    <entry key="forumCreate">Создать форум</entry>
+    <entry key="forumCreatedMessage">Форум успешно создан</entry>
+    <entry key="forumCreateConfirmation">Вы действительно хотите создать форум для даного курса?</entry>
+
+    <entry key="usersControl">Слушатели курса</entry>
+
+    <entry key="forumName">Форум для курса "%s"</entry>
+    <entry key="groupName">Форумы курсов</entry>
+</properties>

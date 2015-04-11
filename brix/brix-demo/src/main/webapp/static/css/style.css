@@ -1,0 +1,1113 @@
+.change-password {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.change-password > div > div {
+    float: none !important;
+}
+
+/* ==== TABLES ===*/
+
+td.norecords-td {
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.elti-datatable .norecords {
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #626262;
+}
+
+table.elti-datatable {
+    width: 100%;
+    /*border-collapse: collapse;*/
+    border: #D9D9D9 solid thin;
+    color: #6a6a6a;
+    font-size: 10pt;
+}
+
+table.elti-datatable > thead {
+    background: #dcdcdc url("../images/elti/table_header_bg.png") repeat-x;
+    /*text-transform: uppercase;*/
+    font-weight: normal;
+    font-size: 12pt;
+    color: #626262;
+}
+
+.elti-datatable > .thead {
+    background: #dcdcdc url("../images/elti/table_header_bg.png") repeat-x;
+    font-weight: bold;
+    font-size: 12pt;
+    color: #626262;
+    height: 40px;
+    text-align: center;
+}
+
+table.elti-datatable > thead > tr {
+    height: 40px;
+}
+
+table.elti-datatable > thead > tr > th:last-child {
+    background: none;
+}
+
+table.elti-datatable > tbody > tr > td {
+    background: #f5f5f5;
+    border-top: #ffffff solid 5px;
+    text-align: center;
+    /* border-left: #e6e5ed outset 2px;*/
+    padding: 5px;
+}
+
+table.elti-datatable > tbody > tr > td > span {
+    display: block;
+    background: #fcf9ef;
+    border: #dfdfdd solid thin;
+}
+
+table.elti-datatable > tbody > tr > td:first-child {
+    border-left: #ffffff solid 10px;
+}
+
+table.elti-datatable > tbody > tr > td:last-child {
+    border-right: #ffffff solid 10px;
+}
+
+table.elti-datatable > tbody > tr:first-child > td {
+    border-top: #ffffff solid 10px;
+}
+
+.action-column {
+    float: right;
+    width: 100px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.record-column {
+    overflow-x: hidden;
+    position: relative;
+}
+
+.elti-datatable > .bottomToolbar {
+    padding-top: 15px;
+}
+
+.cms-panel {
+    padding: 12px;
+}
+
+.navigatorLabel, .navigator {
+    font-style: italic;
+    font-size: 8pt;
+    color: #3284d7;
+}
+
+.recordsCount {
+    font-style: italic;
+    padding-right: 10pt;
+    text-align: right;
+    font-size: 10pt;
+    color: #3284d7;
+}
+
+.navigator a {
+    text-decoration: none;
+    font-size: inherit;
+}
+
+.navigator .goto em {
+    background: #fcf9ef;
+    border: #dfdfdd solid thin;
+}
+
+.elti-image-column {
+    width: 100px;
+}
+
+table.elti-datatable elti-wrapper-panel {
+    text-align: center;
+    width: 60px;
+    width: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ==== COMMON CLASSES ===*/
+.clipped {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.errorColor {
+    color: #cc0000;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.elti-date {
+    font-size: 12px;
+    color: #9999b6;
+}
+
+.count {
+    font-size: 11px;
+    font-style: italic;
+    color: #626262;
+}
+
+.elti-wrapper {
+    position: relative;
+}
+
+.elti-actions {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    right: 10px;
+}
+
+.clickable {
+    cursor: pointer;
+    border: thin solid white;
+}
+
+.clickable:hover {
+    border: 1px solid #06C;
+    box-shadow: 0 0 10px rgba(43, 96, 222, 0.5);
+}
+
+/* ==== Block  that had grey border */
+
+.elti-gray-border-block {
+    padding: 5px;
+    background: #e2e1df;
+    border: #CAC9C5 solid thin;
+}
+
+.elti-gray-border-block-content {
+    background: #ffffff;
+}
+
+/* ==== Links  ===*/
+a {
+    /*font-size: 10pt;*/
+    padding-top: 2px;
+    color: #2B60DE;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #6f90de;
+}
+
+.elti-linkbutton {
+    text-decoration: none;
+    border: none;
+    border-bottom: dashed 1px;
+    font-size: 10pt;
+    color: #2B60DE;
+    background: none;
+    margin: 0;
+    padding: 2px 0 0;
+    cursor: pointer;
+}
+
+button.elti-linkbutton {
+    padding: 3px 15px;
+    color: #ffffff;
+    background: rgb(255, 106, 28);
+    border: 1px solid rgb(255, 106, 28);
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 30px;
+}
+
+.elti-linkbutton:hover {
+    text-decoration: none;
+    background: none;
+    margin: 0;
+    padding: 2px 0 0;
+    cursor: pointer;
+    color: #6f90de;
+}
+
+button.elti-linkbutton:hover {
+    padding: 3px 15px;
+    color: #ffffff !important;
+    background: rgb(194, 79, 18); /* Old browsers */
+    border: 1px solid rgb(194, 79, 18);
+    height: 30px;
+}
+
+button:disabled {
+    padding: 3px 15px;
+    color: #ffffff !important;
+    background: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    height: 30px;
+}
+
+button:disabled:hover {
+    padding: 3px 15px;
+    color: #ffffff !important;
+    background: #d3d3d3 !important;
+    border: 1px solid #d3d3d3;
+    height: 30px;
+}
+
+.button.elti-linkbutton:disabled {
+    padding: 3px 15px;
+    color: #ffffff !important;
+    background: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    height: 30px;
+}
+
+.elti-titled-link {
+    font-size: 14pt;
+    color: #A3A7AD;
+}
+
+a.disabled, button.disabled {
+    cursor: default;
+    text-decoration: none;
+    margin: 0;
+    border: none;
+}
+
+a.disabled {
+    color: #2B6FB6;
+    background: none;
+    padding: 2px 0 0;
+}
+
+button.disabled {
+    padding: 3px 15px;
+    height: 30px;
+    color: #ffffff !important;
+    background: #808080; /* Old browsers */
+    border: 1px solid #2e8fda;
+
+    /*border-radius: 5px;*/
+    font-weight: bold;
+    height: 30px;
+}
+
+/* ==== Three-column layout ===*/
+.elti-left-column {
+    float: left;
+    margin-left: 5px;
+}
+
+.elti-middle-column {
+    overflow-x: hidden;
+    position: relative;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 3px;
+    padding-bottom: 20px;
+}
+
+.elti-right-column {
+    float: right;
+    width: 245px;
+    margin-right: 5px;
+}
+
+/* ==== WIDGETS ===*/
+.elti-widget {
+    border: #dad9d9 solid thin;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 5px;
+}
+
+.elti-widget .buttons {
+    margin-top: 6px;
+}
+
+.elti-widget-header {
+    background: #e9e9e9;
+    color: black;
+    font-family: "a_Campus";
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: #dad9d9 solid thin;
+}
+
+.elti-widget-header > h1 {
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.elti-widget-content {
+    padding: 10px;
+}
+
+.elti-widget-content h3 {
+    font-size: 13px;
+    color: #626262;
+    margin: 0;
+}
+
+.wicket-modal .elti-widget {
+    border: none;
+    margin: 0;
+    width: 100%;
+}
+
+.elti-widget-content > .body-in-2-column {
+    padding-top: 15px;
+}
+
+.elti-widget-content > .body-in-2-column > .left-column,
+.elti-widget-content > .body-in-2-column > .right-column {
+    float: right;
+    width: 49%;
+}
+
+.elti-widget-content > .body-in-2-column > .left-column {
+    border-right: #E7E6E4 solid thin;
+    float: left;
+}
+
+.elti-widget-content > .body-in-1-column > .left-column {
+    width: 100%
+}
+
+.elti-widget-content > .body-in-1-column > .right-column {
+    width: 0;
+}
+
+/*   ----------  COMMON SECTION END   ----------  */
+/**************************************************************************************************/
+/*   ----------  HEADER SECTION BEGIN   ----------  */
+
+div.elti-header {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.elti-solid-gray-border {
+    border: #e2e1df solid 8px;
+}
+
+#elti-header-menu-stripe {
+    height: 80px;
+    text-align: center;
+    margin: auto;
+}
+
+.elti-link-home, .separator, .elti-link-sitemap {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+div.separator {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div.elti-main-menu-wrapper {
+    margin-top: -2px;
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    border: #B9B7B7 1px solid;
+    background: white;
+}
+
+div.arrows {
+    height: 10px;
+    background-color: transparent;
+}
+
+div.arrows > div.menu-arrows {
+    background-color: transparent;
+    margin: auto;
+    height: 10px;
+    text-align: center;
+    width: 600px;
+}
+
+div.menu-item-arrow {
+    background: url("../images/elti/arrow.png") no-repeat center center;
+    display: table-cell;
+    height: 10px;
+    width: 100px;
+    line-height: 10px;
+    margin: auto;
+    text-align: center;
+}
+
+/* ==== MENUS ===*/
+div.menuContainer {
+    float: left;
+}
+
+div.menu-item {
+    float: left;
+    text-align: center;
+    margin: auto;
+}
+
+div.menu-item {
+    display: table-cell;
+    text-align: center;
+    margin: auto;
+}
+
+div.menu-item {
+    display: table;
+    height: 45px;
+    width: 120px;
+    line-height: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+div.menu-item > a {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.elti-main-menu {
+    margin: auto;
+    height: 80px;
+    text-align: center;
+    width: 960px;
+}
+
+.elti-main-menu > .elti-menu-list {
+    float: left;
+}
+
+div.menu-item > a {
+    font-family: "a_Campus";
+    text-decoration: none;
+    display: table-cell;
+    color: rgb(145, 142, 142);
+    padding-bottom: 0;
+}
+
+div.menu-item-active > span > p {
+    color: white !important;
+}
+
+div.menu-item > a > span > p {
+    font-family: "a_Campus" !important;
+    font-size: 15px !important;
+    color: rgb(145, 142, 142) !important;
+}
+
+div.menu-item-active > a > span > p {
+    color: white !important;
+}
+
+.div.menu-item > a {
+    text-decoration: underline;
+    color: #a1a1a1;
+    font-size: 11px;
+}
+
+div.menu-item> a:active {
+    background-color: #F49594;
+}
+
+div.menu-item > a:link {
+    background-color: transparent;
+    transition: background-color 0.4s ease 0s;
+    -webkit-transition-property: background-color;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+}
+
+div.menu-item > a:hover {
+    background-color: rgb(255, 189, 155);
+    transition: background-color 0.4s ease 0s;
+    -webkit-transition-property: background-color;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+}
+
+div.menu-item > a > span {
+    display: block;
+    width: 120px;
+    max-height: 60px;
+    max-width: 120px;
+    overflow: hidden;
+}
+
+/* === MENUS END === */
+
+div.menu-item-active {
+    background-color: rgb(255, 106, 28) !important;
+}
+
+/*   ----------  HEADER SECTION END   ----------  */
+/**************************************************************************************************/
+/*   ----------  CONTENT SECTION BEGIN   ----------  */
+
+.elti-left-column > div, .elti-right-column > div {
+    margin-bottom: 10px;
+}
+
+/*   ----------  CONTENT SECTION END   ----------  */
+/**************************************************************************************************/
+/**************************************************************************************************/
+/*   ----------  HOUSE SECTION BEGIN   ----------  */
+
+.elti-content, .elti-header, .elti-footer {
+    position: relative;
+}
+
+/**************************************************************************************************/
+.upImage {
+    width: 24px;
+    height: 24px;
+    background: url("../images/icons/qa/qa_up.png");
+    cursor: pointer !important;
+}
+
+.downImage {
+    width: 24px;
+    height: 24px;
+    background: url("../images/icons/qa/qa_down.png");
+    cursor: pointer !important;
+}
+
+.deleteImage {
+    width: 24px;
+    height: 24px;
+    background: url("../images/icons/qa/qa_delete.png");
+    cursor: pointer !important;
+}
+
+.editImage {
+    width: 24px;
+    height: 24px;
+    background: url("../images/icons/qa/qa_modify.png");
+    cursor: pointer !important;
+}
+
+/*   ----------  Profile styles   ----------  */
+/**************************************************************************************************/
+.profilePage {
+    display: table;
+}
+
+.profileLeft {
+    float: left;
+    width: 10%;
+    min-width: 200px;
+    margin-left: 15px;
+    display: table-cell;
+}
+
+.profileLeft .avatar {
+    width: 200px;
+}
+
+.profileLeft .avatar > .elti-avatar-preview {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.profileRight {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profileRight .header {
+    text-align: center;
+    font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, Trebuchet MS, sans-serif;
+    font-size: 1.833em;
+    line-height: 1.2727em;
+    border-bottom: 1px #D6DDB9 solid;
+    color: #27638C;;
+}
+
+.profileRight .invoicePanel {
+    width: 520px;
+    margin: 0 auto;
+    display: table;
+}
+
+.profileRight .alreadyInvoiced {
+    text-align: center;
+    font-size: 22px;
+}
+
+.profileRight .unableLabel {
+    font-weight: bold;
+    font-size: 14px;
+    color: darkred;
+}
+
+.profileRight .access_header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.profileView .header {
+    font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, Trebuchet MS, sans-serif;
+    font-size: 1.833em;
+    line-height: 1.2727em;
+    border-bottom: 1px #D6DDB9 solid;
+    color: #27638C;;
+}
+
+.profileRight .block {
+    float: left;
+    margin: 10px;
+}
+
+.profileRight .right {
+    width: 58%;
+}
+
+.profileBlock {
+    width: 100%;
+    background: #617b99; /* Old browsers */
+    background: -moz-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #617b99), color-stop(100%, #7db9e8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #617b99 0%, #7db9e8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#617b99', endColorstr = '#7db9e8', GradientType = 0); /* IE6-9 */
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    height: 24px;
+    color: #f5f5f5;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.profileBlock .blockheader {
+    padding-left: 10px;
+}
+
+.blockLabel {
+    float: left;
+    font-weight: bold;
+}
+
+.blockData {
+    padding-top: 10px;
+}
+
+.menuItemBase {
+    text-align: center;
+    margin-right: 10px;
+    height: 35px;
+    font-size: 12px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: "a_Campus";
+}
+
+.menuItemBase .icon_container {
+    height: 35px;
+    float: left;
+    width: 20%;
+    border-right: 1px solid #d3d3d3;
+}
+
+.menuItemBase .icon_container .icon {
+    width: 24px;
+    height: 21px;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+
+.menuItemBase .label_container {
+    float: left;
+    width: 79%;
+    margin-top: 7px;
+}
+
+.menuItemBase .icon_container .course {
+    background-image: url("../images/profile/courses.png");
+}
+
+.menuItemBase .icon_container .profile {
+    background-image: url("../images/profile/profile.png");
+}
+
+.menuItemBase .icon_container .webinar {
+    background-image: url("../images/profile/webinars.png");
+}
+
+.menuItemBase .icon_container .training {
+    background-image: url("../images/profile/training.png");
+}
+
+.menuItemBase .icon_container .files {
+    background-image: url("../images/profile/files.png");
+}
+
+.menuItemFree {
+    background: #f2f2f2; /* Old browsers */
+    color: #000000;
+    border: 1px solid lightgray;
+}
+
+.menuItemFree:hover {
+    border: 1px solid #a2a1a1 !important;
+}
+
+.menuItemPushed {
+    background: #a2a1a1; /* Old browsers */
+    color: #ffffff;
+    border: 1px solid #617b99;
+}
+
+/*   ----------  Required panel styles   ----------  */
+/**************************************************************************************************/
+.requiredPanel {
+    font-size: 9px;
+    font-family: cursive;
+    font-weight: bold;
+    float: right;
+}
+
+.closeDialog {
+    background-image: url("../images/actions/24x24/close-dialog.png");
+    height: 21px;
+    width: 24px;
+}
+
+/*   ----------  Eltik and friends styles   ----------  */
+/**************************************************************************************************/
+.magazine {
+    float: left;
+    margin: 10px;
+    border: solid 1px rgb(26, 26, 156);
+}
+
+.magazine:hover {
+    box-shadow: 0 0 32px rgba(37, 0, 131, 0.5);
+}
+
+.magazine > img {
+    width: 150px;
+}
+
+.magazineHeader {
+    text-align: center;
+    font-weight: bold;
+    color: #8C1515;
+}
+
+/*   ----------  Subscribe admin styles   ----------  */
+/**************************************************************************************************/
+.sendedMails {
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.viewContentEmail .content {
+    margin: 5px;
+    padding: 4px;
+    border: 1px solid lightgray;
+}
+
+.viewContentEmail .header {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/*   ----------  Side menu styles   ----------  */
+/**************************************************************************************************/
+.sideMenu .elti-main-menu-wrapper {
+    height: 229px;
+    width: 265px;
+}
+
+.sideMenu .elti-main-menu {
+    width: 265px;
+}
+
+.sideMenu .elti-main-menu .menu-item {
+    float: none;
+    width: 265px;
+    border-bottom: 1px solid lightgray;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.sideMenu .elti-main-menu .menu-item > a > span {
+    max-width: 265px;
+    width: 265px;
+}
+
+/*   ----------  Home page styles   ----------  */
+/**************************************************************************************************/
+.elti-widget-table {
+    border: #DAD9D9 solid thin;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.elti-widget-table .firs-row {
+    background: #e9e9e9;
+}
+
+.elti-widget-table .firs-row td {
+    padding: 10px 0;
+    border-bottom: #DAD9D9 solid thin;
+}
+
+.elti-widget-table .firs-row h1 {
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    font-family: "a_Campus";
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+/*   ----------  News panel on left column   ----------  */
+/**************************************************************************************************/
+.elti-left-column .elti-news-item {
+    width: 245px;
+}
+
+.elti-left-column .news {
+    border: #d3d3d3 1px solid;
+    background: white;
+    width: 265px;
+}
+
+.elti-left-column .news .header {
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid #d3d3d3;
+    font-family: "a_Campus";
+    font-size: 18px;
+    padding: 5px;
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.elti-left-column .news .row {
+    border-bottom: 1px dotted black;
+}
+
+.elti-left-column .news a {
+    font-size: 13px;
+}
+
+.elti-left-column .news .elti-news-item .type {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: rgb(255, 106, 28);
+}
+
+.elti-left-column .news .elti-news-item .date {
+    margin-top: 15px;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(255, 106, 28);
+}
+
+.elti-left-column .elti-news-archive-link {
+    display: block;
+    text-align: right;
+    width: 135px;
+    margin-left: 115px;
+    background-color: rgb(255, 106, 28);
+    text-decoration: none;
+    color: white;
+    padding: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.elti-left-column .elti-news-archive-link:hover {
+    background-color: #B56F6E !important;
+}
+
+/*   ----------  Unsubscribe page   ----------  */
+/**************************************************************************************************/
+.unsubscribe .label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.unsubscribe .buttons {
+    display: table;
+    margin: 0 auto;
+}
+
+/*   ----------  Profile abstract panel   ----------  */
+/**************************************************************************************************/
+.profilePanel {
+    display: table;
+    width: 100%;
+}
+
+.profilePanel .header {
+    display: table-cell;
+    width: 100%;
+}
+
+.profilePanel .button {
+    float: right;
+    width: 190px;
+}
+
+/**************************************************************************************************/
+.dialogButtons {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/**************************************************************************************************/
+.image_column {
+    width: 200px;
+}
+
+/**************************************************************************************************/
+.subscribeText {
+    font-size: 15px;
+}
+
+/**************************************************************************************************/
+.image_preview {
+    margin-top: 10px !important;
+    max-width: 95%;
+    margin: 0 auto;
+    display: table;
+    border: 1px solid;
+}
+
+.video_preview {
+    margin: 0 auto;
+    display: table;
+    padding-top: 40px;
+}
+
+/**************************************************************************************************/
+.navigator .first {
+    float: left;
+}
+
+.navigator .next {
+    float: left;
+}
+
+.navigator .prev {
+    float: left;
+}
+
+.navigator .last {
+    float: left;
+}
+
+.navigator .goto {
+    color: #0078AE;
+    padding: 0 10px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    font-style: normal;
+    float: left;
+}
+
+.navigator .link {
+    color: #0078AE;
+    padding: 0 10px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    font-style: normal;
+    float: left;
+}
+
+.navigator .goto em {
+    padding: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.navigator_count {
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.brix-admin {
+    padding-bottom: 40px;
+}
+
+.logo {
+    border: 1px solid #d3d3d3;
+    width: 265px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.logo > .assist-logo {
+    background-image: url("../images/homepage/assist.png");
+    width: 235px;
+    height: 70px;
+    display: table;
+    margin: 0 auto;
+}
+
+.pay-button {
+    background-color: #068C1D;
+    border: none;
+    color: white;
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}

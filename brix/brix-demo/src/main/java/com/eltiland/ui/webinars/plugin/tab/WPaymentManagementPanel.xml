@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameLabel">Название вебинара</entry>
+    <entry key="managerLabel">Ведущий</entry>
+    <entry key="memberLabel">Участник</entry>
+    <entry key="dateLabel">Дата платежа</entry>
+    <entry key="priceLabel">Сумма</entry>
+    <entry key="download">Скачать отчет о платежах</entry>
+</properties>

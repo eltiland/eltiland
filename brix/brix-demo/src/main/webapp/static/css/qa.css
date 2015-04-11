@@ -1,0 +1,68 @@
+/**************************************************************************************************/
+/* Styles for Questions-Answers
+/**************************************************************************************************/
+.elti-qa .button {
+    display: table;
+    margin: 0 auto;
+}
+
+.elti-qa .question-panel {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.elti-qa .answer-panel {
+    background-color: rgba(0, 0, 255, 0.04);
+}
+
+.elti-qa .bordered {
+    text-align: center;
+    font-size: 13px;
+    border: 1px solid #a9a9a9;
+    padding: 5px;
+}
+
+.elti-qa .filter-panel {
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.elti-qa .filter-text {
+    border: 2px solid #0078AE;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.elti-qa .filter-text input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin-left: 5px;
+}
+
+.elti-qa .filter-text input:focus {
+    outline: none;
+}
+
+.elti-qa .filter-text button {
+    background: #666666;
+    margin-right: 0px !important;
+    height: 23px;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.elti-qa {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.faq-page-category select {
+    width: 100%;
+    margin-left: 0;
+}

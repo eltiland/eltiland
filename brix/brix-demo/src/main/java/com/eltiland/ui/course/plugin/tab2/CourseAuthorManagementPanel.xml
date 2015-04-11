@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameLabel">Название курса</entry>
+    <entry key="authorLabel">Автор</entry>
+    <entry key="info">Порядок следования авторских курсов на странице:</entry>
+
+    <entry key="up.tooltip">Поднять на 1 позицию</entry>
+    <entry key="down.tooltip">Опустить на 1 позицию</entry>
+</properties>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget elti-create-group">
+        <div class="elti-widget-header">
+            <h1>
+                <wicket:message key="createInvoiceLabel"></wicket:message>
+            </h1>
+        </div>
+        <form wicket:id="form">
+            <div wicket:id="basePriceLabel" style="padding: 5px;color: gray;font-size: 13px;"></div>
+            <span wicket:id="percentLabel" class="elti-inline-editor-label"></span>
+            <input wicket:id="percentField" class="price-field-editor">
+            <span style="font-size:13px;color: #8D8D8D;">
+                <wicket:message key="percent"></wicket:message>
+            </span>
+
+            <div wicket:id="priceField" style="padding-top: 4px"></div>
+
+            <wicket:enclosure child="freeModeCheckbox">
+                <input wicket:id="freeModeCheckbox" type="checkbox">
+                <span style="font-size:13px;color: #8D8D8D;">
+                    <wicket:message key="freeMode"></wicket:message>
+                </span>
+            </wicket:enclosure>
+            <br>
+
+            <button wicket:id="applyButton" style="margin-top:10px">
+                <wicket:message key="applyButtonLabel"></wicket:message>
+            </button>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

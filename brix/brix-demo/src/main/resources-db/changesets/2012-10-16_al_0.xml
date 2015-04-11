@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="alexander.litvinenko">
+        <comment>Create table for article record</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE public.article_record
+            (
+            text text NOT NULL,
+            _id numeric NOT NULL,
+            CONSTRAINT article_record_pkey PRIMARY KEY (_id ),
+            CONSTRAINT fkc4813bba26bfc6bd FOREIGN KEY (_id)
+            REFERENCES record (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE public.article_record
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="1" author="alexander.litvinenko">
+        <comment>Register article mime type</comment>
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/article"/>
+            <column name="icon_name" value="ICONS_ARTICLE"/>
+            <column name="resource_key" value="ARTICLE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="alexander.litvinenko">
+        <comment>Add default icon</comment>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="filename" value="static/images/icons/thumb/article.png"/>
+
+        </insert>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="body" value="ARTICLE_BODY_STUB"/>
+
+        </insert>
+        <insert tableName="file" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="ICONS_ARTICLE"/>
+            <column name="size" value="0"/>
+            <column name="type" value="image/png"/>
+            <column name="body" valueComputed="(SELECT _id FROM file_body WHERE body='ARTICLE_BODY_STUB')"/>
+            <column name="preview_body"
+                    valueComputed="(SELECT _id FROM file_body WHERE filename='static/images/icons/thumb/article.png')"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

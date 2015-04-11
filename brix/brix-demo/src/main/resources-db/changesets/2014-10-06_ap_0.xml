@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Table for invoice term</comment>
+        <sql>
+            CREATE TABLE "public"."course_paid_term" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "days" NUMERIC DEFAULT '0' NOT NULL,
+            "months" NUMERIC DEFAULT '0' NOT NULL,
+            "years" NUMERIC DEFAULT '0' NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+            ALTER TABLE "public"."course_paid_invoice" ADD COLUMN "term" NUMERIC;
+            ALTER TABLE "public"."course_paid_invoice" ADD CONSTRAINT "invoice_term" FOREIGN KEY ( "term" )
+            REFERENCES "public"."course_paid_term" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

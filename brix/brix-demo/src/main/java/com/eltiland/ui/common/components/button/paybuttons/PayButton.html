@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form method="post" action="https://merchant.w1.ru/checkout/default.aspx" accept-charset="UTF-8">
+        <input type="hidden" wicket:id="merchantField"/>
+        <input type="hidden" wicket:id="amountField"/>
+        <input type="hidden" wicket:id="currencyField"/>
+        <input type="hidden" wicket:id="descriptionField"/>
+        <input type="hidden" wicket:id="successURL"/>
+        <input type="hidden" wicket:id="failURL"/>
+        <input type="hidden" wicket:id="paymentId"/>
+        <input type="hidden" wicket:id="signature"/>
+        <button type="submit" class="elti-linkbutton">
+            <div wicket:id="payLabel"></div>
+        </button>
+    </form>
+
+</wicket:panel>
+</body>
+</html>

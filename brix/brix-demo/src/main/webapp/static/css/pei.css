@@ -1,0 +1,12 @@
+.pei-avatar {
+
+}
+
+.pei-avatar > .elti-avatar-preview > .elti-item {
+    float: none;
+}
+
+.pei-avatar > .elti-avatar-preview > .elti-item > .description {
+    text-align: start;
+    height: auto;
+}

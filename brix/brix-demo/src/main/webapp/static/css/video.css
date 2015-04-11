@@ -1,0 +1,116 @@
+/* Video page styles */
+/**************************************************************************************************/
+.videoPage .breaker {
+    width: 100%;
+    border-bottom: rgb(197, 185, 185) 1px solid;
+    padding-top: 10px;
+}
+
+/* Admin panel */
+/**************************************************************************************************/
+.videoPage .adminPanel {
+    float: right;
+}
+
+.videoPage .adminPanel .button {
+    float: left;
+    margin-left: 5px;
+}
+
+/* Info panel */
+/**************************************************************************************************/
+.videoPage .videoInfo {
+    margin-top: 10px;
+    border-bottom: rgb(209, 193, 193) 2px solid;
+    padding-bottom: 10px;
+}
+
+.videoPage .videoInfo .header {
+    text-align: center;
+    color: #807878;
+    font-family: "a_Campus";
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.videoPage .videoInfo .info {
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.videoPage .videoInfo .author {
+    text-align: center;
+}
+
+.videoPage .videoInfo .author > a {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.videoPage .videoInfo > iframe {
+    position: relative;
+    left: 50%;
+    margin-left: -320px;
+}
+
+.videoPage .videoInfo .control {
+    width: 622px;
+    height: 27px;
+    background: #f5f5f5;
+    border: #d3d3d3 1px solid;
+    position: relative;
+    left: 50%;
+    margin-left: -320px;
+    padding: 8px;
+    margin-top: -4px;
+    font-weight: bold;
+}
+
+.videoPage .videoInfo .control .text {
+    text-align: left;
+    float: left;
+    margin-right: 15px;
+}
+
+.videoPage .videoInfo .iconControlPanel {
+    float: right;
+    margin-right: 10px;
+    max-width: 133px;
+}
+
+/* sort panel */
+/**************************************************************************************************/
+.videoPage .sort .title {
+    font-family: "a_Campus";
+    font-size: 16px;
+    text-align: left;
+    margin: 10px;
+    float: left;
+}
+
+.videoPage .sort .selector {
+    float: left;
+    margin-top: 10px;
+}
+
+.videoPage .sort .direction {
+    float: left;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.videoPage .sort .up {
+    background-image: url("../images/actions/24x24/move_up.png");
+}
+
+.videoPage .sort .down {
+    background-image: url("../images/actions/24x24/move_down.png");
+}
+
+.videoPage .sort .radioButtons {
+    float: left;
+}

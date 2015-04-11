@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="vadim.dienko">
+        <comment>Create news_item table</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE news_item
+            (
+            _id numeric NOT NULL,
+            body character varying(255),
+            date timestamp without time zone NOT NULL,
+            title character varying(255) NOT NULL,
+            CONSTRAINT news_item_pkey PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE news_item
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

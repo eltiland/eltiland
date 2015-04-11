@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Create table for Reset Code</comment>
+        <sql>
+            CREATE TABLE resetcode
+            (
+            _id numeric NOT NULL,
+            code character varying(10) NOT NULL,
+            endingdate timestamp without time zone,
+            CONSTRAINT reset_code_pkey PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE resetcode
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Added reset code field to user</comment>
+        <sql>
+            ALTER TABLE "user" ADD COLUMN resetcode__id numeric;
+            ALTER TABLE "user"
+            ADD CONSTRAINT fk_reset_code_key FOREIGN KEY (resetcode__id)
+            REFERENCES resetcode (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

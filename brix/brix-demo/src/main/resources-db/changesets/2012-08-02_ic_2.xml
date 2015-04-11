@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Add standart icon files</comment>
+
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="filename" value="static/images/icons/thumb/user.png"/>
+        </insert>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION user_icon_body_id(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from file_body where filename=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="file" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="ICONS_UNKNOWN_USER"/>
+            <column name="size" value="51697664"/>
+            <column name="type" value="image/png"/>
+            <column name="body" valueComputed="user_icon_body_id('static/images/icons/thumb/user.png')"/>
+            <column name="preview_body" valueComputed="user_icon_body_id('static/images/icons/thumb/user.png')"/>
+        </insert>
+
+        <sql endDelimiter=";">
+            drop function user_icon_body_id(search_path text);
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

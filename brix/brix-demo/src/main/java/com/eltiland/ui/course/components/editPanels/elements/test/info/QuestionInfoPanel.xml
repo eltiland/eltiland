@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="questionLabel">Вопросы секции (нажмите для управления):</entry>
+    <entry key="variantLabel">Варианты ответов (нажмите для управления):</entry>
+    <entry key="resultLabel">Результаты (нажмите для управления):</entry>
+    <entry key="editLabel">Редактировать</entry>
+    <entry key="removeLabel">Удалить</entry>
+
+    <entry key="addQuestionTooltip">Добавить вопрос</entry>
+    <entry key="addVariantTooltip">Добавить вариант ответа</entry>
+    <entry key="addResultTooltip">Добавить результат</entry>
+    <entry key="upTooltip">Поднять вверх на 1 позицию</entry>
+    <entry key="downTooltip">Опустить вниз на 1 позицию</entry>
+</properties>

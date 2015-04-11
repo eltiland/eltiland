@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Create PEI-File relation table. Step 2 - function create</comment>
+        <createProcedure><![CDATA[CREATE OR REPLACE FUNCTION movepeifile()
+            RETURNS void AS
+            $BODY$
+            DECLARE entity RECORD;
+            BEGIN
+
+            -- table "_option"
+            FOR entity IN SELECT * FROM public.pei_file
+            LOOP
+            -- move child.pei to new table
+            INSERT INTO public.pei_file_t(_id, pei_id, file_id) VALUES (nextval('hibernate_sequence'), entity.pei_id,
+            entity.file_id);
+            END LOOP;
+
+            END;
+            $BODY$
+            LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION movepeifile()
+            OWNER TO eltiland;
+        ]]></createProcedure>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Create PEI-File relation table. Step 3 - data moving</comment>
+        <sql>
+            SELECT "movepeifile"();
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Create PEI-File relation table. Step 4 - clearing</comment>
+        <dropTable tableName="pei_file" schemaName="public"/>
+        <renameTable oldTableName="pei_file_t" newTableName="pei_file"/>
+    </changeSet>
+
+</databaseChangeLog>

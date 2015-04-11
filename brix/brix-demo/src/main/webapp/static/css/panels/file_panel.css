@@ -1,0 +1,70 @@
+.file-panel {
+    width: 400px;
+    border: 1px solid #a9a9a9;
+}
+
+.file-panel > .control {
+    height: 26px;
+    display: table;
+    width: 100%;
+}
+
+.file-panel > .control > .caption {
+    font-size: 14px;
+    padding-left: 5px;
+    width: 90%;
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.file-panel > .control > .actions {
+    width: 10%;
+    background-color: #f0f0f0;
+    display: table-cell;
+}
+
+.file-panel > .control > .actions .button {
+    margin-left: 5px;
+}
+
+.file-panel > .items {
+}
+
+.file-panel > .items  .item {
+    height: 26px;
+    display: table;
+    width: 100%;
+}
+
+.file-panel > .items .not-last-item {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.file-panel > .items .first-item {
+    border-top: 1px solid #a9a9a9;
+}
+
+.file-panel > .items  .item > .caption {
+    font-size: 14px;
+    padding-left: 5px;
+    width: 85%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.file-panel > .items  .item > .actions {
+    width: 15%;
+    background-color: #f0f0f0;
+    display: table-cell;
+}
+
+.file-panel > .items  .item > .actions .button {
+    margin-left: 5px;
+}
+
+.feedbackPanelERROR {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}

@@ -1,0 +1,17 @@
+.course_document {
+    margin: 0 auto;
+    display: table;
+    width: 500px;
+    border: 2px lightgray solid;
+    padding: 10px;
+}
+
+.course_document .doc_title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 11px;
+}
+
+.course_document .file_item {
+    margin: 5px;
+}

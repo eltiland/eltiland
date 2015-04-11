@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Insert target audience from seper pei record</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_record_id(record_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from record where name=record_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_target_audience_id(target_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from target_audience where target=target_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <insert tableName="record_targetaudience" schemaName="public">
+            <column name="record_id" valueComputed="get_record_id('Стандартная программа кружка Детская Газета')"/>
+            <column name="target_audience_id" valueComputed="get_target_audience_id('Воспитателям')"/>
+        </insert>
+        <insert tableName="record_targetaudience" schemaName="public">
+            <column name="record_id" valueComputed="get_record_id('Стандартная программа клуба Юных Мыслителей')"/>
+            <column name="target_audience_id" valueComputed="get_target_audience_id('Воспитателям')"/>
+        </insert>
+        <sql>
+            DROP FUNCTION get_record_id(record_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_target_audience_id(target_name text)
+        </sql>
+
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Update Super PEI Curriculum</comment>
+        <update tableName="record">
+            <column name="name" value="Стандартная программа кружка &quot;Элтик и друзья&quot;"/>
+            <where>name='Стандартная программа кружка Детская Газета'</where>
+        </update>
+        <update tableName="record">
+            <column name="name" value="Стандартная программа кружка &quot;Клуб Юных Мыслителей&quot;"/>
+            <where>name='Стандартная программа клуба Юных Мыслителей'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

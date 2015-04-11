@@ -1,0 +1,80 @@
+.course_start_page {
+}
+
+.course_start_page > .name {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 90, 255, 0.7);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-family: "a_Campus";
+    color: #F7F7F7;
+}
+
+.course_start_page > .image {
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.course_start_page > .image > div > img {
+    width: 150px;
+}
+
+.course_start_page > .author {
+    font-size: 18px;
+    line-height: 27.3px;
+    font-family: "sofiapro-medium", Arial, sans-serif;
+    letter-spacing: 1px;
+    font-weight: normal;
+    margin-left: 35px;
+    margin-top: 10px;
+    padding-left: 170px;
+    border-top: 1px solid rgb(207, 203, 203);
+    border-bottom: 1px solid rgb(207, 203, 203);
+    padding-top: 20px;
+    min-height: 150px;
+}
+
+.course_start_page > .author > .about {
+    color: #333333;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 10px;
+    margin-left: 35px;
+}
+
+.course_start_page > .video {
+    display: table;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.course_start_page > .content {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.course_start_page > .back {
+    display: table;
+    margin: 0 auto;
+}
+
+.course_start_page > .actions {
+    height: 65px;
+    width: 100%;
+    border-bottom: solid #CAC4C4 1px;;
+    margin-top: 20px;
+}
+
+.course_start_page > .actions > .buttons {
+    display: table;
+    margin: 0 auto;
+}
+
+.course_start_page > .actions > .buttons > .button {
+    float: left;
+    margin-left: 20px;
+}

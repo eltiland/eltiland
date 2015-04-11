@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+  <span class="courseeditpage">
+        <div class="header">
+            <div wicket:id="name"></div>
+        </div>
+        <div class="data">
+            <div class="menu">
+                <!--<div class="menuitem menuitempushed" wicket:id="general">-->
+                    <!--<wicket:message key="general"></wicket:message>-->
+                <!--</div>-->
+                <!--<div class="menuitem menuitemfree" wicket:id="start">-->
+                    <!--<wicket:message key="start"></wicket:message>-->
+                    <!--<div wicket:id="preview" class="icon preview"></div>-->
+                <!--</div>-->
+                <div class="menuitem menuitemfree" wicket:id="demo">
+                    <div wicket:id="itemContainer">
+                        <span>
+                            <wicket:message key="demo"></wicket:message>
+                        </span>
+                        <div wicket:id="preview" class="icon preview"></div>
+                    </div>
+
+                    <div wicket:id="controlPanel"></div>
+                    <div wicket:id="tree"></div>
+                </div>
+                <div class="menuitem menuitemfree" wicket:id="full">
+                    <div wicket:id="itemContainer">
+                        <span>
+                            <wicket:message key="full"></wicket:message>
+                        </span>
+                        <div wicket:id="preview" class="icon preview"></div>
+                    </div>
+
+                    <div wicket:id="controlPanel"></div>
+                    <div wicket:id="tree"></div>
+                </div>
+
+                <button class="button" wicket:id="createForumButton">
+                    <wicket:message key="forumCreate"></wicket:message>
+                </button>
+                <button class="button" wicket:id="usersButton">
+                    <wicket:message key="usersControl"></wicket:message>
+                </button>
+            </div>
+            <div class="content">
+                <div wicket:id="contentContainer">
+                    <div wicket:id="contentPanel"></div>
+                </div>
+            </div>
+        </div>
+    </span>
+</wicket:panel>
+</body>
+</html>

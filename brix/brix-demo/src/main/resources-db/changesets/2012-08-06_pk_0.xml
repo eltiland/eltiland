@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="pavel.knorr">
+        <comment>Drop old icon record</comment>
+
+        <delete tableName="file" schemaName="public">
+            <where>name='ICONS_UNKNOWN_USER'</where>
+        </delete>
+
+        <delete tableName="file_body">
+            <where>filename='static/images/icons/thumb/user.png'</where>
+        </delete>
+
+    </changeSet>
+
+</databaseChangeLog>

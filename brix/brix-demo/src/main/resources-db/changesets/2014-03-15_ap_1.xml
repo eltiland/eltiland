@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Refactoring</comment>
+        <sql>
+            DROP TABLE IF EXISTS "public"."webinar_record_user" CASCADE;
+            ALTER TABLE "public"."webinar_record_payment" ADD COLUMN "userprofile" NUMERIC;
+            ALTER TABLE "public"."webinar_record_payment" ADD CONSTRAINT "user_record" FOREIGN KEY ( "userprofile" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

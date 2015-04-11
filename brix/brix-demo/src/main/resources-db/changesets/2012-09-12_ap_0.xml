@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Function for PEI search</comment>
+        <createProcedure><![CDATA[CREATE OR REPLACE FUNCTION jaro_search(pei_name character varying, pei_city character varying, query character varying)
+            RETURNS real AS
+            $BODY$
+            DECLARE
+            temp_search_part character varying(250);
+            temp_query_part character varying(250);
+            search_word_count integer;
+            query_word_count integer;
+            search_parts character varying(250) ARRAY;
+            query_parts character varying(250) ARRAY;
+            jaro_values real ARRAY;
+            jaro_temp_value real;
+            jaro_temp_max_value real;
+            jaro_sum real;
+            BEGIN
+            search_word_count := 0;
+            query_word_count := 0;
+            FOR i IN 1 .. 20
+            LOOP
+            temp_search_part := split_part(LOWER(pei_name), ' ', i);
+            IF temp_search_part <> '' THEN
+            search_word_count := search_word_count + 1;
+            search_parts[search_word_count] := temp_search_part;
+            END IF;
+            END LOOP;
+            search_word_count := search_word_count + 1;
+            search_parts[search_word_count] := pei_city;
+
+            FOR i IN 1 .. 20
+            LOOP
+            temp_query_part := split_part(LOWER(query), ' ', i);
+            IF temp_query_part <> '' THEN
+            query_word_count := query_word_count + 1;
+            query_parts[query_word_count] := temp_query_part;
+            END IF;
+            END LOOP;
+
+            FOR i IN 1 .. query_word_count
+            LOOP
+            jaro_temp_max_value := 0;
+            FOR j IN 1 .. search_word_count
+            LOOP
+            jaro_temp_value := jaro(query_parts[i],search_parts[j]);
+            IF jaro_temp_value > jaro_temp_max_value THEN
+            jaro_temp_max_value := jaro_temp_value;
+            END IF;
+            END LOOP;
+            jaro_values[i] := jaro_temp_max_value;
+            END LOOP;
+
+            jaro_sum := 0;
+            FOR i IN 1 .. query_word_count
+            LOOP
+            jaro_sum := jaro_sum + jaro_values[i];
+            END LOOP;
+
+            RETURN jaro_sum / query_word_count;
+            END
+            $BODY$
+            LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION jaro_search(character varying, character varying, character varying)
+            OWNER TO eltiland;
+    ]]></createProcedure>
+    </changeSet>
+</databaseChangeLog>

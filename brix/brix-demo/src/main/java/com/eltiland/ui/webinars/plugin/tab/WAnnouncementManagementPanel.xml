@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="actionTabLabel">Действия</entry>
+    <entry key="messageDeleteSuccess">Вебинар успешно удален</entry>
+    <entry key="messageEditSuccess">Данные вебинара успешно сохранены</entry>
+    <entry key="messageDeleteFail">Ошибка удаления вебинара</entry>
+    <entry key="messageCloseWebinar">Регистрация на вебинар закрыта.</entry>
+    <entry key="messageOpenWebinar">Регистрация на вебинар открыта.</entry>
+    <entry key="usersInvited">Пользователи приглашены</entry>
+    <entry key="updateWebinarSubject">Вебинар был отредактирован</entry>
+    <entry key="updateWebinarMessage">Вебинар "%s" был отредактирован</entry>
+    <entry key="sendMailsError">Произошла ошибка при отправке писем слушателям вебинара</entry>
+    <entry key="nameLabel">Название</entry>
+    <entry key="descriptionLabel">Описание</entry>
+    <entry key="startDateLabel">Дата/время начала</entry>
+    <entry key="managerLabel">Ведущий</entry>
+    <entry key="deadlineDateLabel">Дата/время окончания регистрации</entry>
+    <entry key="editAction">Изменить данные</entry>
+    <entry key="closeRegAction">Закрыть регистрацию</entry>
+    <entry key="openRegAction">Открыть регистрацию</entry>
+    <entry key="moderationAction">Модерировать участников</entry>
+    <entry key="webinarEditHeader">Редактирование вебинара</entry>
+</properties>

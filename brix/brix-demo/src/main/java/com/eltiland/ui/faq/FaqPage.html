@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="elti-qa">
+        <form wicket:id="container">
+            <div class="filter-panel bordered">
+                <div wicket:id="category" class="faq-page-category"></div>
+                <table style="width: 100%" class="filter-text">
+                    <tr>
+                        <td style="width: 80%">
+                            <input wicket:id="searchText" type="text"/>
+                        </td>
+                        <td style="width: 20%">
+                            <button wicket:id="searchAction">
+                                <wicket:message key="searchButton"/>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <wicket:container wicket:id="qaRepeater">
+                <div wicket:id="qaPanel"></div>
+            </wicket:container>
+            <div wicket:id="navigator" style="float: right"></div>
+        </form>
+    </div>
+</wicket:extend>
+</body>
+</html>

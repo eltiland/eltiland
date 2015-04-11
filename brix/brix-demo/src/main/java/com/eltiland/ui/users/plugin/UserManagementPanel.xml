@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">ФИО</entry>
+    <entry key="emailColumn">Email</entry>
+    <entry key="confirmColumn">Дата подтверждения</entry>
+    <entry key="activeColumn">Активирован</entry>
+
+    <entry key="not_confirmed">Не подтвержден</entry>
+
+    <entry key="profile_tooltip">Перейти к профилю пользователя</entry>
+    <entry key="activate_tooltip">Активировать пользователя</entry>
+    <entry key="deactivate_tooltip">Деактивировать пользователя</entry>
+    <entry key="apply_tooltip">Подтвердить пользователя</entry>
+    <entry key="add_tooltip">Пригласить пользователя</entry>
+</properties>

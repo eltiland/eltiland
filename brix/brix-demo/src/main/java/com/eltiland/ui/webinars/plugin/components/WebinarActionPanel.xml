@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="editAction">Изменить данные</entry>
+    <entry key="closeRegAction">Закрыть регистрацию</entry>
+    <entry key="openRegAction">Открыть регистрацию</entry>
+    <entry key="moderationAction">Модерировать участников</entry>
+    <entry key="сancelAction">Отменить вебинар</entry>
+
+    <entry key="cancelApplyMessage">Вы уверены, что хотите отменить данный вебинар?</entry>
+    <entry key="closeApplyMessage">Вы уверены, что хотите закрыть регистрацию на данный вебинар?</entry>
+    <entry key="openApplyMessage">Вы уверены, что хотите открыть регистрацию на данный вебинар?</entry>
+</properties>

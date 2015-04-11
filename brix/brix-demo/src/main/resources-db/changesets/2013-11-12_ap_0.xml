@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding virtual author</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_id_of_avatar(avatar text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "file" where name=avatar;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="user" schemaName="public">
+            <column name="type" value="User"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="email" value="eltiland_virtual@mailiantor.com"/>
+            <column name="name" value="Виртуальный Пользователь"/>
+            <column name="password" value="7c4a8d09ca3762af61e59520943dc26494f8941b"/>
+            <column name="confirmationdate" value="2013-11-12 14:39:20.869"/>
+            <column name="avatar__id" valueComputed="get_id_of_avatar('ICONS_DEFAULT_PARENT')"/>
+        </insert>
+
+        <sql>
+            DROP FUNCTION get_id_of_avatar(avatar text)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

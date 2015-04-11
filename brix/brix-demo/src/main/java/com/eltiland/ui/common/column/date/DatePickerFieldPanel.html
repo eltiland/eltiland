@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div style="padding-left: 1px; padding-right: 1px; border: 1px solid #88CFFF">
+        <input wicket:id="textfield"
+               onfocus="InMethod.setCursorPos(this, 0, this.value.length);"
+               onkeyup="return InMethod.editKeyUp(this, event);"
+               onkeypress="return InMethod.editKeyPress(this, event);"/>
+    </div>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="verticalContainer" style="top:10px;height:30px;" wicket:id="searchForm">
+    </div>
+
+    <wicket:child/>
+
+    <div class="verticalContainer" style="top:55px;bottom:0px;">
+        <div class="elti_boxes_bluegray elti_maximize_absolute">
+            <div class="elti_padding_absolute">
+                <div class="verticalContainer" style="top:0px;height:50px;padding-top:5px;">
+                    <h2>
+                        <wicket:message key="labelSearchResult"/>
+                    </h2>
+                </div>
+                <div class="verticalContainer" style="top:15px;right:15px;text-align:right;">
+                    <a wicket:id="addNewButton"></a>
+                </div>
+                <div wicket:id="dataTable" class="verticalContainer" style="top:50px;bottom:0px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</wicket:panel>
+</body>
+
+<!--Radio item fragment-->
+<wicket:fragment wicket:id="radioItemFragment">
+    <input wicket:id="searchBy" type="radio"
+           style="line-height:24px;vertical-align:middle;margin-right:5px;">
+    <label wicket:id="searchName"
+           style="line-height:24px;vertical-align:middle;margin-right:5px;"></label>
+</wicket:fragment>
+
+</html>

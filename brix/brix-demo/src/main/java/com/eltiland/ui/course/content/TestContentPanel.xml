@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="resultHeader">Результаты тестирования:</entry>
+    <entry key="incorrentSum">Ваш результат (%d баллов) не предусмотрен тестом. Обратитесь к автору курса.</entry>
+    <entry key="processMessage">Тест в данное время находится в процессе разработки.</entry>
+    <entry key="limitMessage">Тест недоступен. Вы использовали все доступные попытки прохождения данного теста.</entry>
+    <entry key="completeMessage">Тест недоступен. Вы уже прошли успешно данный тест.</entry>
+
+    <entry key="nextResultLabel">Cледующий результат</entry>
+
+    <entry key="limitValueLabel">Попытка №%d. Всего попыток доступно - %d</entry>
+</properties>

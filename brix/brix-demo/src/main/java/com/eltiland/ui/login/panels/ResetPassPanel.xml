@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="panelLabel">Сброс пароля</entry>
+    <entry key="emailLabel">Ваша электронная почта:</entry>
+    <entry key="notFoundError">Пользователя с таким электронным почтовым адресом не существует в системе</entry>
+    <entry key="sendedMessage">Запрос на сброс пароля успешно отослан на указанный почтовый адрес</entry>
+</properties>

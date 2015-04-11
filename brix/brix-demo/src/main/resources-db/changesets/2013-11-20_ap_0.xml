@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding message table</comment>
+        <sql>
+            CREATE TABLE "forum"."message" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "author" NUMERIC,
+            "parent" NUMERIC,
+            "thread" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding thread table</comment>
+        <sql>
+            CREATE TABLE "forum"."thread" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "author" NUMERIC,
+            "forum" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding links</comment>
+        <sql>
+            ALTER TABLE "forum"."message" ADD CONSTRAINT "message_thread" FOREIGN KEY ( "thread" ) REFERENCES
+            "forum"."thread" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "forum"."thread" ADD CONSTRAINT "thread_forum" FOREIGN KEY ( "forum" ) REFERENCES
+            "forum"."forum" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "forum"."message" ADD CONSTRAINT "message_message" FOREIGN KEY ( "parent" ) REFERENCES
+            "forum"."message" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "forum"."thread" ADD CONSTRAINT "thread_user" FOREIGN KEY ("author") REFERENCES
+            "public"."user" ("_id") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+            ALTER TABLE "forum"."message" ADD CONSTRAINT "message_user" FOREIGN KEY ("author") REFERENCES
+            "public"."user" ("_id") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="coursepage">
+        <div class="info">
+            <div wicket:id="name" class="name"></div>
+
+            <div wicket:id="image" class="image"></div>
+            <div class="author">
+                <div wicket:id="author"></div>
+                <div wicket:id="authorAbout" class="about"></div>
+            </div>
+
+            <div class="price">
+                <div wicket:id="demoInfo" class="demo">
+                    <div class="message">
+                        <wicket:message key="priceDemo"></wicket:message>
+                    </div>
+                    <div class="value">
+                        <wicket:message key="free"></wicket:message>
+                    </div>
+                </div>
+                <div wicket:id="fullInfo" class="full">
+                    <div class="message">
+                        <wicket:message key="priceFull"></wicket:message>
+                    </div>
+                    <div class="value">
+                        <div wicket:id="full_price"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="breaker"></div>
+        <div class="control">
+            <div wicket:id="joinInfo" class="joined">
+                <wicket:message key="alreadyJoinedMessage"></wicket:message>
+            </div>
+            <button wicket:id="forumButton">
+                <wicket:message key="forumButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="demoButton">
+                <wicket:message key="demoButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="preJoinButton">
+                <wicket:message key="preJoinButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="paidButton">
+                <wicket:message key="paidButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="controlButton">
+                <wicket:message key="controlButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="supportButton">
+                <wicket:message key="supportButtonLabel"></wicket:message>
+            </button>
+            <button wicket:id="backButton">
+                <wicket:message key="backProfileButtonLabel"></wicket:message>
+            </button>
+            <span class="sharer" id="ya_share1"></span>
+        </div>
+        <div class="breaker"></div>
+        <div wicket:id="video" style="display: table;margin: 0 auto"></div>
+        <div class="content" wicket:id="content"></div>
+        <div class="footer">
+            <button wicket:id="backListButton" class="backButton">
+                <wicket:message key="backButtonLabel"></wicket:message>
+            </button>
+        </div>
+    </div>
+    <div wicket:id="sendInvoiceDialog"></div>
+    <div wicket:id="editMessageDialog"></div>
+</wicket:extend>
+</body>
+</html>

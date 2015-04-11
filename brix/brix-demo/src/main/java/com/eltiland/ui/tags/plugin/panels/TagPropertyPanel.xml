@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="titleCreate">Новый тег</entry>
+    <entry key="titleEdit">Редактирование названия тега</entry>
+    <entry key="name">Название</entry>
+
+    <entry key="tagExistsError">Данный тег уже существует в данной категории</entry>
+</properties>

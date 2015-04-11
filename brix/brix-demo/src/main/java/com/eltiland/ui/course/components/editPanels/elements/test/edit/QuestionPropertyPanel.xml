@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addHeader">Новый вопрос</entry>
+    <entry key="addSectionHeader">Новая секция</entry>
+    <entry key="saveHeader">Редактирование вопроса</entry>
+    <entry key="saveSectionHeader">Редактирование секции</entry>
+    <entry key="text">Текст вопроса:</entry>
+    <entry key="section">Название секции:</entry>
+
+    <entry key="createSection">Создать пустую секцию для данного вопроса</entry>
+</properties>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="subscribeLabel">Рассылка портала</entry>
+    <entry key="eltilandLabel">"Элтиленд"</entry>
+    <entry key="emailHeader">Введите свой email:</entry>
+    <entry key="subscribe">Рассылка</entry>
+    <entry key="instructions">Введите свой email для подписки на рассылку портала</entry>
+
+    <entry key="errorAlreadyExists">Данный email уже подписан на рассылку</entry>
+    <entry key="subscriberAdded">Вы успешно подписались на рассылку</entry>
+</properties>

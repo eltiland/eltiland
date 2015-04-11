@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget elti-create-group">
+        <div class="elti-widget-header">
+            <h1>
+                <wicket:message key="createHeader"></wicket:message>
+            </h1>
+        </div>
+        <form wicket:id="form">
+            <div wicket:id="selectElement"></div>
+            <div wicket:id="elementName"></div>
+            <div wicket:id="required"></div>
+
+            <button style="margin-top: 10px" wicket:id="createButton">
+                <wicket:message key="new"></wicket:message>
+            </button>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

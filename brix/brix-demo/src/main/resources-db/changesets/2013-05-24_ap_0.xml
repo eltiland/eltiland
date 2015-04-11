@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Add table for questions/answers</comment>
+        <sql>
+            CREATE TABLE "public"."faqapproval" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "creationdate" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "question" CHARACTER VARYING( 2048 ) NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

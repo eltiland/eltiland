@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div wicket:id="content">
+        <div class="testContent">
+            <div class="limit" wicket:id="limitContainer">
+                <div wicket:id="limitValue"></div>
+            </div>
+            <div wicket:id="limitReachedContainer" class="process">
+                <wicket:message key="limitMessage"></wicket:message>
+            </div>
+            <div wicket:id="processMessageContainer" class="process">
+                <wicket:message key="processMessage"></wicket:message>
+            </div>
+            <div wicket:id="completedContainer" class="process">
+                <wicket:message key="completeMessage"></wicket:message>
+            </div>
+        </div>
+        <div wicket:id="sectionContainer" class="testContent">
+            <div wicket:id="sectionName"></div>
+            <div wicket:id="questionName" class="question"></div>
+
+            <div wicket:id="variantsList" style="margin-left: 10px">
+                <button wicket:id="variant" style="float:left;margin: 5px;height: 40px;">
+                    <div wicket:id="variantText"></div>
+                </button>
+            </div>
+        </div>
+
+        <div wicket:id="resultContainer" class="resultContent">
+            <div class="resultHeader">
+                <wicket:message key="resultHeader"></wicket:message>
+            </div>
+
+            <div wicket:id="resultList">
+                <div wicket:id="result" class="resultText"></div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>

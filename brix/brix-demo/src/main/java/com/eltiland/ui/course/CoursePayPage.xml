@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="payPageHeader">Оплата полной версии курса:</entry>
+    <entry key="payMessage">Вы можете получить полный доступ ко всему курсу, оплатив стоимость всего курса:</entry>
+    <entry key="partMessage">Либо, вы можете получить доступ к отдельным частям курса, оплатив только их:</entry>
+    <entry key="partMessageWithoutFull">Вы можете оплатить следующие блоки курса:</entry>
+    <entry key="payLabel">Стоимость:</entry>
+    <entry key="payValue">%s руб.</entry>
+    <entry key="backToCoursePage">Вернуться к странице курса</entry>
+</properties>

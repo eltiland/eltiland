@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Insert syntetic Group and Pei for club of the young thinkers</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION add_address_id(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from postal_address where city=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION add_pei(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from pei where name=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="postal_address" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="country_code" value="RU"/>
+            <column name="city" value="Moscow"/>
+            <column name="address_line" value="1 st. Street"/>
+            <column name="postal_code" value="NA"/>
+        </insert>
+
+        <insert tableName="pei" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="email" value="poseidontestcytuser@gmail.com"/>
+            <column name="manager" value="testmanager"/>
+            <column name="name" value="клуб юных мыслителей"/>
+            <column name="phone" value="+380880884621"/>
+            <column name="approved" value="t"/>
+            <column name="address_id" valueComputed="add_address_id('Moscow')"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="клуб юных мыслителей"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="add_pei('клуб юных мыслителей')"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

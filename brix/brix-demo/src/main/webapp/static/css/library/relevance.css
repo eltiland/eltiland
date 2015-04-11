@@ -1,0 +1,23 @@
+.relevance .label {
+    width: 240px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.relevance .star {
+    height: 24px;
+    width: 24px;
+    float: left;
+    cursor: pointer;
+}
+
+.relevance .pressed {
+    background-image: url("../../images/library/relevance/yellow_star.png");
+}
+
+.relevance .free {
+    background-image: url("../../images/library/relevance/grey_star.png");
+}
+
+

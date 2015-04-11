@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Add task record complexity entity</comment>
+
+        <createTable tableName="task_complexity">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Add complexity to task record entity</comment>
+
+        <addColumn tableName="task_record" schemaName="public">
+            <column name="complexity" type="DECIMAL(20, 0)"/>
+        </addColumn>
+
+        <addForeignKeyConstraint constraintName="fk_complexity"
+                                 baseTableName="task_record" baseColumnNames="complexity"
+                                 referencedTableName="task_complexity" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

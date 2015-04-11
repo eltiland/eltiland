@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="PHYSICAL">Физическое лицо</entry>
+    <entry key="LEGAL">Юридическое лицо</entry>
+    <entry key="MOSCOW">Портал поставщиков</entry>
+
+    <entry key="no_listeners">Слушателей нет</entry>
+    <entry key="listeners">Показать список слушателей</entry>
+</properties>

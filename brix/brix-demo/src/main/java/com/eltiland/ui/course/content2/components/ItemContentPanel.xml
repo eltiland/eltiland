@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="ELTDocumentCourseItem.class">document</entry>
+    <entry key="ELTPresentationCourseItem.class">presentation</entry>
+    <entry key="ELTVideoCourseItem.class">video</entry>
+    <entry key="ELTWebinarCourseItem.class">webinar</entry>
+    <entry key="ELTTestCourseItem.class">test</entry>
+</properties>

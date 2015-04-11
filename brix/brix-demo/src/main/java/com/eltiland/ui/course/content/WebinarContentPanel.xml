@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="inWorkMessage">Вебинар находится в разработке.</entry>
+    <entry key="notApprovedMessage">Вебинар не подтвержден администрацией портала.</entry>
+
+    <entry key="memberMessage">Вы являетесь участником вебинара. Ccылка на вход находится в вашем профиле.</entry>
+    <entry key="notMemberMessage">Для регистрации на вебинар нажмите</entry>
+
+    <entry key="signupFreeMessage">Вы успено добавлены на указанный бесплатный вебинар. Ссылка на участие отправлена Вам
+        на почту. Также ссылку можно увидеть в панели "Вебинары" Вашего профиля на портале "Элтиленд".
+    </entry>
+    <entry key="signupPaidMessage">Заявка на участие в платном вебинаре подана, ожидайте ссылку для оплату на ваш адрес
+        электронной почты.
+    </entry>
+
+    <entry key="register">Зарегистрироваться</entry>
+</properties>

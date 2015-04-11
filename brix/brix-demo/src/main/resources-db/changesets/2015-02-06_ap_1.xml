@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Create table UserFile</comment>
+        <sql>
+            CREATE TABLE "public"."user_file" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "file" NUMERIC,
+            "owner" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Create table user_file_access</comment>
+        <sql>
+            CREATE TABLE "public"."user_file_access" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "user_id" NUMERIC NOT NULL,
+            "file_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "user_id","file_id" )
+            , CONSTRAINT "user_file_access__id_key" UNIQUE( "_id" ) );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Create table course_file_access</comment>
+        <sql>
+            CREATE TABLE "public"."course_file_access" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "course_id" NUMERIC NOT NULL,
+            "file_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "course_id","file_id" )
+            , CONSTRAINT "course_file_access__id_key" UNIQUE( "_id" ) );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Create links for courses/users/files</comment>
+        <sql>
+            ALTER TABLE "public"."user_file" ADD CONSTRAINT "user_file" FOREIGN KEY ( "file" ) REFERENCES
+            "public"."file" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."user_file" ADD CONSTRAINT "owner_file" FOREIGN KEY ( "owner" ) REFERENCES
+            "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_file_access" ADD CONSTRAINT "course_file" FOREIGN KEY ( "file_id" )
+            REFERENCES "public"."user_file" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."user_file_access" ADD CONSTRAINT "user_file" FOREIGN KEY ( "file_id" )
+            REFERENCES "public"."user_file" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."user_file_access" ADD CONSTRAINT "client_file" FOREIGN KEY ( "user_id" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_file_access" ADD CONSTRAINT content_file FOREIGN KEY ("course_id")
+            REFERENCES "course"."course" ("_id") MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

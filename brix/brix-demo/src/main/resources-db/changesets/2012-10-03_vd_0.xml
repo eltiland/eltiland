@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="vadim.didenko">
+        <comment>Update standard ICONS_UNKNOWN_USER body and previewBody</comment>
+        <update tableName="file_body" schemaName="public">
+            <column name="filename" value="static/images/icons/thumb/default_parent.png"/>
+            <where>_id=(SELECT preview_body FROM file where name='ICONS_UNKNOWN_USER')</where>
+        </update>
+    </changeSet>
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Insert new file ICONS_DEFAULT_PEI</comment>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="filename" value="static/images/icons/thumb/default_pei.png"/>
+
+        </insert>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="body" value="111111111111"/>
+
+        </insert>
+        <insert tableName="file" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="ICONS_DEFAULT_PEI"/>
+            <column name="size" value="0"/>
+            <column name="type" value="image/png"/>
+            <column name="body" valueComputed="(SELECT _id FROM file_body WHERE body='111111111111')"/>
+            <column name="preview_body"
+                    valueComputed="(SELECT _id FROM file_body WHERE filename='static/images/icons/thumb/default_pei.png')"/>
+        </insert>
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Insert new file ICONS_DEFAULT_CHILD</comment>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="filename" value="static/images/icons/thumb/default_child.png"/>
+
+        </insert>
+        <insert tableName="file_body" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="body" value="222222222222"/>
+
+        </insert>
+        <insert tableName="file" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="ICONS_DEFAULT_CHILD"/>
+            <column name="size" value="0"/>
+            <column name="type" value="image/png"/>
+            <column name="body" valueComputed="(SELECT _id FROM file_body WHERE body='222222222222')"/>
+            <column name="preview_body"
+                    valueComputed="(SELECT _id FROM file_body WHERE filename='static/images/icons/thumb/default_child.png')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

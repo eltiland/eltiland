@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <wicket:child></wicket:child>
+    <form wicket:id="form">
+        <div wicket:id="nameField"></div>
+        <div wicket:id="descriptionField"></div>
+        <div wicket:id="keyWordField"></div>
+        <div wicket:id="adminPart">
+            <div class="adminAction left" wicket:id="relevanceLink">
+                <wicket:message key="relevance"></wicket:message>
+            </div>
+            <div wicket:id="relevanceField"></div>
+        </div>
+        <div class="clear"></div>
+        <button wicket:id="createButton" style="margin-top: 10px;float:left">
+            <wicket:message key="new"></wicket:message>
+        </button>
+        <button wicket:id="saveButton" style="margin-top: 10px;float:left">
+            <wicket:message key="save"></wicket:message>
+        </button>
+        <div wicket:id="backButton" style="margin-top: 10px;float:right"></div>
+    </form>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="title">Добавление новой записи в библиотеку</entry>
+    <entry key="authorLabel">Автор:</entry>
+    <entry key="dateLabel">Дата публикации:</entry>
+
+    <entry key="preview">Просмотр</entry>
+    <entry key="tag">Теги записи</entry>
+    <entry key="collection">Коллекции</entry>
+
+    <entry key="LibraryDocumentRecord.type">ДОКУМЕНТ</entry>
+    <entry key="LibraryPresentationRecord.type">ПРЕЗЕНТАЦИЯ</entry>
+    <entry key="LibraryImageRecord.type">КАРТИНКА</entry>
+    <entry key="LibraryArchiveRecord.type">АРХИВ</entry>
+    <entry key="LibraryVideoRecord.type">ВИДЕО</entry>
+
+    <entry key="tagMessageSaved">Теги записи сохранены.</entry>
+    <entry key="collectionMessageSaved">Запись сохранена.</entry>
+    <entry key="recordDeleted">Запись удалена.</entry>
+
+    <entry key="recordCollection">Находится в коллекциях:</entry>
+
+    <entry key="nameColumn">Название</entry>
+    <entry key="collectionSelect">Выбор коллекций</entry>
+    <entry key="collectionSearch">Поиск коллекции</entry>
+</properties>

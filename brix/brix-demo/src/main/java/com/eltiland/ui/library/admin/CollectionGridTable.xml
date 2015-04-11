@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="searchCollection">Поиск коллекции</entry>
+    <entry key="notFounded">Коллекции не найдены</entry>
+    <entry key="subNotFounded">Подколлекции не найдены</entry>
+</properties>

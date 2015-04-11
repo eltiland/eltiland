@@ -1,0 +1,9 @@
+See http://www.tinymce.com/wiki.php/Creating_a_plugin
+
+*** Compiling JavaScript (editor_plugin_src.js -> editor_plugin.js)
+TinyMCE doesn't care about editor_plugin_src.js.
+You need to use jstrim (http://javascriptcompressor.com/) to convert it to editor_plugin.js,
+which is essentially a version of editor_plugin_src.js
+with all the comments and whitespace stripped out.
+
+http://www.tinymce.com/wiki.php/API3:class.tinymce.Plugin

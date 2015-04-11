@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="elti-left-column">
+        <div wicket:id="sidePanel"></div>
+        <div wicket:id="userCountPanel"></div>
+        <div wicket:id="subscribePanel"></div>
+        <div class="news">
+            <div class="header">
+                <wicket:message key="headerLabel"></wicket:message>
+            </div>
+            <div wicket:id="newsPanel"></div>
+        </div>
+        <div wicket:id="assist-logo" class="logo">
+            <div class="assist-logo"></div>
+        </div>
+        <!--<a href="http://www.assist.ru">-->
+            <!--<img src="/images/assist_logo.gif" width="155" height="49" border="0" alt="Система электронных платежей">-->
+        <!--</a>-->
+    </div>
+    <div class="elti-middle-column">
+        <wicket:child/>
+    </div>
+</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Create table for curriculum record entity</comment>
+
+        <createTable tableName="curriculum_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="diploma_template" type="DECIMAL(20, 0)"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_diploma_template"
+                                 baseTableName="curriculum_record" baseColumnNames="diploma_template"
+                                 referencedTableName="file" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Create table for curriculum record sections</comment>
+
+        <createTable tableName="curriculum_record_section">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_index" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curriculum_record" type="DECIMAL(20, 0)"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_curriculum_record"
+                                 baseTableName="curriculum_record_section" baseColumnNames="curriculum_record"
+                                 referencedTableName="curriculum_record" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="3" author="igor.cherednichenko">
+        <comment>Create table for many to many relation CurriculumRecordSection - Record</comment>
+
+        <createTable tableName="curriculumrecordsection_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_index" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curriculum_record_section_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_curriculum_record_section"
+                                 baseTableName="curriculumrecordsection_record"
+                                 baseColumnNames="curriculum_record_section_id"
+                                 referencedTableName="curriculum_record_section" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="curriculumrecordsection_record" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Выбор периода платежей</entry>
+    <entry key="start">Начало периода</entry>
+    <entry key="end">Окончание периода</entry>
+
+    <entry key="noPayments">Данный период не содержит платежей</entry>
+    <entry key="headerCSV">Пользователь;Цена;Дата платежа;Описание</entry>
+    <entry key="downloadMessage">Скачать</entry>
+    <entry key="periodError">Ошибка - начало периода после его окончания.</entry>
+    <entry key="emptyError">Ошибка - данное поле обязательно.</entry>
+    <entry key="fullPeriod">Полностью все платежи</entry>
+</properties>

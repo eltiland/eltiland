@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Change category name length</comment>
+        <modifyDataType tableName="record_category" columnName="category" newDataType="varchar(100)"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Add category values into table</comment>
+
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Физическое развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Физическая культура"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Здоровье"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Безопасность"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Познавательно-речевое развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Сенсорное развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Развитие мелкой моторики"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Развитие речи"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Развитие воображения"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Развитие основ конструирования и моделирования"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Формирование элементарных математических представлений  "/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Развитие внимания, логики и памяти"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Знакомство с окружающим миром"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Социально-личностное развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Социализация и развитие психо-эмоциональной сферы"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Духовно-нравственное развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Художественно-эстетическое развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Чтение художественной литературы"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Художественное творчество"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Музыка"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Коррекционное развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Развитие способностей и одаренности"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Компьютер в Детском саду"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Обучение программированию"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Художественно-эстетическое развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Познавательно-речевое развитие"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value=" Коррекционная работа"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Психологическая работа"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

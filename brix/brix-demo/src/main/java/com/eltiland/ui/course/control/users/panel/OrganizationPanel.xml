@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="company">Организация - %s</entry>
+    <entry key="job">Должность - %s</entry>
+    <entry key="exp">Опыт работы - %d %s</entry>
+    <entry key="exp_empty">Опыт работы - не указано</entry>
+
+    <entry key="one">год</entry>
+    <entry key="several">года</entry>
+    <entry key="many">лет</entry>
+
+    <entry key="empty">Нет данных</entry>
+</properties>

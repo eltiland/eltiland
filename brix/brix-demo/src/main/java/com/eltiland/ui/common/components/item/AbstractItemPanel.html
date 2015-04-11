@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="item_panel">
+        <div wicket:id="iconContainer" class="icon_container">
+            <img wicket:id="icon" class="icon"/>
+
+            <div wicket:id="type" class="info"></div>
+        </div>
+        <div class="info_container">
+            <div class="data">
+                <div wicket:id="name" class="name"></div>
+                <div wicket:id="description" class="description"></div>
+                <wicket:child></wicket:child>
+            </div>
+            <div class="clear"></div>
+
+            <div class="actions">
+                <wicket:container wicket:id="actionContainer">
+                    <div class="action" wicket:id="actionButton"></div>
+                </wicket:container>
+            </div>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

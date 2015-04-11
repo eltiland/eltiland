@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createHeader">Добавление элемента</entry>
+
+    <entry key="addElementLabel">Выберите элемент для добавления</entry>
+    <entry key="elementNameLabel">Введите заголовок нового элемента</entry>
+
+    <entry key="FolderCourseItem.label">Блок заданий</entry>
+    <entry key="DocumentCourseItem.label">Документ</entry>
+    <entry key="PresentationCourseItem.label">Презентация</entry>
+    <entry key="TestCourseItem.label">Тест</entry>
+    <entry key="VideoCourseItem.label">Видео</entry>
+    <entry key="WebinarCourseItem.label">Вебинар</entry>
+</properties>

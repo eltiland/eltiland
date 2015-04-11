@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="newInvoice">Новый запрос</entry>
+    <entry key="inWork">В разработке</entry>
+    <entry key="published">Опубликован</entry>
+
+    <entry key="publishAction">Опубликовать</entry>
+    <entry key="cancelAction">Отменить</entry>
+
+    <entry key="publishMessage">Курс успешно опубликован.</entry>
+    <entry key="cancelMessage">Публикация курса отменена.</entry>
+</properties>

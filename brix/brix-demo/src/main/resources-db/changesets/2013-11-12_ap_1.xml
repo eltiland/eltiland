@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Moving rogoshkins records to virtual user</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_user_id_by_email(useremail text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where email=useremail;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <sql>
+            UPDATE record SET author = get_user_id_by_email('eltiland_virtual@mailiantor.com') WHERE author =
+            get_user_id_by_email('klub_yum@mail.ru')
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

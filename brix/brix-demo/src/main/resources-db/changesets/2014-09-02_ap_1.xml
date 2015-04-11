@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Removing old library vol.2 - removing main tables</comment>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="article_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="child_age_group"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="collection_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="collectionrecord_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="curriculumrecord_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="curriculumrecordsection_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="curriculum_record_section"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="curriculum_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="lessonrecord_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="lesson_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="record_tag"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="record_category"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="record_material_type"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="target_audience"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="taskrecord_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="task_complexity"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="task_record"/>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="youtube_video_record"/>
+    </changeSet>
+
+</databaseChangeLog>

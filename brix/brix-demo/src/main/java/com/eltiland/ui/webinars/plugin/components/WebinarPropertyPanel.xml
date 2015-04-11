@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createLabel">Создать</entry>
+    <entry key="saveLabel">Сохранить</entry>
+
+    <entry key="webinarTopicLabel">Название вебинара</entry>
+    <entry key="webinarDescriptionLabel">Описание</entry>
+    <entry key="webinarShortDescriptionLabel">Краткое описание</entry>
+    <entry key="webinarStartDate">Дата/время начала</entry>
+    <entry key="webinarPriceLabel">Стоимость участия</entry>
+    <entry key="webinarLeadNameLabel">Имя ведущего</entry>
+    <entry key="webinarLeadSurnameLabel">Фамилия ведущего</entry>
+    <entry key="webinarLeadEmailLabel">Email ведущего</entry>
+    <entry key="webinarDurationLabel">Длительность (минуты)</entry>
+    <entry key="webinarDeadLineLabel">Дата/время окончания регистрации</entry>
+    <entry key="webinarPasswordLabel">Пароль</entry>
+    <entry key="webinarPasswordRetryLabel">Повторите пароль</entry>
+
+    <entry key="freeWebinarLabel">Бесплатный вебинар</entry>
+
+    <entry key="errorPasswordNotMatch">Ошибка - пароли не совпадают!</entry>
+    <entry key="errorStartDatePast">Ошибка - дата начала не может быть в прошлом!</entry>
+    <entry key="errorDeadlineDatePast">Ошибка - дата окончания регистрации не может быть в прошлом!</entry>
+    <entry key="errorDeadlineAfterStart">Ошибка - дата окончания регистрации должна быть до даты начала вебинара!</entry>
+    <entry key="errorWrongDuration">Ошибка - неправильный формат длительности вебинара!</entry>
+
+    <entry key="messageWebinarCreated">Вебинар успешно создан</entry>
+
+    <entry key="header">Изменение данных вебинара</entry>
+</properties>

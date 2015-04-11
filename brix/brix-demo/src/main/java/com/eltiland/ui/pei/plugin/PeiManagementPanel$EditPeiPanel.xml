@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameLabel">Название</entry>
+    <entry key="addressLabel">Адрес</entry>
+    <entry key="emailLabel">Эл. почта</entry>
+    <entry key="managerLabel">Директор</entry>
+    <entry key="phoneLabel">Телефоны</entry>
+    <entry key="urlLabel">Сайт</entry>
+    <entry key="groupCountLabel">Кол-во групп</entry>
+    <entry key="familyLabel">Семейные курсы</entry>
+    <entry key="consultationLabel">Консультация</entry>
+</properties>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addMagazine">Добавить журнал</entry>
+
+    <entry key="nameColumn">Название, номер</entry>
+    <entry key="topicColumn">Тема номера</entry>
+    <entry key="priceColumn">Стоимость</entry>
+
+    <entry key="magazineAddedMessage">Журнал успешно добавлен.</entry>
+    <entry key="magazineSavedMessage">Информация о журнале сохранена.</entry>
+    <entry key="magazineDeletedMessage">Журнал удален.</entry>
+
+    <entry key="addAction">Добавить журнал</entry>
+    <entry key="editAction">Редактирование информации</entry>
+    <entry key="deleteAction">Удалить</entry>
+    <entry key="upAction">Поднять на 1 позицию</entry>
+    <entry key="downAction">Опустить на 1 позицию</entry>
+</properties>

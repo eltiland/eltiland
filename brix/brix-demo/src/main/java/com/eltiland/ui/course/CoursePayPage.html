@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="coursePayPage">
+        <div class="header">
+            <wicket:message key="payPageHeader"></wicket:message>
+        </div>
+        <div class="courseName">
+            <div wicket:id="courseName"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="breaker"></div>
+        <div wicket:id="fullPayContainer" class="container">
+            <div class="payMessage">
+                <wicket:message key="payMessage"></wicket:message>
+            </div>
+            <div class="payContainer">
+                <div class="priceLabel">
+                    <wicket:message key="payLabel"></wicket:message>
+                </div>
+                <div class="price" wicket:id="price"></div>
+                <div class="button" wicket:id="payButton"></div>
+            </div>
+            <div class="breaker"></div>
+        </div>
+        <div wicket:id="partPayContainer">
+            <div class="partHeader">
+                <div wicket:id="partLabel"></div>
+            </div>
+            <wicket:container wicket:id="partList">
+                <div wicket:id="partPanel"></div>
+            </wicket:container>
+        </div>
+        <div class="footer">
+            <button class="backButton" wicket:id="backButton">
+                <wicket:message key="backToCoursePage"></wicket:message>
+            </button>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>

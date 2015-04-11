@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+
+    <div class="elti-widget">
+
+        <div class="elti-widget-header">
+            <h1>
+                <div wicket:id="avatarHeader"></div>
+            </h1>
+        </div>
+
+        <div class="elti-widget-content">
+
+            <div class="elti-avatar-headers">
+                <!--<div class="elti-dialog-close-cross">-->
+                    <!--<a wicket:id="buttonClose" class="jsUsedCloseCreateAvatarPanel">(x)</a>-->
+                <!--</div>-->
+            <span>
+                <div wicket:id="createSteps" style="font-weight: bold;">
+                    [Create desc]
+                </div>
+                <span wicket:id="imageIsLoaded">[Image is loaded]</span>
+                <!--Don't touch this tag, class "changeImageLink" need for correct javascript working-->
+                <a href="javascript:" wicket:id="loadNew" class="jsUsedChangeImageLink elti-avatar-panel-load">
+                    <wicket:message key="loadNew"/>
+                </a>
+            </span>
+            </div>
+            <!--Place for logic fragment-->
+            <div wicket:id="fragment"></div>
+
+            <div wicket:id="uploadPanel" style="text-align: center"></div>
+        </div>
+    </div>
+
+    <wicket:fragment wicket:id="empty"/>
+
+    <wicket:fragment wicket:id="resizePanel">
+        <div wicket:id="panel"></div>
+    </wicket:fragment>
+
+</wicket:panel>
+</body>
+</html>

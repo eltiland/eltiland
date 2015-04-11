@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameColumn">Название</entry>
+    <entry key="descriptionColumn">Описание</entry>
+    <entry key="managerColumn">Ведущий</entry>
+    <entry key="startDateColumn">Дата начала</entry>
+    <entry key="durationColumn">Длительность</entry>
+    <entry key="deadlineDateColumn">Окончание регистрации</entry>
+    <entry key="priceColumn">Стоимость</entry>
+
+    <entry key="freePrice">Бесплатно</entry>
+
+    <entry key="usersInviteMessage">Заявка на регистрацию пользователей подана. Ожидайте ссылку для оплаты на Вашу
+        электронную почту.
+    </entry>
+</properties>

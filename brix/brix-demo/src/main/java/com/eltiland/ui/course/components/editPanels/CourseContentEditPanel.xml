@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="prejoin.open">Предварительная запись на полную версию курса открыта</entry>
+    <entry key="prejoin.closed">Полная версия курса пока не наполнена. Вы можете открыть предварительную запись на
+        курс.
+    </entry>
+    <entry key="prejoin.limit">Лимит участников</entry>
+
+    <entry key="prejoin.button.open">Открыть</entry>
+    <entry key="prejoin.button.close">Отменить</entry>
+
+    <entry key="header">Редактирование элемента "%s":</entry>
+</properties>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="name.column">ФИО</entry>
+    <entry key="email.column">Email</entry>
+
+    <entry key="add.action">Добавить администратора курса</entry>
+    <entry key="remove.action">Удалить</entry>
+
+    <entry key="user.select">Выбор пользователя</entry>
+    <entry key="user.search">Поиск пользователя</entry>
+
+    <entry key="no.admins">Пользователи не найдены</entry>
+</properties>

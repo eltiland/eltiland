@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="courseContent">
+        <div class="header">
+            <div class="support">
+                <div class="button" style="display:block" wicket:id="sendButton"></div>
+                <div class="button" wicket:id="supportButton"></div>
+            </div>
+            <div class="course_name" wicket:id="headerLabel"></div>
+            <div class="control_button" wicket:id="controlButton"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="data">
+            <div class="menu">
+                <div wicket:id="courseTree"></div>
+            </div>
+            <div wicket:id="contentContainer" class="content">
+                <div wicket:id="content"></div>
+            </div>
+        </div>
+    </div>
+    <div wicket:id="editMessageDialog"></div>
+</wicket:extend>
+</body>
+</html>

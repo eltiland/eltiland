@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding avatar file to user</comment>
+        <sql>
+            ALTER TABLE "user" ADD COLUMN avatar__id numeric;
+            ALTER TABLE "user"
+            ADD CONSTRAINT avatar_key FOREIGN KEY (avatar__id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding avatar file to pei</comment>
+        <sql>
+            ALTER TABLE pei ADD COLUMN avatar__id numeric;
+            ALTER TABLE pei
+            ADD CONSTRAINT avatar_key FOREIGN KEY (avatar__id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Adding avatar file to child</comment>
+        <sql>
+            ALTER TABLE child ADD COLUMN avatar__id numeric;
+            ALTER TABLE child
+            ADD CONSTRAINT avatar_key FOREIGN KEY (avatar__id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

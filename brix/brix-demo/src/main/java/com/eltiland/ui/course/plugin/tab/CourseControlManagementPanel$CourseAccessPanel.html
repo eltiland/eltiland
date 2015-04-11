@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="course_access_control">
+        <div wicket:id="accessControl">
+            <div wicket:id="value" class="value"></div>
+            <div class="iconControlPanel">
+                <a class="button" wicket:id="onButton">
+                    <div class="image on"></div>
+                </a>
+
+                <a class="button" wicket:id="offButton">
+                    <div class="image off"></div>
+                </a>
+            </div>
+            <div wicket:id="description" class="description"></div>
+        </div>
+        <div wicket:id="noFullVersion" class="value">
+            <wicket:message key="noFullVersionMessage"></wicket:message>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

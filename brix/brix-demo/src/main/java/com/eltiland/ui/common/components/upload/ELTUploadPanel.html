@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div>
+        <form wicket:id="uploadFileForm" class="elti-upload-form">
+            <span wicket:id="choseFileMessage" class="paragraph">[upload help message]</span>
+
+            <div class="clear"></div>
+            <input type="file" wicket:id="uploadFileFiled"/>
+
+            <div class="clear"></div>
+            <div style="padding-top:10px">
+                <button wicket:id="submitLink">
+                    <wicket:message key="saveButtonLabel"/>
+                </button>
+            </div>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

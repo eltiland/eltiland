@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="vadim.didenko">
+        <comment>Change name default icon name</comment>
+        <update tableName="file" schemaName="public">
+            <column name="name" value="ICONS_DEFAULT_PARENT"/>
+            <where>name='ICONS_UNKNOWN_USER'</where>
+        </update>
+        <update tableName="file" schemaName="public">
+            <column name="name" value="ICONS_DEFAULT_NO_ACTIVE_CHILD"/>
+            <where>name='ICONS_NO_ACTIVE_USER'</where>
+        </update>
+
+    </changeSet>
+</databaseChangeLog>

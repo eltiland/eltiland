@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="ELTDocumentCourseItem.class">document</entry>
+    <entry key="ELTPresentationCourseItem.class">presentation</entry>
+    <entry key="ELTTestCourseItem.class">test</entry>
+    <entry key="ELTVideoCourseItem.class">video</entry>
+    <entry key="ELTWebinarCourseItem.class">webinar</entry>
+    <entry key="ELTGroupCourseItem.class">group</entry>
+
+    <entry key="add.tooltip">Добавить элемент в конец группы</entry>
+    <entry key="up.tooltip">Поднять на 1 позицию</entry>
+    <entry key="down.tooltip">Опустить на 1 позицию</entry>
+    <entry key="delete.tooltip">Удалить</entry>
+</properties>
+

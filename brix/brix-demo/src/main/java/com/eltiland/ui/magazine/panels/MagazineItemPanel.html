@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="item">
+        <div class="cover" wicket:id="cover"></div>
+        <div class="info">
+            <div class="name" wicket:id="name"></div>
+            <div class="description" wicket:id="description"></div>
+            <div class="about">
+                <a wicket:id="aboutLink">
+                    <wicket:message key="about"></wicket:message>
+                </a>
+            </div>
+        </div>
+        <div class="selector">
+            <div class="price">
+                <div class="label">
+                    <wicket:message key="price"></wicket:message>
+                </div>
+                <div class="value" wicket:id="price"></div>
+                <div class="checkBox unselected" wicket:id="checkBox"></div>
+                <div class="select">
+                    <wicket:message key="select"></wicket:message>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

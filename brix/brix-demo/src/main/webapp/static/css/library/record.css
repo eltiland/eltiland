@@ -1,0 +1,113 @@
+/*   -------   Styles for record panel   -------   */
+/**************************************************************************************************/
+
+.record_panel .authorLabel {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+}
+
+.record_panel .authorName {
+    margin-left: 5px;
+    float: left;
+    font-size: 12px;
+}
+
+.record_panel .tagPanel .tag_list {
+    float: left;
+}
+
+.record_panel .tagPanel .tag_list .panel {
+    margin: 0 !important;
+}
+
+.record_panel .tagPanel .tag_list .panel .tag .name {
+    background-color: #0078AE;
+    color: white;
+}
+
+.record_panel .collection {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.record_panel .collection .collection_name {
+    color: #0078AE;
+    margin-left: 5px;
+    font-weight: bold;
+    float: left;
+}
+
+/*   -------   Styles for record grid panel   -------   */
+/**************************************************************************************************/
+.record_grid_panel {
+    width: 120px;
+    height: 120px;
+    float: left;
+    cursor: pointer;
+}
+
+.record_grid_panel .icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 15px !important;
+}
+
+.record_grid_panel .label {
+    text-align: center;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 120, 174);
+    margin-top: 10px;
+}
+
+/*   -------   Styles for record gallery panel   -------   */
+/**************************************************************************************************/
+.record_gallery_panel {
+    width: 120px;
+    height: 250px;
+    border: 1px solid #EFEFEF;
+    float: left;
+    cursor: pointer;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.record_gallery_panel:hover {
+    border: 1px solid black;
+}
+
+.record_gallery_panel .icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 15px !important;
+}
+
+.record_gallery_panel .label {
+    text-align: center;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 120, 174);
+    margin-top: 10px;
+}
+
+.record_gallery_panel .name {
+    margin: 5px;
+    color: #0078AE;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 16px;
+    font-family: Arial, Helvetica, sans_serif;
+}
+
+.record_gallery_panel .description {
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans_serif;
+    color: #333333;
+    margin: 5px;
+}

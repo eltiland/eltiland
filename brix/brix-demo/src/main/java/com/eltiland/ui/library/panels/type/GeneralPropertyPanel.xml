@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="name">Название записи</entry>
+    <entry key="description">Описание</entry>
+    <entry key="keyWord">Ключевые слова для поиска записи</entry>
+
+    <entry key="relevance">Установить релевантность</entry>
+    <entry key="errorEmptyFile">Ошибка - файл не загружен.</entry>
+</properties>

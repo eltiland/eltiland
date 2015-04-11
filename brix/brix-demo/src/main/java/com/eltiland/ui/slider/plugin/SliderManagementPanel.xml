@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="showSlider">Показать слайдер</entry>
+    <entry key="addImage">Добавить изображение</entry>
+
+    <entry key="linkColumn">Ссылка</entry>
+
+    <entry key="imageAddedMessage">Изображение успешно добавлено</entry>
+    <entry key="imageRemovedMessage">Изображение удалено</entry>
+    <entry key="linkSavedMessage">Ссылка сохранена</entry>
+    <entry key="errorNoImages">Ошибка - для включения слайдера должно быть загружено как минимум одно изображение</entry>
+</properties>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget-header">
+        <h1>
+            <wicket:message key="checkHeader"></wicket:message>
+        </h1>
+    </div>
+    <div style="text-align: center;font-weight: bold">
+        <wicket:message key="users"></wicket:message>
+    </div>
+    <wicket:container wicket:id="userList">
+        <div wicket:id="userData" style="margin-top: 5px"></div>
+    </wicket:container>
+    <button wicket:id="sendButton" style="margin-top: 10px">
+        <wicket:message key="addUsers"></wicket:message>
+    </button>
+</wicket:panel>
+</body>
+</html>

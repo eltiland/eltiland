@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form wicket:id="form">
+        <div class="dataTable_search">
+            <div wicket:id="controlPanel" class="control_panel"></div>
+            <div wicket:id="searchField" class="search_field">
+                <input class="input" wicket:id="textSearch"/>
+
+                <div wicket:id="searchButton" class="search">
+                    <wicket:message key="search"></wicket:message>
+                </div>
+            </div>
+        </div>
+        <div class="dataTable">
+            <table wicket:id="dataTable" class="tableContent"></table>
+            <div wicket:id="navigatorLabel" class="recordsCount"></div>
+            <div wicket:id="navigator"></div>
+        </div>
+        <div class="notFounded" wicket:id="notFounded"></div>
+    </form>
+</wicket:panel>
+</body>
+</html>

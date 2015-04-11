@@ -1,0 +1,78 @@
+.payment-page {
+}
+
+.payment-page > .header {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(83, 114, 169, 0.7);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    color: #FFFCFC;
+}
+
+.payment-page > .main {
+    margin-top: 25px !important;
+    display: table;
+    margin: 0 auto;
+    width: 900px;
+    height: 185px;
+    border: 1px solid lightgray;
+}
+
+.payment-page > .main > .icon {
+    display: table-cell;
+    width: 100px;
+}
+
+.payment-page > .main > .icon > .image {
+    margin-top: 15px !important;
+    display: table;
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+}
+
+.payment-page > .main > .icon > .course {
+    background-image: url("../../images/item/course.png");
+}
+
+.payment-page > .main > .info {
+    display: table-cell;
+    width: 700px;
+    vertical-align: top;
+}
+
+.payment-page > .main > .info > .name {
+    margin-top: 20px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.payment-page > .main > .info > .description {
+    margin-top: 10px;
+    color: rgb(102, 101, 101);
+}
+
+.payment-page > .main > .price {
+    display: table-cell;
+    width: 100px;
+    vertical-align: top;
+    color: rgb(6, 140, 6);
+    font-size: 21px;
+}
+
+.payment-page > .main > .price > .rubel {
+    float: left;
+    padding-right: 3px;
+    margin-top: 32px;
+}
+
+.payment-page > .main > .price > .value {
+    margin-top: 32px;
+}
+
+.payment-page > .main > .price > .button {
+    padding-top: 5px;
+}
+

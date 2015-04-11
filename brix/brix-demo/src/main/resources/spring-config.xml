@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+
+    <bean id="mailMessageHeadings" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:mail/MailMessages.xml"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:eltiland.properties"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="eltilandProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:eltiland.properties"/>
+    </bean>
+
+    <tx:annotation-driven/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.eltiland.bl"/>
+
+    <bean id="iconInitializer" class="com.eltiland.bl.impl.integration.IconsLoader"/>
+
+    <bean id="indexCreator" class="com.eltiland.bl.impl.integration.IndexCreator">
+        <property name="packageToScan" value="com.eltiland.model"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.eltiland.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">${props.hibernate.show.sql}</prop>
+                <prop key="hibernate.format_sql">${props.hibernate.show.sql}</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
+                <!--hiberante-search configuration-->
+                <prop key="hibernate.search.default.directory_provider">filesystem</prop>
+                <prop key="hibernate.search.default.indexBase">${props.lucene.search.index}</prop>
+                <prop key="hibernate.search.analyzer">com.eltiland.model.search.RussianAnalyzerStopWords</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver.classname}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- these are C3P0 properties -->
+        <property name="minPoolSize" value="15"/>
+        <property name="maxPoolSize" value="45"/>
+    </bean>
+
+    <bean id="htmlCleaner" class="com.eltiland.bl.impl.HtmlCleanerImpl">
+        <property name="policyResource" value="classpath:cleaner_policy.xml"/>
+    </bean>
+
+    <bean id="shedulerBean" class="com.eltiland.bl.impl.schedule.SheduleManager">
+    </bean>
+
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="shedulerBean"/>
+        <property name="targetMethod" value="fillVideoViewCount"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="jobGoogleDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="shedulerBean"/>
+        <property name="targetMethod" value="publishGoogleDocument"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="jobLibraryDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="shedulerBean"/>
+        <property name="targetMethod" value="reindexLibraryItems"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="videoTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="jobDetail"/>
+        <property name="repeatInterval" value="28800000"/>
+    </bean>
+
+    <bean id="googleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="jobGoogleDetail"/>
+        <property name="repeatInterval" value="480000"/>
+    </bean>
+
+    <bean id="libraryTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="jobLibraryDetail"/>
+        <property name="repeatInterval" value="960000"/>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="videoTrigger"/>
+                <ref bean="googleTrigger"/>
+                <ref bean="libraryTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityPropertiesMap">
+            <map>
+                <entry key="resource.loader" value="class"/>
+                <entry key="class.resource.loader.class"
+                       value="org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader"/>
+            </map>
+        </property>
+    </bean>
+
+    <security:http auto-config="true" create-session="never">
+        <security:intercept-url pattern="/**"/>
+    </security:http>
+
+    <bean id="eltilandAuthenticationProvider" class="com.eltiland.bl.security.EltilandAuthentificationProvider"/>
+
+    <bean id="springContextHolder" class="com.eltiland.utils.SpringContextHolder"/>
+
+    <bean id="wicketApplication" class="org.brixcms.demo.web.WicketApplication"/>
+
+    <bean id="fileUtility" class="com.eltiland.bl.impl.integration.FileUtility"/>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="eltilandAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+
+</beans>

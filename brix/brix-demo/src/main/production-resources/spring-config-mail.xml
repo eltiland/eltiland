@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--For the production setup, we allow connections from localhost to SMTP w/out password.-->
+    <!--Due to known issue in Java Mail configuration, even if we supplied the 'false' as smtp.useauth property, -->
+    <!--it would still try to authenticate. That's why we have to split and build these two separately.-->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mailsender.smtp.host}"/>
+        <property name="port" value="${mailsender.smtp.port}"/>
+    </bean>
+
+</beans>

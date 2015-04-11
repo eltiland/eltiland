@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+        <groupId>org.brixcms</groupId>
+        <artifactId>brix</artifactId>
+        <version>1.3.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>brix-plugins</groupId>
+	<artifactId>brix-markupeditor-tinymce</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+	<name>Brix TinyMCE Integration</name>
+	<description>Makes TinyMCE[1] available as a Wicket component for
+		integration into admin panel [1] http://tinymce.moxiecode.com/</description>
+	<url />
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.brixcms</groupId>
+			<artifactId>brix-core</artifactId>
+		</dependency>
+
+	
+	</dependencies>
+</project>

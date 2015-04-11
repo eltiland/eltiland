@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Refactor description field for Record</comment>
+
+        <dropColumn tableName="task_record" columnName="description"/>
+        <dropColumn tableName="lesson_record" columnName="description"/>
+        <dropColumn tableName="curriculum_record" columnName="description"/>
+
+        <addColumn tableName="record" schemaName="public">
+            <column name="description" type="text"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Add recommended flag to record</comment>
+        <addColumn tableName="record" schemaName="public">
+            <column name="recommended" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

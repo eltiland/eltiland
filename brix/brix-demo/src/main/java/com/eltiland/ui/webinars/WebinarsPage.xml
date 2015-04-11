@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="title">Вебинары, доступные для регистрации:</entry>
+    <entry key="regtitle">Вебинары, на которыe вы зарегистрированы:</entry>
+    <entry key="noWebinars">В настоящее время нет вебинаров, доступных для регистрации.</entry>
+
+    <entry key="myWebinars">Мои вебинары</entry>
+
+    <entry key="webinarColumn">Название записи</entry>
+    <entry key="managerColumn">Ведущий</entry>
+    <entry key="priceColumn">Стоимость записи</entry>
+
+    <entry key="freePrice">Бесплатно</entry>
+    <entry key="loginNeededMessage">Для формирования заявки на покупку записи вебинара или заявки на доступ к бесплатной
+        записи, Вы должны зарегистрироваться на портале.
+    </entry>
+    <entry key="alreadySendedError">Вам уже отправлена ссылка для доступа к записи.</entry>
+    <entry key="sendedMessage">Ваш запрос на доступ к записи успешно отправлен администрации. Ожидайте письма с
+        инструкциями.
+    </entry>
+    <entry key="nameColumn">Название</entry>
+    <entry key="descriptionColumn">Описание</entry>
+    <entry key="startDateColumn">Дата начала</entry>
+    <entry key="durationColumn">Длительность</entry>
+    <entry key="deadlineDateColumn">Окончание регистрации</entry>
+    <entry key="usersInviteMessage">Заявка на регистрацию пользователей подана. Ожидайте ссылку для оплаты на Вашу
+        электронную почту.
+    </entry>
+
+    <entry key="registerTooltip">Зарегистрироваться</entry>
+    <entry key="subscribeRecord">Подать запрос на данную запись</entry>
+    <entry key="inviteUsers">Пригласить пользователей</entry>
+</properties>

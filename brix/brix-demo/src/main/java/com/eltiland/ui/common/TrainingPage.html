@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div wicket:id="panel"></div>
+    <div wicket:id="activeCourses" class="course_list">
+        <div class="caption">
+            <wicket:message key="active.course"></wicket:message>
+        </div>
+        <div class="list">
+            <div wicket:id="activeCoursesList">
+                <div wicket:id="courseInnerPanel" class="item"></div>
+            </div>
+        </div>
+    </div>
+    <div wicket:id="pastCourses" class="course_list">
+        <div class="caption">
+            <wicket:message key="past.course"></wicket:message>
+        </div>
+        <div class="list">
+            <div wicket:id="pastCoursesList">
+                <div wicket:id="link" class="link">
+                    <div wicket:id="name" class="course.name"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>

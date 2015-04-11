@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <!--[if IE]>
+    <style type="text/css">
+        .elti-dialog-close-cross {
+            top: 15px !important;
+        }
+    </style>
+    <![endif]-->
+
+    <!-- This is assembly div. It resolves problem with nested forms. Because modal window looses buttonClose on client side -->
+    <div>
+        <div wicket:id="dialogBorder">
+            <div wicket:id="innerDialogPanel"></div>
+        </div>
+
+        <div class="elti-dialog-close-cross">
+            <a wicket:id="buttonClose">
+                <div class="closeDialog"></div>
+            </a>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+
+</html>

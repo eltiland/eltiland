@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addHeader">Новый вариант ответа</entry>
+    <entry key="saveHeader">Редактирование варианта ответа</entry>
+    <entry key="text">Вариант ответа:</entry>
+    <entry key="number">Количество баллов:</entry>
+
+    <entry key="negativeError">Ошибка - значение должно быть положительным.</entry>
+    <entry key="variantExistsError">Ошибка - данный вариант уже присутствует.</entry>
+</properties>

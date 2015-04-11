@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget-header">
+        <h1>
+            <div wicket:id="header"></div>
+        </h1>
+    </div>
+    <div class="webinar_moderational">
+        <div wicket:id="capacity" class="label"></div>
+        <div wicket:id="confirmedCount" class="label"></div>
+
+        <button wicket:id="checkButton" class="checkButton">
+            <wicket:message key="checkAllUsers"></wicket:message>
+        </button>
+
+        <button wicket:id="inviteButton" class="inviteButton">
+            <wicket:message key="inviteUsers"></wicket:message>
+        </button>
+
+        <form wicket:id="form">
+            <div wicket:id="searchField" class="searchField"></div>
+            <button wicket:id="searchButton" class="searchButton">
+                <wicket:message key="search"/>
+            </button>
+        </form>
+        <div class="clear"></div>
+
+        <div wicket:id="grid"></div>
+        <div wicket:id="checkPanel"></div>
+        <div wicket:id="addCoupleUsersDialog"></div>
+    </div>
+</wicket:panel>
+</body>
+</html>

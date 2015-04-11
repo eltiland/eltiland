@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Table for course - user registration data</comment>
+        <sql>
+            CREATE TABLE "public"."course_user_data" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "active" BOOLEAN DEFAULT 'false' NOT NULL,
+            "caption" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "required" BOOLEAN DEFAULT 'false' NOT NULL,
+            "type" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "course" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+            ALTER TABLE "public"."course_user_data" ADD CONSTRAINT "course_user_data" FOREIGN KEY ( "course" )
+            REFERENCES "public"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

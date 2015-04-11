@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating tag schema</comment>
+        <sql>
+            CREATE SCHEMA "tags";
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Creating tag table</comment>
+        <sql>
+            CREATE TABLE "tags"."tag" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "category" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Creating tag category table</comment>
+        <sql>
+            CREATE TABLE "tags"."tag_category" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "entity" CHARACTER VARYING( 64 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+            ALTER TABLE "tags"."tag" ADD CONSTRAINT "tag_category" FOREIGN KEY ( "category" ) REFERENCES
+            "tags"."tag_category" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Creating tag-entity table</comment>
+        <sql>
+            CREATE TABLE "tags"."tag_entity" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "entity_id" BIGINT NOT NULL,
+            "tag_id" BIGINT NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

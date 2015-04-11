@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="alexander.litvinenko">
+        <comment>Add birth_date column</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION calculate_birth_date(childId numeric)
+            returns date as $$
+            DECLARE _age integer;
+            begin
+            select age into _age from child where _id=childId;
+            return (current_date - _age * interval '1 year');
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION current_age(birth_date date)
+            RETURNS integer AS
+            $BODY$begin
+            return date_part('year', age(birth_date));
+            end$BODY$
+            LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION current_age(date)
+            OWNER TO eltiland;
+        </createProcedure>
+        <sql>
+            ALTER TABLE public.child ADD COLUMN birth_date date;
+
+            UPDATE public.child
+            SET birth_date = calculate_birth_date(_id);
+
+            ALTER TABLE child ALTER COLUMN birth_date SET NOT NULL;
+
+            ALTER TABLE child DROP COLUMN age;
+        </sql>
+        <sql>
+            DROP FUNCTION public.calculate_birth_date(numeric);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

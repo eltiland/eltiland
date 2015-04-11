@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="nameLabel">Название курса</entry>
+    <entry key="authorLabel">Автор</entry>
+    <entry key="typeLabel">Тип</entry>
+    <entry key="dateLabel">Дата создания</entry>
+
+    <entry key="AuthorCourse.class">Авторский курс</entry>
+    <entry key="TrainingCourse.class">Курс повышения квалификации</entry>
+
+    <entry key="apply.tooltip">Опубликовать</entry>
+    <entry key="deny.tooltip">Отменить публикацию</entry>
+    <entry key="settings.tooltip">Управление</entry>
+
+    <entry key="publishMessage">Курс успешно опубликован.</entry>
+    <entry key="cancelMessage">Публикация курса отменена.</entry>
+</properties>

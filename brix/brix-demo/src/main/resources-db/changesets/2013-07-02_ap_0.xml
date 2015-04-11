@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding table for Course</comment>
+        <sql>
+            CREATE TABLE "public"."course" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "headerContent" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default",
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "author" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding table for CourseItem</comment>
+        <sql>
+            CREATE TABLE "public"."courseitem" (
+            "_prototype" CHARACTER VARYING( 31 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "itemOrder" INTEGER,
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "course" NUMERIC,
+            "parentItem" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding table for CourseElement</comment>
+        <sql>
+            CREATE TABLE "public"."courseelement" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "content" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default",
+            "courseItem" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Adding table for link between User and Course</comment>
+        <sql>
+            CREATE TABLE "public"."course_user" (
+            "user_id" NUMERIC NOT NULL,
+            "course_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "user_id","course_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Adding table for link between User and Task</comment>
+        <sql>
+            CREATE TABLE "public"."task_user" (
+            "user_id" NUMERIC NOT NULL,
+            "task_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "user_id","task_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="aleksey.plotnikov">
+        <comment>Adding links for courses</comment>
+        <sql>
+            ALTER TABLE "public"."courseitem" ADD CONSTRAINT "course_item" FOREIGN KEY ( "course" ) REFERENCES
+            "public"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course" ADD CONSTRAINT "author_course" FOREIGN KEY ( "author" ) REFERENCES
+            "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_user" ADD CONSTRAINT "course_user" FOREIGN KEY ( "course_id" )
+            REFERENCES "public"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_user" ADD CONSTRAINT "course_user_user" FOREIGN KEY ( "user_id" ) REFERENCES
+            "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."courseelement" ADD CONSTRAINT "element_item" FOREIGN KEY ( "courseItem" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."courseitem" ADD CONSTRAINT "item_parent" FOREIGN KEY ( "parentItem" )
+            REFERENCES "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."task_user" ADD CONSTRAINT "item_task" FOREIGN KEY ( "task_id" ) REFERENCES
+            "public"."courseitem" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."task_user" ADD CONSTRAINT "task_user" FOREIGN KEY ( "user_id" ) REFERENCES
+            "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding flag "certificate sended"</comment>
+        <sql>
+            ALTER TABLE "public"."webinar" ADD COLUMN "cert_sended" BOOLEAN DEFAULT 'false' NOT NULL;
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding link file-webinar</comment>
+        <sql>
+            ALTER TABLE "public"."file" ADD COLUMN "webinar" NUMERIC;
+            ALTER TABLE "public"."file" ADD CONSTRAINT "webinar_file" FOREIGN KEY ( "webinar" ) REFERENCES
+            "public"."webinar" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

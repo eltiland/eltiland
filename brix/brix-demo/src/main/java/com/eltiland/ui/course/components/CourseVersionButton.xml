@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="demo.label">Демо-версия</entry>
+    <entry key="full.label">Полная версия</entry>
+
+    <entry key="free">Бесплатно</entry>
+    <entry key="invoice">Подать заявку</entry>
+    <entry key="enter">Вход</entry>
+</properties>

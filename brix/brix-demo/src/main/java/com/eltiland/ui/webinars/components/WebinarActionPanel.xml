@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="confirmationLeave">Вы действительно хотите отказаться от участия в данном вебинаре?</entry>
+
+    <entry key="signup">Подать заявку на участие в вебинаре</entry>
+    <entry key="signupMany">Зарегистрировать нескольких пользователей</entry>
+    <entry key="leave">Отказаться от участия в вебинаре</entry>
+
+    <entry key="errorNoAuthorization">Для регистрации нескольких пользователей на вебинар, вы должны авторизироваться на
+        портале.
+    </entry>
+</properties>

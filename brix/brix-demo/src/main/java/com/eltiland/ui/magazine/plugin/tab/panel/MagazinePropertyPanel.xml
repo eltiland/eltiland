@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createHeader">Новый журнал</entry>
+    <entry key="editHeader">Редактирование информации о журнале</entry>
+
+    <entry key="name">Название и номер журнала</entry>
+    <entry key="topic">Тема номера</entry>
+    <entry key="price">Стоимость</entry>
+    <entry key="cover">Обложка</entry>
+
+    <entry key="errorNotLoadedContent">Ошибка - не загружен файл журнала!</entry>
+</properties>

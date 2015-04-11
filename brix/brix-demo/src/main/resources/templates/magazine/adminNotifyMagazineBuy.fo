@@ -1,0 +1,22 @@
+<h3>Отчет о покупке журнала</h3>
+
+<p>Информация о покупателе:</p>
+
+<p>ФИО - ${user_name}</p>
+<p>Email - ${user_email}</p>
+
+<p>Купленные журналы:</p>
+<table>
+    <tr>
+        <td><b>Название</b></td>
+        <td><b>Цена (руб.)</b></td>
+    </tr>
+    #foreach( $mag in $magazines )
+        <tr>
+            <td>$mag.name</td>
+            <td>$mag.price</td>
+        </tr>
+    #end
+</table>
+
+<p>Полная сумма - $fullprice (руб.)</p>

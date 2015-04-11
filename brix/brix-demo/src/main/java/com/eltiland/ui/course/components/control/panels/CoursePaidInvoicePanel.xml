@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="headerLabelCreate">Запрос на создание платных услуг</entry>
+    <entry key="headerLabelModify">Запрос на изменение платных услуг</entry>
+
+    <entry key="noTerm">Срок действия не установлен</entry>
+    <entry key="yesTerm">Срок действия - </entry>
+
+    <entry key="priceLabel">Стоимость доступа к данному элементу</entry>
+
+    <entry key="setTerm">Установить срок</entry>
+    <entry key="editTerm">Редактировать срок</entry>
+
+    <entry key="year">1 год </entry>
+    <entry key="years">%d года </entry>
+    <entry key="years_many">%d лет </entry>
+
+    <entry key="month">1 месяц </entry>
+    <entry key="months">%d месяца </entry>
+    <entry key="months_many">%d месяцев </entry>
+
+    <entry key="day">1 день </entry>
+    <entry key="days">%d дня </entry>
+    <entry key="days_many">%d дней </entry>
+</properties>

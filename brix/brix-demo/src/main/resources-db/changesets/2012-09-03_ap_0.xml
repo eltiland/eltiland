@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Create function that calculates jaro distance index</comment>
+        <createProcedure><![CDATA[CREATE OR REPLACE FUNCTION jaro(
+  str1_in character varying(250),
+  str2_in character varying(250)
+) RETURNS real AS $$
+DECLARE
+    str1 character varying(250);
+    str2 character varying(250);
+    len_str1 integer;
+    len_str2 integer;
+    swap_len integer;
+    max_len integer;
+    m integer;
+    i integer;
+    j integer;
+    f integer;
+    l integer;
+    tr real := 0;
+    a1 character varying(250);
+    a2 character varying(250);
+    swap_str character varying(250);
+
+    f1 boolean ARRAY;
+    f2 boolean ARRAY;
+
+    wcd real;
+    wrd real;
+    wtr real;
+    common real := 0;
+    jaro_value real := 0;
+
+    -- MAIN
+BEGIN
+    str1 := str1_in;
+    str2 := str2_in;
+
+    len_str1 := length(str1);
+    len_str2 := length(str2);
+
+    IF len_str1 > len_str2
+    THEN
+        swap_len := len_str2;
+        len_str2 := len_str1;
+        len_str1 := swap_len;
+        swap_str := str1;
+        str1 := str2;
+        str2 := swap_str;
+    END IF;
+
+    max_len := len_str2;
+
+    FOR i IN 1 .. len_str1
+    LOOP
+        f1[i] := FALSE;
+    END LOOP;
+
+    FOR j IN 1 .. len_str2
+    LOOP
+        f2[j] := FALSE;
+    END LOOP;
+
+    m := round((max_len / 2) - 1);
+
+    FOR i IN 1 .. len_str1
+    LOOP
+        a1 := substr(str1, i, 1);
+
+        IF m >= i
+        THEN
+            f := 1;
+            l := i + m;
+        ELSE
+            f := i - m;
+            l := i + m;
+        END IF;
+
+        IF l > max_len
+        THEN
+            l := max_len;
+        END IF;
+
+        FOR j IN f .. l
+        LOOP
+            a2 := substr(str2, j, 1);
+            IF (a2 = a1)
+               AND (f2[j] = FALSE)
+            THEN
+                common := common + 1;
+                f1[i] := TRUE;
+                f2[j] := TRUE;
+                EXIT;
+            END IF;
+        END LOOP; -- j
+    END LOOP; -- i
+
+    l := 1;
+    FOR i IN 1 .. len_str1
+    LOOP
+
+        IF f1[i]
+        THEN
+            FOR j IN l .. len_str2
+            LOOP
+                IF f2[j]
+                THEN
+                    l := j + 1;
+                    a1 := substr(str1, i, 1);
+                    a2 := substr(str2, j, 1);
+                    IF a1 <> a2
+                    THEN
+                        tr := tr + 0.5;
+                    END IF;
+                    EXIT;
+                END IF;
+            END LOOP; -- j
+        END IF;
+    END LOOP; -- i
+
+    wcd := 1. / 3;
+    wrd := 1. / 3;
+    wtr := 1. / 3;
+
+    IF common <> 0
+    THEN
+        jaro_value := wcd * common / len_str1 + wrd * common / len_str2 +
+                      wtr * (common - tr) / common;
+    END IF;
+
+    RETURN jaro_value;
+END
+$$ LANGUAGE plpgsql;
+
+        ]]></createProcedure>
+    </changeSet>
+
+</databaseChangeLog>

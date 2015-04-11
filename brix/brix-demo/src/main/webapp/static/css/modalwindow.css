@@ -1,0 +1,42 @@
+.w_top_1 {
+    display: none;
+}
+
+.w_bottom_1 {
+    display: none;
+}
+
+.w_left, .div.wicket-modal div.w_left, div.wicket-modal div.w_right {
+    background: none !important;
+    background-image: none !important;
+}
+
+.w_caption {
+    display: none;
+}
+
+.wicket-modal {
+    z-index: 100;
+}
+
+div.wicket-mask-dark {
+    z-index: 99;
+    opacity: 0.85;
+    -moz-opacity: 0.85;
+    background-color: white;
+    filter: alpha(opacity = 85);
+}
+
+div.wicket-modal div.w_content_3 {
+    border: none;
+}
+
+div.wicket-modal div.w_content_2 {
+    background: none !important;
+}
+
+div.wicket-modal div.w_content {
+    background: none;
+}
+
+

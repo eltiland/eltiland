@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="headerMessage">Загрузка файла</entry>
+    <entry key="uploadFilesLabel">Файл(ы):</entry>
+    <entry key="uploadLink">загрузить</entry>
+    <entry key="uploadedMaximumCountOfFiles">Уже загружено максимально возможное количество файлов!</entry>
+</properties>

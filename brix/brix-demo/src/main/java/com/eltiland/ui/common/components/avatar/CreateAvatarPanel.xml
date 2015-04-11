@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="avatarPanelHeader">Аватар</entry>
+    <entry key="imageIsLoaded">Фото загружено</entry>
+    <entry key="loadNew">(загрузить новое)</entry>
+    <entry key="createSteps">Выделите с помощью рамки нужную часть фотографии.</entry>
+</properties>

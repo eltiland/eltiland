@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget">
+        <div class="elti-widget-header">
+            <h1>
+                <wicket:message key="subscribeTitle"/>
+            </h1>
+        </div>
+
+        <div wicket:id="formContainer" class="elti-widget-content">
+            <wicket:enclosure child="form">
+                <p class="paragraph">
+                    <wicket:message key="subscribeIntro"/>
+                </p>
+                <p class="paragraph">
+                    <wicket:message key="subscribeDescription"/>
+                </p>
+                <p>
+
+                <div wicket:id="subscribeSpecialRequirements" class="paragraph"></div>
+                </p>
+                <hr>
+                <form wicket:id="form">
+                    <table>
+                        <tr>
+                            <td>
+                                <div>
+                                    <span wicket:id="peiPrincipal"></span>
+                                    <span wicket:id="peiAddress"></span>
+
+                                </div>
+                                <div>
+                                    <span wicket:id="peiEmail"></span>
+                                    <span wicket:id="peiTelephone"></span>
+
+                                </div>
+
+                                <din>
+                                    <span wicket:id="magazineCount"></span>
+                                    <span wicket:id="peiName"></span>
+                                </din>
+
+                                <div wicket:id="groupField"></div>
+                                <div>
+
+                                    <div wicket:id="offerLabel"></div>
+                                </div>
+
+                                <textarea wicket:id="offerTextField" cols="65" rows="10"></textarea>
+
+                                <div>
+                                    <input type="checkbox" wicket:id="offerApproveCheck"/>
+                                    <div wicket:id="offerApproveLabel"></div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button wicket:id="submitButton">
+                                    <wicket:message key="send"/>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+            </wicket:enclosure>
+            <div wicket:id="requestSent"></div>
+        </div>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

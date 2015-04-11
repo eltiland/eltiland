@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="login">Войдите</entry>
+    <entry key="loginReason">, чтобы оставлять свои сообщения на форуме.</entry>
+
+    <entry key="createButton">Создать новую тему</entry>
+    <entry key="createdThreadMessage">Новая тема создана.</entry>
+</properties>

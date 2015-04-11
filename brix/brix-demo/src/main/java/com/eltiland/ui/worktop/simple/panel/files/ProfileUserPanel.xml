@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="no.files">Файлы не найдены</entry>
+
+    <entry key="file.placeholder">Название файла</entry>
+    <entry key="user.placeholder">Поиск пользователя</entry>
+
+    <entry key="add.tooltip">Добавить файл</entry>
+    <entry key="download.tooltip">Скачать файл</entry>
+    <entry key="users.tooltip">Управление доступом к файлу для пользователей</entry>
+    <entry key="course.tooltip">Управление доступом к файлу для администраторов курсов</entry>
+    <entry key="delete.tooltip">Удалить файл</entry>
+
+    <entry key="name.column">Название</entry>
+    <entry key="date.column">Дата загрузки</entry>
+    <entry key="users.column">Пользователи</entry>
+    <entry key="courses.column">Курсы</entry>
+
+    <entry key="user.name.column">ФИО</entry>
+    <entry key="user.email.column">Email</entry>
+
+    <entry key="course.name.column">Курс</entry>
+    <entry key="course.author.column">Автор</entry>
+
+    <entry key="user.header">Выбор пользователей</entry>
+    <entry key="course.header">Выбор курса</entry>
+</properties>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createInvoiceLabel">Стоимость к оплате</entry>
+    <entry key="basePriceLabel">Базовая стоимость %s руб.</entry>
+    <entry key="pricePercentLabel">Процент от стоимости</entry>
+    <entry key="priceLabel">Сумма к оплате</entry>
+    <entry key="applyButtonLabel">Назначить</entry>
+    <entry key="percent">%</entry>
+    <entry key="freeMode">Бесплатный режим</entry>
+
+    <entry key="errorPercentFormat">Неправильный формат</entry>
+</properties>

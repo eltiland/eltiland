@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="button" class="course_version_button">
+        <div class="price">
+            <div class="free" wicket:id="free">
+                <wicket:message key="free"></wicket:message>
+            </div>
+            <div class="free" wicket:id="invoice">
+                <wicket:message key="invoice"></wicket:message>
+            </div>
+            <div class="free" wicket:id="enter">
+                <wicket:message key="enter"></wicket:message>
+            </div>
+            <div class="paid" wicket:id="paid">
+                <div class="rubel">&#8381;</div>
+                <div class="value" wicket:id="price"></div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="name">
+                <div wicket:id="name"></div>
+            </div>
+        </div>
+    </div>
+    <div wicket:id="invoiceDialog"></div>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Remove paylink from Webinar and add paylink to WebinarUserPayment</comment>
+        <dropColumn tableName="webinar" columnName="paylink"/>
+        <addColumn tableName="webinar_user_payment">
+            <column name="paylink" type="varchar(255)">
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

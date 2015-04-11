@@ -1,0 +1,105 @@
+/*   -------   Styles for record property panel   -------   */
+/**************************************************************************************************/
+.record_page .elti-widget {
+    width: 500px !important;
+    display: table;
+    margin: 0 auto;
+}
+
+.record_page .record_panel {
+    margin: 5px;
+}
+
+.record_page .record_panel .typeSelector {
+    display: table;
+    margin: 0 auto;
+}
+
+.record_panel .adminAction {
+    margin-top: 5px;
+    width: 230px;
+    padding: 3px;
+    text-align: center;
+    height: 21px;
+    vertical-align: middle;
+    border-radius: 7px;
+    font-weight: bold;
+    color: #8AA8BD;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(50, 50, 50, 0.1);
+    cursor: pointer;
+}
+
+.record_panel .relevance {
+    padding-top: 35px;
+}
+
+.record_panel .relevance .label {
+    font-weight: bold;
+    color: #8AA8BD;
+}
+
+.record_panel .left {
+    float: left;
+}
+
+.record_panel .right {
+    float: right;
+}
+
+.record_panel .center_action {
+    margin-top: 10px;
+    margin-left: 130px;
+}
+
+/**************************************************************************************************/
+.record_panel .document_control {
+    margin: 10px;
+}
+
+.record_panel .document_control .center {
+    display: table;
+    margin: 0 auto;
+}
+
+.record_panel .document_control .action {
+    width: 200px !important;
+    color: #8AA8BD;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(50, 50, 50, 0.1);
+    text-align: center;
+    height: 23px !important;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    float: none !important;
+}
+
+.record_panel .document_control .action .icon {
+    width: 24px;
+    height: 24px;
+    float: left;
+    cursor: pointer;
+}
+
+.record_panel .document_control .action .upload {
+    background-image: url("../../images/actions/24x24/upload.png");
+}
+
+.record_panel .document_control .loadedMessage {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.record_panel .document_control .image_preview_button {
+    margin: 0 auto;
+    display: table;
+    margin-top: 5px !important;
+}
+
+.record_panel .document_control .feedbackPanel {
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+}

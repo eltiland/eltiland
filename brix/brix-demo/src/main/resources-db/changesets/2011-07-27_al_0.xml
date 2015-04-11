@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="alexander.litvinenko">
+        <comment>Change table file_body</comment>
+        <dropTable tableName="file_body" schemaName="public"/>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE file_body
+            (
+            _id numeric NOT NULL,
+            body bytea,
+            filename character varying(255),
+            CONSTRAINT file_body_pkey PRIMARY KEY (_id ),
+            CONSTRAINT file_body_filename_key UNIQUE (filename )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE file_body
+            OWNER TO eltiland;
+            ALTER TABLE public.file_body
+            ADD CONSTRAINT file_body_body_xor_filename CHECK (body IS NULL AND filename IS NOT NULL OR body IS NOT NULL
+            AND filename IS NULL);
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="alexander.litvinenko">
+        <comment>Change table file</comment>
+        <dropTable tableName="file" schemaName="public"/>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE file
+            (
+            _id numeric NOT NULL,
+            name character varying(256) NOT NULL,
+            preview bytea,
+            size bigint NOT NULL,
+            type character varying(60) NOT NULL,
+            body numeric NOT NULL,
+            CONSTRAINT file_pkey PRIMARY KEY (_id ),
+            CONSTRAINT fk2ff57c20445b53 FOREIGN KEY (body)
+            REFERENCES file_body (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT file_body_key UNIQUE (body )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE file
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

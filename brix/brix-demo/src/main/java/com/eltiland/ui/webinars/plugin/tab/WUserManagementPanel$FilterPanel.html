@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="webinar-filter">
+        <div class="header">
+            <wicket:message key="filter"></wicket:message>
+        </div>
+        <form wicket:id="form">
+            <div wicket:id="selector1" class="filter"></div>
+            <div wicket:id="selector2" class="filter"></div>
+            <div wicket:id="selector3" class="filter"></div>
+            <div wicket:id="selector4" class="filter"></div>
+            <div wicket:id="selector5" class="filter"></div>
+
+            <a wicket:id="addLink">
+                Добавить
+            </a>
+
+            <button wicket:id="applyButton">
+                <wicket:message key="apply"></wicket:message>
+            </button>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

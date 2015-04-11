@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="headerLabel">Текст сообщения слушателям</entry>
+
+    <entry key="sentCertificate">Прикрепить сертификат</entry>
+    <entry key="sentFile">Прикрепить файлы</entry>
+    <entry key="sentRecord">Прикрепить ссылку(и) на запись</entry>
+</properties>

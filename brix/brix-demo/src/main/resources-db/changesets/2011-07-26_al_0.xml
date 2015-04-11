@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="alexander.litvinenko">
+        <comment>Create table file</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE file
+            (
+            _id numeric NOT NULL,
+            name character varying(256) NOT NULL,
+            preview bytea,
+            size bigint NOT NULL,
+            type character varying(60) NOT NULL,
+            uuid uuid NOT NULL,
+            CONSTRAINT file_pkey PRIMARY KEY (_id ),
+            CONSTRAINT file_uuid_key UNIQUE (uuid )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE file
+            OWNER TO eltiland;
+        </sql>
+        <rollback>
+            DROP TABLE file;
+        </rollback>
+    </changeSet>
+    <changeSet id="2" author="alexander.litvinenko">
+        <comment>Create table file_body</comment>
+        <sql endDelimiter=";" splitStatements="false">
+            CREATE TABLE file_body
+            (
+            uuid uuid NOT NULL,
+            body bytea NOT NULL,
+            CONSTRAINT file_body_pkey PRIMARY KEY (uuid )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE file_body
+            OWNER TO eltiland;
+        </sql>
+        <rollback>
+            DROP TABLE file_body;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

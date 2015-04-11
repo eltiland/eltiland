@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="authorCourse">Авторский курс</entry>
+    <entry key="trainingCourse">Курс повышения квалификации</entry>
+
+    <entry key="about">Подробнее</entry>
+    <entry key="register">Подать заявку</entry>
+    <entry key="already">Вход</entry>
+
+    <entry key="join.on">Регистрация с %s</entry>
+    <entry key="join.off">Регистрация закрыта</entry>
+    <entry key="teach">Обучение с %s по %s</entry>
+</properties>

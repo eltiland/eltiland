@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Create table for base library Record entity</comment>
+
+        <createTable tableName="record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_category" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_record_category"
+                                 baseTableName="record" baseColumnNames="record_category"
+                                 referencedTableName="record_category" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Create table for many to many relation Record - ChildAgeGroup</comment>
+
+        <createTable tableName="record_childagegroup">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="child_age_group_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="record_childagegroup" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+        <addForeignKeyConstraint constraintName="fk_child_age_group"
+                                 baseTableName="record_childagegroup" baseColumnNames="child_age_group_id"
+                                 referencedTableName="child_age_group" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="3" author="igor.cherednichenko">
+        <comment>Create table for many to many relation Record - TargetAudience</comment>
+
+        <createTable tableName="record_targetaudience">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="target_audience_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="record_targetaudience" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+        <addForeignKeyConstraint constraintName="fk_target_audience"
+                                 baseTableName="record_targetaudience" baseColumnNames="target_audience_id"
+                                 referencedTableName="target_audience" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="4" author="igor.cherednichenko">
+        <comment>Create table for many to many relation Record - RecordTag</comment>
+
+        <createTable tableName="record_recordtag">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_tag_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="record_recordtag" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+        <addForeignKeyConstraint constraintName="fk_record_record"
+                                 baseTableName="record_recordtag" baseColumnNames="record_tag_id"
+                                 referencedTableName="record_tag" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

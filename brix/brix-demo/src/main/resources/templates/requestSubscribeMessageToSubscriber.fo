@@ -1,0 +1,20 @@
+<h3>Добрый день!</h3>
+
+<p>Вы оставляли запрос на оформление подписки на Детскую газету "Дневник приключений Элтика и друзей".</p>
+
+ <p>Реквизиты подписчика и информация о подписке:
+ <ul>
+ <li>Номер заказа: ${subscribe_order_number}</li>
+ <li>Почтовый адрес : ${subscribe_pei_address}</li>
+ <li>Ф.И.О. контактного лица: ${subscribe_pei_principal}</li>
+ <li>Адрес электронной почты: <a href="mailto:${subscribe_pei_email}">${subscribe_pei_email}</a></li>
+ <li>Контактный телефон: ${subscribe_pei_telephone}</li>
+ <li>Количество комплектов газеты: ${subscribe_magazine_count}</li>
+ <li>Заказчик: ${subscribe_group_type}</li>
+ </ul>
+ </p>
+
+<p>Ваш запрос на оформление подписки успешно отправлен администратору портала.
+В ближайшее время он свяжется с Вами для подтверждения запроса.</p>
+#parse("templates/portalContactInfo.fo")
+

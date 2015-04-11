@@ -1,0 +1,13 @@
+.selector-user {
+    border: 1px solid rgb(218, 212, 212);
+    font-size: 15px;
+    margin-top: 5px;
+    padding: 5px;
+    height: 24px;
+    width: 375px;
+}
+
+.selector-user .name {
+    float: left;
+    width: 93%;
+}

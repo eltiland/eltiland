@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="dialog_panel">
+        <div class="header">
+            <div class="bar"></div>
+            <div class="message">
+                <div wicket:id="header"></div>
+            </div>
+        </div>
+        <div class="content">
+            <form wicket:id="form">
+                <wicket:child></wicket:child>
+                <div wicket:id="captchaPanel"></div>
+                <div class="clear"></div>
+                <wicket:enclosure child="buttonListView">
+                    <div class="actions">
+                        <div style="height: 36px">
+                            <wicket:container wicket:id="buttonListView">
+                                <div wicket:id="button" style="float: left"></div>
+                            </wicket:container>
+                        </div>
+                    </div>
+                </wicket:enclosure>
+            </form>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

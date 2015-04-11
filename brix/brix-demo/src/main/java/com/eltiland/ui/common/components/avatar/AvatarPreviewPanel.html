@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form wicket:id="fixForm" class="elti-item">
+        <div wicket:id="changeAvatarDialog"></div>
+
+        <div class="elti-icon-container">
+            <div class="icon-aligner">
+                <img wicket:id="avatarPreviewImage" alt="No preview found">
+            </div>
+        </div>
+        <div wicket:id="description" class="description">
+            <div class="name" wicket:id="avatarLabel">[Name]</div>
+            <div class="edit">
+                <a href="javascript:" wicket:id="changeAvatarLink" class="elti-linkbutton">
+                    <wicket:message key="edit"/>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div class="clear"></div>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="upAction">Поднять вверх на 1 позицию</entry>
+    <entry key="downAction">Опустить вниз на 1 позицию</entry>
+    <entry key="removeAction">Удалить</entry>
+</properties>

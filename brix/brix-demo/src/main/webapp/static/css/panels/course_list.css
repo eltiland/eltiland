@@ -1,0 +1,39 @@
+/**************************************************************************************************/
+/* Styles for page with courses list.
+/**************************************************************************************************/
+.course_list > .caption {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    color: #366091;
+}
+
+.course_list > .list {
+    display: table;
+    margin: 0 auto;
+}
+
+.course_list > .list .link {
+    text-align: center;
+    display: table;
+    margin: 0 auto;
+    font-style: italic;
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.course_list > .list .item {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.course_list > .list .item .courseIcon {
+    padding: 0 !important;
+}
+
+.course_list > .list .item .elti-item {
+    margin: 0 !important;
+}

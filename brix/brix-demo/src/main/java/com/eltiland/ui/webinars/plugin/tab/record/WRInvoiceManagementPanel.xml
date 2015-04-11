@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="userLabel">Пользователь</entry>
+    <entry key="emailLabel">Email</entry>
+    <entry key="webinarLabel">Вебинар</entry>
+    <entry key="priceLabel">Стоимость</entry>
+    <entry key="statusLabel">Сертификат</entry>
+    <entry key="dateLabel">Дата платежа</entry>
+
+    <entry key="sendAction">Отправить ссылку на запись</entry>
+    <entry key="attachAction">Отправить ссылку на запись</entry>
+    <entry key="sendMessage">Ccылка на запись отправлена пользователю</entry>
+
+    <entry key="CONFIRMED">ПОДТВЕРЖДЕН</entry>
+    <entry key="SEND">ОТПРАВЛЕН</entry>
+
+    <entry key="certificateSended">Сертификат успешно отправлен</entry>
+    <entry key="certificateSendError">Ошибка при отправке сертификата</entry>
+    <entry key="downloadTooltip">Скачать сертификат</entry>
+    <entry key="sendTooltip">Отправить сертификат</entry>
+    <entry key="downloadReportTooltip">Скачать отчет о платежах</entry>
+</properties>

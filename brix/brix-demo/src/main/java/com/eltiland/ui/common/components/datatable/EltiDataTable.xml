@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="datatable.no-records-found">По данному запросу ничего не найдено! Уточните параметры поиска и попробуйте
+        еще раз!
+    </entry>
+</properties>

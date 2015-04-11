@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="createHeader">Новая Google панель</entry>
+    <entry key="editHeader">Редактирование Google панели</entry>
+    <entry key="errorPageExists">Ошибка - имя должно быть уникальным.</entry>
+    <entry key="panelName">Имя панели</entry>
+</properties>

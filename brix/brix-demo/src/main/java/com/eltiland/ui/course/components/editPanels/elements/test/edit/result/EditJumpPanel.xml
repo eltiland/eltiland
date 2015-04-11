@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="jumpHeader">Параметры перехода</entry>
+    <entry key="jumpSelector">Выбор вопроса для перехода:</entry>
+    <entry key="selectLabel">Вопрос %d. %s</entry>
+    <entry key="addPrevLabel">Добавить условие перехода</entry>
+
+    <entry key="conditions">Условия перехода (предыдущие вопросы):</entry>
+</properties>

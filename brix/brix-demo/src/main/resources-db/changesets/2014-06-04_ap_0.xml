@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating record table</comment>
+        <sql>
+            CREATE TABLE "library"."record" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "description" CHARACTER VARYING( 2048 ) COLLATE "pg_catalog"."default",
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "relevance" NUMERIC DEFAULT '0' NOT NULL,
+            "add_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "_prototype" CHARACTER VARYING( 31 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "content" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Creating collection table</comment>
+        <sql>
+            CREATE TABLE "library"."collection" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Creating M-M record/collection table</comment>
+        <sql>
+            CREATE TABLE "library"."record_collection" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "collection_id" NUMERIC NOT NULL,
+            "record_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Creating links</comment>
+        <sql>
+            ALTER TABLE "library"."record_collection" ADD CONSTRAINT "record_link" FOREIGN KEY ( "record_id" )
+            REFERENCES "library"."record" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "library"."record_collection" ADD CONSTRAINT "collection_link" FOREIGN KEY ( "collection_id"
+            ) REFERENCES "library"."record_collection" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

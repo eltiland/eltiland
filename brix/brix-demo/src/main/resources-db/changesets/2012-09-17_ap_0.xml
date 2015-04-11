@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Create PEI-File relation table. Step 1 - create temp table pei_file_t</comment>
+        <sql>
+            CREATE TABLE pei_file_t
+            (
+            _id numeric NOT NULL,
+            file_id numeric NOT NULL,
+            pei_id numeric NOT NULL,
+            CONSTRAINT pei_file_pkey2 PRIMARY KEY (pei_id , file_id ),
+            CONSTRAINT fk9f089c71c7d7e2d FOREIGN KEY (file_id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT fk9f089c79e7c67b FOREIGN KEY (pei_id)
+            REFERENCES pei (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT pei_file__id_key2 UNIQUE (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE pei_file
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

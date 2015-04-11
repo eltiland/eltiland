@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="accessDeniedCourseMessage">Доступ к форуму курса возможен для подписчиков данного курса, автора курса и
+        администратора портала.
+    </entry>
+</properties>

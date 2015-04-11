@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Слушатели курса "%s":</entry>
+
+    <entry key="preJoinHeader">Курс не имеет полной версии, ниже показаны люди, записавшиеся на курс предварительно
+    </entry>
+    <entry key="freeCourseHeader">Курс является бесплатным</entry>
+    <entry key="paidCourseHeader">Курс является платным</entry>
+</properties>

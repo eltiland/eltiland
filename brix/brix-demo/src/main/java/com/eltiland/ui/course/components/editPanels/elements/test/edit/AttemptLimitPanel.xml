@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="setAttemptLimitMessage">Установить лимит количества попыток прохождения теста</entry>
+    <entry key="updateAttemptLimitMessage">Изменить</entry>
+    <entry key="limitMessage">Лимит количества прохождений теста - %d раз</entry>
+</properties>

@@ -1,0 +1,35 @@
+/**************************************************************************************************/
+/* Styles for panel of setting/modifying term of the paid invoice for the course element.
+/**************************************************************************************************/
+.course_term > .limits {
+    float: left;
+    font-size: 10px;
+}
+
+.course_term > .limits > .min {
+    margin-left: 195px;
+    float: left;
+}
+
+.course_term > .limits > .max {
+    margin-left: 375px;
+    float: left;
+}
+
+.course_term > .message {
+    font-size: 12px;
+    float: left;
+    margin-top: 4px;
+    width: 120px;
+}
+
+.course_term > .input {
+    float: left;
+}
+
+.course_term > .slider {
+    width: 390px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 6px;
+}

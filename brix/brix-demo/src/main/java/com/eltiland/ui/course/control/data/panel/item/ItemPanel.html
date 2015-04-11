@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="course-item" wicket:id="item">
+        <div wicket:id="image"></div>
+        <span class="name" wicket:id="name"></span>
+        <div class="iconControlPanel">
+            <wicket:enclosure child="add">
+                <a wicket:id="add" class="button">
+                    <div class="image16 add16"></div>
+                </a>
+            </wicket:enclosure>
+
+            <wicket:enclosure child="up">
+                <div class="whitespace16"></div>
+                <a wicket:id="up" class="button">
+                    <div class="image16 up16"></div>
+                </a>
+            </wicket:enclosure>
+
+            <wicket:enclosure child="down">
+                <div class="whitespace16"></div>
+                <a wicket:id="down" class="button">
+                    <div class="image16 down16"></div>
+                </a>
+            </wicket:enclosure>
+
+            <div class="whitespace16"></div>
+            <a wicket:id="cancel" class="button">
+                <div class="image16 cancel16"></div>
+            </a>
+        </div>
+    </div>
+    <div class="course-sub-item" wicket:id="subItemContainer">
+        <wicket:container wicket:id="subItems">
+            <div wicket:id="subItem"></div>
+        </wicket:container>
+    </div>
+    <div wicket:id="typeSelector"></div>
+    <div wicket:id="itemPropertyDialog"></div>
+</wicket:panel>
+</body>
+</html>

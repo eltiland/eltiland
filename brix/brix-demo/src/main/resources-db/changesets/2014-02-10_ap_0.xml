@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding field webinar to courseitem table and link item/webinar</comment>
+        <sql>
+            ALTER TABLE "public"."courseitem" ADD COLUMN "webinar" NUMERIC;
+            ALTER TABLE "public"."courseitem" ADD CONSTRAINT "item_webinar" FOREIGN KEY ( "webinar" ) REFERENCES
+            "public"."webinar" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

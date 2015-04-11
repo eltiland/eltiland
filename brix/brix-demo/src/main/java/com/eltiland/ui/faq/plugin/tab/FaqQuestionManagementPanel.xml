@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="dateColumnLabel">Дата добавления</entry>
+    <entry key="questionColumnLabel">Текст вопроса</entry>
+    <entry key="deleteTooltip">Удалить вопрос</entry>
+    <entry key="questionReplyLabel">ОТВЕТИТЬ</entry>
+    <entry key="questionAnsweredLabel">Отвечено</entry>
+    <entry key="questionAddedMessage">Ответ на вопрос пользователя успешно добавлен.</entry>
+    <entry key="addToFaqLabel">Добавить в FAQ</entry>
+    <entry key="addedToFaq">FAQ успешно создан</entry>
+    <entry key="saveButton">Сохранить</entry>
+    <entry key="emptyAnswer">Не заполнен ответ для вопроса</entry>
+    <entry key="faqApprovalAlreadyExists">FAQ по данному вопросу уже существует</entry>
+</properties>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="file-panel">
+        <div class="control">
+            <div class="caption">
+                <span wicket:id="caption"></span>
+            </div>
+            <div class="actions">
+                <div class="iconControlPanel">
+                    <div wicket:id="uploadButton" class="button">
+                        <div class="image16 upload16"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="items" wicket:id="fileContainer">
+            <div wicket:id="fileList">
+                <div wicket:id="filePanel"></div>
+            </div>
+        </div>
+    </div>
+
+    <div wicket:id="uploadDialog"></div>
+</wicket:panel>
+</body>
+</html>

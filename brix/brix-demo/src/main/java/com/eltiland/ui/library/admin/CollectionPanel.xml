@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="newCollection">Новая коллекция</entry>
+    <entry key="newSubCollection">Новая подколлекция</entry>
+
+    <entry key="newCollectionMessage">Новая коллекция создана.</entry>
+    <entry key="updateCollectionMessage">Коллекция сохранена.</entry>
+    <entry key="removeCollectionMessage">Коллекция удалена.</entry>
+
+    <entry key="nameColumn">Название</entry>
+    <entry key="descriptionColumn">Описание</entry>
+
+    <entry key="children">Управление подколлекциями</entry>
+    <entry key="childrenLabel">Управление подколлекциями коллекции "%s":</entry>
+</properties>

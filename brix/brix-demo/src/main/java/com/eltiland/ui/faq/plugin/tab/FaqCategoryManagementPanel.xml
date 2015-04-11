@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addLabel">Добавить</entry>
+
+    <entry key="numberColumnLabel">Номер</entry>
+    <entry key="nameColumnLabel">Категория</entry>
+
+    <entry key="categoryDeletedMessage">Категория успешно удалена.</entry>
+    <entry key="categoryAddedMessage">Категория успешно добавлена.</entry>
+    <entry key="categorySavedMessage">Категория успешно изменена.</entry>
+    <entry key="deleteCategoryTooltip">Удалить категорию</entry>
+    <entry key="editCategoryTooltip">Редактировать категорию</entry>
+</properties>

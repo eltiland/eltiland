@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Create child group table</comment>
+        <sql>
+            CREATE TABLE child_age_group
+            (
+            _id numeric NOT NULL ,
+            age_group character varying(25) NOT NULL,
+            CONSTRAINT age_group_key UNIQUE (age_group ),
+            CONSTRAINT child_age_group_key PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "child_age_group"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Create TargetAudience table</comment>
+        <sql>
+            CREATE TABLE target_audience
+            (
+            _id numeric NOT NULL,
+            target character varying(50) NOT NULL,
+            CONSTRAINT target_key UNIQUE (target ),
+            CONSTRAINT target_audience_key PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "target_audience"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="vadim.didenko">
+        <comment>Create TagRecord table</comment>
+        <sql>
+            CREATE TABLE record_tag
+            (
+            _id numeric NOT NULL,
+            tag character varying(50) NOT NULL,
+            CONSTRAINT tag_key UNIQUE (tag ),
+            CONSTRAINT record_tag_key PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "record_tag"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+<changeSet id="4" author="vadim.didenko">
+        <comment>Create RecordCategory table</comment>
+        <sql>
+            CREATE TABLE record_category
+            (
+            _id numeric NOT NULL,
+            category character varying(50) NOT NULL ,
+            CONSTRAINT category_key UNIQUE (category ),
+            CONSTRAINT record_category_key PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "record_category"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

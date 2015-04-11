@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="alexander.cherednichenko">
+        <createTable tableName="postal_address">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="country_code" type="character(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="district" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address_line" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postal_code" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <dropColumn tableName="pei" columnName="address"/>
+
+        <addColumn tableName="pei">
+            <column name="address_id" type="DECIMAL(20, 0)"/>
+        </addColumn>
+
+        <insert tableName="postal_address">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="country_code" value="ru"/>
+            <column name="city" value="NA"/>
+            <column name="district" value="NA"/>
+            <column name="address_line" value="NA"/>
+            <column name="postal_code" value="NA"/>
+        </insert>
+
+        <sql>
+            update pei set address_id = currval('hibernate_sequence')
+        </sql>
+
+        <addNotNullConstraint tableName="pei" columnName="address_id"/>
+        <addForeignKeyConstraint baseTableName="pei" baseColumnNames="address_id"
+                                 constraintName="fk_pei_address"
+                                 referencedTableName="postal_address"
+                                 referencedColumnNames="_id"/>
+
+
+    </changeSet>
+
+</databaseChangeLog>

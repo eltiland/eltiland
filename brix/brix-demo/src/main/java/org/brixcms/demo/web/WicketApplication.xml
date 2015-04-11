@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="unreachableServerMessage">Похоже, в данный момент сервер недоступен. Возможно, вы вышли из зоны действия
+        беспроводного подключения? В любом случае, попробуйте позже.
+    </entry>
+
+    <entry key="copyrightAgreementHeader"></entry>
+    <entry key="copyrightAgreementBody"><![CDATA[<div style="text-align: justify"><b>Портал «Элтиленд»</b> бесплатно предоставляет материалы библиотеки в
+        ознакомительных целях и не несёт ответственность за нарушение прав третьих лиц в этой
+        связи.
+        <br>
+        <br>
+        <b>Скачиваемые материалы не могут быть использованы в коммерческих целях</b>.
+        <br>
+        <br>
+        Вы согласны с правилами пользования библиотекой?</div>]]>
+    </entry>
+
+    <!--Confirmation messages-->
+    <entry key="confirmationMessageDefault">Это действие нельзя отменить. Вы уверенны, что хотите продолжить?</entry>
+    <entry key="confirmationDialogHeaderLabel">Подтверждение</entry>
+
+    <!--Validation messages-->
+    <entry key="validationFailedMessage">Действие невозможно. Пожалуйста, проверьте поля, отмеченные красным цветом!
+    </entry>
+    <entry key="Required">Данное поле обязательно</entry>
+    <entry key="MinimumValidator">'${input}' меньше чем минимально допустимое значение '${minimum}'</entry>
+    <entry key="SuperPeiNameValidator">'ДОУ с именем ${input} не может быть создано,данное имя является уникальным в
+        системе'
+    </entry>
+    <entry key="GroupNameUniqueValidator">'В текущем ДОУ уже существует группа с именем ${input}. Измените имя и
+        повторите попытку'
+    </entry>
+    <entry key="MaximumValidator">'Введенная строка не должна превышать максимум в '${maximum} символов'</entry>
+    <entry key="AgeValidator.range">Возраст должен быть в пределах от ${minimum} до ${maximum}</entry>
+    <entry key="emailValidator">Неправильный электронный адрес!</entry>
+    <entry key="websiteValidator">Неправильный адрес сайта!</entry>
+    <entry key="IConverter.Integer">Неправильное числовое значение. Требуется целое число</entry>
+    <entry key="PhoneNumberValidator">Неправильный телефонный номер. Номер должен состоять не менее чем из 7 цифр, а
+        также символа пробела и символа "-", и может начинаться знаком "+"
+    </entry>
+    <entry key="skypeValidator">Неправильный логин Skype. Логин должен начинаться с буквы, иметь длину от 6 до 32
+        символов и состоять только от цифр и букв.
+    </entry>
+    <entry key="AvatarDataWasLost">Истекло время хранения сессии. Аватар был утерян, Пожалуйста перезагрузите аватар
+    </entry>
+    <entry key="maxLengthError">Ошибка, слишком длинное поле! Максимум %d символов.</entry>
+
+    <!--basic actions-->
+    <entry key="edit">(изменить)</entry>
+    <entry key="addNew">(добавить)</entry>
+    <entry key="select">(выбрать)</entry>
+    <entry key="save">Сохранить</entry>
+    <entry key="cancel">Отмена</entry>
+    <entry key="send">Отправить</entry>
+    <entry key="new">Создать</entry>
+    <entry key="search">Искать</entry>
+    <entry key="open">Открыть</entry>
+    <entry key="download">Загрузить</entry>
+    <entry key="add">Добавить</entry>
+    <entry key="change">Редактировать</entry>
+    <entry key="transform">Изменить</entry>
+    <entry key="delete">Удалить</entry>
+    <entry key="apply">Подтвердить</entry>
+    <entry key="check">Выбрать</entry>
+    <entry key="sort">Сортировать</entry>
+    <entry key="view">Просмотреть</entry>
+    <entry key="ok">OK</entry>
+    <entry key="yes">Да</entry>
+    <entry key="no">Нет</entry>
+    <entry key="all">Все</entry>
+    <entry key="back">Назад</entry>
+
+    <entry key="preview">Предварительный просмотр</entry>
+
+    <!--search messages-->
+    <entry key="labelSearchResult">Результаты поиска</entry>
+    <entry key="labelSearchNotFoundResult">По вашему запросу ничего не найдено</entry>
+    <entry key="NavigatorLabel">Показано с ${from} по ${to} из ${of}</entry>
+
+    <!--Group validation message-->
+    <entry key="groupNotUnique">Имя группы\кружка\конкурса должно быть уникальным в пределах ДОУ</entry>
+
+    <!--User type resource model-->
+    <entry key="TeacherLabel">Cпециалист ДОУ:</entry>
+    <entry key="ParentLabel">Родитель:</entry>
+
+    <!--Task complexity level resource model-->
+    <entry key="easy">легкий</entry>
+    <entry key="middle">средний</entry>
+    <entry key="complex">сложный</entry>
+
+    <!--MimeSubType localized-->
+    <entry key="TEXT">Текст</entry>
+    <entry key="IMAGE">Изображение</entry>
+    <entry key="AUDIO">Аудио</entry>
+    <entry key="VIDEO">Видео</entry>
+    <entry key="DOCUMENT">Документ Word</entry>
+    <entry key="RTF">Документ RTF</entry>
+    <entry key="SPREADSHEET">Документ Excel</entry>
+    <entry key="ARCHIVE">Архив</entry>
+    <entry key="PRESENTATION">Презентация</entry>
+    <entry key="PDF">Документ PDF</entry>
+    <entry key="FLASH">Мультипликация</entry>
+    <entry key="COLLECTION">Коллекция</entry>
+    <entry key="CURRICULUM">Программа</entry>
+    <entry key="TASK">Задание</entry>
+    <entry key="LESSON">Образовательная деятельность</entry>
+    <entry key="SIMPLE">Файл</entry>
+    <entry key="ARTICLE">Статья</entry>
+    <entry key="YOUTUBE_VIDEO">Видео (YouTube)</entry>
+
+    <!--Group variants-->
+    <entry key="Contest">Конкурс</entry>
+    <entry key="Section">Кружок</entry>
+    <entry key="Group">Группа</entry>
+
+    <!--Localization for Ajax radio button-->
+    <entry key="regSpecTitle">Регистрация специалиста ДОУ</entry>
+    <entry key="regParentTitle">Регистрация родителя в виртуальном ДОУ</entry>
+    <entry key="regUserTitle">Регистрация нового пользователя</entry>
+    <entry key="nameSort">Название</entry>
+    <entry key="dateSort">Дата добавления</entry>
+    <entry key="durationSort">Длительность</entry>
+    <entry key="viewCountSort">Количество просмотров</entry>
+
+    <!--Admin tab names-->
+    <entry key="tab.magazine">Журналы</entry>
+    <entry key="tab.subscribe">Рассылка</entry>
+    <entry key="tab.service">Служебные</entry>
+    <entry key="tab.webinars">Вебинары</entry>
+    <entry key="tab.qa">Вопрос-ответ</entry>
+    <entry key="tab.courses">Курсы</entry>
+    <entry key="tab.paidgroups">Платные группы</entry>
+    <entry key="tab.users">Пользователи</entry>
+    <entry key="tab.pei">ДОУ</entry>
+    <entry key="tab.news">Новости</entry>
+    <entry key="tab.slider">Слайдер</entry>
+    <entry key="tab.tags">Теги</entry>
+    <entry key="tab.google">Панели Google</entry>
+    <entry key="tab.migrate">Миграция</entry>
+
+    <!--Image selector headers-->
+    <entry key="courseHeader">Картинка курсов</entry>
+    <entry key="addImageHeader">Добавление изображения</entry>
+    <entry key="recordImage">Загрузка изображения</entry>
+
+    <!--Pages names-->
+    <entry key="homePage">Главная</entry>
+    <entry key="faqPage">Помощь</entry>
+    <entry key="webinarsPage">Вебинары</entry>
+    <entry key="coursesPage">Авторские курсы</entry>
+    <entry key="forumPage">Форум</entry>
+    <entry key="libraryPage">Библиотека</entry>
+    <entry key="teachPage">О проекте</entry>
+    <entry key="trainPage">Повышение квалификации</entry>
+
+    <entry key="profile.general">Общая информация</entry>
+    <entry key="profile.courses">Авторские курсы</entry>
+    <entry key="profile.training">Курсы повышения квалификации</entry>
+    <entry key="profile.webinars">Вебинары</entry>
+    <entry key="profile.files">Файлы</entry>
+
+    <entry key="usersInvited">Пользователи приглашены</entry>
+
+</properties>

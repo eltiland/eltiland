@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="noRecords">По данным параметрам поиска результатов не найдено.</entry>
+    <entry key="recordCountPages">Найдено %d записей, %d cтраниц</entry>
+    <entry key="recordCountPagesSmall">Найдено %d записей, %d cтраницы</entry>
+    <entry key="recordCount">Найдено %d записей</entry>
+</properties>

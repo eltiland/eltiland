@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Форумы</entry>
+    <entry key="createGroupMessage">Создать группу форумов</entry>
+
+    <entry key="groupCreatedMessage">Группа форумов создана</entry>
+    <entry key="groupDeletedMessage">Группа форумов удалена</entry>
+    <entry key="groupSavedMessage">Группа форумов сохранена</entry>
+</properties>

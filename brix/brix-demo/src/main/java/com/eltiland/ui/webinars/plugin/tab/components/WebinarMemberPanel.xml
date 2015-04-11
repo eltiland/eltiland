@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="memberHeader">Список участников</entry>
+
+    <entry key="fioColumnTitle">ФИО участника</entry>
+    <entry key="emailColumnTitle">Email</entry>
+    <entry key="roleColumnTitle">Роль пользователя</entry>
+
+    <entry key="MEMBER.role">Участник</entry>
+    <entry key="OBSERVER.role">Обозреватель</entry>
+    <entry key="MODERATOR.role">Модератор</entry>
+
+    <entry key="download.tooltip">Скачать сертификат</entry>
+    <entry key="send.tooltip">Отправить сертификат</entry>
+
+    <entry key="send.error">Невозможно отправить сертификат - не прикреплена запись.</entry>
+    <entry key="send.message">Сертификат отправлен</entry>
+</properties>

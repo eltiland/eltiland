@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addLabel">Добавить</entry>
+    <entry key="deleteTooltip">Удалить FAQ</entry>
+    <entry key="editTooltip">Редактировать FAQ</entry>
+    <entry key="numberColumnLabel">Номер</entry>
+    <entry key="questionColumnLabel">Вопрос</entry>
+    <entry key="answerColumnLabel">Ответ</entry>
+    <entry key="questionSavedMessage">Вопрос успешно сохранен.</entry>
+    <entry key="answerSavedMessage">Ответ на вопрос успешно сохранен.</entry>
+    <entry key="qaDeletedMessage">Вопрос успешно удален.</entry>
+    <entry key="qaAddedMessage">Вопрос успешно добавлен.</entry>
+</properties>

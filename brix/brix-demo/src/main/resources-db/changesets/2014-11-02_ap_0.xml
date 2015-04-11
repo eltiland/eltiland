@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Table for course session documents.</comment>
+        <sql>
+            CREATE TABLE "public"."course_document" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "coursesession" NUMERIC,
+            "legaldoc" NUMERIC,
+            "physicaldoc" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+            ALTER TABLE "public"."course_document" ADD CONSTRAINT "document_file_legal" FOREIGN KEY ( "legaldoc" )
+            REFERENCES "public"."file" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_document" ADD CONSTRAINT "document_file_physical" FOREIGN KEY ( "physicaldoc" )
+            REFERENCES "public"."file" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."course_document" ADD CONSTRAINT "document_session" FOREIGN KEY ( "coursesession" )
+            REFERENCES "public"."course_session" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

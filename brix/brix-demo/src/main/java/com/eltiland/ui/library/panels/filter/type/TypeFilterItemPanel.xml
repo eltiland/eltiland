@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="LibraryRecord.type">Все</entry>
+    <entry key="LibraryDocumentRecord.type">Документ</entry>
+    <entry key="LibraryPresentationRecord.type">Презентация</entry>
+    <entry key="LibraryVideoRecord.type">Видеозапись</entry>
+    <entry key="LibraryImageRecord.type">Картинки</entry>
+    <entry key="LibraryArchiveRecord.type">Архив</entry>
+</properties>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget elti-create-group">
+        <div class="elti-widget-header">
+            <h1>
+                <wicket:message key="header"></wicket:message>
+            </h1>
+        </div>
+        <form wicket:id="form">
+            <div wicket:id="loginContainer">
+                <div wicket:id="loginField"></div>
+                <div wicket:id="passwordField"></div>
+                <button wicket:id="loginButton" style="margin-top: 10px">
+                    <wicket:message key="login"></wicket:message>
+                </button>
+            </div>
+
+            <div wicket:id="registerContainer">
+                <div wicket:id="nameField"></div>
+                <div wicket:id="surnameField"></div>
+                <div wicket:id="patronymicField"></div>
+                <button wicket:id="webinarButton" style="margin-top: 10px">
+                    <wicket:message key="apply"></wicket:message>
+                </button>
+            </div>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

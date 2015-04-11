@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div style="padding-top: 5px">
+        <div class="blockLabel">
+            <wicket:message key="emailData"></wicket:message>
+        </div>
+        <div wicket:id="emailData"></div>
+    </div>
+    <div class="clear"></div>
+    <wicket:enclosure child="addressData">
+        <div style="padding-top: 5px">
+            <div class="blockLabel">
+                <wicket:message key="addressData"></wicket:message>
+            </div>
+            <div wicket:id="addressData"></div>
+        </div>
+    </wicket:enclosure>
+    <div class="clear"></div>
+    <wicket:enclosure child="phoneData">
+        <div style="padding-top: 5px">
+            <div class="blockLabel">
+                <wicket:message key="phoneData"></wicket:message>
+            </div>
+            <div wicket:id="phoneData"></div>
+        </div>
+    </wicket:enclosure>
+    <div class="clear"></div>
+    <wicket:enclosure child="skypeData">
+        <div style="padding-top: 5px">
+            <div class="blockLabel">
+                <wicket:message key="skypeData"></wicket:message>
+            </div>
+            <div wicket:id="skypeData"></div>
+        </div>
+    </wicket:enclosure>
+</wicket:extend>
+</body>
+</html>

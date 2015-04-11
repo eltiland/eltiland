@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="accessContainer" class="interval">
+        <div wicket:id="interval"></div>
+    </div>
+
+    <div wicket:id="paidContainer">
+        <div class="courseContentPay">
+            <div class="header">
+                <wicket:message key="header"></wicket:message>
+            </div>
+            <div wicket:id="blockPayContainer" style="width:100%">
+                <div class="partHeader">
+                    <div wicket:id="blockLabel"></div>
+                </div>
+                <div class="payContainer">
+                    <div class="priceLabel">
+                        <wicket:message key="payLabel"></wicket:message>
+                    </div>
+                    <div class="price" wicket:id="price"></div>
+                    <div class="button" wicket:id="button"></div>
+                </div>
+                <div class="breaker"></div>
+            </div>
+            <div wicket:id="fullPayContainer" style="width:100%">
+                <div class="partHeader">
+                    <wicket:message key="payCourseAccess"></wicket:message>
+                </div>
+                <div class="payContainer">
+                    <div class="priceLabel">
+                        <wicket:message key="payLabel"></wicket:message>
+                    </div>
+                    <div class="price" wicket:id="priceFull"></div>
+                    <div class="button" wicket:id="buttonFull"></div>
+                </div>
+                <div class="breaker"></div>
+            </div>
+        </div>
+    </div>
+    <div wicket:id="controlContainer">
+        <div class="class_control_message">
+            <wicket:message key="controlMessage"></wicket:message>
+        </div>
+        <button wicket:id="showButton" style="float:right">
+            <wicket:message key="showMessage"></wicket:message>
+        </button>
+    </div>
+
+    <div wicket:id="contentContainer">
+        <wicket:child></wicket:child>
+        <div class="clear"></div>
+        <div wicket:id="fileContainer">
+            <div class="attach">
+                <wicket:message key="attachedFiles"></wicket:message>
+            </div>
+            <div class="attach" wicket:id="filePanel"></div>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

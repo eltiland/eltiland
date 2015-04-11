@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div wicket:id="content">
+        <div class="message" wicket:id="message"></div>
+        <div class="webinar" wicket:id="webinarContainer">
+            <div wicket:id="memberContainer">
+                <div class="message">
+                    <wicket:message key="memberMessage"></wicket:message>
+                </div>
+            </div>
+            <div wicket:id="notMemberContainer">
+                <div class="message">
+                    <wicket:message key="notMemberMessage"></wicket:message>
+                    <br>
+                    <button class="action" wicket:id="signUpButton">
+                        <wicket:message key="register"></wicket:message>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div wicket:id="addUserDialog"></div>
+    </div>
+</wicket:extend>
+</body>
+</html>

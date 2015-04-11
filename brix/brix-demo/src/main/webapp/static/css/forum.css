@@ -1,0 +1,213 @@
+.forum .header {
+    border-bottom: 1px solid #D6DDB9;
+    clear: left;
+    font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, Trebuchet MS, sans-serif;
+    font-size: 133.3%;
+    font-weight: bold;
+    line-height: 120%;
+    padding-bottom: 10px;
+}
+
+.forum .header .button {
+    float: right;
+}
+
+.forum .buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.forum .enter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.forum .enter a {
+    margin-right: 0;
+}
+
+.forum .enter .reason {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.forum .groups .group .name {
+    background-color: #e9e9e9;
+    color: #000000;
+    font-weight: normal;
+    font-family: "a_Campus";
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #a9a9a9
+}
+
+.forum .groups .group .name .iconPanel {
+    margin-top: -25px;
+    float: right;
+    margin-right: 5px;
+}
+
+.forum .table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.forum .table .even {
+    background-color: whitesmoke;
+}
+
+.forum .table .odd {
+    background-color: #FDFFEF;
+}
+
+.forum .table tr {
+    border: 1px solid #CCCCCC;
+}
+
+.forum .table tr {
+    height: 80px;
+}
+
+.forum .table .headers {
+    font-size: 11px !important;
+    height: 20px;
+    color: #ffffff;
+    background-color: rgb(175, 199, 224);
+}
+
+.forum .table .author {
+    font-size: 13px;
+}
+
+.forum .table .iconColumn {
+    width: 60px;
+}
+
+.forum .table .iconColumn .icon {
+    height: 48px;
+    width: 48px;
+    background-image: url("../images/forum/forum_list.png");
+    margin-left: 5px;
+}
+
+.forum .table .themesColumn {
+    width: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.forum .table .messagesColumn {
+    width: 70px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.forum .table .lastMessagesColumn {
+    width: 135px;
+}
+
+.forum .table .lastMessagesColumn .last_date {
+    font-size: 13px;
+}
+
+.forum .table .forumColumn .description {
+    font-size: 11px;
+}
+
+.forum .threads .table .headers {
+    height: 20px;
+    text-align: left;
+}
+
+.forum .threads .table tr {
+    height: 45px;
+}
+
+.forum .threads .table .iconColumn .icon {
+    height: 24px;
+    width: 24px;
+    background-image: url("../images/forum/forum_topic.png");
+    margin-left: 5px;
+}
+
+.forum .messages {
+    margin-top: 10px;
+}
+
+.forum .messages .message {
+    border: 1px solid rgb(196, 231, 253);
+}
+
+.forum .messages .message .createForm {
+    border: 1px solid rgb(196, 231, 253);
+    padding: 10px;
+}
+
+.forum .messages .message .date {
+    background: #edf5fa; /* Old browsers */
+    background: -moz-linear-gradient(top, #edf5fa 1%, #c8dbea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #edf5fa), color-stop(100%, #c8dbea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #edf5fa 1%, #c8dbea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #edf5fa 1%, #c8dbea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #edf5fa 1%, #c8dbea 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #edf5fa 1%, #c8dbea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#edf5fa', endColorstr = '#c8dbea', GradientType = 0); /* IE6-9 */
+    font-size: 11px;
+    height: 17px;
+    padding-left: 7px;
+    border: 2px white solid;
+}
+
+.forum .messages .message .data {
+    display: table;
+    background: #D7E7F3; /* Old browsers */
+    border: 2px white solid;
+}
+
+.forum .messages .message .data .user {
+    width: 150px;
+    display: block;
+    background: #D7E7F3; /* Old browsers */
+    min-height: 110px;
+    float: left;
+    max-width: 150px;
+    height: 100%;
+}
+
+.forum .messages .message .data .user .name {
+    margin-right: 0;
+}
+
+.forum .messages .message .data .user .name div {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.forum .messages .message .data .content {
+    width: 100%;
+    display: table-cell;
+    border: 2px white solid;
+    vertical-align: top;
+}
+
+.forum .messages .message .data .content .message_title {
+    background-color: rgb(237, 245, 250);
+    border-left: 2px solid white;
+    line-height: 225%;
+    padding-bottom: 2px;
+    border-bottom: medium none;
+    font-size: 75%;
+    padding-left: 5px;
+}
+
+.forum .messages .message .data .content .message_content {
+    background-color: white;
+    min-height: 75px;
+    padding: 3px;
+}
+
+.forum .messages .message .data .content .button {
+    float: right;
+}

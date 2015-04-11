@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding field for organization to user, removing extra columns in course</comment>
+        <sql>
+            ALTER TABLE "public"."course" DROP COLUMN "prejoindate";
+            ALTER TABLE "public"."course" DROP COLUMN "startdate";
+            ALTER TABLE "public"."course" DROP COLUMN "finishdate";
+            ALTER TABLE "public"."user" ADD COLUMN "organization" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default";
+        </sql>
+    </changeSet>
+</databaseChangeLog>

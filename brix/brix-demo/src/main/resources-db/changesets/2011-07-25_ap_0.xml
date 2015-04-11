@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Drop user sequence and table</comment>
+        <sql>
+            DROP TABLE "user";
+            DROP SEQUENCE _user_sequence;
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding pei table</comment>
+        <sql>
+            CREATE TABLE pei
+            (
+            _id numeric NOT NULL,
+            address character varying(250) NOT NULL,
+            conspresent boolean,
+            description character varying(255),
+            email character varying(250) NOT NULL,
+            familypresent boolean,
+            manager character varying(250),
+            name character varying(250) NOT NULL,
+            phone character varying(20),
+            CONSTRAINT pei_pkey PRIMARY KEY (_id ),
+            CONSTRAINT pei_email_key UNIQUE (email ),
+            CONSTRAINT pei_name_address_key UNIQUE (name , address )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE pei
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Adding user table</comment>
+        <sql>
+            CREATE TABLE "user"
+            (
+            type character varying(31) NOT NULL,
+            _id numeric NOT NULL,
+            email character varying(255) NOT NULL,
+            name character varying(250) NOT NULL,
+            password character varying(255) NOT NULL,
+            address character varying(255),
+            achieve character varying(255),
+            exp integer,
+            information character varying(255),
+            duration integer,
+            publication character varying(255),
+            pei numeric,
+            CONSTRAINT user_pkey PRIMARY KEY (_id ),
+            CONSTRAINT pei_key FOREIGN KEY (pei)
+            REFERENCES pei (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT user_email_key UNIQUE (email )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "user"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Adding child table</comment>
+        <sql>
+            CREATE TABLE child
+            (
+            _id numeric NOT NULL,
+            age integer NOT NULL,
+            name character varying(250) NOT NULL,
+            parent numeric,
+            CONSTRAINT child_pkey PRIMARY KEY (_id ),
+            CONSTRAINT parent_key FOREIGN KEY (parent)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE child
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="aleksey.plotnikov">
+        <comment>Adding sequence table</comment>
+        <sql>
+            CREATE TABLE hibernate_sequences
+            (
+            sequence_name character varying(255),
+            sequence_next_hi_value integer
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE hibernate_sequences
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

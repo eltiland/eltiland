@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="Send">Отправить</entry>
+    <entry key="Apply">Подтвердить</entry>
+    <entry key="Save">Сохранить</entry>
+    <entry key="Create">Создать</entry>
+    <entry key="Register">Зарегистрировать</entry>
+    <entry key="Add">Добавить</entry>
+    <entry key="Select">Выбрать</entry>
+    <entry key="Yes">Да</entry>
+    <entry key="No">Нет</entry>
+
+    <entry key="AddUser">Добавить пользователя</entry>
+</properties>

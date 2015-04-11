@@ -1,0 +1,121 @@
+.course_page {
+}
+
+.course_page > .course_name {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(37, 126, 11);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-family: "a_Campus";
+    color: white;
+}
+
+.course_page > .course_kind {
+    display: table;
+    margin: 0 auto;
+    margin-top: 5px;
+    height: 21px;
+    width: 150px;
+    text-align: center;
+    border: 1px #b29f9f solid;
+    -moz-box-shadow: 2px 2px 2px 2px #888888;
+    -webkit-box-shadow: 2px 2px 2px 2px #888888;
+    box-shadow: 2px 2px 2px 2px #888888;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.course_page > .demo_kind {
+    color: black;
+}
+
+.course_page > .full_kind {
+    color: #ff6a1c;
+}
+
+.course_page > .course_content {
+    margin: 15px;
+    border: 1px #b29f9f solid;
+    -moz-box-shadow: 2px 2px 2px 2px #888888;
+    -webkit-box-shadow: 2px 2px 2px 2px #888888;
+    box-shadow: 2px 2px 2px 2px #888888;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.course_page > .course_content > .block {
+    padding: 10px;
+}
+
+.course_page > .course_content > .block > .name {
+    display: table;
+    height: 20px;
+}
+
+.course_page > .course_content > .block > .name > .bar {
+    padding: 10px;
+    display: table-cell;
+    background-color: rgb(255, 106, 28);
+}
+
+.course_page > .course_content > .block > .name > .caption {
+    display: table-cell;
+    font-family: "a_Campus";
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.course_item {
+    margin-left: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.course_item > .icon {
+    display: table-cell;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+}
+
+.course_item > .document {
+    background-image: url("../../images/item/24x24/document.png");
+}
+
+.course_item > .presentation {
+    background-image: url("../../images/item/24x24/presentation.png");
+}
+
+.course_item > .test {
+    background-image: url("../../images/item/24x24/task.png");
+}
+
+.course_item > .video {
+    background-image: url("../../images/item/24x24/video.png");
+}
+
+.course_item > .webinar {
+    background-image: url("../../images/item/24x24/video.png");
+}
+
+.course_item > .name {
+    display: table-cell;
+    padding-left: 5px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.course_item > .name:hover {
+    color: rgb(255, 106, 28);
+    background-color: #f1f7fd;
+}
+
+.course_item > .group {
+    font-style: italic;
+}

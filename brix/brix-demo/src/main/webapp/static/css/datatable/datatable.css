@@ -1,0 +1,144 @@
+/**
+ *************************************************************************
+ * CSS styles for data tables
+ *************************************************************************
+ */
+.dataTable {
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+    /*border: #a7bacf solid 1px;*/
+    display: inline-block;
+    width: 100%;
+}
+
+.dataTable table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.dataTable .headers {
+    height: 50px;
+    font-size: 17px;
+    color: #183e71;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #d3d3d3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #d3d3d3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #d3d3d3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%, #d3d3d3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%, #d3d3d3 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%, #d3d3d3 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#d3d3d3', GradientType = 0); /* IE6-9 */
+}
+
+.dataTable tbody {
+    border: #a7bacf solid 1px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dataTable tbody > tr {
+    border: #a7bacf solid 1px;
+    height: 45px;
+    font-family: Arial;
+    font-size: 13px;
+    color: #3d3d3d;
+    background: #fffcf8;
+}
+
+.dataTable tbody > tr:hover {
+    background: #fbfff7;
+}
+
+.dataTable tbody > tr > td {
+    border: #a7bacf solid 1px;
+    padding: 3px;
+}
+
+.dataTable th {
+    border: #a7bacf solid 1px;
+    padding: 10px;
+}
+
+.dataTable th > div > a {
+    color: #183e71;
+    text-decoration: none;
+}
+
+.dataTable table > tfoot > tr > td {
+    padding: 10px;
+    text-align: right;
+    padding-left: 60%;
+}
+
+.dataTable table > tbody > tr > td > span > a {
+    text-decoration: none;
+}
+
+.tableActionLink {
+    font-family: Arial;
+    font-size: 12px;
+    color: #0d5ec8;
+    float: left;
+    min-width: 50px;
+}
+
+.tableActionLink:hover {
+    color: #4290f1;
+}
+
+.tableActionLink:active {
+    color: #597495;
+}
+
+.tableActionLink-disabled {
+    font-family: Arial;
+    font-size: 12px;
+    float: left;
+    color: #c7c7c7;
+    min-width: 50px;
+}
+
+.tableSecondAction {
+    margin-top: 5px;
+}
+
+.tableHeaderIcon {
+    width: 14px;
+    height: 15px;
+    float: left;
+    margin-top: 2px;
+    margin-right: 3px;
+}
+
+.iconNoSort {
+    background: url("../../images/table/icon_nosort.png");
+}
+
+.iconSortUp {
+    background: url("../../images/table/arrow_up.png");
+}
+
+.iconSortDown {
+    background: url("../../images/table/arrow_down.png");
+}
+
+.tableAction {
+    width: 25px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.actionSignUp {
+    background: url("../../images/table/signup.png");
+}
+
+.actionLeave {
+    background: url("../../images/table/leave.png");
+}
+
+.actionSignUpMany {
+    background: url("../../images/actions/24x24/webinar_users.png");
+}
+
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="igor.cherednichenko">
+        <comment>Refactoring for com.eltiland.model.library.TaskComplexity</comment>
+        <addColumn tableName="task_complexity" schemaName="public">
+            <column name="next" type="DECIMAL(20, 0)"/>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_task_complexity"
+                                 baseTableName="task_complexity" baseColumnNames="next"
+                                 referencedTableName="task_complexity" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Update TaskComplexity</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION next_taxcomplexity(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from task_complexity where task_complexity.description=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <update tableName="task_complexity">
+            <column name="next" valueComputed="next_taxcomplexity('middle')"/>
+            <where>description='easy'</where>
+        </update>
+
+        <update tableName="task_complexity">
+            <column name="next" valueComputed="next_taxcomplexity('complex')"/>
+            <where>description='middle'</where>
+        </update>
+
+        <sql endDelimiter=";">
+            drop function next_taxcomplexity(search_path text);
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Create table for many to many relation CurriculumRecord - Record</comment>
+
+        <createTable tableName="curriculumrecord_record">
+            <column name="curriculum_record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="curriculumrecord_record" columnNames="record_id, curriculum_record_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_collection_record"
+                                 baseTableName="curriculumrecord_record" baseColumnNames="curriculum_record_id"
+                                 referencedTableName="curriculum_record" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="curriculumrecord_record" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="currencyLabel">руб.</entry>
+
+    <entry key="errorMoneyFormat">Неправильный формат суммы!</entry>
+    <entry key="errorNegativeMoney">Сумма не может быть отрицательной!</entry>
+    <entry key="errorTooMuchMoney">Слишком большая сумма!</entry>
+    <entry key="errorZeroMoney">Сумма должна быть больше 0!</entry>
+</properties>

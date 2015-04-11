@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="createItemDialog"></div>
+    <div wicket:id="renameItemDialog"></div>
+    <div wicket:id="paidInvoiceDialog"></div>
+    <div class="controlPanel">
+        <a class="courseButton" wicket:id="lockButton">
+            <div class="image lock" wicket:id="lockImage"></div>
+        </a>
+
+        <a class="courseButton" wicket:id="unlockButton">
+            <div class="image unlock" wicket:id="unlockImage"></div>
+        </a>
+
+        <wicket:enclosure child="addButton">
+            <div class="whitespace"></div>
+            <a class="courseButton" wicket:id="addButton">
+                <div class="image add" wicket:id="addImage"></div>
+            </a>
+        </wicket:enclosure>
+
+        <wicket:enclosure child="removeButton">
+            <div class="whitespace"></div>
+            <a class="courseButton" wicket:id="removeButton">
+                <div class="image remove" wicket:id="removeImage"></div>
+            </a>
+        </wicket:enclosure>
+
+        <wicket:enclosure child="renameButton">
+            <div class="whitespace"></div>
+            <a class="courseButton" wicket:id="renameButton">
+                <div class="image rename" wicket:id="renameImage"></div>
+            </a>
+        </wicket:enclosure>
+
+        <wicket:enclosure child="upButton">
+            <div class="whitespace"></div>
+            <a class="courseButton" wicket:id="upButton">
+                <div class="image up" wicket:id="upImage"></div>
+            </a>
+        </wicket:enclosure>
+
+        <wicket:enclosure child="downButton">
+            <div class="whitespace"></div>
+            <a class="courseButton" wicket:id="downButton">
+                <div class="image down" wicket:id="downImage"></div>
+            </a>
+        </wicket:enclosure>
+
+        <div class="whitespace"></div>
+        <a class="courseButton right" wicket:id="paidAddButton">
+            <div class="image paidAdd" wicket:id="paidAddImage"></div>
+        </a>
+
+        <div class="whitespace"></div>
+        <a class="courseButton right" wicket:id="paidRemoveButton">
+            <div class="image paidRemove" wicket:id="paidRemoveImage"></div>
+        </a>
+
+        <div class="whitespace"></div>
+        <a class="courseButton right" wicket:id="paidModifyButton">
+            <div class="image paidModify" wicket:id="paidModifyImage"></div>
+        </a>
+    </div>
+</wicket:panel>
+</body>
+</html>

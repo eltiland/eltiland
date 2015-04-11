@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="headerLabel">Заявка на участие в вебинаре</entry>
+    <entry key="newUserLabel">Регистрация пользователя:</entry>
+    <entry key="approveButtonLabel">Подтвердить</entry>
+
+    <entry key="nameLabel">ФИО</entry>
+    <entry key="surnameLabel">Фамилия</entry>
+    <entry key="patronymicLabel">Отчество</entry>
+    <entry key="emailLabel">Email</entry>
+    <entry key="passwordLabel">Пароль для входа на портал</entry>
+    <entry key="passwordSecondLabel">Повторите пароль</entry>
+
+    <entry key="errorEmailRegistered">Ошибка - пользователь с данным Email уже зарегистрирован на данный вебинар!
+    </entry>
+    <entry key="errorFioFormat">Ошибка - ФИО должно быть в формате "Фамилия Имя Отчество".</entry>
+    <entry key="passwordEqualsError">Ошибка! Пароли должны совпадать</entry>
+    <entry key="errorRegisteredUser">Ошибка! Пользователь с данным Email уже зарегистрирован на портале.</entry>
+
+    <entry key="notRegisteredMessage">В вебинаре могут участвовать только зарегистрированные пользователи</entry>
+
+    <entry key="alreadyRegistered">Уже зарегистрированы на портале?</entry>
+    <entry key="press">Нажмите</entry>
+    <entry key="enter">Вход и регистрация на вебинар</entry>
+
+    <entry key="subscribeMessage">Подписаться на рассылку портала</entry>
+</properties>

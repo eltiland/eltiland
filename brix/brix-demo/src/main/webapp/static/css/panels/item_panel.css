@@ -1,0 +1,83 @@
+/*   -------   Styles for record panel   -------   */
+/**************************************************************************************************/
+.item_panel {
+    width: 95%;
+    height: 150px;
+    display: table;
+    margin: 0 auto;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.item_panel .icon_container {
+    display: table-cell;
+    width: 13%;
+}
+
+.item_panel .icon_container .icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 15px !important;
+}
+
+.item_panel .icon_container .info {
+    text-align: center;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0078AE;
+    margin-top: 10px;
+}
+
+.item_panel .info_container {
+    display: table-cell;
+    width: 87%;
+    vertical-align: top;
+}
+
+.item_panel .info_container .data {
+    min-height: 90px;
+}
+
+.item_panel .info_container .name {
+    color: #0078AE;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    margin: 10px;
+}
+
+.item_panel .info_container .description {
+    text-decoration: none;
+    font-size: 12px;
+    margin: 10px;
+}
+
+.item_panel .info_container .open {
+    font-weight: bold;
+    color: #006400;
+}
+
+.item_panel .info_container .closed {
+    font-weight: bold;
+    color: red;
+}
+
+.item_panel .info_container .actions {
+    border-top: 1px solid lightgray;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.item_panel .info_container .actions .action {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.item_panel .info_container .status {
+    margin-left: 7px;
+    margin-top: 15px;
+    font-weight: bold;
+}

@@ -1,0 +1,88 @@
+/**************************************************************************************************/
+/* Styles for button - version selector for the course.
+/**************************************************************************************************/
+.course_version_button {
+    width: 400px;
+    height: 40px;
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    cursor: pointer;
+}
+
+.course_version_button:hover {
+    -webkit-box-shadow: 3px 3px 31px 0 rgba(114, 187, 224, 1);
+    -moz-box-shadow: 3px 3px 31px 0 rgba(114, 187, 224, 1);
+    box-shadow: 3px 3px 31px 0 rgba(114, 187, 224, 1);
+}
+
+.demo_button {
+    border: 2px solid #1FAB6B;
+}
+
+.full_button {
+    border: 2px solid #ab300f;
+}
+
+.course_version_button > .price {
+    width: 200px;
+    height: 40px;
+    float: left;
+    border-radius: 7px 0 0 7px;
+    -moz-border-radius: 7px 0 0 7px;
+    -webkit-border-radius: 7px 0 0 7px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Georgia";
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.course_version_button > .price > .paid {
+    color: #ab300f;
+    display: table;
+    margin: 0 auto;
+}
+
+.course_version_button > .price > .paid > .rubel {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1em;
+    float: left;
+}
+
+.course_version_button > .price > .paid > .value {
+    float: left;
+    margin-left: 2px;
+}
+
+.course_version_button > .info {
+    width: 200px;
+    height: 40px;
+    float: left;
+    border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0 4px 4px 0;
+    color: white;
+    text-align: center;
+    font-family: "Georgia";
+}
+
+.demo_button > .info {
+    background-color: #1FAB6B;
+    font-size: 25px;
+}
+
+.full_button > .info {
+    background-color: #ab300f;
+    font-size: 24px;
+}
+
+.course_version_button > .info > .name {
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+.demo_button > .price {
+    color: #1FAB6B;
+}

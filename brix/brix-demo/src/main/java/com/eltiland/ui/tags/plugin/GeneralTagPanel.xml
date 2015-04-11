@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="title">Категории тегов</entry>
+
+    <entry key="nameColumn">Название (нажмите для управления тегами)</entry>
+    <entry key="nameTagColumn">Название</entry>
+    <entry key="tagCategoryCreatedMessage">Новая категория тегов успешно создана.</entry>
+    <entry key="tagCategoryDeletedMessage">Категория тегов успешно удалена.</entry>
+    <entry key="tagCategoryUpdatedMessage">Категория тегов успешно изменена.</entry>
+
+    <entry key="tagCreatedMessage">Новый тег успешно создан.</entry>
+    <entry key="tagDeletedMessage">Тег успешно удален.</entry>
+    <entry key="tagUpdatedMessage">Тег успешно изменен.</entry>
+
+    <entry key="tagTitle">Теги категории %s:</entry>
+</properties>

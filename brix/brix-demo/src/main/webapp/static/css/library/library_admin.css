@@ -1,0 +1,40 @@
+.library_admin .actions {
+    width: 98%;
+    height: 60px;
+    background-color: #efefef;
+    display: table;
+    margin: 0 auto;
+}
+
+.library_admin .content {
+    padding: 13px;
+}
+
+.library_admin .actions .info {
+    background-color: white;
+}
+
+.library_admin .action {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.library_admin .actions .left {
+    float: left;
+}
+
+.library_admin .actions .right {
+    float: right;
+}
+
+.library_admin .grid {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.library_admin .content .subCollectionLabel {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+}

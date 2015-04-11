@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Added paylink to record payment table</comment>
+        <sql>
+            ALTER TABLE "public"."webinar_record_payment" ADD COLUMN "paylink" CHARACTER VARYING( 255 ) COLLATE
+            "pg_catalog"."default";
+        </sql>
+    </changeSet>
+</databaseChangeLog>

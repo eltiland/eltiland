@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Create position table</comment>
+        <sql>
+            CREATE TABLE "position"
+            (
+            _id numeric NOT NULL,
+            name character varying(250) NOT NULL,
+            CONSTRAINT position_pkey PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "position"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding link to position to teacher</comment>
+        <addColumn tableName="user">
+            <column name="position" type="int"/>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_position_key"
+                                 baseTableName="user" baseColumnNames="position"
+                                 referencedTableName="position" referencedColumnNames="_id"/>
+    </changeSet>
+</databaseChangeLog>

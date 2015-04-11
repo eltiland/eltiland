@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="headerContainer" class="elti-widget-header">
+        <h1>
+            <wicket:message key="header"></wicket:message>
+        </h1>
+    </div>
+
+    <form wicket:id="form">
+        <div wicket:id="topic"></div>
+        <div wicket:id="description"></div>
+        <div wicket:id="shortDesc"></div>
+        <div wicket:id="date"></div>
+        <div wicket:id="duration"></div>
+
+        <div wicket:id="freeWebinarCheck"></div>
+        <div wicket:id="price" style="margin-top: 20px;height: 25px;margin-bottom: 10px"></div>
+
+        <div wicket:id="leaderName"></div>
+        <div wicket:id="leaderSurname"></div>
+        <div wicket:id="leaderEmail"></div>
+
+        <div wicket:id="deadline"></div>
+
+        <div wicket:id="password"></div>
+        <div wicket:id="passwordRetry"></div>
+
+        <div wicket:id="required"></div>
+
+        <button wicket:id="createButton" class="elti-linkbutton" style="margin-top: 10px">
+            <wicket:message key="createLabel"></wicket:message>
+        </button>
+
+        <button wicket:id="saveButton" class="elti-linkbutton" style="margin-top: 10px">
+            <wicket:message key="saveLabel"></wicket:message>
+        </button>
+    </form>
+</wicket:panel>
+</body>
+</html>

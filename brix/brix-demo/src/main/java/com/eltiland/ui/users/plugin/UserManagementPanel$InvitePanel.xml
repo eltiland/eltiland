@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="name">ФИО</entry>
+    <entry key="email">Email</entry>
+
+    <entry key="header">Приглашение пользователя</entry>
+
+    <entry key="registerMessage">Пользователь успешно приглашен</entry>
+</properties>

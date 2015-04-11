@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="saveVideoMessage">Видео успешно сохранено</entry>
+    <entry key="control">Управление видео</entry>
+
+    <entry key="editTooltip">Редактировать информацио видео</entry>
+    <entry key="removeTooltip">Удалить видео</entry>
+    <entry key="upTooltip">Поднять видео вверх</entry>
+    <entry key="downTooltip">Опустить видео вниз</entry>
+    <entry key="tagTooltip">Редактирование тегов видео</entry>
+
+    <entry key="tagMessageSaved">Теги видео сохранены.</entry>
+
+    <entry key="noTagsForEntity">У данного класса сущностей нет тегов.</entry>
+</properties>

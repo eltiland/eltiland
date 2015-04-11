@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="name.column">Название видео</entry>
+
+    <entry key="edit.tooltip">Редактировать видео</entry>
+    <entry key="desc.tooltip">Редактировать описание</entry>
+    <entry key="preview.tooltip">Предпросмотр</entry>
+    <entry key="remove.tooltip">Удалить</entry>
+    <entry key="add.tooltip">Добавить видео</entry>
+    <entry key="up.tooltip">Вверх на 1 позицию</entry>
+    <entry key="down.tooltip">Вниз на 1 позицию</entry>
+    <entry key="page.preview.tooltip">Просмотр всей страницы</entry>
+</properties>

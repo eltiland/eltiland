@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Creating table for magazine entity</comment>
+        <sql>
+            CREATE TABLE "magazine"."magazine" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "content" TEXT COLLATE "pg_catalog"."default",
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "price" NUMERIC( 19, 2 ) NOT NULL,
+            "topic" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "content__id" NUMERIC,
+            "cover__id" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Creating table for client entity</comment>
+        <sql>
+            CREATE TABLE "magazine"."client" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "active" BOOLEAN DEFAULT 'true' NOT NULL,
+            "email" CHARACTER VARYING( 40 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "name" CHARACTER VARYING( 256 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "phone" CHARACTER VARYING( 40 ) COLLATE "pg_catalog"."default",
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Creating M:M link between magazine and client</comment>
+        <sql>
+            CREATE TABLE "magazine"."client_magazine" (
+            "client_id" NUMERIC NOT NULL,
+            "magazine_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "client_id","magazine_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Creating Links between tables</comment>
+        <sql>
+            ALTER TABLE "magazine"."client_magazine" ADD CONSTRAINT "magazine_link" FOREIGN KEY ( "magazine_id" )
+            REFERENCES "magazine"."magazine" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "magazine"."client_magazine" ADD CONSTRAINT "client_link" FOREIGN KEY ( "client_id" )
+            REFERENCES "magazine"."client" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

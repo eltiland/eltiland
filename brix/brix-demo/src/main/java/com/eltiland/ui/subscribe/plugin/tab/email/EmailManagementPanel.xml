@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addEmailLabel">Создать письмо</entry>
+    <entry key="sendedEmails">Отправленные письма</entry>
+    <entry key="headerColumn">Заголовок</entry>
+    <entry key="dateColumn">Дата отправки</entry>
+    <entry key="emailCreateMessage">Письмо успешно создано</entry>
+    <entry key="emailRemoveMessage">Письмо успешно удалено</entry>
+    <entry key="emailSaveMessage">Письмо сохранено</entry>
+    <entry key="emailSendMessage">Письмо успешно отослано</entry>
+    <entry key="noActiveSubscribers">Ошибка - нет активных подписчиков</entry>
+    <entry key="removeTooltip">Удалить письмо</entry>
+    <entry key="editTooltip">Редактировать</entry>
+    <entry key="sendOtherTooltip">Отправить на указаный email</entry>
+    <entry key="sendTooltip">Отослать текущим подписчикам</entry>
+    <entry key="sendOnlyMeTooltip">Отослать текущему пользователю</entry>
+    <entry key="sendConfirm">Вы действительно хотите отправить данное письмо всем зарегистрированным подписчикам?
+    </entry>
+    <entry key="openAction">Просмотреть письмо</entry>
+</properties>

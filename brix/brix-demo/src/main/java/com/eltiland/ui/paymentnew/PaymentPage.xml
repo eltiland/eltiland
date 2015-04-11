@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="pay.for">Оплата за </entry>
+
+    <entry key="ELTCourseListener.type">участие в курсе</entry>
+
+    <entry key="ELTCourseListener.class">course</entry>
+
+    <entry key="author.course">Авторский курс, автор %s.</entry>
+
+    <entry key="access.unlimited">Неограниченный доступ к материалам курса.</entry>
+    <entry key="access.limited">Доступ к материалам курса на %d дней.</entry>
+</properties>

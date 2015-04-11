@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding user sequence</comment>
+        <sql>
+            CREATE SEQUENCE _user_sequence
+            INCREMENT 1
+            MINVALUE 1
+            MAXVALUE 9223372036854775807
+            START 1
+            CACHE 1;
+            ALTER TABLE _user_sequence
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding user table</comment>
+        <sql>
+            CREATE TABLE "user"
+            (
+            type character varying(31) NOT NULL,
+            id numeric NOT NULL DEFAULT nextval('_user_sequence'::regclass),
+            email character varying(255) NOT NULL,
+            name character varying(250) NOT NULL,
+            password character varying(255) NOT NULL,
+            address character varying(255),
+            achieve character varying(255),
+            exp integer,
+            information character varying(255),
+            duration integer,
+            publication character varying(255),
+            CONSTRAINT user_pkey PRIMARY KEY (id ),
+            CONSTRAINT user_email_key UNIQUE (email )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE "user"
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

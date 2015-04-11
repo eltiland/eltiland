@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="forum">
+        <div class="header">
+            <div wicket:id="header"></div>
+        </div>
+        <wicket:enclosure child="enterLink">
+            <div class="enter">
+                <a wicket:id="enterLink">
+                    <wicket:message key="login"></wicket:message>
+                </a>
+
+                <span class="reason">
+                    <wicket:message key="loginReason"></wicket:message>
+                </span>
+            </div>
+        </wicket:enclosure>
+        <div wicket:id="listContainer">
+            <div class="messages" wicket:id="messageList">
+                <div wicket:id="message"></div>
+            </div>
+        </div>
+        <button class="buttons" wicket:id="createButton">
+            <wicket:message key="newMessage"></wicket:message>
+        </button>
+        <div class="createPanel" wicket:id="createPanel"></div>
+    </div>
+</wicket:extend>
+</body>
+</html>

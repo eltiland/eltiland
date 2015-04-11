@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="vadim.didenko">
+        <comment>delete length constraint from message text and activity title</comment>
+        <modifyDataType tableName="activity" newDataType="text" columnName="title" schemaName="public"/>
+        <modifyDataType tableName="message" newDataType="text" columnName="text" schemaName="public"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Create table for simple record entity</comment>
+
+        <createTable tableName="simple_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="file" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_file"
+                                 baseTableName="simple_record" baseColumnNames="file"
+                                 referencedTableName="file" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Create table for CollectionRecord entity</comment>
+
+        <createTable tableName="collection_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="igor.cherednichenko">
+        <comment>Create table for many to many relation CollectionRecord - Record</comment>
+
+        <createTable tableName="collectionrecord_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="collection_record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_collection_record"
+                                 baseTableName="collectionrecord_record" baseColumnNames="collection_record_id"
+                                 referencedTableName="collection_record" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="collectionrecord_record" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="4" author="igor.cherednichenko">
+        <comment>Create table for TaskRecord entity</comment>
+
+        <createTable tableName="task_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="printed_version" type="DECIMAL(20, 0)"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_printed_version"
+                                 baseTableName="task_record" baseColumnNames="printed_version"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="5" author="igor.cherednichenko">
+        <comment>Create table for many to many relation TaskRecord - Record</comment>
+
+        <createTable tableName="taskrecord_record">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="task_record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_task_record"
+                                 baseTableName="taskrecord_record" baseColumnNames="task_record_id"
+                                 referencedTableName="task_record" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_record"
+                                 baseTableName="taskrecord_record" baseColumnNames="record_id"
+                                 referencedTableName="record" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

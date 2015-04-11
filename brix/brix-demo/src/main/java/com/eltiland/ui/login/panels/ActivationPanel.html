@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="activate-error" wicket:id="error">
+        <div wicket:id="errorMessage"></div>
+    </div>
+    <div wicket:id="main" class="login_main_panel">
+        <div class="header">
+            <div class="bar"></div>
+            <div class="message" style="font-size: 20px;">
+                <wicket:message key="activate"></wicket:message>
+            </div>
+        </div>
+        <div class="content">
+            <form wicket:id="form">
+                <div class="input_element">
+                    <input class="input" wicket:id="login" placeholder="Электронная почта"/>
+
+                    <div class="image email"></div>
+                </div>
+
+                <div class="clear"></div>
+                <div class="input_element">
+                    <input class="input" wicket:id="pass" placeholder="пароль" type="password"/>
+
+                    <div class="image key password"></div>
+                </div>
+
+                <div class="clear"></div>
+                <div class="input_element">
+                    <input class="input" wicket:id="rePass" placeholder="Повторите пароль" type="password"/>
+
+                    <div class="image key password"></div>
+                </div>
+                <button wicket:id="loginButton">
+                    <wicket:message key="loginAction"></wicket:message>
+                </button>
+            </form>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

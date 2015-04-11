@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="pavel.knorr">
+
+        <dropNotNullConstraint schemaName="public" tableName="group" columnName="group_curriculum"/>
+
+        <dropNotNullConstraint schemaName="public" tableName="group" columnName="contest_task"/>
+
+        <dropNotNullConstraint schemaName="public" tableName="group" columnName="section_curriculum"/>
+
+        <sql>
+            ALTER TABLE public.group
+            ADD CONSTRAINT _prototype_record CHECK
+            (
+            (_prototype = 'CONTEST' AND contest_task is not null)
+            OR
+            (_prototype = 'GROUP' AND group_curriculum is not null)
+            OR
+            (_prototype = 'SECTION' AND section_curriculum is not null)
+            );
+        </sql>
+
+    </changeSet>
+
+
+</databaseChangeLog>

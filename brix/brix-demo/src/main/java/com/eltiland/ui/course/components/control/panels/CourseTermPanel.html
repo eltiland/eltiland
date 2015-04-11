@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="course_term">
+        <div class="limits">
+            <div class="min">0</div>
+            <div class="max">10</div>
+        </div>
+        <div class="clear"></div>
+        <div class="message">
+            <wicket:message key="years_count"></wicket:message>
+        </div>
+        <input wicket:id="year" class="input" type="text" size="4"/>
+
+        <div wicket:id="sliderYear" class="slider"></div>
+        <div class="clear"></div>
+        <div class="limits">
+            <div class="min">0</div>
+            <div class="max">12</div>
+        </div>
+        <div class="clear"></div>
+        <div class="message">
+            <wicket:message key="month_count"></wicket:message>
+        </div>
+        <input wicket:id="month" class="input" type="text" size="4"/>
+
+        <div wicket:id="sliderMonth" class="slider"></div>
+        <div class="clear"></div>
+        <div class="limits">
+            <div class="min">0</div>
+            <div class="max">31</div>
+        </div>
+        <div class="clear"></div>
+        <div class="message">
+            <wicket:message key="days_count"></wicket:message>
+        </div>
+        <input wicket:id="day" class="input" type="text" size="4"/>
+
+        <div wicket:id="sliderDay" class="slider"></div>
+    </div>
+</wicket:extend>
+</body>
+</html>

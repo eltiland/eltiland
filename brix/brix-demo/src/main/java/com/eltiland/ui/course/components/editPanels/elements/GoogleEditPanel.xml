@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="saveMessage">Элемент курса успешно опубликован.</entry>
+    <entry key="saveTooltip">Опубликовать документ.</entry>
+    <entry key="enablePrintTooltip">Разрешить печать документа.</entry>
+    <entry key="disablePrintTooltip">Запретить печать документа.</entry>
+    <entry key="setControlTooltip">Пометить элемент как оценивающий.</entry>
+    <entry key="resetControlTooltip">Снять пометку "оценивающий".</entry>
+</properties>

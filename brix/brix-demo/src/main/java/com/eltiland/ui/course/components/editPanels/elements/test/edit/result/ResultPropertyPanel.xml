@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addHeader">Новый результат теста</entry>
+    <entry key="saveHeader">Редактирование результата теста</entry>
+    <entry key="text">Текст результата:</entry>
+    <entry key="value">Значение балла:</entry>
+    <entry key="minNumber">Минимальное значение балла:</entry>
+    <entry key="maxNumber">Максимальное значение балла:</entry>
+    <entry key="finalLabel">Завершить тест</entry>
+    <entry key="rightResult">Отметить как правильный</entry>
+
+    <entry key="maxminError">Ошибка - максимальное значение должно быть больше минимального.</entry>
+    <entry key="negativeError">Ошибка - значение должно быть положительным.</entry>
+    <entry key="intersectError">Ошибка - перекрывающиеся значения результатов.</entry>
+    <entry key="noResultError">Ошибка - вы должны ввести либо текст результата либо вопрос для безусловного перехода,
+        либо указать что результат завершит тест.
+    </entry>
+    <entry key="intervalError">Ошибка - вы должны указать либо конкретное значение балла либо полностью указать интервал
+        (минимум-максимум).
+    </entry>
+
+    <entry key="selectLabel">Вопрос %d. %s</entry>
+</properties>

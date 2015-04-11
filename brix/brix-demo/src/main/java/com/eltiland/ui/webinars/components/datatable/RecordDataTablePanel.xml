@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="webinarColumn">Название записи</entry>
+    <entry key="managerColumn">Ведущий</entry>
+    <entry key="priceColumn">Стоимость записи</entry>
+
+    <entry key="freePrice">Бесплатно</entry>
+    <entry key="loginNeededMessage">Для формирования заявки на покупку записи вебинара или заявки на доступ к бесплатной
+        записи, Вы должны зарегистрироваться на портале.
+    </entry>
+    <entry key="alreadySendedError">Вам уже отправлена ссылка для доступа к записи.</entry>
+    <entry key="sendedMessage">Ваш запрос на доступ к записи успешно отправлен администрации. Ожидайте письма с
+        инструкциями.
+    </entry>
+</properties>

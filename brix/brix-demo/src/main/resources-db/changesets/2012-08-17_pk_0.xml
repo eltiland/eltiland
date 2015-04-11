@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="pavel.knorr">
+        <comment>Migrate MIME types into Database</comment>
+
+        <createTable schemaName="public" tableName="mime">
+            <column name="mime_type" type="varchar(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="icon_name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="resource_key" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1" author="pavel.knorr">
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/wav"/>
+            <column name="icon_name" value="ICONS_WAV"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-wav"/>
+            <column name="icon_name" value="ICONS_WAV"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/wave"/>
+            <column name="icon_name" value="ICONS_WAV"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-pn-wav"/>
+            <column name="icon_name" value="ICONS_WAV"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/mpeg"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-mpeg"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/mp3"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-mp3"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/mpeg3"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-mpeg3"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/mpg"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-mpg"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-mpegaudio"/>
+            <column name="icon_name" value="ICONS_MP3"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-ms-wma"/>
+            <column name="icon_name" value="ICONS_WMA"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-ms-asf"/>
+            <column name="icon_name" value="ICONS_WMA"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/avi"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/msvideo"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-msvideo"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/avi"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/xmpg2"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-troff-msvideo"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/aiff"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/avi"/>
+            <column name="icon_name" value="ICONS_AVI"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/mp4v-es"/>
+            <column name="icon_name" value="ICONS_MP4"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/mp4"/>
+            <column name="icon_name" value="ICONS_MP4"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/mpeg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/mpg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-mpg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/mpeg2"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-pn-mpg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-mpeg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-mpeg2a"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/mpg"/>
+            <column name="icon_name" value="ICONS_MPEG"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-ms-wmv"/>
+            <column name="icon_name" value="ICONS_WMV"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/quicktime"/>
+            <column name="icon_name" value="ICONS_MOV"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-quicktime"/>
+            <column name="icon_name" value="ICONS_MOV"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/mov"/>
+            <column name="icon_name" value="ICONS_MOV"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-midi"/>
+            <column name="icon_name" value="ICONS_MOV"/>
+            <column name="resource_key" value="VIDEO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="video/x-flv"/>
+            <column name="icon_name" value="ICONS_FLV"/>
+            <column name="resource_key" value="FLASH"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-shockwave-flash"/>
+            <column name="icon_name" value="ICONS_SWF"/>
+            <column name="resource_key" value="FLASH"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="pplication/x-shockwave-flash2-preview"/>
+            <column name="icon_name" value="ICONS_SWF"/>
+            <column name="resource_key" value="FLASH"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/futuresplash"/>
+            <column name="icon_name" value="ICONS_SWF"/>
+            <column name="resource_key" value="FLASH"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/vnd.rn-realflash"/>
+            <column name="icon_name" value="ICONS_SWF"/>
+            <column name="resource_key" value="FLASH"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/ogg"/>
+            <column name="icon_name" value="ICONS_FLAC"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/ogg"/>
+            <column name="icon_name" value="ICONS_FLAC"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="audio/x-ogg"/>
+            <column name="icon_name" value="ICONS_FLAC"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-ogg"/>
+            <column name="icon_name" value="ICONS_FLAC"/>
+            <column name="resource_key" value="AUDIO"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/jpeg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/jpg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/jpg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-jpg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/pjpeg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/pipeg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/vnd.swiftview-jpeg"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-xbitmap"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/png"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/png"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-png"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/gif"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-bitmap"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-win-bitmap"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-windows-bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/ms-bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/x-ms-bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-bmp"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-win-bitmap"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="image/tiff"/>
+            <column name="resource_key" value="IMAGE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/msword"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/doc"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="appl/text"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.msword"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.ms-word"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/winword"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/word"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-msw6"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-msword"/>
+            <column name="icon_name" value="ICONS_DOC"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+            <column name="icon_name" value="ICONS_DOCX"/>
+            <column name="resource_key" value="DOCUMENT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/pdf"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-pdf"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/acrobat"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="applications/vnd.pdf"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/pdf"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/x-pdf"/>
+            <column name="icon_name" value="ICONS_PDF"/>
+            <column name="resource_key" value="PDF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/msexcel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-msexcel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-ms-excel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.ms-excel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-excel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-dos_ms_excel"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/xls"/>
+            <column name="icon_name" value="ICONS_XLS"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+            <column name="icon_name" value="ICONS_XLSX"/>
+            <column name="resource_key" value="SPREADSHEET"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.ms-powerpoint"/>
+            <column name="icon_name" value="ICONS_PPT"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/mspowerpoint"/>
+            <column name="icon_name" value="ICONS_PPT"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/ms-powerpoint"/>
+            <column name="icon_name" value="ICONS_PPT"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/mspowerpnt"/>
+            <column name="icon_name" value="ICONS_PPT"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd-mspowerpoint"/>
+            <column name="icon_name" value="ICONS_PPT"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.openxmlformats-officedocument.presentationml.presentation"/>
+            <column name="icon_name" value="ICONS_PPTX"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/>
+            <column name="icon_name" value="ICONS_PPTX"/>
+            <column name="resource_key" value="PRESENTATION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/zip"/>
+            <column name="icon_name" value="ICONS_ZIP"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-zip"/>
+            <column name="icon_name" value="ICONS_ZIP"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-zip-compressed"/>
+            <column name="icon_name" value="ICONS_ZIP"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-compress"/>
+            <column name="icon_name" value="ICONS_ZIP"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="multipart/x-zip"/>
+            <column name="icon_name" value="ICONS_ZIP"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/rar"/>
+            <column name="icon_name" value="ICONS_RAR"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-rar"/>
+            <column name="icon_name" value="ICONS_RAR"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/octet-stream"/>
+            <column name="icon_name" value="ICONS_RAR"/>
+            <column name="resource_key" value="ARCHIVE"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/plain"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/txt"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="browser/internal"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/anytext"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="widetext/plain"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="widetext/paragraph"/>
+            <column name="icon_name" value="ICONS_TXT"/>
+            <column name="resource_key" value="TEXT"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/rtf"/>
+            <column name="icon_name" value="ICONS_RTF"/>
+            <column name="resource_key" value="RTF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-rtf"/>
+            <column name="icon_name" value="ICONS_RTF"/>
+            <column name="resource_key" value="RTF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/rtf"/>
+            <column name="icon_name" value="ICONS_RTF"/>
+            <column name="resource_key" value="RTF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="text/richtext"/>
+            <column name="icon_name" value="ICONS_RTF"/>
+            <column name="resource_key" value="RTF"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="application/x-soffice"/>
+            <column name="icon_name" value="ICONS_RTF"/>
+            <column name="resource_key" value="RTF"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

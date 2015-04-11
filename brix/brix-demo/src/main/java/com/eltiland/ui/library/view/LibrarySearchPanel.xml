@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="add">Добавить запись</entry>
+    <entry key="control">Управление</entry>
+    <entry key="reset">СБРОС</entry>
+    <entry key="resetTooltip">Сбросить все параметры поиска и фильтров</entry>
+    <entry key="loginMessage">Для добавления записей в библиотеку, Вы должны авторизоваться на портале.</entry>
+</properties>

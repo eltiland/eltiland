@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="recordCreated">Запись успешно создана</entry>
+    <entry key="recordCreatedNotPublished">Запись успешно создана. Она будет опубликована после подтверждения
+        администратором портала
+    </entry>
+    <entry key="recordSaved">Запись успешно сохранена</entry>
+</properties>

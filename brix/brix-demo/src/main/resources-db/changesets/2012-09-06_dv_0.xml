@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Delete functions</comment>
+        <sql>
+            DROP FUNCTION add_pei(search_path text)
+        </sql>
+        <sql>
+            DROP FUNCTION add_address_id(search_path text)
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Create function</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_address_id(address text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "postal_address" where address_line=address;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id(pei_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where name=pei_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_avatar_id(avatar_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "file" where name=avatar_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_teacher_id(pei_id integer) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where pei=pei_id;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="3" author="vadim.didenko">
+        <comment>Delete records</comment>
+        <sql>
+            DELETE FROM message WHERE creator=(SELECT _id FROM "user" WHERE pei=get_pei_id('клуб юных мыслителей'))
+        </sql>
+        <sql>
+            DELETE FROM teacher_group WHERE teacher_id=(SELECT _id FROM "user" WHERE pei=get_pei_id('клуб юных
+            мыслителей'))
+        </sql>
+
+        <sql>
+            DELETE FROM "user" WHERE "user".pei=get_pei_id('клуб юных мыслителей')
+        </sql>
+        <sql>
+            DELETE FROM child_group WHERE group_id IN (SELECT "_id" FROM "group" WHERE pei=get_pei_id('клуб юных
+            мыслителей'))
+        </sql>
+        <sql>
+            DELETE FROM agegroup_group WHERE group_id IN (SELECT "_id" FROM "group" WHERE pei=get_pei_id('клуб юных
+            мыслителей'))
+        </sql>
+        <sql>
+            DELETE FROM activity WHERE group_id IN (SELECT "_id" FROM "group" WHERE pei=get_pei_id('клуб юных
+            мыслителей'))
+        </sql>
+        <sql>
+            DELETE FROM "group" WHERE pei=get_pei_id('клуб юных мыслителей')
+        </sql>
+
+        <sql>
+            DELETE FROM child_pei WHERE child_pei.pei_id=get_pei_id('клуб юных мыслителей')
+        </sql>
+        <sql>
+            DELETE FROM pei WHERE pei.name='клуб юных мыслителей'
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="vadim.didenko">
+        <comment>Insert SuperPEI record</comment>
+        <insert tableName="postal_address" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="country_code" value="RU"/>
+            <column name="city" value="Москва"/>
+            <column name="address_line" value="улица Домодедовская, дом 20, корпус 3"/>
+            <column name="postal_code" value="115551"/>
+        </insert>
+
+        <insert tableName="pei" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="email" value="eltik@vdm.ru"/>
+            <column name="manager" value="Токмакова Кристина Викторовна"/>
+            <column name="name" value="Электронный детский сад ЭЛТИК"/>
+            <column name="phone" value="+7 495 3927800"/>
+            <column name="approved" value="f"/>
+            <column name="address_id" valueComputed="get_address_id('улица Домодедовская, дом 20, корпус 3')"/>
+            <column name="avatar__id" valueComputed="get_avatar_id('ICONS_UNKNOWN_USER')"/>
+        </insert>
+
+        <insert tableName="group" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Клуб Юных Мыслителей"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Электронный детский сад ЭЛТИК')"/>
+        </insert>
+        <insert tableName="group" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Детская Газета"/>
+            <column name="_prototype" value="GROUP"/>
+            <column name="pei" valueComputed="get_pei_id('Электронный детский сад ЭЛТИК')"/>
+        </insert>
+        <insert tableName="user" schemaName="public">
+            <column name="type" value="Teacher"/>
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="email" value="klub_yum@mail.ru"/>
+            <column name="name" value="Рогожкина Ирина Борисовна"/>
+            <column name="password" value="5xG8a2QdqK"/>
+            <column name="exp" value="0"/>
+            <column name="duration" value="0"/>
+            <column name="pei" valueComputed="get_pei_id('Электронный детский сад ЭЛТИК')"/>
+            <column name="phone" value="+7 916 0530715"/>
+            <column name="avatar__id" valueComputed="get_avatar_id('ICONS_UNKNOWN_USER')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="5" author="vadim.didenko">
+        <comment>Delete functions</comment>
+        <sql>
+            DROP FUNCTION get_address_id(city_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_group_id(group_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_pei_id(pei_name text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_teacher_id(pei_id integer)
+        </sql>
+        <sql>
+            DROP FUNCTION get_avatar_id(avatar_name text)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

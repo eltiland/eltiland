@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Введите свои контактные данные</entry>
+
+    <entry key="nameLabel">ФИО:</entry>
+    <entry key="emailLabel">Email:</entry>
+    <entry key="phoneLabel">Телефон:</entry>
+
+    <entry key="subscribeLabel">Подписаться на рассылку портала "Элтиленд"</entry>
+</properties>

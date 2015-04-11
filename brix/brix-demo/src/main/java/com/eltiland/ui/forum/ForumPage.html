@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="forum">
+        <div class="header">
+            <wicket:message key="header"></wicket:message>
+            <button class="button" wicket:id="createGroup">
+                <wicket:message key="createGroupMessage"></wicket:message>
+            </button>
+        </div>
+        <div wicket:id="listContainer">
+            <div class="groups" wicket:id="groupList">
+                <div wicket:id="group"></div>
+            </div>
+        </div>
+    </div>
+
+    <div wicket:id="groupPropertyDialog"></div>
+</wicket:extend>
+</body>
+</html>

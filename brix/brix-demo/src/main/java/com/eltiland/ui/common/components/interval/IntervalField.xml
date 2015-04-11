@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="beginLabel">Начало</entry>
+    <entry key="endLabel">Окончание</entry>
+
+    <entry key="intervalError">Ошибка - дата окончания срока должна быть после даты начала срока.</entry>
+    <entry key="intervalEmptyError">Ошибка - дата начала и дата окончания должны быть оба заполнены или незаполнены.
+    </entry>
+
+    <entry key="intervalBeforeNowError">Ошибка - дата начала действия услуги не может быть до %s</entry>
+</properties>

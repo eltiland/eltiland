@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="tags">
+        <div class="categoryTable">
+            <div class="title">
+                <wicket:message key="title"></wicket:message>
+            </div>
+            <button class="addButton" wicket:id="addButton">
+                <wicket:message key="add"></wicket:message>
+            </button>
+            <div class="clear"></div>
+            <div wicket:id="grid" class="grid"></div>
+        </div>
+        <div class="tagTable">
+            <div class="title" wicket:id="tagLabel"></div>
+            <button class="addButton" wicket:id="addTagButton">
+                <wicket:message key="add"></wicket:message>
+            </button>
+            <div class="clear"></div>
+            <div wicket:id="tagGrid" class="tagGrid"></div>
+        </div>
+    </div>
+
+    <div wicket:id="tagCategoryCreateDialog"></div>
+    <div wicket:id="tagCreateDialog"></div>
+</wicket:panel>
+</body>
+</html>

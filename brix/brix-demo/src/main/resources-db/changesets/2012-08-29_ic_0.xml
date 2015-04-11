@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="igor.cherednichenko">
+        <comment>Fix relation mapping for record - target audience</comment>
+
+        <delete tableName="record_targetaudience" schemaName="public"/>
+        <addUniqueConstraint tableName="record_targetaudience" columnNames="record_id"/>
+    </changeSet>
+
+    <changeSet id="2" author="igor.cherednichenko">
+        <comment>Add target audience ref to record category</comment>
+
+        <addColumn tableName="record_category" schemaName="public">
+            <column name="target_audience" type="DECIMAL(20, 0)"/>
+        </addColumn>
+        <addForeignKeyConstraint constraintName="fk_target_audience"
+                                 baseTableName="record_category" baseColumnNames="target_audience"
+                                 referencedTableName="target_audience" referencedColumnNames="_id"/>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION category_targetaudience(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from target_audience where target_audience.target=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <update tableName="record_category" schemaName="public">
+            <column name="target_audience" valueComputed="category_targetaudience('Воспитателям')"/>
+        </update>
+
+        <addNotNullConstraint tableName="record_category" columnName="target_audience"/>
+
+        <sql endDelimiter=";">
+            drop function category_targetaudience(search_path text);
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="igor.cherednichenko">
+        <comment>Update category values into table</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION parent_category(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from record_category where category=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION category_targetaudience(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from target_audience where target_audience.target=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Развитие ребенка"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Воспитание ребенка"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Советы психолога"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Особый ребенок"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Подготовка к школе"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Тесты для детей"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Досуг с ребенком"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Будь здоров!"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Почитай-ка!"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Для вкуса и пользы"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Дела семейные"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Женский разговор"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Иностранный язык"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Развивающие игры и методики"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Мышление"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Память"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Внимание"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Речь"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Творчество"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Познание окружающего мира"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Самоконтроль"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Моторика"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Чтение"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Математика"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Письмо"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+        <insert tableName="record_category" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="category" value="Способности и одаренность"/>
+            <column name="parent_category" valueComputed="parent_category('Развивающие игры и методики')"/>
+            <column name="target_audience" valueComputed="category_targetaudience('Родителям')"/>
+        </insert>
+
+        <sql endDelimiter=";">
+            drop function parent_category(search_path text);
+            drop function category_targetaudience(search_path text);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

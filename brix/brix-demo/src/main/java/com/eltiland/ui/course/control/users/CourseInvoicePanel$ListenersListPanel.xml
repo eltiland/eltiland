@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Список слушателей</entry>
+
+    <entry key="nameColumn">ФИО</entry>
+
+    <entry key="activated">Активирован</entry>
+    <entry key="no_activated">Не активирован</entry>
+</properties>

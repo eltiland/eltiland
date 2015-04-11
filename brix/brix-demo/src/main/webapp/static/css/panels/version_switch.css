@@ -1,0 +1,63 @@
+.version-switch {
+    cursor: pointer;
+    margin: 0 auto;
+    display: table;
+    margin-bottom: 10px;
+}
+
+.version-switch > .left-button {
+    float: left;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.version-switch > .right-button {
+    float: left;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.version-switch > .free {
+    background-color: #fdfcff;
+    border: 1px #b29f9f solid;
+
+    -moz-box-shadow: 3px 0px 3px 2px #888888;
+    -webkit-box-shadow: 3px 0px 3px 2px #888888;
+    box-shadow: 3px 0px 3px 2px #888888;
+}
+
+.version-switch > .push {
+    background-color: #d3ccc2;
+    border: 1px #b29f9f solid;
+
+    -moz-box-shadow: inset 3px 0px 3px 2px #888888;
+    -webkit-box-shadow: inset 3px 0px 3px 2px #888888;
+    box-shadow: inset 3px 0px 3px 2px #888888;
+}
+
+.version-switch .message {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.version-switch > .free > .message {
+    color: #ff6a1c;
+}
+
+.version-switch > .push > .message {
+    color: black;
+}

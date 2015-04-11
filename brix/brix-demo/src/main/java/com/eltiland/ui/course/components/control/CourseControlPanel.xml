@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="addAction">Добавить элемент в конец курса</entry>
+    <entry key="removeAction">Удалить текущий элемент</entry>
+    <entry key="renameAction">Переименовать текущий элемент</entry>
+    <entry key="upAction">Поднять вверх на 1 позицию</entry>
+    <entry key="downAction">Опустить вниз на 1 позицию</entry>
+    <entry key="paidAddAction">Установить стоимость для текущего элемента</entry>
+    <entry key="paidRemoveAction">Сбросить стоимость для текущего элемента</entry>
+    <entry key="paidModifyAction">Изменить стоимость для текущего элемента</entry>
+    <entry key="lockAction">Закрыть доступ к полной версии</entry>
+    <entry key="unlockAction">Открыть доступ к полной версии</entry>
+
+    <entry key="deleteMessage">Элемент курса успешно удален.</entry>
+    <entry key="addMessage">Элемент курса успешно создан.</entry>
+    <entry key="saveMessage">Элемент курса сохранен.</entry>
+    <entry key="addPaidMessage">Запрос на создание платных услуг отправлен администратору.</entry>
+    <entry key="removePaidMessage">Запрос на удаление платных услуг отправлен администратору.</entry>
+    <entry key="modifyPaidMessage">Запрос на изменение стоимости платных услуг отправлен администратору.</entry>
+    <entry key="alrearyInvoiced">Для данного элемента уже отправлен запрос, касающийся платных услуг.</entry>
+
+    <entry key="paidRemoveConfirmation">Вы действительно хотите сбросить стоимость для данного элемента курса?</entry>
+</properties>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="vadim.didenko">
+        <comment>Change name default icon name</comment>
+       <sql >
+           UPDATE child SET
+            avatar__id = (SELECT _id FROM file WHERE name='ICONS_DEFAULT_CHILD')
+                WHERE avatar__id=(SELECT _id FROM file WHERE name='ICONS_DEFAULT_PARENT')
+       </sql>
+        <sql >
+           UPDATE pei SET
+            avatar__id = (SELECT _id FROM file WHERE name='ICONS_DEFAULT_PEI')
+                WHERE avatar__id=(SELECT _id FROM file WHERE name='ICONS_DEFAULT_PARENT')
+       </sql>
+
+    </changeSet>
+</databaseChangeLog>

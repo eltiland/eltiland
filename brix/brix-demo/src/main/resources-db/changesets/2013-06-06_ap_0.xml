@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Add table for questions/answers</comment>
+        <sql>
+            ALTER TABLE "public"."user" ADD CONSTRAINT "check1" CHECK((TYPE)::TEXT = ANY (ARRAY[('Parent'::CHARACTER
+            VARYING)::TEXT, ('Teacher'::CHARACTER VARYING)::TEXT, ('User'::CHARACTER VARYING)::TEXT]));
+        </sql>
+    </changeSet>
+</databaseChangeLog>

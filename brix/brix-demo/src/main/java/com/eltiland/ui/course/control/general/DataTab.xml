@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="name.label">Название курса:</entry>
+    <entry key="support.label">Адрес электронной почты для обратной связи:</entry>
+    <entry key="price.label">Стоимость курса:</entry>
+
+    <entry key="interval">Период обучения:</entry>
+    <entry key="join">Дата начала записи на курс:</entry>
+
+    <entry key="days">Срок доступа к оплаченному курсу (дней):</entry>
+
+    <entry key="saveMessage">Изменения сохранены.</entry>
+</properties>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Insert new CYT group</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_pei_id(pei_email text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "pei" where email=pei_email;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_record_id(search_path text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from record where name=search_path;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <insert tableName="group" schemaName="public">
+            <column name="_id" valueComputed="nextval('hibernate_sequence')"/>
+            <column name="name" value="Клуб Юных Мыслителей"/>
+            <column name="_prototype" value="SECTION"/>
+            <column name="pei" valueComputed="get_pei_id('eltik@vdm.ru')"/>
+            <column name="section_curriculum"
+                    valueComputed="get_record_id('Стандартная программа кружка &quot;Клуб Юных Мыслителей&quot;')"/>
+        </insert>
+
+        <sql>
+            DROP FUNCTION get_pei_id(inEmail text)
+        </sql>
+
+        <sql>
+            DROP FUNCTION get_record_id(search_path text)
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

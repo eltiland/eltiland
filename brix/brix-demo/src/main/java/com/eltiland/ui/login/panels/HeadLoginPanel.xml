@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="loginAction">Войти</entry>
+    <entry key="registerAction">Регистрация</entry>
+    <entry key="logoutAction">Выйти</entry>
+    <entry key="profileAction">Профиль</entry>
+    <entry key="adminAction">Администрирование</entry>
+    <entry key="askQuestion">Задать вопрос</entry>
+    <entry key="welcome">Здравствуйте, %s</entry>
+    <entry key="guest">Гость</entry>
+    <entry key="questionSuccessfullySended">
+        Ваш вопрос успешно отправлен. В течении некоторого времени вы получите ответ на свою электронную почту.
+    </entry>
+</properties>

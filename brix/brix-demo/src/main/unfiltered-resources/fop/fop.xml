@@ -1,0 +1,17 @@
+<fop version="1.0">
+    <renderers>
+      <renderer mime="application/pdf">
+          <fonts>
+              <font metrics-url="aricyr.xml" kerning="yes" embed-url="aricyr.ttf">
+                  <font-triplet name="ArialRegular" style="normal" weight="normal" />
+              </font>
+              <font kerning="yes" embed-url="arial_italic.ttf">
+                  <font-triplet name="ArialRegular" style="italic" weight="normal" />
+              </font>
+              <font kerning="yes" embed-url="arial_bold_italic.ttf">
+                  <font-triplet name="ArialRegular" style="italic" weight="bold" />
+              </font>
+          </fonts>
+      </renderer>
+  </renderers>
+</fop>

@@ -1,0 +1,69 @@
+/**************************************************************************************************/
+/* Styles for Head panel of login/logout/profile links
+/**************************************************************************************************/
+.login_panel {
+    width: 85%;
+    height: 30px;
+    min-width: 1024px;
+    margin: 0 auto;
+    margin-top: -15px;
+    border: 1px solid #B9B7B7;
+    padding-top: 3px;
+}
+
+.login_panel > .login_action {
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
+    color: rgb(145, 142, 142);
+}
+
+.login_panel > .login_action:hover {
+    background-color: rgb(255, 106, 28) !important;
+    color: white !important;
+}
+
+.login_panel > .login_action > .icon {
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.login_panel > .login_action > .label {
+    font-family: "a_Campus" !important;
+    margin-left: 23px;
+}
+
+.login_panel > .welcome {
+    float: right;
+    font-family: "a_Campus" !important;
+    padding-top: 4px;
+    margin-right: 10px;
+    color: rgb(145, 142, 142) !important;
+}
+
+.login_panel > .login_action > .loginAction {
+    background-image: url("../../images/login/enter.png");
+}
+
+.login_panel > .login_action > .registerAction {
+    background-image: url("../../images/login/register.png");
+}
+
+.login_panel > .login_action > .logoutAction {
+    background-image: url("../../images/login/lock.png");
+}
+
+.login_panel > .login_action > .profileAction {
+    background-image: url("../../images/login/profile.png");
+}
+
+.login_panel > .login_action > .adminAction {
+    background-image: url("../../images/login/admin.png");
+}
+
+.login_panel > .login_action > .askQuestion {
+    background-image: url("../../images/login/small_email_2.gif");
+}

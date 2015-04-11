@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="pavel.knorr">
+        <createTable tableName="group">
+            <column name="_id" type="DECIMAL(20, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_prototype" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="section_curriculum" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_curriculum" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contest_task" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="group" baseColumnNames="section_curriculum"
+                                 constraintName="fk_section_curriculum" referencedTableName="curriculum_record"
+                                 referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint baseTableName="group" baseColumnNames="group_curriculum"
+                                 constraintName="fk_group_curriculum"
+                                 referencedTableName="curriculum_record"
+                                 referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint baseTableName="group" baseColumnNames="contest_task" constraintName="fk_contest_task"
+                                 referencedTableName="task_record"
+                                 referencedColumnNames="_id"/>
+
+        <sql>
+            ALTER TABLE public.group
+            ADD CONSTRAINT _prototype_enum CHECK (_prototype::text = ANY (ARRAY['CONTEST'::character varying::text,
+            'GROUP'::character varying::text, 'SECTION'::character varying::text]));
+        </sql>
+
+    </changeSet>
+
+    <changeSet id="2" author="pavel.knorr">
+        <comment>Create table for many to many relation Group - Child</comment>
+
+        <createTable tableName="child_group">
+            <column name="child_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="child_group" constraintName="pk_child_group" columnNames="child_id, group_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_child_id"
+                                 baseTableName="child_group" baseColumnNames="child_id"
+                                 referencedTableName="child" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_group_id"
+                                 baseTableName="child_group" baseColumnNames="group_id"
+                                 referencedTableName="group" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="3" author="pavel.knorr">
+        <comment>Create table for many to many relation Group - Teacher</comment>
+
+        <createTable tableName="teacher_group">
+            <column name="teacher_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="teacher_group" constraintName="pk_teacher_group" columnNames="teacher_id, group_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_teacher_id"
+                                 baseTableName="teacher_group" baseColumnNames="teacher_id"
+                                 referencedTableName="user" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_group_id"
+                                 baseTableName="teacher_group" baseColumnNames="group_id"
+                                 referencedTableName="group" referencedColumnNames="_id"/>
+    </changeSet>
+
+    <changeSet id="4" author="pavel.knorr">
+        <comment>Create table for many to many relation Group - AgeGroup</comment>
+
+        <createTable tableName="agegroup_group">
+            <column name="agegroup_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="DECIMAL(20, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="agegroup_group" constraintName="pk_agegroup_group"
+                       columnNames="agegroup_id, group_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_teacher_id"
+                                 baseTableName="agegroup_group" baseColumnNames="agegroup_id"
+                                 referencedTableName="child_age_group" referencedColumnNames="_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_group_id"
+                                 baseTableName="agegroup_group" baseColumnNames="group_id"
+                                 referencedTableName="group" referencedColumnNames="_id"/>
+    </changeSet>
+
+</databaseChangeLog>

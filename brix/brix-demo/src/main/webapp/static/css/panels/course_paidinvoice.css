@@ -1,0 +1,21 @@
+/**************************************************************************************************/
+/* Styles for panel of setting/modifying paid invoice.
+/**************************************************************************************************/
+.course_paidinvoice > .price {
+    padding-top: 7px;
+}
+
+.course_paidinvoice > .term {
+    display: table;
+    margin: 0 auto;
+}
+
+.course_paidinvoice > .term > .label {
+    font-size: 13px;
+    float: left;
+    margin-right: 10px;
+}
+
+.course_paidinvoice > .term > .link {
+    float: left;
+}

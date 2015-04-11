@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="pavel.knorr">
+        <comment>Clear database, and add new column into record table</comment>
+
+        <sql>TRUNCATE TABLE record CASCADE;</sql>
+
+        <sql>ALTER TABLE public.simple_record DROP CONSTRAINT type_enum</sql>
+
+        <dropColumn columnName="type" schemaName="public" tableName="simple_record"/>
+
+        <addColumn tableName="record">
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="1" author="pavel.knorr">
+        <comment>Add mime types for records</comment>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/collection"/>
+            <column name="icon_name" value="ICONS_COLLECTION"/>
+            <column name="resource_key" value="COLLECTION"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/simple"/>
+            <column name="icon_name" value="ICONS_SIMPLE_RECORD"/>
+            <column name="resource_key" value="UNKNOW"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/task"/>
+            <column name="icon_name" value="ICONS_TASK"/>
+            <column name="resource_key" value="TASK"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/curriculum"/>
+            <column name="icon_name" value="ICONS_CURRICULUM"/>
+            <column name="resource_key" value="CURRICULUM"/>
+        </insert>
+
+        <insert schemaName="public" tableName="mime">
+            <column name="mime_type" value="record/lesson"/>
+            <column name="icon_name" value="ICONS_LESSON"/>
+            <column name="resource_key" value="LESSON"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="2" author="pavel.knorr">
+        <comment>Clean db</comment>
+        <sql>
+            TRUNCATE TABLE file CASCADE;
+            TRUNCATE TABLE file_body CASCADE;
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

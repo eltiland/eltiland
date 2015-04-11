@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Добавление новых попыток</entry>
+    <entry key="addAction">Количество добавляемых попыток</entry>
+    <entry key="countError">Количество добавляемых попыток должно быть не меньше 1</entry>
+</properties>

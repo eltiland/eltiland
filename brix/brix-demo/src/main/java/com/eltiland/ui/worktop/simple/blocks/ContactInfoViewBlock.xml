@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="blockHeader">Контактная информация</entry>
+    <entry key="emailData">Электронная почта: </entry>
+    <entry key="addressData">Адрес: </entry>
+    <entry key="phoneData">Телефон: </entry>
+    <entry key="skypeData">Skype: </entry>
+</properties>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Create table for activities</comment>
+        <sql>
+            CREATE TABLE activity
+            (
+            type character varying(31) NOT NULL,
+            _id numeric NOT NULL,
+            title character varying(256) NOT NULL,
+            child numeric,
+            CONSTRAINT activity_pkey PRIMARY KEY (_id ),
+            CONSTRAINT child_key FOREIGN KEY (child)
+            REFERENCES child (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE activity
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Create table for messages</comment>
+        <sql>
+            CREATE TABLE message
+            (
+            _id numeric NOT NULL,
+            creation_date timestamp without time zone NOT NULL,
+            text character varying(1024),
+            activity numeric,
+            creator numeric NOT NULL,
+            CONSTRAINT message_pkey PRIMARY KEY (_id ),
+            CONSTRAINT fk38eb0007ef7adcfb FOREIGN KEY (creator)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT fk38eb0007fce67420 FOREIGN KEY (activity)
+            REFERENCES activity (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE message
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="reply">Ответить</entry>
+
+    <entry key="deleteConfirmation">Вы уверены, что хотите удалить сообщение? Все ответы на это сообщение также будут
+        удалены.
+    </entry>
+</properties>

@@ -1,0 +1,256 @@
+/**
+ *************************************************************************
+ * CSS styles for data tables
+ *************************************************************************
+ */
+.dataTable {
+    display: inline-block;
+    width: 100%;
+}
+
+.dataTable table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.dataTable .headers {
+    height: 35px;
+    font-size: 17px;
+    color: #ffffff;
+    background: #efefef; /* Old browsers */
+}
+
+.dataTable .headers > th {
+    padding: 0 0 0 10px;
+}
+
+.dataTable tbody {
+    border: #a7bacf solid 1px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dataTable tbody > tr {
+    border: #a7bacf solid 1px;
+    height: 30px;
+    font-family: Arial;
+    font-size: 13px;
+    color: #3d3d3d;
+    background: #fffcf8;
+    cursor: pointer;
+}
+
+.dataTable tbody > tr:hover {
+    background: #fbfff7;
+}
+
+.dataTable tbody > tr > td {
+    border: #a7bacf solid 1px;
+    padding: 3px;
+}
+
+.dataTable th {
+    border: #a7bacf solid 1px;
+    padding: 10px;
+}
+
+.dataTable th > div > a {
+    color: #183e71;
+    text-decoration: none;
+}
+
+.dataTable table > tfoot > tr > td {
+    padding: 10px;
+    text-align: right;
+    padding-left: 60%;
+}
+
+.dataTable table > tbody > tr > td > span > a {
+    text-decoration: none;
+}
+
+.dataTable .navigator {
+    float: right;
+}
+
+.dataTable .navigator .first {
+    font-size: 16pt;
+    margin-right: 10px;
+}
+
+.dataTable .navigator .prev {
+    font-size: 16pt;
+}
+
+.dataTable .navigator .next {
+    font-size: 16pt;
+}
+
+.dataTable .navigator .last {
+    font-size: 16pt;
+    margin-left: 10px;
+}
+
+.tableActionLink {
+    font-family: Arial;
+    font-size: 12px;
+    color: #0d5ec8;
+    float: left;
+    min-width: 50px;
+}
+
+.tableActionLink:hover {
+    color: #4290f1;
+}
+
+.tableActionLink:active {
+    color: #597495;
+}
+
+.tableActionLink-disabled {
+    font-family: Arial;
+    font-size: 12px;
+    float: left;
+    color: #c7c7c7;
+    min-width: 50px;
+}
+
+.tableSecondAction {
+    margin-top: 5px;
+}
+
+.tableHeaderIcon {
+    width: 14px;
+    height: 15px;
+    float: left;
+    margin-top: 2px;
+    margin-right: 3px;
+}
+
+.iconNoSort {
+    background: url("../../images/table/icon_nosort.png");
+}
+
+.iconSortUp {
+    background: url("../../images/table/arrow_up.png");
+}
+
+.iconSortDown {
+    background: url("../../images/table/arrow_down.png");
+}
+
+.tableAction {
+    width: 25px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.actionSignUp {
+    background: url("../../images/table/signup.png");
+}
+
+.actionLeave {
+    background: url("../../images/table/leave.png");
+}
+
+.actionSignUpMany {
+    background: url("../../images/actions/24x24/webinar_users.png");
+}
+
+/*************************************************************************/
+.dataTable_search {
+    width: 100%;
+}
+
+.dataTable_search .search_field {
+    width: 50%;
+    border: 2px solid #0078AE;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    height: 30px;
+    margin-bottom: 6px;
+    float: right;
+}
+
+.dataTable_search .control_panel {
+    width: 49%;
+    float: left;
+    background-color: #efefef;
+    height: 30px;
+    border: 2px solid #0078AE;
+    border-radius: 5px;
+    margin-bottom: 6px;
+}
+
+.dataTable_search .control_panel .iconControlPanel {
+    margin-left: 3px;
+    margin-top: 1px;
+}
+
+.dataTable_search .control_panel .whitespace16 {
+    width: 10px !important;
+}
+
+.dataTable_search .input {
+    float: left;
+    width: 85%;
+    height: 25px;
+    border: none;
+    margin-left: 5px;
+}
+
+.dataTable_search .search {
+    float: right;
+    width: 11%;
+    text-align: center;
+    color: white;
+    background-color: #666666;
+    margin-top: 3px;
+    padding: 3px;
+    margin-right: 3px !important;
+    border-radius: 5px;
+    border-bottom: none;
+    font-size: 15px;
+}
+
+.dataTable_search .search:hover {
+    float: right;
+    width: 10%;
+    text-align: center;
+    color: white;
+    background-color: #666666;
+    margin-top: 3px;
+    padding: 3px;
+    margin-right: 3px !important;
+    border-radius: 5px;
+    border-bottom: none;
+    font-size: 15px;
+}
+
+.dataTable_search .input:focus {
+    outline: none;
+    border: none;
+}
+
+/*************************************************************************/
+.notFounded {
+    text-align: center;
+    font-family: cursive;
+    font-size: 23px;
+}
+
+/*************************************************************************/
+.dataTable .active_item {
+    font-weight: bold;
+    color: green;
+}
+
+.dataTable .disactive_item {
+    font-weight: bold;
+    color: red;
+}
+
+.dataTable .center_item {
+    text-align: center;
+}
+

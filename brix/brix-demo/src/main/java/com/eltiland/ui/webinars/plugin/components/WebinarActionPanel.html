@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="iconControlPanel">
+        <a class="button" wicket:id="editButton">
+            <div class="image edit"></div>
+        </a>
+
+        <div class="whitespace"></div>
+        <a class="button" wicket:id="addButton">
+            <div class="image add"></div>
+        </a>
+
+        <div class="whitespace"></div>
+        <wicket:enclosure child="closeButton">
+            <a class="button" wicket:id="closeButton">
+                <div class="image close"></div>
+            </a>
+
+            <div class="whitespace"></div>
+        </wicket:enclosure>
+        <wicket:enclosure child="openButton">
+            <a class="button" wicket:id="openButton">
+                <div class="image open"></div>
+            </a>
+
+            <div class="whitespace"></div>
+        </wicket:enclosure>
+        <a class="button" wicket:id="settingsButton">
+            <div class="image settings"></div>
+        </a>
+
+        <div class="whitespace"></div>
+        <a class="button" wicket:id="cancelButton">
+            <div class="image cancel"></div>
+        </a>
+    </div>
+</wicket:panel>
+</body>
+</html>

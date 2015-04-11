@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="vadim.didenko">
+        <comment>Change group type</comment>
+        <update tableName="group">
+            <column name="_prototype" value="SECTION"/>
+
+            <where>name='Кружок Детская Газета'</where>
+        </update>
+    </changeSet>
+    <changeSet id="2" author="vadim.didenko">
+        <comment>Create procedure</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_id(group_name text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=group_name;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+    <changeSet id="3" author="vadim.didenko">
+        <comment>Change pei name</comment>
+        <update tableName="pei">
+            <column name="name" value="Виртуальный детский сад"/>
+
+            <where>name='Электронный детский сад ЭЛТИК'</where>
+        </update>
+    </changeSet>
+    <changeSet id="4" author="vadim.didenko">
+        <comment>establishment of relations with all age groups</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION insertcngroup() RETURNS void AS $$
+            DECLARE child_age_group RECORD;
+            DECLARE group RECORD;
+            BEGIN
+
+            -- table "_option"
+            FOR child_age_group IN SELECT * FROM public.child_age_group
+            LOOP
+            -- move child.pei to new table
+            INSERT INTO public.agegroup_group(agegroup_id, group_id) VALUES
+            (child_age_group._id, get_group_id('Кружок Детская Газета'));
+            END LOOP;
+
+
+            END;
+            $$ LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION insertcngroup()
+            OWNER TO eltiland;
+        </createProcedure>
+        <comment>call function</comment>
+        <sql>
+            SELECT "insertcngroup"();
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="vadim.didenko">
+        <comment>establishment of relations with all age groups</comment>
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION insertcytagegroup() RETURNS void AS $$
+            DECLARE child_age_group RECORD;
+            DECLARE group RECORD;
+            BEGIN
+
+            -- table "_option"
+            FOR child_age_group IN SELECT * FROM public.child_age_group
+            LOOP
+            -- move child.pei to new table
+            INSERT INTO public.agegroup_group(agegroup_id, group_id) VALUES
+            (child_age_group._id, get_group_id('Клуб Юных Мыслителей'));
+            END LOOP;
+
+
+            END;
+            $$ LANGUAGE plpgsql VOLATILE
+            COST 100;
+            ALTER FUNCTION insertcytagegroup()
+            OWNER TO eltiland;
+        </createProcedure>
+        <sql>
+            SELECT "insertcytagegroup"();
+        </sql>
+    </changeSet>
+
+    <changeSet id="7" author="vadim.didenko">
+        <comment>delete function</comment>
+        <sql>
+            DROP FUNCTION insertCytAgeGroup()
+        </sql>
+        <sql>
+            DROP FUNCTION insertCnGroup()
+        </sql>
+        <sql>
+            DROP FUNCTION get_group_id(group_name text)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

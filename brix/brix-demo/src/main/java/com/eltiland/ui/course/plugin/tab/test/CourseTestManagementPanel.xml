@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="successTab">Прошедшие успешно</entry>
+    <entry key="processTab">Проходящие тест</entry>
+    <entry key="limitTab">Достигшие предела попыток</entry>
+</properties>

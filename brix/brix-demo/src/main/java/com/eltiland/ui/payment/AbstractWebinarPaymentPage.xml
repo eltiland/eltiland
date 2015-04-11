@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="successLabel">Ваш платеж успешно проведен!</entry>
+    <entry key="returnLabel">Вернуться в личный кабинет</entry>
+
+    <entry key="headerLabel">Оплата участия в вебинаре "%s"</entry>
+
+    <entry key="descriptionLabel">Описание вебинара:</entry>
+    <entry key="managerLabel">Ведущий:</entry>
+    <entry key="startDateLabel">Дата начала:</entry>
+    <entry key="durationLabel">Длительность:</entry>
+    <entry key="priceLabel">Стоимость:</entry>
+
+    <entry key="priceValue">%s руб.</entry>
+    <entry key="dateValue">%s мин.</entry>
+</properties>

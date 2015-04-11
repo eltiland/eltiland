@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Table course</comment>
+        <sql>
+            CREATE TABLE "course"."course" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "creation_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "name" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default" NOT NULL UNIQUE,
+            "need_confirm" BOOLEAN NOT NULL,
+            "price" NUMERIC( 19, 2 ),
+            "status" CHARACTER VARYING( 10 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "support_email" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default",
+            "video" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default",
+            "author" NUMERIC NOT NULL,
+            "icon" NUMERIC NOT NULL,
+            "start_page" NUMERIC NOT NULL UNIQUE,
+            "_prototype" CHARACTER VARYING( 31 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "index" INTEGER NOT NULL UNIQUE,
+            "finish_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "join_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "open" BOOLEAN DEFAULT 'false' NOT NULL,
+            "requisites" CHARACTER VARYING( 4096 ) COLLATE "pg_catalog"."default",
+            "start_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "legal_doc" NUMERIC NOT NULL UNIQUE,
+            "physical_doc" NUMERIC NOT NULL UNIQUE,
+            PRIMARY KEY ( "_id" ),
+            CONSTRAINT course_icon FOREIGN KEY (icon)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT course_start_page FOREIGN KEY (start_page)
+            REFERENCES google_file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT course_author FOREIGN KEY (author)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT course_legal FOREIGN KEY (legal_doc)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT course_physical FOREIGN KEY (physical_doc)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            , CONSTRAINT "course_name_key" UNIQUE( "name" ), CONSTRAINT "course_start_page_key" UNIQUE( "start_page" ),
+            CONSTRAINT "course_index_key" UNIQUE( "index" ), CONSTRAINT "course_legal_doc_key" UNIQUE( "legal_doc" ),
+            CONSTRAINT "course_physical_doc_key" UNIQUE( "physical_doc" ) );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Table course.user_data</comment>
+        <sql>
+            CREATE TABLE "course"."user_data" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "caption" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default",
+            "status" CHARACTER VARYING( 11 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "type" CHARACTER VARYING( 11 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "course" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>M-M table course.admins</comment>
+        <sql>
+            CREATE TABLE "course"."admins" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "user_id" NUMERIC NOT NULL,
+            "course_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "user_id","course_id" ),
+            CONSTRAINT course_admin_user FOREIGN KEY (user_id)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            , CONSTRAINT "admins__id_key" UNIQUE( "_id" ) );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Table course.listener</comment>
+        <sql>
+            CREATE TABLE "course"."listener" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "course" NUMERIC NOT NULL,
+            "listener" NUMERIC NOT NULL,
+            "completed" BOOLEAN DEFAULT 'false' NOT NULL,
+            "offer" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default",
+            "requisistes" CHARACTER VARYING( 4096 ) COLLATE "pg_catalog"."default",
+            "status" CHARACTER VARYING( 10 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "type" CHARACTER VARYING( 10 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "parent" NUMERIC,
+            PRIMARY KEY ( "_id" ),
+            CONSTRAINT listener_user FOREIGN KEY (listener)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Table course.payment</comment>
+        <sql>
+            CREATE TABLE "course"."payment" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "course" NUMERIC NOT NULL,
+            "status" BOOLEAN NOT NULL,
+            "listener" NUMERIC NOT NULL,
+            "pay_date" TIMESTAMP WITHOUT TIME ZONE,
+            "price" NUMERIC( 19, 2 ) NOT NULL,
+            "days" BIGINT,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="aleksey.plotnikov">
+        <comment>Table course.block</comment>
+        <sql>
+            CREATE TABLE "course"."block" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "course" NUMERIC NOT NULL,
+            "demo_course" NUMERIC,
+            "index" INTEGER NOT NULL,
+            "name" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "end_date" TIMESTAMP WITHOUT TIME ZONE,
+            "start_date" TIMESTAMP WITHOUT TIME ZONE,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="6" author="aleksey.plotnikov">
+        <comment>Table course.block_access</comment>
+        <sql>
+            CREATE TABLE "course"."block_access" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "end_date" TIMESTAMP WITHOUT TIME ZONE,
+            "open" BOOLEAN DEFAULT 'true' NOT NULL,
+            "start_date" TIMESTAMP WITHOUT TIME ZONE,
+            "block" NUMERIC NOT NULL,
+            "listener" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="7" author="aleksey.plotnikov">
+        <comment>Table course.item</comment>
+        <sql>
+            CREATE TABLE "course"."item" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "block" NUMERIC NOT NULL,
+            "_prototype" CHARACTER VARYING( 31 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "control" BOOLEAN DEFAULT 'false' NOT NULL,
+            "index" BIGINT NOT NULL,
+            "name" CHARACTER VARYING( 128 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "printable" BOOLEAN DEFAULT 'false' NOT NULL,
+            "item" NUMERIC NOT NULL,
+            "webinar" NUMERIC NOT NULL,
+            "minutes" INTEGER,
+            PRIMARY KEY ( "_id" ),
+            CONSTRAINT item_webinar FOREIGN KEY (webinar)
+            REFERENCES webinar (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT item_google FOREIGN KEY (item)
+            REFERENCES google_file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="8" author="aleksey.plotnikov">
+        <comment>Table course.item</comment>
+        <sql>
+            CREATE TABLE "course"."video_item" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "description" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default",
+            "index" BIGINT NOT NULL,
+            "link" CHARACTER VARYING( 64 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="9" author="aleksey.plotnikov">
+        <comment>Table course.test_question</comment>
+        <sql>
+            CREATE TABLE "course"."test_question" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "item" NUMERIC NOT NULL,
+            "index" BIGINT NOT NULL,
+            "name" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default",
+            "section" BOOLEAN DEFAULT 'false' NOT NULL,
+            "parent" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="10" author="aleksey.plotnikov">
+        <comment>Table course.test_variant</comment>
+        <sql>
+            CREATE TABLE "course"."test_variant" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "item" NUMERIC NOT NULL,
+            "index" BIGINT NOT NULL,
+            "score" BIGINT NOT NULL,
+            "text" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default",
+            "parent" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="11" author="aleksey.plotnikov">
+        <comment>Table course.test_result</comment>
+        <sql>
+            CREATE TABLE "course"."test_result" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "item" NUMERIC NOT NULL,
+            "correct" BOOLEAN DEFAULT 'false' NOT NULL,
+            "jump_finish" BOOLEAN DEFAULT 'false' NOT NULL,
+            "max" INTEGER,
+            "min" INTEGER,
+            "text" CHARACTER VARYING( 1024 ) COLLATE "pg_catalog"."default",
+            "parent" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="12" author="aleksey.plotnikov">
+        <comment>Table course.test_statistics</comment>
+        <sql>
+            CREATE TABLE "course"."test_statistics" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "item" NUMERIC NOT NULL,
+            "listener" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="13" author="aleksey.plotnikov">
+        <comment>Table course.test_jump</comment>
+        <sql>
+            CREATE TABLE "course"."test_jump" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "index" BIGINT NOT NULL,
+            "dest" NUMERIC NOT NULL,
+            "result" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="14" author="aleksey.plotnikov">
+        <comment>Table course.test_jump_order</comment>
+        <sql>
+            CREATE TABLE "course"."test_jump_order" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "index" BIGINT NOT NULL,
+            "jump" NUMERIC NOT NULL,
+            "question" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="15" author="aleksey.plotnikov">
+        <comment>Table course.test_attempt</comment>
+        <sql>
+            CREATE TABLE "course"."test_attempt" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "start_date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "statistics" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="16" author="aleksey.plotnikov">
+        <comment>Table course.test_answer</comment>
+        <sql>
+            CREATE TABLE "course"."test_answer" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "date" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            "question" NUMERIC NOT NULL,
+            "variant" NUMERIC NOT NULL,
+            "attempt" NUMERIC NOT NULL,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="17" author="aleksey.plotnikov">
+        <comment>Links between tables</comment>
+        <sql>
+            ALTER TABLE "course"."user_data" ADD CONSTRAINT "course_data" FOREIGN KEY ( "course" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."listener" ADD CONSTRAINT "course_listener" FOREIGN KEY ( "course" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."listener" ADD CONSTRAINT "listener_listener" FOREIGN KEY ( "parent" ) REFERENCES
+            "course"."listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."block" ADD CONSTRAINT "course_block" FOREIGN KEY ( "course" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."block" ADD CONSTRAINT "course_demo_block" FOREIGN KEY ( "demo_course" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."admins" ADD CONSTRAINT "course_admins" FOREIGN KEY ( "course_id" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."payment" ADD CONSTRAINT "course_payment" FOREIGN KEY ( "course" ) REFERENCES
+            "course"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."payment" ADD CONSTRAINT "listener_payment" FOREIGN KEY ( "listener" ) REFERENCES
+            "course"."listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."item" ADD CONSTRAINT "block_item" FOREIGN KEY ( "block" ) REFERENCES
+            "course"."block" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."block_access" ADD CONSTRAINT "block_access" FOREIGN KEY ( "block" ) REFERENCES
+            "course"."block" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."block_access" ADD CONSTRAINT "listener_access" FOREIGN KEY ( "listener" )
+            REFERENCES "course"."listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_statistics" ADD CONSTRAINT "listener_statistics" FOREIGN KEY ( "listener" )
+            REFERENCES "course"."listener" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_statistics" ADD CONSTRAINT "item_statistics" FOREIGN KEY ( "item" ) REFERENCES
+            "course"."item" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_question" ADD CONSTRAINT "item_question" FOREIGN KEY ( "item" ) REFERENCES
+            "course"."item" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_question" ADD CONSTRAINT "question_question" FOREIGN KEY ( "parent" ) REFERENCES
+            "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_variant" ADD CONSTRAINT "item_variant" FOREIGN KEY ( "item" ) REFERENCES
+            "course"."item" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_variant" ADD CONSTRAINT "question_variant" FOREIGN KEY ( "parent" ) REFERENCES
+            "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_result" ADD CONSTRAINT "item_result" FOREIGN KEY ( "item" ) REFERENCES
+            "course"."item" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_result" ADD CONSTRAINT "question_result" FOREIGN KEY ( "parent" ) REFERENCES
+            "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."video_item" ADD CONSTRAINT "item_video" FOREIGN KEY ( "item" ) REFERENCES
+            "course"."item" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_answer" ADD CONSTRAINT "variant_answer" FOREIGN KEY ( "variant" ) REFERENCES
+            "course"."test_variant" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_answer" ADD CONSTRAINT "question_answer" FOREIGN KEY ( "question" ) REFERENCES
+            "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_answer" ADD CONSTRAINT "attempt_answer" FOREIGN KEY ( "attempt" ) REFERENCES
+            "course"."test_attempt" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_attempt" ADD CONSTRAINT "statictics_attempt" FOREIGN KEY ( "statistics" )
+            REFERENCES "course"."test_statistics" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_jump" ADD CONSTRAINT "question_jump" FOREIGN KEY ( "dest" ) REFERENCES
+            "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_jump" ADD CONSTRAINT "result_jump" FOREIGN KEY ( "result" ) REFERENCES
+            "course"."test_result" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+            ALTER TABLE "course"."test_jump_order" ADD CONSTRAINT "jump_order" FOREIGN KEY ( "jump" ) REFERENCES
+            "course"."test_jump" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "course"."test_jump_order" ADD CONSTRAINT "question_order" FOREIGN KEY ( "question" )
+            REFERENCES "course"."test_question" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

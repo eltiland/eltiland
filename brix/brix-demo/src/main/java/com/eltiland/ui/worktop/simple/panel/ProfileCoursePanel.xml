@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="courseAlreadySendedMessage">Запрос на создание курса находится на рассмотрении администрации</entry>
+    <entry key="courseCreatedMessage">Запрос на создание курса отправлен администрации</entry>
+
+    <entry key="author.menu">Автор курсов</entry>
+    <entry key="listener.menu">Слушатель курсов</entry>
+    <entry key="invoice.menu">Создание курса</entry>
+</properties>

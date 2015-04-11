@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="pavel.androschuk">
+        <comment>Add table faq_category and update tables faq and faqapproval</comment>
+        <sql>
+            DROP TABLE IF EXISTS "public"."faq" CASCADE;
+            DROP TABLE IF EXISTS "public"."faqapproval" CASCADE;
+
+            CREATE TABLE "public"."faq" (
+                "_id" NUMERIC NOT NULL UNIQUE,
+                "answer" CHARACTER VARYING( 2048 ) COLLATE "pg_catalog"."default" NOT NULL,
+                "number" INTEGER NOT NULL,
+                "question" CHARACTER VARYING( 2048 ) COLLATE "pg_catalog"."default" NOT NULL,
+                "category" NUMERIC,
+                PRIMARY KEY ( "_id" )
+            );
+
+            CREATE TABLE "public"."faq_category" (
+                "_id" NUMERIC NOT NULL UNIQUE,
+                "name" CHARACTER VARYING( 80 ) COLLATE "pg_catalog"."default" NOT NULL,
+                "number" INTEGER NOT NULL,
+                PRIMARY KEY ( "_id" )
+            );
+
+            CREATE TABLE "public"."faqapproval" (
+                "_id" NUMERIC NOT NULL UNIQUE,
+                "creationdate" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+                "question" CHARACTER VARYING( 2048 ) COLLATE "pg_catalog"."default" NOT NULL,
+                "answer" CHARACTER VARYING( 2048 ) COLLATE "pg_catalog"."default",
+                "is_answered" BOOLEAN DEFAULT 'false' NOT NULL,
+                "user_email" CHARACTER VARYING( 255 ) COLLATE "pg_catalog"."default" NOT NULL,
+                PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

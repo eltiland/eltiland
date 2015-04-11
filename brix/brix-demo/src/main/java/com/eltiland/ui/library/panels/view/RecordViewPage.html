@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:extend>
+    <div class="library_search">
+        <div class="name" wicket:id="name"></div>
+        <div wicket:id="backButton" class="back"></div>
+    </div>
+
+    <div wicket:id="documentContainer">
+        <div wicket:id="content" style="margin:5px"></div>
+    </div>
+    <div wicket:id="imageContainer">
+        <img class="image_preview" wicket:id="image"/>
+    </div>
+    <div class="video_preview" wicket:id="videoContainer">
+        <div wicket:id="player"></div>
+    </div>
+</wicket:extend>
+</body>
+</html>

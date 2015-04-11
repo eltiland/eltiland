@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Drop hibernate_sequences table</comment>
+        <dropTable tableName="hibernate_sequences" schemaName="public"/>
+    </changeSet>
+
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Create general sequence</comment>
+        <sql>
+            CREATE SEQUENCE hibernate_sequence
+            INCREMENT 1
+            MINVALUE 1
+            MAXVALUE 9223372036854775807
+            START 4
+            CACHE 1;
+            ALTER TABLE hibernate_sequence
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

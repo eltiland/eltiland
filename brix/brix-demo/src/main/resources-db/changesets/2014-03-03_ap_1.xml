@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Table for CourseInvoices</comment>
+        <sql>
+            CREATE TABLE "public"."courseinvoice" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "apply" BOOLEAN DEFAULT 'false' NOT NULL,
+            "creation_date" TIMESTAMP WITHOUT TIME ZONE,
+            "course" NUMERIC,
+            "listener" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+
+            ALTER TABLE "public"."courseinvoice" ADD CONSTRAINT "invoice_user" FOREIGN KEY ( "listener" )
+            REFERENCES "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."courseinvoice" ADD CONSTRAINT "invoice_course" FOREIGN KEY ( "course" ) REFERENCES
+            "public"."course" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

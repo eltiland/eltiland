@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="selectHeader">Введите полностью либо частично ФИО или email пользователя портала</entry>
+    <entry key="userHeaderLabel">Выбор пользователя</entry>
+    <entry key="addUserLabel">Регистрация нового пользователя</entry>
+    <entry key="resultsLabel">Результаты поиска</entry>
+
+    <entry key="fioColumn">ФИО</entry>
+    <entry key="emailColumn">Email</entry>
+
+    <entry key="errorInformatName">Данный пользователь не может быть добавлен на вебинар - имя пользователя не
+        соответствует стандарту Фамилия Имя Отчество.
+    </entry>
+    <entry key="registerMessage">Пользователь успешно зарегистрирован.</entry>
+</properties>

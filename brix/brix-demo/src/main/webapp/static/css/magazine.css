@@ -1,0 +1,200 @@
+.mag .action {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mag .clientButton {
+    margin-bottom: 10px;
+}
+
+.mag .item {
+    display: table;
+    border: 2px solid rgb(81, 117, 156);
+    width: 100%;
+}
+
+.mag .item .icon-aligner > img {
+    width: 135px !important;
+}
+
+.mag .item .cover {
+    display: table-cell;
+    padding: 5px;
+    width: 140px;
+}
+
+.mag .item .cover .elti-item {
+    margin: 0 !important;
+}
+
+.mag .item .selector {
+    display: table-cell;
+    width: 100px;
+    border-left: 1px solid lightgray;
+    vertical-align: top;
+}
+
+.mag .item .selector .price .label {
+    margin-top: 55px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(81, 117, 156);
+}
+
+.mag .item .selector .price .value {
+    margin-top: 5px;
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+}
+
+.mag .item .selector .price .checkBox {
+    width: 32px;
+    height: 32px;
+    margin-top: 20px;
+    margin-left: 34px;
+    cursor: pointer;
+}
+
+.mag .item .selector .price .select {
+    text-align: center;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.mag .item .selector .price .unselected {
+    background: url("../images/magazine/unchecked.png");
+}
+
+.mag .item .selector .price .selected {
+    background: url("../images/magazine/checked.png");
+}
+
+.mag .item .info {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.mag .item .info .name {
+    text-align: center;
+    margin-top: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid lightgray;
+    color: rgb(81, 117, 156);
+    font-weight: bold;
+}
+
+.mag .item .info .description {
+    height: 120px;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    margin-top: 15px;
+    font-style: italic;
+    color: rgb(81, 117, 156);
+}
+
+.mag .item .info .about {
+    text-align: center;
+}
+
+.mag .detail .name {
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.mag .detail .back {
+    display: table;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.mag .detail .info {
+    margin-top: 10px;
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+
+.mag .detail .info .icon-aligner > img {
+    width: 135px !important;
+}
+
+.mag .detail .info .cover {
+    display: table-cell;
+    width: 140px;
+}
+
+.mag .detail .info .topic {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+    font-style: italic;
+}
+
+.mag .pay .headerLabel {
+    text-align: center;
+    font-weight: bold;
+}
+
+.mag .pay .list {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+
+.mag .pay .listTotal {
+    font-size: 15px;
+    font-weight: bold;
+    color: #8b0000;
+}
+
+.mag .pay .info {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.mag .pay .buttons {
+    margin-top: 15px;
+}
+
+.mag .pay .buttons .pay {
+    float: left;
+    margin-right: 20px;
+}
+
+.mag .downloadHeader {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.mag .downloadInfo {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.mag .download {
+    cursor: pointer;
+    color: blue;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.magTable {
+    display: table;
+    margin-top: 10px;
+}
+
+.magTable .file {
+    display: table-cell;
+    float: left;
+}
+
+.magTable .cover {
+    display: table-cell;
+}

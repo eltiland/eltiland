@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Заявка на участие в курсе</entry>
+
+    <entry key="name">ФИО</entry>
+
+    <entry key="physical">Физическое лицо</entry>
+    <entry key="legal">Юридическое лицо</entry>
+    <entry key="legal_portal">Юридическое лицо, "Портал поставщиков"</entry>
+
+    <entry key="name.column">ФИО</entry>
+
+    <entry key="no.users">Пользователи не найдены</entry>
+    <entry key="child.users">Регистрируемые пользователи:</entry>
+    <entry key="user.selector">Выбор пользователя</entry>
+
+    <entry key="edit.tooltip">Редактировать список регистрируемых пользователей</entry>
+
+    <entry key="invoiceApproved">Ваша заявка принята, ожидайте подтвержления администрацией</entry>
+</properties>

@@ -1,0 +1,205 @@
+/**************************************************************************************************/
+/* Basic styles for eltiland page.
+/**************************************************************************************************/
+@font-face {
+    font-family: "a_Campus";
+    src: url("../fonts/a_Campus.eot") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "a_Campus";
+    src: url("../fonts/a_Campus.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "a_Campus";
+    src: url("../fonts/a_Campus.woff") format("woff");
+}
+
+/*   ----------  COMMON SECTION BEGIN   ----------  */
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    min-width: 1200px;
+}
+
+p {
+    margin: 0;
+}
+
+img {
+    border: 0;
+}
+
+hr {
+    border: 1px solid white;
+    border-bottom: 1px solid silver;
+}
+
+/* ==== COMMON CLASSES ===*/
+.clear {
+    clear: both !important;
+}
+
+
+/*   ----------  Base page styles   ----------  */
+.eltiland-logo {
+    margin: 0 auto;
+    width: 85%;
+    min-width: 1024px;
+}
+
+.eltiland-logo > img {
+    max-width: 100%;
+    height: auto;
+    display: table;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.elti-content {
+    top: -78px;
+    margin: 0 auto;
+    width: 85%;
+    min-width: 1024px;
+}
+
+.mainContainer {
+    border-left: 1px solid #B9B7B7;
+    border-right: 1px solid #B9B7B7;
+    border-top: 1px solid #B9B7B7;
+    margin-top: 15px;
+}
+
+.elti-content-columns {
+    position: relative;
+    padding-top: 10px;
+    min-height: 200px;
+    background-color: white;
+}
+
+.elti-banners {
+    width: 100%;
+    height: 89px;
+    background-color: white;
+    padding-top: 40px;
+}
+
+.elti-banners .banners {
+    display: table;
+    margin: 0 auto;
+    border-top: 1px solid #d3d3d3;
+}
+
+.elti-banners .banner {
+    height: 73px;
+    width: 279px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: left;
+    max-width: 18%;
+    margin-left: 6px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.elti-banners .eltik {
+    background-image: url("../images/homepage/banners/eltik.jpg");
+    margin-top: 8px;
+}
+
+.elti-banners .elti-kudic {
+    background-image: url("../images/homepage/banners/elti-kudic.jpg");
+    margin-top: 8px;
+}
+
+.elti-banners .childquestion {
+    background-image: url("../images/homepage/banners/childquestion.jpg");
+    margin-top: 8px;
+}
+
+.elti-banners .eltik-friends {
+    background-image: url("../images/homepage/banners/eltik_friends.jpg");
+    margin-top: 8px;
+}
+
+.elti-banners .expert {
+    background-image: url("../images/homepage/banners/expert.jpg");
+    height: 90px;
+}
+
+.elti-bottom-menu-wrapper {
+    width: 100%;
+    height: 117px;
+    background: white;
+    margin-top: -40px;
+}
+
+.elti-bottom-menu {
+    display: table;
+    position: relative;
+    margin: auto;
+    padding-top: 24px;
+    background: url("../images/elti/bottom_menu_line.png") no-repeat top center;
+    margin-top: 40px;
+}
+
+.elti-bottom-menu-border-left, .elti-bottom-menu-border-right, .elti-bottom-menu-border-center {
+    position: relative;
+    height: 127px;
+    z-index: -1;
+}
+
+.elti-bottom-menu .bottom-menu {
+    text-align: center;
+    float: left;
+    padding: 8px;
+    display: table-cell;
+}
+
+.elti-bottom-menu .bottom-menu > a {
+    text-transform: uppercase;
+    vertical-align: middle;
+    color: #a1a1a1;
+    font-size: 10px;
+    text-decoration: underline;
+}
+
+/*   ----------  FOOTER SECTION BEGIN   ----------  */
+
+.elti-footer {
+    background: url("../images/elti/footer.png") repeat bottom;
+    width: 100%;
+    height: 300px;
+    z-index: -2;
+    margin-top: -164px;
+}
+
+.elti-footer-content {
+    position: absolute;
+    width: 100%;
+    margin-top: 140px;
+}
+
+.elti-footer-content a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.elti-footer-content .elti-left-column a {
+    font-size: 10pt;
+}
+
+.elti-footer-content .elti-middle-column a {
+    font-size: 12pt;
+    background: url("../images/elti/footer_link_bg.png");
+}
+
+.elti-footer-content .elti-middle-column div {
+    margin-bottom: 10px;
+}
+
+/*   ----------  FOOTER SECTION END   ----------  */

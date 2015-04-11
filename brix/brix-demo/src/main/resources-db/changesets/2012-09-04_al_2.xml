@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="alexander.litvinenko">
+        <comment>Added default value for avatar__id field</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_default_user_icon() returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from file where name='ICONS_UNKNOWN_USER';
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+        <sql endDelimiter=";" splitStatements="false">
+            update public.child set avatar__id=get_default_user_icon() where avatar__id IS NULL;
+            DROP FUNCTION get_default_user_icon();
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="alexander.litvinenko">
+        <comment>Make avatar__id column not null</comment>
+        <addNotNullConstraint tableName="child" schemaName="public" columnName="avatar__id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget">
+        <div class="elti-widget-header">
+            <h1>
+                <div wicket:id="header"></div>
+            </h1>
+        </div>
+        <form wicket:id="form">
+            <wicket:child></wicket:child>
+            <div wicket:id="captchaPanel"></div>
+            <div class="clear"></div>
+            <wicket:enclosure child="buttonListView">
+                <div style="height: 36px">
+                    <wicket:container wicket:id="buttonListView">
+                        <div wicket:id="button" style="float: left"></div>
+                    </wicket:container>
+                </div>
+            </wicket:enclosure>
+        </form>
+    </div>
+</wicket:panel>
+</body>
+</html>

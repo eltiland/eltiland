@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div>
+        <div>
+            <span wicket:id="uploadLabel" class="elti-inline-editor-label"></span>
+            <a wicket:id="uploadLink" class="elti-linkbutton">(
+                <wicket:message key="uploadLink"/>
+                )</a>
+
+            <div wicket:id="uploadRestrictedLabel" class="elti-inline-editor-label"/>
+            <input type="hidden" wicket:id="uploadFlag">
+        </div>
+        <div style="display: inline-block; margin-right: 20px; margin-top: 20px">
+            <wicket:container wicket:id="fileListView">
+                <div wicket:id="item"/>
+            </wicket:container>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <wicket:container wicket:id="uploadDialog"/>
+    <wicket:fragment wicket:id="uploadDialogFragment">
+        <div wicket:id="uploadFileDialog"></div>
+    </wicket:fragment>
+
+</wicket:panel>
+</body>
+</html>

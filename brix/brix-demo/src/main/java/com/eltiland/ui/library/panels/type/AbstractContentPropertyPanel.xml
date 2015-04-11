@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="load">Загрузить файл</entry>
+    <entry key="docLoaded">Файл загружен</entry>
+</properties>

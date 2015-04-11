@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Оплата выбранных журналов</entry>
+
+    <entry key="selected">%s. %s (%s руб.)</entry>
+    <entry key="all">Всего: %s руб.</entry>
+
+    <entry key="info">После оплаты Вам будет отправлено письмо со ссылкой, по которой Вы сможете скачать выбранные
+        журналы. Ссылка действует один раз.
+    </entry>
+</properties>

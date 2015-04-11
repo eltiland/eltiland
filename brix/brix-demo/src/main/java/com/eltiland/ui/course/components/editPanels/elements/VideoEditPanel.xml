@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="saveMessage">Элемент "Видео" успешно сохранен.</entry>
+    <entry key="nameColumn">Название видео</entry>
+
+    <entry key="editAction">Редактировать видео</entry>
+    <entry key="descAction">Редактировать описание</entry>
+    <entry key="previewAction">Предпросмотр</entry>
+    <entry key="removeAction">Удалить</entry>
+    <entry key="addAction">Добавить видео</entry>
+    <entry key="upAction">Вверх на 1 позицию</entry>
+    <entry key="downAction">Вниз на 1 позицию</entry>
+    <entry key="pagePreviewAction">Просмотр всей страницы</entry>
+</properties>

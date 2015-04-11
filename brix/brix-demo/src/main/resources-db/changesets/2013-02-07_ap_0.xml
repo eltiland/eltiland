@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding older age group to Our Graduates and CYT</comment>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_teacher_by_email(inEmail text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "user" where email=inEmail;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION get_group_by_name(inName text) returns integer as $$
+            DECLARE number integer;
+            begin
+            select _id into number from "group" where name=inName;
+            return number;
+            end
+
+            $$ LANGUAGE plpgsql;
+        </createProcedure>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 1 до 2')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 2 до 3')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 3 до 4')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 4 до 5')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 5 до 6')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 6 до 7')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('От 7 до 8')</where>
+        </update>
+
+        <update tableName="teacher_group">
+            <column name="teacher_id" valueComputed="get_teacher_by_email('klub_yum@mail.ru')"/>
+            <where>group_id=get_group_by_name('Наши выпускники')</where>
+        </update>
+
+        <sql>
+            DROP FUNCTION get_teacher_by_email(inEmail text)
+        </sql>
+        <sql>
+            DROP FUNCTION get_group_by_name(inName text)
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

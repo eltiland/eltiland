@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div wicket:id="gridHeader" class="grid_header"></div>
+    <div wicket:id="grid"></div>
+    <div wicket:id="noUsersMessage" class="noUsers">
+        <wicket:message key="noUsersMessage"></wicket:message>
+    </div>
+    <div class="action">
+        <button wicket:id="addFreeAccessButton">
+            <wicket:message key="addFree"></wicket:message>
+        </button>
+        <button wicket:id="addPersonalAccessButton">
+            <wicket:message key="addPersonal"></wicket:message>
+        </button>
+    </div>
+    <div wicket:id="selectorDialog"></div>
+    <div wicket:id="changePriceDialog"></div>
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="elti-widget elti-create-group">
+        <div class="elti-widget-header">
+            <h1>
+                <wicket:message key="headerLabel"></wicket:message>
+            </h1>
+        </div>
+        <div class="webinarRegister">
+            <wicket:enclosure child="enterButton">
+                <div class="notRegistered">
+                    <div class="text">
+                        <wicket:message key="notRegisteredMessage"></wicket:message>
+                    </div>
+                    <div class="breaker"></div>
+                    <div class="text">
+                        <wicket:message key="alreadyRegistered"></wicket:message>
+                    </div>
+                    <div class="text">
+                        <wicket:message key="press"></wicket:message>
+                    </div>
+                    <button wicket:id="enterButton" class="enterButton">
+                        <wicket:message key="enter"></wicket:message>
+                    </button>
+                    <div class="breaker"></div>
+                </div>
+            </wicket:enclosure>
+
+            <div style="font-size: 13px;font-weight: bold;">
+                <wicket:message key="newUserLabel"></wicket:message>
+            </div>
+            <form wicket:id="form">
+                <div wicket:id="nameField"></div>
+                <div wicket:id="emailField"></div>
+                <wicket:enclosure child="passwordField">
+                    <div wicket:id="passwordField"></div>
+                    <div wicket:id="passwordSecondField"></div>
+                </wicket:enclosure>
+
+                <input type="checkbox" wicket:id="subscribeCheckBox">
+                <span class="subscribeText">
+                    <wicket:message key="subscribeMessage"/>
+                </span>
+
+                <div wicket:id="captchaPanel"></div>
+
+                <div wicket:id="required"></div>
+                <div class="clear"></div>
+                <button wicket:id="approveButton">
+                    <wicket:message key="approveButtonLabel"></wicket:message>
+                </button>
+            </form>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

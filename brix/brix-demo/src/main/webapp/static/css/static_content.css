@@ -1,0 +1,41 @@
+/*This css files synchronized with TyneMCE and main web style */
+.title {
+    font-size: 19px;
+    color: #575754;
+    font-family: Arial;
+    text-align: center;
+}
+
+.paragraph {
+    /*font-size: 14px;*/
+    color: #575754;
+    font-family: Arial;
+    text-align: justify;
+    line-height: 16px;
+}
+
+.first_word {
+    background-color: #fff9e1;
+}
+
+.mceContentBody   a,
+.cms-panel a {
+    /*font-size: 14px;*/
+    /*padding-top: 2px;*/
+    /*color: #2B60DE;*/
+    /*cursor: pointer;*/
+}
+
+.mceContentBody   img,
+.cms-panel   img {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.mceContentBody .jsCollapsable  {
+    border: #2B60DE dashed thin;
+}
+
+

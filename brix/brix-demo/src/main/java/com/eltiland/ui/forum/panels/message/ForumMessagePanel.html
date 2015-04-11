@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="message">
+        <div class="date">
+            <div wicket:id="date"></div>
+        </div>
+        <div class="data">
+            <div style="display: table-row;">
+                <div class="user">
+                    <a class="name" wicket:id="authorLink">
+                        <div wicket:id="author"></div>
+                    </a>
+                </div>
+                <div class="content">
+                    <div class="message_title">
+                        <div wicket:id="header"></div>
+                    </div>
+                    <div class="message_content">
+                        <div wicket:id="content"></div>
+                    </div>
+                    <button class="button" wicket:id="replyButton">
+                        <wicket:message key="reply"></wicket:message>
+                    </button>
+                    <button class="button" wicket:id="editButton">
+                        <wicket:message key="change"></wicket:message>
+                    </button>
+                    <button class="button" wicket:id="removeButton">
+                        <wicket:message key="delete"></wicket:message>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div wicket:id="listContainer">
+        <div class="messages" wicket:id="messageList">
+            <div wicket:id="message"></div>
+        </div>
+    </div>
+    <div wicket:id="createMessagePanel"></div>
+    <div wicket:id="editMessagePanel"></div>
+</wicket:panel>
+</body>
+</html>

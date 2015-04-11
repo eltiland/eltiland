@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="dateColumn">Дата регистрации</entry>
+    <entry key="emailColumn">Email</entry>
+
+    <entry key="deleteAction">Удалить данного подписчика из списка</entry>
+    <entry key="activateAction">Подписчик активен - дезактивация</entry>
+    <entry key="disactivateAction">Подписчик неактивен - активация</entry>
+
+    <entry key="deleteMessage">Подписчик успешно удален</entry>
+    <entry key="addMessage">Подписчик успешно добавлен</entry>
+
+    <entry key="addSubscriber">Добавить подписчика</entry>
+
+    <entry key="checkUsers">Проверить всех пользователей</entry>
+    <entry key="allUsersSubscribed">Все зарегистрированные пользователи подписаны на рассылку</entry>
+    <entry key="usersSubscribed">Пользователи подписаны на рассылку</entry>
+</properties>

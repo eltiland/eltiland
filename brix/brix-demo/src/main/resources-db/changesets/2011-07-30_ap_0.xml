@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Create confirmation table</comment>
+        <sql>
+            CREATE TABLE confirmation
+            (
+            _id numeric NOT NULL,
+            address character varying(10) NOT NULL,
+            endingdate timestamp without time zone,
+            CONSTRAINT confirmation_pkey PRIMARY KEY (_id )
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE confirmation
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Added confirmation date field to user</comment>
+        <sql>
+            ALTER TABLE "user" ADD COLUMN confirmationdate timestamp without time zone;
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="aleksey.plotnikov">
+        <comment>Added confirmation field to user</comment>
+        <sql>
+            ALTER TABLE "user" ADD COLUMN confirmation__id numeric;
+            ALTER TABLE "user"
+            ADD CONSTRAINT fk_confirmation_key FOREIGN KEY (confirmation__id)
+            REFERENCES confirmation (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION;
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="aleksey.plotnikov">
+        <comment>Added phone field to user</comment>
+        <sql>
+            ALTER TABLE "user" ADD COLUMN phone character varying(255);
+            ALTER TABLE "user" ALTER COLUMN phone SET NOT NULL;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

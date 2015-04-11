@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Add many to many file-message</comment>
+        <dropForeignKeyConstraint constraintName="fk_file_message" baseTableName="file"/>
+        <dropColumn tableName="file" columnName="message"/>
+        <sql>
+            CREATE TABLE message_file
+            (
+            message_id numeric NOT NULL,
+            file_id numeric NOT NULL,
+            CONSTRAINT message_file_pkey PRIMARY KEY (message_id , file_id ),
+            CONSTRAINT fkb3519ab41c7d7e2d FOREIGN KEY (file_id)
+            REFERENCES file (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT fkb3519ab440d2ec9a FOREIGN KEY (message_id)
+            REFERENCES message (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE message_file
+            OWNER TO eltiland;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

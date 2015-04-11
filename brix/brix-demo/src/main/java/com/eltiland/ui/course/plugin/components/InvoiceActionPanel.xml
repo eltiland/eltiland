@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="applyConfirmation">Вы дейтсвительно хотите подтвердить данный запрос?</entry>
+
+    <entry key="applyAction">Подтвердить данный запрос</entry>
+    <entry key="editAction">Изменить стоимость</entry>
+    <entry key="cancelAction">Отменить данный запрос</entry>
+</properties>

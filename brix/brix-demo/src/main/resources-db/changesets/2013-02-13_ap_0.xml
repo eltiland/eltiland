@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding paid service invoices table</comment>
+        <sql>
+            CREATE TABLE paid_service_invoice
+            (
+            _prototype character varying(31) NOT NULL,
+            _id numeric NOT NULL,
+            creationdate timestamp without time zone NOT NULL,
+            description character varying(1024) NOT NULL,
+            status boolean NOT NULL,
+            enddate timestamp without time zone,
+            price numeric(19,2),
+            startdate timestamp without time zone,
+            creator numeric,
+            paidgroup numeric,
+            CONSTRAINT paid_service_invoice_pkey PRIMARY KEY (_id ),
+            CONSTRAINT fk6294cc30e22d58c2 FOREIGN KEY (paidgroup)
+            REFERENCES "group" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT fk6294cc30ef7adcfb FOREIGN KEY (creator)
+            REFERENCES "user" (_id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION,
+            CONSTRAINT _prototype_enum CHECK (_prototype::text = ANY (ARRAY['CREATE'::character varying::text,
+            'CANCEL'::character varying::text]))
+            )
+            WITH (
+            OIDS=FALSE
+            );
+            ALTER TABLE paid_service_invoice
+            OWNER TO eltiland;
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

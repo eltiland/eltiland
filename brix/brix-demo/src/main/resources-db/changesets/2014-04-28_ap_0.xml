@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="aleksey.plotnikov">
+        <comment>Adding multiply payment table</comment>
+        <sql>
+            CREATE TABLE "public"."webinar_multiply_payment" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "offlineprice" NUMERIC( 19, 2 ),
+            "price" NUMERIC( 19, 2 ),
+            "webinar" NUMERIC,
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="aleksey.plotnikov">
+        <comment>Adding M-M relaction table</comment>
+        <sql>
+            CREATE TABLE "public"."webinar_user" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "payment_id" NUMERIC NOT NULL,
+            "user_id" NUMERIC NOT NULL,
+            PRIMARY KEY ( "payment_id","user_id" )
+            , CONSTRAINT "webinar_user__id_key" UNIQUE( "_id" ) );
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="aleksey.plotnikov">
+        <comment>Adding links</comment>
+        <sql>
+            ALTER TABLE "public"."webinar_user" ADD CONSTRAINT "webinar_user" FOREIGN KEY ( "user_id" ) REFERENCES
+            "public"."user" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+            ALTER TABLE "public"."webinar_user" ADD CONSTRAINT "webinar_payment" FOREIGN KEY ( "payment_id" )
+            REFERENCES "public"."webinar_multiply_payment" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO
+            ACTION;
+            ALTER TABLE "public"."webinar_multiply_payment" ADD CONSTRAINT "payment_webinar" FOREIGN KEY ( "webinar"
+            ) REFERENCES "public"."webinar" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

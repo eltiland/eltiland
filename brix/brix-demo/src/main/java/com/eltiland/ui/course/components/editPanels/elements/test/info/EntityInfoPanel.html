@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div class="clear"></div>
+    <div wicket:id="infoContainer" class="infoPanel">
+        <div class="iconControlPanel elementControl">
+            <a class="button" wicket:id="editButton">
+                <div class="image16 edit16"></div>
+            </a>
+
+            <wicket:enclosure child="upButton">
+                <div class="whitespace16"></div>
+                <a class="button" wicket:id="upButton">
+                    <div class="image16 up16"></div>
+                </a>
+            </wicket:enclosure>
+
+            <wicket:enclosure child="downButton">
+                <div class="whitespace16"></div>
+                <a class="button" wicket:id="downButton">
+                    <div class="image16 down16"></div>
+                </a>
+            </wicket:enclosure>
+
+            <div class="whitespace16"></div>
+            <a class="button" wicket:id="removeButton">
+                <div class="image16 cancel16"></div>
+            </a>
+        </div>
+        <div class="clear"></div>
+        <div wicket:id="valueField"></div>
+        <wicket:child/>
+    </div>
+    <div class="clear"></div>
+</wicket:panel>
+</body>
+</html>
