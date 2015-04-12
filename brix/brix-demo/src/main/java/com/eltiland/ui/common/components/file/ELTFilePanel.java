@@ -103,6 +103,7 @@ public class ELTFilePanel extends BaseEltilandPanel<List<File>> {
                     File newFile = fileManager.createFileFromUpload(model.getObject());
                     fileList.getModelObject().add(new FileWrapper(newFile.getName(), newFile));
                     target.add(fileContainer);
+                    onUploadActions(target, newFile);
                 }
             });
         }
@@ -237,6 +238,13 @@ public class ELTFilePanel extends BaseEltilandPanel<List<File>> {
      * Function, containing additional operations on delete action.
      */
     protected void onDeleteActions(AjaxRequestTarget target, File file) {
+
+    }
+
+    /**
+     * Function, containing additional operations on upload action.
+     */
+    protected void onUploadActions(AjaxRequestTarget target, File file) {
 
     }
 }

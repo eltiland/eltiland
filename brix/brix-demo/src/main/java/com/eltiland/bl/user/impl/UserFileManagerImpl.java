@@ -150,11 +150,22 @@ public class UserFileManagerImpl extends ManagerImpl implements UserFileManager 
 
     @Override
     @Transactional(readOnly = true)
-    public List<UserFile> getFilesForListener(User owner, User listener) {
+    public List<UserFile> getFilesForUser(User owner, User listener) {
         Criteria criteria = getCurrentSession().createCriteria(UserFile.class);
         criteria.createAlias("destinations", "dest", JoinType.LEFT_OUTER_JOIN);
         criteria.add(Restrictions.eq("owner", owner));
         criteria.add(Restrictions.eq("dest.id", listener.getId()));
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UserFile> getFilesForListener(User listener, ELTCourse course) {
+        Criteria criteria = getCurrentSession().createCriteria(UserFile.class);
+        criteria.createAlias("destinations", "dest", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("courses", "course", JoinType.LEFT_OUTER_JOIN);
+        criteria.add(Restrictions.eq("dest.id", listener.getId()));
+        criteria.add(Restrictions.eq("course.id", course.getId()));
         return criteria.list();
     }
 }

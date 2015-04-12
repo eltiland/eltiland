@@ -1,9 +1,11 @@
 package com.eltiland.ui.course.control.listeners;
 
 import com.eltiland.bl.EmailMessageManager;
+import com.eltiland.bl.FileManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.bl.course.ELTCourseManager;
+import com.eltiland.bl.user.CourseFileAccessManager;
 import com.eltiland.bl.user.UserFileAccessManager;
 import com.eltiland.bl.user.UserFileManager;
 import com.eltiland.exceptions.CourseException;
@@ -14,6 +16,7 @@ import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.course2.listeners.ListenerType;
+import com.eltiland.model.file.CourseFileAccess;
 import com.eltiland.model.file.File;
 import com.eltiland.model.file.UserFile;
 import com.eltiland.model.file.UserFileAccess;
@@ -25,13 +28,11 @@ import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
-import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleUpdateCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.file.ELTFilePanel;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
-import com.eltiland.ui.common.model.GenericDBListModel;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.control.listeners.panel.GeneralDataPanel;
 import com.eltiland.ui.course.control.listeners.panel.NamePanel;
@@ -49,6 +50,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -77,6 +79,10 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
     private UserFileManager userFileManager;
     @SpringBean
     private UserFileAccessManager userFileAccessManager;
+    @SpringBean
+    private CourseFileAccessManager courseFileAccessManager;
+    @SpringBean
+    private FileManager fileManager;
 
     private ELTTable<ELTCourseListener> grid;
 
@@ -109,16 +115,6 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             return new FilePanel(id);
         }
 
-        @Override
-        public void registerCallback(FilePanel panel) {
-            super.registerCallback(panel);
-            panel.setSimpleUpdateCallback(new IDialogSimpleUpdateCallback.IDialogActionProcessor<List<File>>() {
-                @Override
-                public void process(IModel<List<File>> model, AjaxRequestTarget target) {
-                    close(target);
-                }
-            });
-        }
     };
 
     /**
@@ -275,7 +271,11 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                     case APPLY:
                         return status.equals(PaidStatus.NEW);
                     case DOWNLOAD:
-                        return train && !(status.equals(PaidStatus.NEW));
+                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
+                        List<UserFile> files = userFileManager.getListenerFiles(
+                                rowModel.getObject().getListener(), getModelObject());
+
+                        return train && !(status.equals(PaidStatus.NEW)) && !files.isEmpty();
                     case UPLOAD:
                         return train && !(status.equals(PaidStatus.NEW));
                     case PAY:
@@ -310,35 +310,12 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         break;
                     case REMOVE:
                         try {
-                            if (course instanceof TrainingCourse) {
-                                //remove rights to access to the physical or legal docs.
-                                TrainingCourse tCourse = courseManager.fetchDocuments(getModelObject().getId());
-                                File file = rowModel.getObject().getType().equals(ListenerType.PHYSICAL) ?
-                                        tCourse.getPhysicalDoc() : tCourse.getLegalDoc();
-                                genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
-                                UserFile userFile = userFileManager.getByAuthorAndFile(tCourse.getAuthor(), file);
-                                if (userFile != null) {
-                                    UserFileAccess access = userFileAccessManager.getAccessInformation(
-                                            rowModel.getObject().getListener(), userFile);
-                                    if (access != null) {
-                                        try {
-                                            userFileAccessManager.delete(access);
-                                        } catch (UserException e) {
-                                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                                        }
-                                    }
-                                    List<UserFileAccess> accessList =
-                                            userFileAccessManager.getAccessInformation(userFile);
-                                    if (accessList.isEmpty()) {
-                                        try {
-                                            userFileManager.delete(userFile);
-                                        } catch (UserException e) {
-                                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                                        }
-                                    }
-                                }
+                            genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
+                            List<UserFile> userFiles = userFileManager.getFilesForListener(
+                                    rowModel.getObject().getListener(), getModelObject());
+                            for (UserFile userFile : userFiles) {
+                                removeFile(rowModel.getObject(), userFile, target);
                             }
-
                             emailMessageManager.sendTCUserDeclined(rowModel.getObject());
                             courseListenerManager.delete(rowModel.getObject());
                             target.add(grid);
@@ -353,48 +330,6 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                     case APPLY:
                         if (course instanceof TrainingCourse) {
                             rowModel.getObject().setStatus(PaidStatus.APPROVED);
-
-                            // Adding rights to the physical or legal documents.
-                            TrainingCourse tCourse = courseManager.fetchDocuments(getModelObject().getId());
-                            if ((tCourse.getPhysicalDoc() == null) || (tCourse.getLegalDoc() == null)) {
-                                ELTAlerts.renderErrorPopup(getString("error.no.documents"), target);
-                                break;
-                            }
-
-                            genericManager.initialize(tCourse.getAuthor(), tCourse.getAuthor().getUserFiles());
-
-                            File file = rowModel.getObject().getType().equals(ListenerType.PHYSICAL) ?
-                                    tCourse.getPhysicalDoc() : tCourse.getLegalDoc();
-                            UserFile userFile = null;
-                            for (UserFile tFile : tCourse.getAuthor().getUserFiles()) {
-                                genericManager.initialize(tFile, tFile.getFile());
-                                if (tFile.getFile().equals(file)) {
-                                    userFile = tFile;
-                                    break;
-                                }
-                            }
-                            if (userFile == null) {
-                                userFile = new UserFile();
-                                userFile.setOwner(tCourse.getAuthor());
-                                userFile.getCourses().add(course);
-                                userFile.setUploadDate(DateUtils.getCurrentDate());
-                                userFile.setFile(file);
-
-                                try {
-                                    userFileManager.create(userFile);
-                                } catch (UserException e) {
-                                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                                }
-                            }
-                            UserFileAccess fileAccess = new UserFileAccess();
-                            fileAccess.setFile(userFile);
-                            genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
-                            fileAccess.setClient(rowModel.getObject().getListener());
-                            try {
-                                userFileAccessManager.create(fileAccess);
-                            } catch (UserException e) {
-                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                            }
                         } else {
                             rowModel.getObject().setStatus(PaidStatus.PAYS);
                         }
@@ -410,30 +345,27 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
                         List<UserFile> files = userFileManager.getListenerFiles(
                                 rowModel.getObject().getListener(), course);
-                        if (files.isEmpty()) {
-                            ELTAlerts.renderErrorPopup(getString("error.no.files"), target);
-                        } else {
-                            List<File> tFiles = new ArrayList<>();
-                            for (UserFile file : files) {
-                                genericManager.initialize(file, file.getFile());
-                                tFiles.add(file.getFile());
-                            }
-                            fileDialog.getDialogPanel().initMode(false);
-                            fileDialog.getDialogPanel().initData(tFiles, rowModel);
-                            fileDialog.show(target);
+                        List<File> tFiles = new ArrayList<>();
+                        for (UserFile file : files) {
+                            genericManager.initialize(file, file.getFile());
+                            tFiles.add(file.getFile());
                         }
+                        fileDialog.getDialogPanel().initMode(false);
+                        fileDialog.getDialogPanel().initData(tFiles, rowModel);
+                        fileDialog.show(target);
                         break;
                     case UPLOAD:
-                        genericManager.initialize(course, course.getAuthor());
                         genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
 
                         List<UserFile> authorFiles = userFileManager.getFilesForListener(
-                                course.getAuthor(), rowModel.getObject().getListener());
-                        List<File> tFiles = new ArrayList<>();
+                                rowModel.getObject().getListener(), getModelObject());
+
+                        tFiles = new ArrayList<>();
                         for (UserFile file : authorFiles) {
                             genericManager.initialize(file, file.getFile());
                             tFiles.add(file.getFile());
                         }
+
                         fileDialog.getDialogPanel().initMode(true);
                         fileDialog.getDialogPanel().initData(tFiles, rowModel);
                         fileDialog.show(target);
@@ -667,13 +599,18 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
         }
     }
 
-    private class FilePanel extends ELTDialogPanel implements IDialogSimpleUpdateCallback<List<File>> {
+    private class FilePanel extends ELTDialogPanel {
 
         private boolean isUpload;
 
         private IModel<ELTCourseListener> listenerModel = new GenericDBModel<>(ELTCourseListener.class);
 
-        private IDialogActionProcessor<List<File>> callback;
+        private IModel<ELTCourse> courseModel = new LoadableDetachableModel<ELTCourse>() {
+            @Override
+            protected ELTCourse load() {
+                return CourseInvoicePanel.this.getModelObject();
+            }
+        };
 
         private ELTFilePanel filePanel = new ELTFilePanel("files") {
             @Override
@@ -694,18 +631,24 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             @Override
             protected void onDeleteActions(AjaxRequestTarget target, File file) {
                 super.onDeleteActions(target, file);
-                genericManager.initialize(CourseInvoicePanel.this.getModelObject(),
-                        CourseInvoicePanel.this.getModelObject().getAuthor());
-                UserFile userFile = userFileManager.getByAuthorAndFile(
-                        CourseInvoicePanel.this.getModelObject().getAuthor(), file);
-                UserFileAccess fileAccess = userFileAccessManager.getAccessInformation(
-                        listenerModel.getObject().getListener(), userFile);
-                try {
-                    userFileAccessManager.delete(fileAccess);
-                    userFileManager.delete(userFile);
-                } catch (UserException e) {
-                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+
+                List<UserFile> userFiles = userFileManager.getFilesForListener(
+                        listenerModel.getObject().getListener(), courseModel.getObject());
+
+                UserFile userFile = null;
+                for (UserFile tFile : userFiles) {
+                    genericManager.initialize(tFile, tFile.getFile());
+                    if (tFile.getFile().getId().equals(file.getId())) {
+                        userFile = tFile;
+                    }
                 }
+                CourseInvoicePanel.this.removeFile(listenerModel.getObject(), userFile, target);
+            }
+
+            @Override
+            protected void onUploadActions(AjaxRequestTarget target, File file) {
+                super.onUploadActions(target, file);
+                create(file, target);
             }
         };
 
@@ -731,76 +674,12 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
 
         @Override
         protected List<EVENT> getActionList() {
-            return new ArrayList<>(Arrays.asList(EVENT.Save));
-        }
-
-        @Override
-        protected boolean actionSelector(EVENT event) {
-            return event.equals(EVENT.Save) && isUpload;
+            return new ArrayList<>();
         }
 
         @Override
         protected void eventHandler(EVENT event, AjaxRequestTarget target) {
-            if (event.equals(EVENT.Save)) {
-                try {
-                    genericManager.initialize(listenerModel.getObject(), listenerModel.getObject().getListener());
-                    genericManager.initialize(CourseInvoicePanel.this.getModelObject(),
-                            CourseInvoicePanel.this.getModelObject().getAuthor());
-                    List<UserFile> userFiles = userFileManager.getFilesForListener(
-                            CourseInvoicePanel.this.getModelObject().getAuthor(),
-                            listenerModel.getObject().getListener());
-                    List<File> files = filePanel.getFiles(true);
-                    for (UserFile userFile : userFiles) {
-                        genericManager.initialize(userFile, userFile.getFile());
-                        if (!(files.contains(userFile.getFile()))) {
-                            try {
-                                userFileManager.delete(userFile);
-                            } catch (UserException e) {
-                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                            }
-                        }
-                    }
-                    for (File file : files) {
-                        boolean save = true;
-                        for (UserFile userFile : userFiles) {
-                            genericManager.initialize(userFile, userFile.getFile());
-                            if (file.getId().equals(userFile.getFile().getId())) {
-                                save = false;
-                                break;
-                            }
-                        }
-                        if (save) {
-                            genericManager.initialize(CourseInvoicePanel.this.getModelObject(),
-                                    CourseInvoicePanel.this.getModelObject().getAuthor());
 
-                            UserFile userFile = new UserFile();
-                            userFile.setFile(file);
-                            userFile.setOwner(CourseInvoicePanel.this.getModelObject().getAuthor());
-                            userFile.setUploadDate(DateUtils.getCurrentDate());
-
-                            try {
-                                userFileManager.create(userFile);
-                            } catch (UserException e) {
-                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                            }
-
-                            UserFileAccess fileAccess = new UserFileAccess();
-                            fileAccess.setClient(listenerModel.getObject().getListener());
-                            fileAccess.setFile(userFile);
-
-                            try {
-                                userFileAccessManager.create(fileAccess);
-                            } catch (UserException e) {
-                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                            }
-                        }
-                    }
-
-                    callback.process(new GenericDBListModel<>(File.class, filePanel.getFiles(true)), target);
-                } catch (FileException e) {
-                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                }
-            }
         }
 
         @Override
@@ -808,9 +687,75 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             return "styled";
         }
 
-        @Override
-        public void setSimpleUpdateCallback(IDialogActionProcessor<List<File>> callback) {
-            this.callback = callback;
+        private void create(File file, AjaxRequestTarget target) {
+
+            try {
+                fileManager.saveFile(file);
+            } catch (FileException e) {
+                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            }
+
+            genericManager.initialize(listenerModel.getObject(), listenerModel.getObject().getListener());
+            genericManager.initialize(courseModel.getObject(), courseModel.getObject().getAuthor());
+
+            UserFile userFile = new UserFile();
+            userFile.setOwner(courseModel.getObject().getAuthor());
+            userFile.setFile(file);
+            userFile.setUploadDate(DateUtils.getCurrentDate());
+            try {
+                userFileManager.create(userFile);
+            } catch (UserException e) {
+                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            }
+
+            UserFileAccess userFileAccess = new UserFileAccess();
+            CourseFileAccess courseFileAccess = new CourseFileAccess();
+            userFileAccess.setFile(userFile);
+            userFileAccess.setClient(listenerModel.getObject().getListener());
+            courseFileAccess.setFile(userFile);
+            courseFileAccess.setCourse(courseModel.getObject());
+            try {
+                userFileAccessManager.create(userFileAccess);
+                courseFileAccessManager.create(courseFileAccess);
+            } catch (UserException e) {
+                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            }
+        }
+    }
+
+    private void removeFile(ELTCourseListener listener, UserFile file, AjaxRequestTarget target) {
+        if (file == null) {
+            return;
+        }
+
+        genericManager.initialize(listener, listener.getListener());
+
+        UserFileAccess userFileAccess = userFileAccessManager.getAccessInformation(listener.getListener(), file);
+        CourseFileAccess courseFileAccess = courseFileAccessManager.getAccessInformation(getModelObject(), file);
+        try {
+            userFileAccessManager.delete(userFileAccess);
+            courseFileAccessManager.delete(courseFileAccess);
+        } catch (UserException e) {
+            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+        }
+
+        genericManager.initialize(file, file.getCourses());
+        genericManager.initialize(file, file.getDestinations());
+
+        file.getCourses().remove(getModelObject());
+        file.getDestinations().remove(listener.getListener());
+        try {
+            userFileManager.update(file);
+        } catch (UserException e) {
+            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+        }
+
+        if (file.getDestinations().isEmpty() && file.getCourses().isEmpty()) {
+            try {
+                userFileManager.delete(file);
+            } catch (UserException e) {
+                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            }
         }
     }
 }

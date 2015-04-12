@@ -840,6 +840,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
         if (listener != null) {
             genericManager.initialize(listener, listener.getCourse());
+            genericManager.initialize(listener, listener.getListener());
             model.put(COURSE_NAME, listener.getCourse().getName());
 
             InternetAddress recipient;

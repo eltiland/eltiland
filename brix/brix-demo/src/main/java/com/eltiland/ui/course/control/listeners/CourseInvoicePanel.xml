@@ -38,7 +38,6 @@
 
     <entry key="error.no.documents">Ошибка - не загружены документы курса.</entry>
     <entry key="error.no.requisites">Ошибка - не установлены реквизиты оплаты курса.</entry>
-    <entry key="error.no.files">Данный пользователь не загрузил ни одного документа для данного курса.</entry>
 
     <entry key="message.listener">Пользователь переведен в статус слушателя.</entry>
 </properties>

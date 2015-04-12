@@ -108,5 +108,14 @@ public interface UserFileManager {
      * @param listener user-destination of the file.
      * @return list of the files.
      */
-    List<UserFile> getFilesForListener(User owner, User listener);
+    List<UserFile> getFilesForUser(User owner, User listener);
+
+    /**
+     * Get list of the files, uploaded for given listener on given course.
+     *
+     * @param listener user-destination of the file.
+     * @param course   course
+     * @return list of the files.
+     */
+    List<UserFile> getFilesForListener(User listener, ELTCourse course);
 }
