@@ -202,6 +202,7 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         Criteria criteria = getCurrentSession().createCriteria(TrainingCourse.class);
         criteria.setFetchMode("author", FetchMode.JOIN);
         criteria.add(Restrictions.gt("finishDate", DateUtils.getCurrentDate()));
+        criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
         criteria.addOrder(Order.asc("startDate"));
         return criteria.list();
     }
@@ -220,6 +221,7 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         Criteria criteria = getCurrentSession().createCriteria(TrainingCourse.class);
         criteria.setFetchMode("author", FetchMode.JOIN);
         criteria.add(Restrictions.lt("finishDate", DateUtils.getCurrentDate()));
+        criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
         criteria.addOrder(Order.desc("startDate"));
         return criteria.list();
     }

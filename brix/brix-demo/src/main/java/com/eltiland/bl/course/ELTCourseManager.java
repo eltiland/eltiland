@@ -121,17 +121,19 @@ public interface ELTCourseManager {
      *******************************************************/
 
     /**
-     * @return list of the training courses, which are active (finishDate < currentDate), sorted by startDate.
+     * @return list of the training courses, which are active (finishDate < currentDate) and published,
+     * sorted by startDate.
      */
     List<TrainingCourse> getActiveTrainingCourses();
 
     /**
-     * @return count of the published authro courses.
+     * @return count of the published author courses.
      */
     int getAuthorCoursesCount();
 
     /**
-     * @return list of the past training courses, which are active (finishDate > currentDate), sorted desc by startDate.
+     * @return list of the past training courses, which are active (finishDate > currentDate) and published,
+     * sorted desc by startDate.
      */
     List<TrainingCourse> getPastTrainingCourses();
 
