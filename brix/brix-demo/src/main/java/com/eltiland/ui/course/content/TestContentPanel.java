@@ -10,12 +10,14 @@ import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course.test.*;
 import com.eltiland.model.user.User;
 import com.eltiland.session.EltilandSession;
+import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.model.GenericDBListModel;
 import com.eltiland.utils.DateUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -241,28 +243,44 @@ public class TestContentPanel extends CourseContentPanel<TestCourseItem> {
         access = start == null || end == null ||
                 start.before(DateUtils.getCurrentDate()) && end.after(DateUtils.getCurrentDate());
 
-//        if (getModelObject().getAttemptLimit() > 0 && access) {
-//            UserTestAttempt attempt = testAttemptManager.getAttempt(getModelObject());
-//            int current = attempt.getAttemptCount();
-//            int limit = attempt.getAttemptLimit();
-//
-//            if (current <= limit) {
-//                try {
-//                    current++;
-//                    isLimitReached = (current > limit);
-//                    if (!isLimitReached) {
-//                        attempt.setAttemptCount(current);
-//                        genericManager.update(attempt);
-//                    }
-//                } catch (ConstraintException e) {
-//                    LOGGER.error("Cannot increase attempt", e);
-//                    throw new WicketRuntimeException("Cannot increase attempt", e);
-//                }
-//            }
-//            isCompleted = attempt.isCompleted();
-//            limitContainer.add(new Label("limitValue",
-//                    String.format(getString("limitValueLabel"), current, limit)));
-//        }
+        if (getModelObject().getAttemptLimit() > 0 && access) {
+            if (!(testAttemptManager.hasAttemptRecord(getModelObject()))) {
+                UserTestAttempt attempt = new UserTestAttempt();
+                attempt.setUser(currentUserModel.getObject());
+                attempt.setTest(getModelObject());
+                attempt.setAttemptCount(0);
+                attempt.setAttemptLimit(getModelObject().getAttemptLimit());
+
+                try {
+                    genericManager.saveNew(attempt);
+                } catch (ConstraintException e) {
+                    LOGGER.error("Cannot create attempt entity", e);
+                    throw new WicketRuntimeException("Cannot create attempt entity", e);
+                }
+            }
+
+
+            UserTestAttempt attempt = testAttemptManager.getAttempt(getModelObject());
+            int current = attempt.getAttemptCount();
+            int limit = attempt.getAttemptLimit();
+
+            if (current <= limit) {
+                try {
+                    current++;
+                    isLimitReached = (current > limit);
+                    if (!isLimitReached) {
+                        attempt.setAttemptCount(current);
+                        genericManager.update(attempt);
+                    }
+                } catch (ConstraintException e) {
+                    LOGGER.error("Cannot increase attempt", e);
+                    throw new WicketRuntimeException("Cannot increase attempt", e);
+                }
+            }
+            isCompleted = attempt.isCompleted();
+            limitContainer.add(new Label("limitValue",
+                    String.format(getString("limitValueLabel"), current, limit)));
+        }
 
 
         genericManager.initialize(testCourseItemIModel.getObject(), testCourseItemIModel.getObject().getQuestions());
@@ -491,5 +509,11 @@ public class TestContentPanel extends CourseContentPanel<TestCourseItem> {
             limitContainer.add(new Label("limitValue",
                     String.format(getString("limitValueLabel"), current, limit)));
         }
+    }
+
+    @Override
+    public void renderHead(IHeaderResponse response) {
+        super.renderHead(response);
+        response.renderCSSReference(ResourcesUtils.CSS_COURSE);
     }
 }

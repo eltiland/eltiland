@@ -534,14 +534,14 @@
     color: rgb(202, 202, 202);
 }
 
-.courseContent .data .content .testContent .process {
+.testContent .process {
     padding-top: 20px;
     color: rgb(146, 40, 40);
     font-weight: bold;
     text-align: center;
 }
 
-.courseContent .data .content .testContent .section {
+.testContent .section {
     font-size: 20px;
     font-weight: bold;
     margin: 10px;
@@ -555,30 +555,30 @@
     border-radius: 5px;
 }
 
-.courseContent .data .content .testContent .limit {
+.testContent .limit {
     font-size: 12px;
     margin: 5px;
     font-weight: bold;
     color: darkred;
 }
 
-.courseContent .data .content .testContent .question {
+.testContent .question {
     margin: 15px;
     font-style: italic;
 }
 
-.courseContent .data .content .resultContent .resultHeader {
+.resultContent .resultHeader {
     font-size: 18px;
     margin: 20px;
     color: darkred;
 }
 
-.courseContent .data .content .resultContent .resultText {
+.resultContent .resultText {
     margin: 20px;
     font-style: italic;
 }
 
-.courseContent .data .content .resultContent .resultGlobalText {
+.resultContent .resultGlobalText {
     margin: 20px;
     font-weight: bold;
 }

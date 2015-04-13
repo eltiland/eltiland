@@ -288,6 +288,7 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(PaymentFailPage.MOUNT_PATH, PaymentFailPage.class);
         mountPage(PaymentProcessingPage.MOUNT_PATH, PaymentProcessingPage.class);
         mountPage(ResetPasswordPage.MOUNT_PATH, ResetPasswordPage.class);
+        mountPage(CourseControlPage_old.MOUNT_PATH, CourseControlPage_old.class);
 
         getSharedResources().add(ResourcesUtils.COURSE_CONTENT_FOLDER,
                 new ContextRelativeResource(ResourcesUtils.IMAGE_COURSE_CONTENT_FOLDER_ITEM));

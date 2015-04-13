@@ -12,6 +12,7 @@ import com.eltiland.ui.common.components.behavior.TooltipBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.course.CourseControlPage;
+import com.eltiland.ui.course.CourseControlPage_old;
 import com.inmethod.grid.IGridColumn;
 import com.inmethod.grid.column.AbstractColumn;
 import com.inmethod.grid.datagrid.DataGrid;
@@ -173,8 +174,8 @@ public class CourseControlManagementPanel extends BaseEltilandPanel<Workspace> {
 
         public CourseControlPanel(String id, IModel<Course> courseIModel) {
             super(id, courseIModel);
-            add(new BookmarkablePageLink("control", CourseControlPage.class,
-                    new PageParameters().add(CourseControlPage.PARAM_ID, courseIModel.getObject().getId())));
+            add(new BookmarkablePageLink("control", CourseControlPage_old.class,
+                    new PageParameters().add(CourseControlPage_old.PARAM_ID, courseIModel.getObject().getId())));
         }
     }
 

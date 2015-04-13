@@ -1,20 +1,25 @@
 package com.eltiland.ui.service.plugin;
 
+import com.eltiland.bl.CourseManager;
 import com.eltiland.bl.CourseUserDataManager;
 import com.eltiland.bl.FileManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
+import com.eltiland.bl.user.UserManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.FileException;
 import com.eltiland.model.course.Course;
+import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.file.File;
+import com.eltiland.model.user.User;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.behavior.ConfirmationDialogBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.file.ELTFilePanel;
 import com.eltiland.ui.common.model.GenericDBListModel;
+import com.eltiland.utils.DateUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
@@ -44,10 +49,37 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
     private CourseUserDataManager courseUserDataManager;
     @SpringBean
     private FileManager fileManager;
+    @SpringBean
+    private UserManager userManager;
+    @SpringBean
+    private CourseManager courseManager;
 
     protected ServicePanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
         Injector.get().inject(this);
+
+        add(new EltiAjaxLink("createCourse") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                User user = userManager.getUserByEmail("yum_test@mailinator.com");
+
+                Course course = new Course();
+                course.setTraining(true);
+                course.setAuthor(user);
+                course.setCreationDate(DateUtils.getCurrentDate());
+                course.setName("Образовательные решения Lego Education для детей от 3 до 7 лет");
+                course.setStatus(false);
+
+                course.setPublished(false);
+                try {
+                    courseManager.createCourse(course);
+                } catch (EltilandManagerException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.add(new ConfirmationDialogBehavior()));
+
 
         add(new EltiAjaxLink("reloadButton") {
             @Override
