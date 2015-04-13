@@ -15,11 +15,13 @@
             <wicket:message key="checkAllUsers"></wicket:message>
         </button>
 
-        <button wicket:id="inviteButton" class="inviteButton">
-            <wicket:message key="inviteUsers"></wicket:message>
-        </button>
-
         <form wicket:id="form">
+            <button wicket:id="inviteButton" class="inviteButton">
+                <wicket:message key="inviteUsers"></wicket:message>
+            </button>
+
+            <div wicket:id="inviteField" class="searchField"></div>
+
             <div wicket:id="searchField" class="searchField"></div>
             <button wicket:id="searchButton" class="searchButton">
                 <wicket:message key="search"/>
@@ -30,6 +32,7 @@
         <div wicket:id="grid"></div>
         <div wicket:id="checkPanel"></div>
         <div wicket:id="addCoupleUsersDialog"></div>
+        <div wicket:id="addUserDialog"></div>
     </div>
 </wicket:panel>
 </body>

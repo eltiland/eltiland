@@ -3,6 +3,7 @@ package com.eltiland.ui.webinars.plugin.components;
 import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
+import com.eltiland.bl.user.UserManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
@@ -17,7 +18,12 @@ import com.eltiland.ui.common.components.button.EltiAjaxSubmitLink;
 import com.eltiland.ui.common.components.datagrid.EltiDefaultDataGrid;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
+import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
+import com.eltiland.ui.common.components.dialog.callback.IDialogCloseCallback;
+import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleUpdateCallback;
+import com.eltiland.ui.common.components.interval.ELTIntervalDialog;
+import com.eltiland.ui.common.components.textfield.ELTTextEmailField;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.webinars.components.multiply.WebinarAddUsersPanel;
@@ -44,10 +50,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Webinar moderation panel.
@@ -66,6 +69,8 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
     private GenericManager genericManager;
     @SpringBean
     private EmailMessageManager emailMessageManager;
+    @SpringBean
+    private UserManager userManager;
     @SpringBean(name = "eltilandProperties")
     private Properties eltilandProps;
 
@@ -88,6 +93,9 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
 
     private ELTTextField<String> searchField =
             new ELTTextField<>("searchField", ReadonlyObjects.EMPTY_DISPLAY_MODEL, new Model<String>(), String.class);
+
+    private ELTTextField<String> inviteField =
+            new ELTTextField<>("inviteField", ReadonlyObjects.EMPTY_DISPLAY_MODEL, new Model<String>(), String.class);
 
     private EltiAjaxSubmitLink searchButton = new EltiAjaxSubmitLink("searchButton") {
         @Override
@@ -176,6 +184,25 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                 }
             };
 
+    private Dialog<AddUser> addUserDialog = new Dialog<AddUser>("addUserDialog", 400) {
+        @Override
+        public AddUser createDialogPanel(String id) {
+            return new AddUser(id);
+        }
+
+        @Override
+        public void registerCallback(AddUser panel) {
+            super.registerCallback(panel);
+            panel.setCloseCallback(new IDialogCloseCallback.IDialogActionProcessor() {
+                @Override
+                public void process(AjaxRequestTarget target) {
+                    close(target);
+                    target.add(grid);
+                }
+            });
+        }
+    };
+
     /**
      * Panel constructor.
      *
@@ -199,8 +226,10 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
         Form form = new Form("form");
 
         form.add(searchField);
+        form.setMultiPart(true);
         searchField.addMaxLengthValidator(256);
         form.add(searchButton);
+        form.add(inviteField);
         add(form);
 
         List<IGridColumn<WebinarUserPaymentDataSource, WebinarUserPayment>> columns = new ArrayList<>();
@@ -325,16 +354,118 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
             }
         });
 
-        add(new EltiAjaxLink("inviteButton") {
+        form.add(new EltiAjaxSubmitLink("inviteButton") {
             @Override
-            public void onClick(AjaxRequestTarget target) {
-                webinarAddUsersPanelDialog.getDialogPanel().initWebinarData(webinarIModel.getObject());
-                webinarAddUsersPanelDialog.show(target);
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+
+                User user = userManager.getUserByEmail(inviteField.getModelObject());
+                if( user != null ) {
+                    // split name into parts
+                    String name = user.getName();
+                    String[] nameParts = name.split(" ");
+                    String surnameValue = nameParts[0],
+                            nameValue = nameParts[1],
+                            patronymicValue = nameParts[2];
+
+
+                    WebinarUserPayment payment = new WebinarUserPayment();
+                    payment.setRole(WebinarUserPayment.Role.MEMBER);
+                    payment.setWebinar(webinarIModel.getObject());
+                    payment.setPrice(webinarIModel.getObject().getPrice());
+                    payment.setRegistrationDate(DateUtils.getCurrentDate());
+                    payment.setUserName(nameValue);
+                    payment.setPatronymic(patronymicValue);
+                    payment.setUserSurname(surnameValue);
+                    payment.setUserProfile(user);
+                    payment.setUserEmail(user.getEmail());
+
+                    try {
+                        webinarUserPaymentManager.createUser(payment);
+                    } catch (EltilandManagerException e) {
+                        LOGGER.error("Got exception when creating user", e);
+                        throw new WicketRuntimeException("Got exception when creating user", e);
+                    } catch (EmailException e) {
+                        LOGGER.error("Got exception when sending email", e);
+                        throw new WicketRuntimeException("Got exception when sending email", e);
+                    }
+                    target.add(grid);
+                }
+
+
+          //      addUserDialog.show(target);
+//                webinarAddUsersPanelDialog.getDialogPanel().initWebinarData(webinarIModel.getObject());
+//                webinarAddUsersPanelDialog.show(target);
             }
         });
 
         add(webinarCheckErrorPanelDialog);
         add(webinarAddUsersPanelDialog);
+        add(addUserDialog);
+    }
+
+    private class AddUser extends ELTDialogPanel implements IDialogCloseCallback {
+
+        ELTTextEmailField emailField =
+                new ELTTextEmailField("emailField", ReadonlyObjects.EMPTY_DISPLAY_MODEL, new Model<String>(), true);
+
+        private IDialogActionProcessor callback;
+
+        public AddUser(String id) {
+            super(id);
+            form.add(emailField);
+        }
+
+        @Override
+        protected String getHeader() {
+            return "Введите email пользователя";
+        }
+
+        @Override
+        protected List<EVENT> getActionList() {
+            return new ArrayList<EVENT>(Arrays.asList(EVENT.Register));
+        }
+
+        @Override
+        protected void eventHandler(EVENT event, AjaxRequestTarget target) {
+            User user = userManager.getUserByEmail(emailField.getModelObject());
+            if( user != null ) {
+                // split name into parts
+                String name = user.getName();
+                String[] nameParts = name.split(" ");
+                String surnameValue = nameParts[0],
+                        nameValue = nameParts[1],
+                        patronymicValue = nameParts[2];
+
+
+                WebinarUserPayment payment = new WebinarUserPayment();
+                payment.setRole(WebinarUserPayment.Role.MEMBER);
+                payment.setWebinar(webinarIModel.getObject());
+                payment.setPrice(webinarIModel.getObject().getPrice());
+                payment.setRegistrationDate(DateUtils.getCurrentDate());
+                payment.setUserName(nameValue);
+                payment.setPatronymic(patronymicValue);
+                payment.setUserSurname(surnameValue);
+                payment.setUserProfile(user);
+                payment.setUserEmail(user.getEmail());
+
+                try {
+                    webinarUserPaymentManager.createUser(payment);
+                } catch (EltilandManagerException e) {
+                    LOGGER.error("Got exception when creating user", e);
+                    throw new WicketRuntimeException("Got exception when creating user", e);
+                } catch (EmailException e) {
+                    LOGGER.error("Got exception when sending email", e);
+                    throw new WicketRuntimeException("Got exception when sending email", e);
+                }
+                callback.process(target);
+            }
+
+        }
+
+        @Override
+        public void setCloseCallback(IDialogActionProcessor callback) {
+            this.callback = callback;
+        }
     }
 
     private class WebinarUserPaymentDataSource implements IDataSource<WebinarUserPayment> {

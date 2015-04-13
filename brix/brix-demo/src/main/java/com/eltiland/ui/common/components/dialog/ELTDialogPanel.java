@@ -95,6 +95,7 @@ public abstract class ELTDialogPanel extends BaseEltilandPanel {
         });
 
         add(form);
+        form.setMultiPart(true);
     }
 
     /**

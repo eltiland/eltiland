@@ -164,9 +164,11 @@ public class CourseItemPanel extends AbstractItemPanel<ELTCourse> {
                         new PageParameters()
                                 .add(CourseNewContentPage.PARAM_ID, getModelObject().getId())
                                 .add(CourseNewContentPage.PARAM_VERSION, CourseNewContentPage.FULL_VERSION));
+                break;
             case SETTINGS:
                 setResponsePage(CourseControlPage.class,
                         new PageParameters().add(CourseControlPage.PARAM_ID, getModelObject().getId()));
+                break;
             case DOWNLOAD:
                 ajaxDownload.initiate(target);
                 break;
