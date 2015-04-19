@@ -253,17 +253,26 @@ public interface EmailMessageManager {
     /**
      * Sending message to all listeners of the specified course
      *
-     * @param session     course session
-     * @param messageText
+     * @param course      course item.
+     * @param messageText message text.
      * @param isConfirmed if TRUE - only for confirmed users.
      */
-    void sendCourseListenerMessage(CourseSession session, String messageText, boolean isConfirmed) throws EmailException;
+    void sendCourseListenerMessage(ELTCourse course, String messageText, boolean isConfirmed) throws EmailException;
+
+    /******************************************************************************************************************/
+    /**
+     * Sending message to course listener.
+     *
+     * @param listener    listener item.
+     * @param messageText message text.
+     */
+    void sendCourseListenerMessage(ELTCourseListener listener, String messageText) throws EmailException;
 
     /******************************************************************************************************************/
     /**
      * Sending message about user payment to author of the course.
      *
-     * @param listener     listener information
+     * @param listener listener information
      */
     void sendCoursePayMessage(ELTCourseListener listener) throws EmailException;
 

@@ -70,6 +70,16 @@ public interface ELTCourseListenerManager {
                                     String sProperty, boolean isAscending, Boolean isListener, Boolean onlyParents);
 
     /**
+     * Get listener's list for given course.
+     *
+     * @param course      course item.
+     * @param isListener  if TRUE - returns only confirmed users, FALSE - only not confirmed, NULL - all listeners.
+     * @param onlyParents if TRUE - returns only first-level listeners.
+     * @return listener's list.
+     */
+    List<ELTCourseListener> getList(ELTCourse course, Boolean isListener, Boolean onlyParents);
+
+    /**
      * Get listener's count for given course.
      *
      * @param course       course item.

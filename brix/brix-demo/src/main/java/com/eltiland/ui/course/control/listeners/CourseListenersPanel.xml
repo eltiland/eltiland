@@ -12,6 +12,8 @@
 
     <entry key="send.tooltip">Отправить сообщение пользователям</entry>
     <entry key="remove.tooltip">Удалить слушателя из курса</entry>
+    <entry key="send.tooltip">Отправить сообщение всем слушателям</entry>
+    <entry key="send.user.tooltip">Отправить сообщение слушателю</entry>
 
-    <entry key="sendMessage">Сообщение успешно отправлено.</entry>
+    <entry key="message.send">Сообщение успешно отправлено.</entry>
 </properties>

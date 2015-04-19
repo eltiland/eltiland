@@ -28,6 +28,7 @@ import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
+import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.file.ELTFilePanel;
 import com.eltiland.ui.common.components.grid.ELTTable;
@@ -35,6 +36,7 @@ import com.eltiland.ui.common.components.grid.GridAction;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.control.listeners.panel.GeneralDataPanel;
+import com.eltiland.ui.course.control.listeners.panel.ListenerMailPanel;
 import com.eltiland.ui.course.control.listeners.panel.NamePanel;
 import com.eltiland.ui.course.control.listeners.panel.OrganizationPanel;
 import com.eltiland.utils.DateUtils;
@@ -84,6 +86,9 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
     @SpringBean
     private FileManager fileManager;
 
+    private IModel<ELTCourseListener> currentListenerModel =
+            new GenericDBModel<ELTCourseListener>(ELTCourseListener.class);
+
     private ELTTable<ELTCourseListener> grid;
 
     private Dialog<OfferPanel> offerPanelDialog = new Dialog<OfferPanel>("offerDialog", 340) {
@@ -117,6 +122,36 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
 
     };
 
+    private Dialog<ListenerMailPanel> sendDialog = new Dialog<ListenerMailPanel>("sendDialog", 500) {
+        @Override
+        public ListenerMailPanel createDialogPanel(String id) {
+            return new ListenerMailPanel(id);
+        }
+
+        @Override
+        public void registerCallback(ListenerMailPanel panel) {
+            super.registerCallback(panel);
+            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
+                @Override
+                public void process(IModel<String> model, AjaxRequestTarget target) {
+                    ELTCourseListener listener = currentListenerModel.getObject();
+
+                    try {
+                        if (listener == null) {
+                            emailMessageManager.sendCourseListenerMessage(getModelObject(), model.getObject(), false);
+                        } else {
+                            emailMessageManager.sendCourseListenerMessage(listener, model.getObject());
+                        }
+                        close(target);
+                        ELTAlerts.renderOKPopup(getString("message.send"), target);
+                    } catch (EmailException e) {
+                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    }
+                }
+            });
+        }
+    };
+
     /**
      * Panel ctor.
      *
@@ -128,6 +163,7 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
 
         add(offerPanelDialog);
         add(fileDialog);
+        add(sendDialog);
 
         grid = new ELTTable<ELTCourseListener>("grid", 30) {
             @Override
@@ -191,12 +227,12 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             @Override
             protected List<GridAction> getControlActions() {
                 return new ArrayList<>(Arrays.asList(
-                        GridAction.ON, GridAction.OFF, GridAction.LOCK, GridAction.UNLOCK));
+                        GridAction.SEND, GridAction.ON, GridAction.OFF, GridAction.LOCK, GridAction.UNLOCK));
             }
 
             @Override
             protected List<GridAction> getGridActions(IModel<ELTCourseListener> rowModel) {
-                return new ArrayList<>(Arrays.asList(GridAction.APPLY, GridAction.EDIT,
+                return new ArrayList<>(Arrays.asList(GridAction.USER_SEND, GridAction.APPLY, GridAction.EDIT,
                         GridAction.REMOVE, GridAction.DOWNLOAD, GridAction.UPLOAD,
                         GridAction.PAY, GridAction.FULL_APPLY));
             }
@@ -216,6 +252,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         return isTraining && isOpen;
                     case UNLOCK:
                         return isTraining && !isOpen;
+                    case SEND:
+                        return getSize() > 0;
                     default:
                         return false;
 
@@ -247,6 +285,10 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         return getString("pay.tooltip");
                     case FULL_APPLY:
                         return getString("listener.tooltip");
+                    case SEND:
+                        return getString("send.tooltip");
+                    case USER_SEND:
+                        return getString("send.user.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
@@ -282,6 +324,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         return train && status.equals(PaidStatus.APPROVED);
                     case FULL_APPLY:
                         return train && !(status.equals(PaidStatus.NEW));
+                    case USER_SEND:
+                        return true;
                     default:
                         return false;
                 }
@@ -413,6 +457,14 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                             ELTAlerts.renderErrorPopup(e.getMessage(), target);
                         }
                         target.add(grid);
+                        break;
+                    case SEND:
+                        currentListenerModel.setObject(null);
+                        sendDialog.show(target);
+                        break;
+                    case USER_SEND:
+                        currentListenerModel.setObject(rowModel.getObject());
+                        sendDialog.show(target);
                         break;
                 }
                 if (action.equals(GridAction.ON) || action.equals(GridAction.OFF) ||

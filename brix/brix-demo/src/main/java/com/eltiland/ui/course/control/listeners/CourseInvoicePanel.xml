@@ -12,6 +12,8 @@
     <entry key="upload.tooltip">Загрузить файлы для пользователя</entry>
     <entry key="pay.tooltip">Разрешить оплату пользователю</entry>
     <entry key="listener.tooltip">Перевести в слушатели</entry>
+    <entry key="send.tooltip">Отправить сообщение всем слушателям</entry>
+    <entry key="send.user.tooltip">Отправить сообщение слушателю</entry>
 
     <entry key="nameColumn">ФИО</entry>
     <entry key="contactColumn">Общие данные</entry>
@@ -40,6 +42,7 @@
     <entry key="error.no.requisites">Ошибка - не установлены реквизиты оплаты курса.</entry>
 
     <entry key="message.listener">Пользователь переведен в статус слушателя.</entry>
+    <entry key="message.send">Сообщение успешно отправлено.</entry>
 </properties>
 
 

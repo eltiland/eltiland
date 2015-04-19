@@ -267,6 +267,14 @@
     background: url("../images/actions/16x16/course_16x16.png");
 }
 
+.iconControlPanel .button .course16 {
+    background: url("../images/actions/16x16/course_16x16.png");
+}
+
+.iconControlPanel .button .user_send16 {
+    background: url("../images/actions/16x16/user_mail_16x16.png");
+}
+
 .iconControlPanel .whitespace16 {
     height: 16px;
     width: 7px;

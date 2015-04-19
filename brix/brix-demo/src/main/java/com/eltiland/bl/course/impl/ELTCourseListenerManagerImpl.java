@@ -126,6 +126,26 @@ public class ELTCourseListenerManagerImpl extends ManagerImpl implements ELTCour
 
     @Override
     @Transactional(readOnly = true)
+    public List<ELTCourseListener> getList(ELTCourse course, Boolean isListener, Boolean onlyParents) {
+        Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
+        criteria.add(Restrictions.eq("course", course));
+        if (isListener != null) {
+            if (isListener) {
+                criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
+            } else {
+                criteria.add(Restrictions.ne("status", PaidStatus.CONFIRMED));
+            }
+        }
+        if (onlyParents != null) {
+            if (onlyParents) {
+                criteria.add(Restrictions.isNull("parent"));
+            }
+        }
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Integer getCount(ELTCourse course, String searchString, Boolean isListener, Boolean onlyParents) {
         Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
         criteria.add(Restrictions.eq("course", course));

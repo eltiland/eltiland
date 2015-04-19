@@ -4,7 +4,6 @@ import com.eltiland.bl.*;
 import com.eltiland.bl.impl.integration.FileUtility;
 import com.eltiland.bl.user.UserManager;
 import com.eltiland.exceptions.ConstraintException;
-import com.eltiland.exceptions.EmailException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course.CourseSession;
@@ -16,7 +15,6 @@ import com.eltiland.ui.common.components.button.EltiAjaxLink;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
-import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
@@ -165,20 +163,20 @@ public class CourseInvoicePanel extends BaseEltilandPanel<Course> {
         @Override
         public void registerCallback(MessagePanel panel) {
             super.registerCallback(panel);
-            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
-                @Override
-                public void process(IModel<String> model, AjaxRequestTarget target) {
-                    CourseSession session = courseSessionManager.getActiveSession(getModelObject());
-                    try {
-                        emailMessageManager.sendCourseListenerMessage(session, model.getObject(), false);
-                    } catch (EmailException e) {
-                        LOGGER.error("Cannot send mail", e);
-                        throw new WicketRuntimeException("Cannot send mail", e);
-                    }
-                    close(target);
-                    ELTAlerts.renderOKPopup(getString("sendMessage"), target);
-                }
-            });
+//            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
+//                @Override
+//                public void process(IModel<String> model, AjaxRequestTarget target) {
+//                    CourseSession session = courseSessionManager.getActiveSession(getModelObject());
+//                    try {
+//                        emailMessageManager.sendCourseListenerMessage(session, model.getObject(), false);
+//                    } catch (EmailException e) {
+//                        LOGGER.error("Cannot send mail", e);
+//                        throw new WicketRuntimeException("Cannot send mail", e);
+//                    }
+//                    close(target);
+//                    ELTAlerts.renderOKPopup(getString("sendMessage"), target);
+//                }
+//            });
         }
     };
 

@@ -12,7 +12,9 @@ import com.eltiland.exceptions.VelocityCommonException;
 import com.eltiland.model.EmailMessage;
 import com.eltiland.model.FileContent;
 import com.eltiland.model.Pei;
-import com.eltiland.model.course.*;
+import com.eltiland.model.course.Course;
+import com.eltiland.model.course.CourseInvoice;
+import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
@@ -20,6 +22,7 @@ import com.eltiland.model.file.File;
 import com.eltiland.model.magazine.Client;
 import com.eltiland.model.magazine.Magazine;
 import com.eltiland.model.magazine.MagazineData;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.subscribe.Email;
 import com.eltiland.model.subscribe.Subscriber;
 import com.eltiland.model.user.Confirmation;
@@ -692,15 +695,14 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
     @Override
     public void sendCourseListenerMessage(
-            CourseSession session, String messageText, boolean isConfirmed) throws EmailException {
+            ELTCourse course, String messageText, boolean isConfirmed) throws EmailException {
         Map<String, Object> model = new HashMap<>();
-        if (session != null) {
-            genericManager.initialize(session, session.getCourse());
-            List<CourseListener> listeners = courseListenerManager.getListeners(session, isConfirmed);
+        if (course != null) {
+            List<ELTCourseListener> listeners = eltCourseListenerManager.getList(course, isConfirmed, true);
             if (listeners != null && !(listeners.isEmpty())) {
                 model.put(MESSAGE_TEXT, messageText);
-                model.put(COURSE_NAME, session.getCourse().getName());
-                for (CourseListener listener : listeners) {
+                model.put(COURSE_NAME, course.getName());
+                for (ELTCourseListener listener : listeners) {
                     InternetAddress recipient;
                     try {
                         genericManager.initialize(listener, listener.getListener());
@@ -725,6 +727,41 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
                         throw new EmailException(EmailException.SEND_MAIL_ERROR, e);
                     }
                 }
+            }
+        }
+    }
+
+    @Override
+    public void sendCourseListenerMessage(ELTCourseListener listener, String messageText) throws EmailException {
+        if (listener != null) {
+            genericManager.initialize(listener, listener.getCourse());
+            genericManager.initialize(listener, listener.getListener());
+
+            Map<String, Object> model = new HashMap<>();
+            model.put(MESSAGE_TEXT, messageText);
+            model.put(COURSE_NAME, listener.getCourse().getName());
+            InternetAddress recipient;
+            try {
+                // sending message to listener
+                recipient = new InternetAddress(listener.getListener().getEmail());
+
+                String messageBody = velocityMergeTool.mergeTemplate(model,
+                        listener.getStatus().equals(PaidStatus.CONFIRMED)
+                                ? COURSE_CONFIRMED_MESSAGE : COURSE_INVOICE_MESSAGE);
+                EmailMessage email = new EmailMessage();
+
+                email.setSender(new InternetAddress(
+                        mailHeadings.getProperty("robotFromEmail"),
+                        mailHeadings.getProperty("robotFromName"),
+                        "UTF-8"));
+
+                email.setSubject(mailHeadings.getProperty("courseListenerMessage"));
+                email.setRecipients(Arrays.asList(recipient));
+                email.setText(messageBody);
+
+                mailSender.sendMessage(email);
+            } catch (VelocityCommonException | UnsupportedEncodingException | AddressException e) {
+                throw new EmailException(EmailException.SEND_MAIL_ERROR, e);
             }
         }
     }

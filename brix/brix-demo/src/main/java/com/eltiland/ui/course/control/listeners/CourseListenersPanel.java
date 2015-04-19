@@ -1,8 +1,10 @@
 package com.eltiland.ui.course.control.listeners;
 
+import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.exceptions.CourseException;
+import com.eltiland.exceptions.EmailException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
@@ -10,10 +12,14 @@ import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ReadonlyObjects;
 import com.eltiland.ui.common.components.ResourcesUtils;
+import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
+import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.control.listeners.panel.GeneralDataPanel;
+import com.eltiland.ui.course.control.listeners.panel.ListenerMailPanel;
 import com.eltiland.ui.course.control.listeners.panel.NamePanel;
 import com.eltiland.ui.course.control.listeners.panel.OrganizationPanel;
 import org.apache.commons.lang.StringUtils;
@@ -46,11 +52,47 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
     private GenericManager genericManager;
     @SpringBean
     private ELTCourseListenerManager courseListenerManager;
+    @SpringBean
+    private EmailMessageManager emailMessageManager;
 
     private ELTTable<ELTCourseListener> grid;
 
+    private IModel<ELTCourseListener> currentListenerModel =
+            new GenericDBModel<ELTCourseListener>(ELTCourseListener.class);
+
+    private Dialog<ListenerMailPanel> sendDialog = new Dialog<ListenerMailPanel>("sendDialog", 500) {
+        @Override
+        public ListenerMailPanel createDialogPanel(String id) {
+            return new ListenerMailPanel(id);
+        }
+
+        @Override
+        public void registerCallback(ListenerMailPanel panel) {
+            super.registerCallback(panel);
+            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
+                @Override
+                public void process(IModel<String> model, AjaxRequestTarget target) {
+                    ELTCourseListener listener = currentListenerModel.getObject();
+
+                    try {
+                        if (listener == null) {
+                            emailMessageManager.sendCourseListenerMessage(getModelObject(), model.getObject(), true);
+                        } else {
+                            emailMessageManager.sendCourseListenerMessage(listener, model.getObject());
+                        }
+                        close(target);
+                        ELTAlerts.renderOKPopup(getString("message.send"), target);
+                    } catch (EmailException e) {
+                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    }
+                }
+            });
+        }
+    };
+
     public CourseListenersPanel(String id, IModel<ELTCourse> eltCourseIModel) {
         super(id, eltCourseIModel);
+        add(sendDialog);
         grid = new ELTTable<ELTCourseListener>("grid", 20) {
             @Override
             protected List<IColumn<ELTCourseListener>> getColumns() {
@@ -104,16 +146,40 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
             }
 
             @Override
+            protected List<GridAction> getControlActions() {
+                return new ArrayList<>(Arrays.asList(GridAction.SEND));
+            }
+
+            @Override
             protected List<GridAction> getGridActions(IModel<ELTCourseListener> rowModel) {
-                return new ArrayList<>(Arrays.asList(GridAction.REMOVE));
+                return new ArrayList<>(Arrays.asList(GridAction.USER_SEND, GridAction.REMOVE));
+            }
+
+            @Override
+            protected boolean isControlling() {
+                return true;
             }
 
             @Override
             protected String getActionTooltip(GridAction action) {
-                if (action.equals(GridAction.REMOVE)) {
-                    return getString("remove.tooltip");
+                switch (action) {
+                    case REMOVE:
+                        return getString("remove.tooltip");
+                    case SEND:
+                        return getString("send.tooltip");
+                    case USER_SEND:
+                        return getString("send.user.tooltip");
+                    default:
+                        return StringUtils.EMPTY;
+                }
+            }
+
+            @Override
+            protected boolean isControlActionVisible(GridAction action) {
+                if (action.equals(GridAction.SEND)) {
+                    return getSize() > 0;
                 } else {
-                    return StringUtils.EMPTY;
+                    return false;
                 }
             }
 
@@ -124,19 +190,29 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
 
             @Override
             protected void onClick(IModel<ELTCourseListener> rowModel, GridAction action, AjaxRequestTarget target) {
-                if (action.equals(GridAction.REMOVE)) {
-                    try {
-                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getCourse());
-                        if (rowModel.getObject().getCourse() instanceof TrainingCourse) {
-                            courseListenerManager.delete(rowModel.getObject());
-                        } else {
-                            rowModel.getObject().setStatus(PaidStatus.NEW);
-                            courseListenerManager.update(rowModel.getObject());
+                switch (action) {
+                    case REMOVE:
+                        try {
+                            genericManager.initialize(rowModel.getObject(), rowModel.getObject().getCourse());
+                            if (rowModel.getObject().getCourse() instanceof TrainingCourse) {
+                                courseListenerManager.delete(rowModel.getObject());
+                            } else {
+                                rowModel.getObject().setStatus(PaidStatus.NEW);
+                                courseListenerManager.update(rowModel.getObject());
+                            }
+                            target.add(grid);
+                        } catch (CourseException e) {
+                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
                         }
-                        target.add(grid);
-                    } catch (CourseException e) {
-                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                    }
+                        break;
+                    case SEND:
+                        currentListenerModel.setObject(null);
+                        sendDialog.show(target);
+                        break;
+                    case USER_SEND:
+                        currentListenerModel.setObject(rowModel.getObject());
+                        sendDialog.show(target);
+                        break;
                 }
             }
         };

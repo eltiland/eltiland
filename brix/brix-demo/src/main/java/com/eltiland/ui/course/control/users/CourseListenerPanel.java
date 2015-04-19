@@ -4,7 +4,6 @@ import com.eltiland.bl.CourseListenerManager;
 import com.eltiland.bl.CourseSessionManager;
 import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
-import com.eltiland.exceptions.EmailException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course.CourseSession;
@@ -12,15 +11,12 @@ import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ReadonlyObjects;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
-import com.eltiland.ui.common.components.dialog.ELTAlerts;
-import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.course.control.listeners.panel.NamePanel;
 import com.eltiland.ui.course.control.users.panel.GeneralDataPanel;
 import com.eltiland.ui.course.control.users.panel.MessagePanel;
-import com.eltiland.ui.course.control.listeners.panel.NamePanel;
 import com.eltiland.ui.course.control.users.panel.OrganizationPanel;
-import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -78,20 +74,20 @@ public class CourseListenerPanel extends BaseEltilandPanel<Course> {
         @Override
         public void registerCallback(MessagePanel panel) {
             super.registerCallback(panel);
-            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
-                @Override
-                public void process(IModel<String> model, AjaxRequestTarget target) {
-                    try {
-                        emailMessageManager.sendCourseListenerMessage(
-                                sessionIModel.getObject(), model.getObject(), true);
-                    } catch (EmailException e) {
-                        LOGGER.error("Cannot send mail", e);
-                        throw new WicketRuntimeException("Cannot send mail", e);
-                    }
-                    close(target);
-                    ELTAlerts.renderOKPopup(getString("sendMessage"), target);
-                }
-            });
+//            panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<String>() {
+//                @Override
+//                public void process(IModel<String> model, AjaxRequestTarget target) {
+//                    try {
+//                        emailMessageManager.sendCourseListenerMessage(
+//                                sessionIModel.getObject(), model.getObject(), true);
+//                    } catch (EmailException e) {
+//                        LOGGER.error("Cannot send mail", e);
+//                        throw new WicketRuntimeException("Cannot send mail", e);
+//                    }
+//                    close(target);
+//                    ELTAlerts.renderOKPopup(getString("sendMessage"), target);
+//                }
+//            });
         }
     };
 
