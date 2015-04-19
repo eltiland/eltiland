@@ -55,7 +55,7 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
             @Override
             protected List<IColumn<ELTCourseListener>> getColumns() {
                 List<IColumn<ELTCourseListener>> columns = new ArrayList<>();
-                columns.add(new AbstractColumn<ELTCourseListener>(ReadonlyObjects.EMPTY_DISPLAY_MODEL, "name") {
+                columns.add(new AbstractColumn<ELTCourseListener>(ReadonlyObjects.EMPTY_DISPLAY_MODEL, "listener.name") {
                     @Override
                     public void populateItem(Item<ICellPopulator<ELTCourseListener>> components,
                                              String s, IModel<ELTCourseListener> listenerIModel) {
