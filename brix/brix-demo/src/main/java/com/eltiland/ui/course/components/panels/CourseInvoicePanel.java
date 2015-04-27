@@ -315,7 +315,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
                 String organization = currentUserModel.getObject().getOrganization();
                 String newOrganization = companyField.getModelObject();
                 if (willBeUpdated(organization, newOrganization)) {
-                    currentUserModel.getObject().setPhone(newOrganization);
+                    currentUserModel.getObject().setOrganization(newOrganization);
                     toUpdate = true;
                 }
             }
@@ -399,7 +399,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
 
     private boolean willBeUpdated(String oldStr, String newStr) {
         if (oldStr == null) {
-            return (newStr != null && newStr.isEmpty());
+            return (newStr != null && !(newStr.isEmpty()));
         } else {
             return !(oldStr.equals(newStr));
         }
