@@ -359,10 +359,15 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
         model.put(FILE_NAME, file.getName());
         model.put(COURSE_NAME, course.getName());
 
-        InternetAddress recipient;
+        genericManager.initialize(course, course.getAdmins());
+        List<InternetAddress> recipients = new ArrayList<>();
         try {
             genericManager.initialize(course, course.getAuthor());
-            recipient = new InternetAddress(course.getAuthor().getEmail());
+            recipients.add(new InternetAddress(course.getAuthor().getEmail()));
+
+            for (User admin : course.getAdmins()) {
+                recipients.add(new InternetAddress(admin.getEmail()));
+            }
 
             String messageBody = velocityMergeTool.mergeTemplate(model, FILE_COURSE_UPLOAD);
 
@@ -374,7 +379,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
                     "UTF-8"));
 
             message.setSubject(mailHeadings.getProperty("fileUploadCourse"));
-            message.setRecipients(Arrays.asList(recipient));
+            message.setRecipients(recipients);
             message.setText(messageBody);
 
             mailSender.sendMessage(message);
