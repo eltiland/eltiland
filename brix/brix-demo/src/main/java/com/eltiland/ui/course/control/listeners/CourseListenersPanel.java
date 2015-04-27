@@ -3,11 +3,14 @@ package com.eltiland.ui.course.control.listeners;
 import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
+import com.eltiland.bl.user.UserFileManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.exceptions.EmailException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
+import com.eltiland.model.file.File;
+import com.eltiland.model.file.UserFile;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ReadonlyObjects;
@@ -18,10 +21,7 @@ import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallbac
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
 import com.eltiland.ui.common.model.GenericDBModel;
-import com.eltiland.ui.course.control.listeners.panel.GeneralDataPanel;
-import com.eltiland.ui.course.control.listeners.panel.ListenerMailPanel;
-import com.eltiland.ui.course.control.listeners.panel.NamePanel;
-import com.eltiland.ui.course.control.listeners.panel.OrganizationPanel;
+import com.eltiland.ui.course.control.listeners.panel.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
@@ -54,6 +54,8 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
     private ELTCourseListenerManager courseListenerManager;
     @SpringBean
     private EmailMessageManager emailMessageManager;
+    @SpringBean
+    private UserFileManager userFileManager;
 
     private ELTTable<ELTCourseListener> grid;
 
@@ -90,9 +92,22 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
         }
     };
 
+    private Dialog<FilePanel> fileDialog = new Dialog<FilePanel>("fileDialog", 455) {
+        @Override
+        public FilePanel createDialogPanel(String id) {
+            return new FilePanel(id) {
+                @Override
+                protected void onDelete(ELTCourseListener listener, UserFile userFile, AjaxRequestTarget target) {
+                }
+            };
+        }
+
+    };
+
     public CourseListenersPanel(String id, IModel<ELTCourse> eltCourseIModel) {
         super(id, eltCourseIModel);
         add(sendDialog);
+        add(fileDialog);
         grid = new ELTTable<ELTCourseListener>("grid", 20) {
             @Override
             protected List<IColumn<ELTCourseListener>> getColumns() {
@@ -152,7 +167,7 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<ELTCourseListener> rowModel) {
-                return new ArrayList<>(Arrays.asList(GridAction.USER_SEND, GridAction.REMOVE));
+                return new ArrayList<>(Arrays.asList(GridAction.USER_SEND, GridAction.DOWNLOAD, GridAction.REMOVE));
             }
 
             @Override
@@ -169,6 +184,8 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
                         return getString("send.tooltip");
                     case USER_SEND:
                         return getString("send.user.tooltip");
+                    case DOWNLOAD:
+                        return getString("download.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
@@ -181,6 +198,26 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
                 } else {
                     return false;
                 }
+            }
+
+            @Override
+            protected boolean isActionVisible(GridAction action, IModel<ELTCourseListener> rowModel) {
+                boolean train = getModelObject() instanceof TrainingCourse;
+                switch (action) {
+                    case DOWNLOAD:
+                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
+                        List<UserFile> files = userFileManager.getListenerFiles(
+                                rowModel.getObject().getListener(), getModelObject());
+
+                        return train && !files.isEmpty();
+                    default:
+                        return true;
+                }
+            }
+
+            @Override
+            protected boolean isDownload(GridAction action) {
+                return false;
             }
 
             @Override
@@ -212,6 +249,21 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
                     case USER_SEND:
                         currentListenerModel.setObject(rowModel.getObject());
                         sendDialog.show(target);
+                        break;
+                    case DOWNLOAD:
+                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getListener());
+                        List<UserFile> files = userFileManager.getListenerFiles(
+                                rowModel.getObject().getListener(), getModelObject());
+                        List<File> tFiles = new ArrayList<>();
+                        for (UserFile file : files) {
+                            genericManager.initialize(file, file.getFile());
+                            tFiles.add(file.getFile());
+                        }
+                        fileDialog.getDialogPanel().initMode(false);
+                        fileDialog.getDialogPanel().initData(tFiles, rowModel);
+                        fileDialog.show(target);
+                        break;
+                    default:
                         break;
                 }
             }

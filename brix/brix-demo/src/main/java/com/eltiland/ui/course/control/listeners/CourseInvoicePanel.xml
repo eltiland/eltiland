@@ -35,8 +35,6 @@
 
     <entry key="select.user.header">Список слушателей</entry>
     <entry key="offer.header">Номер оферты</entry>
-    <entry key="files.user.header">Файлы пользователя</entry>
-    <entry key="files.author.header">Файлы, доступные пользователю</entry>
 
     <entry key="error.no.documents">Ошибка - не загружены документы курса.</entry>
     <entry key="error.no.requisites">Ошибка - не установлены реквизиты оплаты курса.</entry>
