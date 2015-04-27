@@ -8,6 +8,7 @@ import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
+import com.eltiland.model.file.File;
 import com.eltiland.model.magazine.Client;
 import com.eltiland.model.subscribe.Email;
 import com.eltiland.model.user.User;
@@ -64,6 +65,19 @@ public interface EmailMessageManager {
      * @param user - user to reset password
      */
     void sendEmailToUserResetPasswordRequest(User user) throws AddressException, EmailException;
+
+    /******************************************************************************************************************/
+    /* Files stuff
+    */
+
+    /**
+     * Sending message about uploading file to user by current user.
+     *
+     * @param author   user-author of file.
+     * @param receiver user-receiver of file.
+     * @param file     uploaded file.
+     */
+    void sendFileUploadMessage(User author, User receiver, File file) throws EmailException;
 
     /******************************************************************************************************************/
     /* Webinars stuff

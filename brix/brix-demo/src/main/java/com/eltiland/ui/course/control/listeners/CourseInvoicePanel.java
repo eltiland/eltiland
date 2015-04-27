@@ -701,6 +701,15 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             protected void onUploadActions(AjaxRequestTarget target, File file) {
                 super.onUploadActions(target, file);
                 create(file, target);
+
+                genericManager.initialize(courseModel.getObject(), courseModel.getObject().getAuthor());
+                genericManager.initialize(listenerModel.getObject(), listenerModel.getObject().getListener());
+                try {
+                    emailMessageManager.sendFileUploadMessage(courseModel.getObject().getAuthor(),
+                            listenerModel.getObject().getListener(), file);
+                } catch (EmailException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
             }
         };
 

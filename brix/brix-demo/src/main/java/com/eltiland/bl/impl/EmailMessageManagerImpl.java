@@ -114,6 +114,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
     private final static String ENDING_DATE = "ending_date";
     private final static String ADMIN_EMAIL = "admin_email";
     private final static String PASSWORD = "password";
+    private final static String FILE_NAME = "file_name";
     private final static String TEMPLATE_REG_SIMPLE_USER = "templates/regSimpleUser.fo";
     private final static String TEMPLATE_CONFIRM_USER = "templates/confirmationMessage.fo";
 
@@ -161,6 +162,8 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
     private final static String MAGAZINE_DOWNLOAD = "templates/magazine/downloadMagazine.fo";
     private final static String MAGAZINE_INFO_TO_ADMIN = "templates/magazine/adminNotifyMagazineBuy.fo";
+
+    private final static String FILE_UPLOAD = "templates/file/fileUpload.fo";
 
     private final static String COURSE_NAME = "course_name";
     private final static String COURSE_PAY_LINK = "course_pay_link";
@@ -315,6 +318,36 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
         sendRegistrationConfirmationEmail(model, new InternetAddress(user.getEmail()), ResetCode.RESET_PASS_LETTER,
                 mailHeadings.getProperty("resetPasswordRequest"), null);
+    }
+
+    @Override
+    public void sendFileUploadMessage(User author, User receiver, File file) throws EmailException {
+        Map<String, Object> model = new HashMap<>();
+
+        model.put(USER_NAME, author.getName());
+        model.put(FILE_NAME, file.getName());
+
+        InternetAddress recipient;
+        try {
+            recipient = new InternetAddress(receiver.getEmail());
+
+            String messageBody = velocityMergeTool.mergeTemplate(model, FILE_UPLOAD);
+
+            EmailMessage message = new EmailMessage();
+
+            message.setSender(new InternetAddress(
+                    mailHeadings.getProperty("robotFromEmail"),
+                    mailHeadings.getProperty("robotFromName"),
+                    "UTF-8"));
+
+            message.setSubject(mailHeadings.getProperty("fileUpload"));
+            message.setRecipients(Arrays.asList(recipient));
+            message.setText(messageBody);
+
+            mailSender.sendMessage(message);
+        } catch (VelocityCommonException | UnsupportedEncodingException | AddressException e) {
+            throw new EmailException(EmailException.SEND_MAIL_ERROR, e);
+        }
     }
 
     @Override

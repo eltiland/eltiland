@@ -76,4 +76,6 @@
 
     <entry key="magazineDownload">Ссылка для доступа к журналам</entry>
     <entry key="magazineBuy">Отчет о покупке журнала</entry>
+
+    <entry key="fileUpload">Для Вас загружен файл на портале Элтиленд</entry>
 </properties>
