@@ -73,13 +73,17 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
     private ELTTable<User> childTable;
 
     private IModel<List<Long>> idsModel = new ListModel<>(new ArrayList<Long>());
+    private int first, count;
 
     private IModel<List<User>> childListModel = new LoadableDetachableModel<List<User>>() {
         @Override
         protected List<User> load() {
             List<User> userList = new ArrayList<>();
-            for (Long id : idsModel.getObject()) {
-                userList.add(genericManager.getObject(User.class, id));
+            int size = idsModel.getObject().size();
+
+            int limit = (first + count > size) ? size : (first + count);
+            for (int i = first; i < limit; i++) {
+                userList.add(genericManager.getObject(User.class, idsModel.getObject().get(i)));
             }
             return userList;
         }
@@ -212,18 +216,21 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
             @Override
             protected List<IColumn<User>> getColumns() {
                 List<IColumn<User>> columns = new ArrayList<>();
-                columns.add(new PropertyColumn<User>(new ResourceModel("name.column"), "name", "name"));
+                columns.add(new PropertyColumn<User>(new ResourceModel("name.column"), "name"));
                 return columns;
             }
 
             @Override
             protected Iterator getIterator(int first, int count) {
+                CourseInvoicePanel.this.first = first;
+                CourseInvoicePanel.this.count = count;
+                childListModel.detach();
                 return childListModel.getObject().iterator();
             }
 
             @Override
             protected int getSize() {
-                return childListModel.getObject().size();
+                return idsModel.getObject().size();
             }
 
             @Override
@@ -239,11 +246,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
             @Override
             protected void onClick(IModel<User> rowModel, GridAction action, AjaxRequestTarget target) {
                 if (action.equals(GridAction.EDIT)) {
-                    List<Long> ids = new ArrayList<>();
-                    for (User child : childListModel.getObject()) {
-                        ids.add(child.getId());
-                    }
-                    userSelectDialog.getDialogPanel().setSelectedIds(ids);
+                    userSelectDialog.getDialogPanel().setSelectedIds(idsModel.getObject());
                     userSelectDialog.show(target);
                 }
             }
@@ -352,7 +355,8 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
                 courseListenerManager.create(listener);
                 genericManager.initialize(listener, listener.getListeners());
                 if (!(kind.equals(ListenerType.PHYSICAL))) {
-                    for (User user : childListModel.getObject()) {
+                    for (Long id : idsModel.getObject()) {
+                        User user = genericManager.getObject(User.class, id);
                         ELTCourseListener child = new ELTCourseListener();
                         child.setType(ListenerType.PHYSICAL);
                         child.setCourse(courseIModel.getObject());
