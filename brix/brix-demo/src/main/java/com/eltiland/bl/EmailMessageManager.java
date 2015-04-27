@@ -79,6 +79,15 @@ public interface EmailMessageManager {
      */
     void sendFileUploadMessage(User author, User receiver, File file) throws EmailException;
 
+    /**
+     * Sending message to course author about uploading file by listener.
+     *
+     * @param author user-author of file.
+     * @param course course item.
+     * @param file   uploaded file.
+     */
+    void sendFileCourseUploadMessage(User author, ELTCourse course, File file) throws EmailException;
+
     /******************************************************************************************************************/
     /* Webinars stuff
     */

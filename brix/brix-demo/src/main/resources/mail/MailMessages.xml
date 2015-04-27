@@ -78,4 +78,5 @@
     <entry key="magazineBuy">Отчет о покупке журнала</entry>
 
     <entry key="fileUpload">Для Вас загружен файл на портале Элтиленд</entry>
+    <entry key="fileUploadCourse">Слушатель курса загрузил файл</entry>
 </properties>

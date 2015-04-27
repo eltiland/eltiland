@@ -164,6 +164,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
     private final static String MAGAZINE_INFO_TO_ADMIN = "templates/magazine/adminNotifyMagazineBuy.fo";
 
     private final static String FILE_UPLOAD = "templates/file/fileUpload.fo";
+    private final static String FILE_COURSE_UPLOAD = "templates/file/fileUploadCourse.fo";
 
     private final static String COURSE_NAME = "course_name";
     private final static String COURSE_PAY_LINK = "course_pay_link";
@@ -341,6 +342,38 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
                     "UTF-8"));
 
             message.setSubject(mailHeadings.getProperty("fileUpload"));
+            message.setRecipients(Arrays.asList(recipient));
+            message.setText(messageBody);
+
+            mailSender.sendMessage(message);
+        } catch (VelocityCommonException | UnsupportedEncodingException | AddressException e) {
+            throw new EmailException(EmailException.SEND_MAIL_ERROR, e);
+        }
+    }
+
+    @Override
+    public void sendFileCourseUploadMessage(User author, ELTCourse course, File file) throws EmailException {
+        Map<String, Object> model = new HashMap<>();
+
+        model.put(USER_NAME, author.getName());
+        model.put(FILE_NAME, file.getName());
+        model.put(COURSE_NAME, course.getName());
+
+        InternetAddress recipient;
+        try {
+            genericManager.initialize(course, course.getAuthor());
+            recipient = new InternetAddress(course.getAuthor().getEmail());
+
+            String messageBody = velocityMergeTool.mergeTemplate(model, FILE_COURSE_UPLOAD);
+
+            EmailMessage message = new EmailMessage();
+
+            message.setSender(new InternetAddress(
+                    mailHeadings.getProperty("robotFromEmail"),
+                    mailHeadings.getProperty("robotFromName"),
+                    "UTF-8"));
+
+            message.setSubject(mailHeadings.getProperty("fileUploadCourse"));
             message.setRecipients(Arrays.asList(recipient));
             message.setText(messageBody);
 

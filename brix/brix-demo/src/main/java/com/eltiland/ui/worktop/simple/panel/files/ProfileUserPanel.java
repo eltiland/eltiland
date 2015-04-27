@@ -1,5 +1,6 @@
 package com.eltiland.ui.worktop.simple.panel.files;
 
+import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.bl.impl.integration.FileUtility;
@@ -7,6 +8,7 @@ import com.eltiland.bl.user.CourseFileAccessManager;
 import com.eltiland.bl.user.UserFileAccessManager;
 import com.eltiland.bl.user.UserFileManager;
 import com.eltiland.bl.user.UserManager;
+import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.UserException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
@@ -69,6 +71,8 @@ public class ProfileUserPanel extends BaseEltilandPanel<User> {
     private CourseFileAccessManager courseFileAccessManager;
     @SpringBean
     private ELTCourseManager courseManager;
+    @SpringBean
+    private EmailMessageManager emailMessageManager;
 
     private ELTTable<UserFile> table;
 
@@ -196,11 +200,19 @@ public class ProfileUserPanel extends BaseEltilandPanel<User> {
                     for (Long id : selectedIds) {
                         if (!(existsIds.contains(id))) {
                             CourseFileAccess access = new CourseFileAccess();
+                            ELTCourse course = genericManager.getObject(ELTCourse.class, id);
                             access.setFile(userFileIModel.getObject());
-                            access.setCourse(genericManager.getObject(ELTCourse.class, id));
+                            access.setCourse(course);
                             try {
                                 courseFileAccessManager.create(access);
                             } catch (UserException e) {
+                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                            }
+                            genericManager.initialize(userFileIModel.getObject(), userFileIModel.getObject().getFile());
+                            try {
+                                emailMessageManager.sendFileCourseUploadMessage(
+                                        getModelObject(), course, userFileIModel.getObject().getFile());
+                            } catch (EmailException e) {
                                 ELTAlerts.renderErrorPopup(e.getMessage(), target);
                             }
                         }
