@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Aleksey Plotnikov.
  */
-public abstract class FilePanel extends ELTDialogPanel {
+public abstract class FileDownloadPanel extends ELTDialogPanel {
 
     @SpringBean
     private GenericManager genericManager;
@@ -110,7 +110,7 @@ public abstract class FilePanel extends ELTDialogPanel {
         }
     };
 
-    public FilePanel(String id) {
+    public FileDownloadPanel(String id) {
         super(id);
         form.add(filePanel);
         form.setMultiPart(true);

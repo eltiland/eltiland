@@ -92,10 +92,10 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
         }
     };
 
-    private Dialog<FilePanel> fileDialog = new Dialog<FilePanel>("fileDialog", 455) {
+    private Dialog<FileDownloadPanel> fileDialog = new Dialog<FileDownloadPanel>("fileDialog", 455) {
         @Override
-        public FilePanel createDialogPanel(String id) {
-            return new FilePanel(id) {
+        public FileDownloadPanel createDialogPanel(String id) {
+            return new FileDownloadPanel(id) {
                 @Override
                 protected void onDelete(ELTCourseListener listener, UserFile userFile, AjaxRequestTarget target) {
                 }

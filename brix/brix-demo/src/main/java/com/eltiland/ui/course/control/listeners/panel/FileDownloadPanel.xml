@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="files.user.header">Файлы пользователя</entry>
+    <entry key="files.author.header">Файлы, доступные пользователю</entry>
+</properties>
