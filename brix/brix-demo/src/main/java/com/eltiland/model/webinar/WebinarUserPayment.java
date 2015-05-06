@@ -159,6 +159,7 @@ public class WebinarUserPayment extends AbstractIdentifiable implements Exportab
     }
 
     @Column(name = "status", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     @Field
     public PaidStatus getStatus() {
         return status;

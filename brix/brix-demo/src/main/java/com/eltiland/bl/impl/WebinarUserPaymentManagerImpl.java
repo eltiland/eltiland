@@ -100,13 +100,13 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
         } else { // paid access
             user.setStatus(PaidStatus.CONFIRMED);
             user.setPaylink(RandomStringUtils.randomAlphanumeric(10));
-            emailMessageManager.sendWebinarInvitationToUser(user);
         }
         if (!result) {
             return false;
         } else {
             addNewUser(user);
         }
+        emailMessageManager.sendWebinarInvitationToUser(user);
         return result;
     }
 

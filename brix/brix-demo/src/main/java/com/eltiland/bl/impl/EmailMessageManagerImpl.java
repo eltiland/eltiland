@@ -1080,7 +1080,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
         model.put(WEBINAR_DESCRIPTION, webinar.getDescription());
         model.put(WEBINAR_STARTDATE, DateUtils.formatFullDate(webinar.getStartDate()));
         if (!isFree) {
-            model.put(WEBINAR_PAYLINK, createWebinarPath(payment, UrlUtils.WEBINAR_PAYMENT_PATH));
+            model.put(WEBINAR_PAYLINK, createWebinarPath(payment, UrlUtils.PAYMENT_LINK));
         }
 
         InternetAddress recipient;

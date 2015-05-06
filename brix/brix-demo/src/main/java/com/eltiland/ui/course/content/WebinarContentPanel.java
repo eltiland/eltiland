@@ -74,6 +74,7 @@ public class WebinarContentPanel extends CourseContentPanel<WebinarCourseItem> {
                     public void process(IModel<WebinarUserPayment> model, AjaxRequestTarget target) {
                         try {
                             webinarUserPaymentManager.createUser(model.getObject());
+
                         } catch (EltilandManagerException e) {
                             LOGGER.error("Cannot create webinar user", e);
                             throw new WicketRuntimeException("Cannot create webinar user", e);
@@ -87,7 +88,8 @@ public class WebinarContentPanel extends CourseContentPanel<WebinarCourseItem> {
                         boolean isFree = model.getObject().getPrice() == null
                                 || model.getObject().getPrice().equals(BigDecimal.valueOf(0));
 
-                        ELTAlerts.renderOKPopup(getString(isFree ? "signupFreeMessage" : "signupPaidMessage"), target);
+                        ELTAlerts.renderOKPopup(WebinarContentPanel.this.getString(
+                                isFree ? "signupFreeMessage" : "signupPaidMessage"), target);
                     }
                 });
             }
