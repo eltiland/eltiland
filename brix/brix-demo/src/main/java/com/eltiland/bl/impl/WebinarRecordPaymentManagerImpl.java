@@ -3,6 +3,7 @@ package com.eltiland.bl.impl;
 import com.eltiland.bl.FileManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarRecordPaymentManager;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarRecord;
 import com.eltiland.model.webinar.WebinarRecordPayment;
@@ -41,7 +42,7 @@ public class WebinarRecordPaymentManagerImpl extends ManagerImpl implements Webi
         } else {
             Criteria criteria = getCurrentSession().createCriteria(WebinarRecordPayment.class);
             criteria.add(Restrictions.eq("userProfile", currentUser));
-            criteria.add(Restrictions.eq("status", false));
+            criteria.add(Restrictions.eq("status", PaidStatus.NEW));
             criteria.add(Restrictions.eq("record", record));
             return criteria.list().size() > 0;
         }
@@ -70,7 +71,7 @@ public class WebinarRecordPaymentManagerImpl extends ManagerImpl implements Webi
             searchCriteria.add(Restrictions.like("webinar.name", searchString, MatchMode.ANYWHERE).ignoreCase());
             criteria.add(searchCriteria);
         }
-        criteria.add(Restrictions.eq("status", true));
+        criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
 
         return criteria.list().size();
     }
@@ -95,7 +96,7 @@ public class WebinarRecordPaymentManagerImpl extends ManagerImpl implements Webi
         criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
         criteria.setFirstResult(index);
         criteria.setMaxResults(count);
-        criteria.add(Restrictions.eq("status", true));
+        criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
         return criteria.list();
     }
 

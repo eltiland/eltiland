@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
@@ -81,7 +82,7 @@ public class WebinarMemberPanel extends ELTDialogPanel {
             protected Iterator getIterator(int first, int count) {
                 try {
                     return webinarUserPaymentManager.getWebinarUserList(webinarIModel.getObject(), first, count,
-                            getSort().getProperty(), getSort().isAscending(), true).iterator();
+                            getSort().getProperty(), getSort().isAscending(), PaidStatus.CONFIRMED).iterator();
                 } catch (EltilandManagerException e) {
                     LOGGER.error("Cannot get user list", e);
                     throw new WicketRuntimeException("Cannot get user list", e);

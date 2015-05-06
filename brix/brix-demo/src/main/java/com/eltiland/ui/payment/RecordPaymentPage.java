@@ -44,12 +44,13 @@ public class RecordPaymentPage extends AbstractPaymentPage {
         container.add(new Label("priceLabel", String.format(getString("priceValue"), payment.getPrice().toString())));
 
         RecordPayButton payButton = new RecordPayButton("payButton");
-        payButton.setPaymentData(payment);
+        //payButton.setPaymentData(payment);
         container.add(payButton);
     }
 
     @Override
     protected PaidEntity getEntity(String code) {
-        return webinarRecordPaymentManager.getPaymentByLink(code);
+        return null;
+        //   return webinarRecordPaymentManager.getPaymentByLink(code);
     }
 }

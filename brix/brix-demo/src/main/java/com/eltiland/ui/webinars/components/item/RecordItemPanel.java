@@ -4,6 +4,7 @@ import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarRecordPaymentManager;
 import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarRecord;
 import com.eltiland.model.webinar.WebinarRecordPayment;
@@ -79,7 +80,7 @@ public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
         super(id, webinarRecordIModel);
 
         Label status = new Label("status", new Model<String>());
-        boolean paid = paymentIModel.getObject().getStatus();
+        boolean paid = paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
         status.setDefaultModelObject(paid ? getString("open") :
                 String.format(getString("closed"), paymentIModel.getObject().getPrice().toString()));
         status.add(new AttributeAppender("class", new Model<>(paid ? "open" : "closed"), " "));
@@ -129,9 +130,9 @@ public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
     protected boolean isVisible(ButtonAction action) {
         switch (action) {
             case DOWNLOAD:
-                return paymentIModel.getObject().getStatus();
+                return paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
             case PAY:
-                return !(paymentIModel.getObject().getStatus());
+                return !(paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED));
             default:
                 return false;
         }

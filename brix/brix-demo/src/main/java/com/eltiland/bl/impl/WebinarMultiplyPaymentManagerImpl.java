@@ -5,6 +5,7 @@ import com.eltiland.bl.WebinarMultiplyPaymentManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarMultiplyPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -65,7 +66,7 @@ public class WebinarMultiplyPaymentManagerImpl extends ManagerImpl implements We
             userPayment.setUserEmail(user.getEmail());
             userPayment.setWebinar(payment.getWebinar());
             userPayment.setRole(WebinarUserPayment.Role.MEMBER);
-            userPayment.setStatus(true);
+            userPayment.setStatus(PaidStatus.CONFIRMED);
             try {
                 genericManager.saveNew(userPayment);
             } catch (ConstraintException e) {

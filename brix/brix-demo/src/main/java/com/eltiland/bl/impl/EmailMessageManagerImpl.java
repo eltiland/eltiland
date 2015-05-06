@@ -1160,7 +1160,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
         genericManager.initialize(payment, payment.getUserProfile());
         model.put(WEBINAR_NAME, payment.getRecord().getWebinar().getName());
         if (!isFree) {
-            model.put(WEBINAR_PAYLINK, createRecordPath(payment, UrlUtils.RECORD_PAYMENT_PATH));
+            model.put(WEBINAR_PAYLINK, createRecordPath(payment, UrlUtils.PAYMENT_LINK));
         }
 
         try {
@@ -1575,7 +1575,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
     private String createWebinarPath(WebinarUserPayment payment, String basePath) {
         if (payment != null) {
-            basePath += "?" + UrlUtils.PAYMENT_CODE_PARAMETER_NAME + "=" + payment.getPaylink();
+            basePath += "?" + PaymentPage.PARAM_ID + "=" + payment.getId();
         }
         return eltilandProps.getProperty("application.base.url") + basePath;
     }
@@ -1589,7 +1589,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
     private String createRecordPath(WebinarRecordPayment payment, String basePath) {
         if (payment != null) {
-            basePath += "?" + UrlUtils.PAYMENT_CODE_PARAMETER_NAME + "=" + payment.getPayLink();
+            basePath += "?" + PaymentPage.PARAM_ID + "=" + payment.getId();
         }
         return eltilandProps.getProperty("application.base.url") + basePath;
     }

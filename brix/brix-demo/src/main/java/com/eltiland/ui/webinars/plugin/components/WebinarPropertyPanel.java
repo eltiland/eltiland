@@ -5,6 +5,7 @@ import com.eltiland.bl.WebinarManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
@@ -289,7 +290,7 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         user.setUserName((String) leaderNameField.getModelObject());
         user.setUserSurname((String) leaderSurnameField.getModelObject());
         user.setRole(WebinarUserPayment.Role.MODERATOR);
-        user.setStatus(true);
+        user.setStatus(PaidStatus.CONFIRMED);
         user.setRegistrationDate(DateUtils.getCurrentDate());
     }
 

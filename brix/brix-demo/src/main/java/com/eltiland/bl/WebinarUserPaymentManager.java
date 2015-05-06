@@ -2,6 +2,7 @@ package com.eltiland.bl;
 
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -81,7 +82,7 @@ public interface WebinarUserPaymentManager {
      */
     List<WebinarUserPayment> getWebinarUserList(Webinar webinar, int index, Integer count,
                                                 String sProperty, boolean isAscending,
-                                                boolean status) throws EltilandManagerException;
+                                                PaidStatus status) throws EltilandManagerException;
 
     /**
      * Return list of users for given webinar (not moderators).

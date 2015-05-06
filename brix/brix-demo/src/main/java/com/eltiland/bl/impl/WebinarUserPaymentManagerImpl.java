@@ -7,6 +7,7 @@ import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -78,7 +79,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Transactional
     public boolean createModerator(WebinarUserPayment user) throws EltilandManagerException {
         user.setRole(WebinarUserPayment.Role.MODERATOR);
-        user.setStatus(true);
+        user.setStatus(PaidStatus.CONFIRMED);
         boolean result = webinarServiceManager.addUser(user);
         if (!result) {
             return false;
@@ -94,10 +95,10 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
         boolean result = true;
         if (user.getPrice() == null || user.getPrice().equals(BigDecimal.valueOf(0))) { // free access
-            user.setStatus(true);
+            user.setStatus(PaidStatus.CONFIRMED);
             result = webinarServiceManager.addUser(user);
         } else { // paid access
-            user.setStatus(false);
+            user.setStatus(PaidStatus.CONFIRMED);
             user.setPaylink(RandomStringUtils.randomAlphanumeric(10));
             emailMessageManager.sendWebinarInvitationToUser(user);
         }
@@ -149,7 +150,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     public int getWebinarConfirmedUserCount(Webinar webinar) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
                 .add(Restrictions.eq("webinar", webinar))
-                .add(Restrictions.eq("status", true));
+                .add(Restrictions.eq("status", PaidStatus.CONFIRMED));
         return criteria.list().size();
     }
 
@@ -157,11 +158,11 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Transactional(readOnly = true)
     public List<WebinarUserPayment> getWebinarUserList(
             Webinar webinar, int index, Integer count, String sProperty,
-            boolean isAscending, boolean status) throws EltilandManagerException {
+            boolean isAscending, PaidStatus status) throws EltilandManagerException {
 
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
                 .add(Restrictions.eq("webinar", webinar))
-                .add(Restrictions.eq("status", status));
+                .add(Restrictions.eq("status", PaidStatus.CONFIRMED));
         if (sProperty != null) {
             criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
         }
@@ -178,7 +179,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     public List<WebinarUserPayment> getWebinarRealListeners(Webinar webinar) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
                 .add(Restrictions.eq("webinar", webinar))
-                .add(Restrictions.eq("status", true))
+                .add(Restrictions.eq("status", PaidStatus.CONFIRMED))
                 .add(Restrictions.ne("role", WebinarUserPayment.Role.MODERATOR));
         return criteria.list();
     }
@@ -203,7 +204,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Override
     @Transactional
     public void removeUser(WebinarUserPayment userPayment) throws EltilandManagerException {
-        if (userPayment.getStatus()) {
+        if (userPayment.getStatus().equals(PaidStatus.CONFIRMED)) {
             genericManager.initialize(userPayment, userPayment.getWebinar());
             boolean result = webinarServiceManager.removeUser(userPayment);
             if (!result) {
@@ -247,7 +248,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Override
     @Transactional
     public boolean payWebinarUserPayment(WebinarUserPayment payment) throws EltilandManagerException {
-        payment.setStatus(true);
+        payment.setStatus(PaidStatus.CONFIRMED);
 
         Date nowDate = DateUtils.getCurrentDate();
         payment.setDate(nowDate);
@@ -336,7 +337,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Transactional
     public WebinarUserPayment updateWebinarUser(WebinarUserPayment payment) throws EltilandManagerException {
         update(payment);
-        if (payment.getStatus()) {
+        if (payment.getStatus().equals(PaidStatus.CONFIRMED)) {
             webinarServiceManager.updateUser(getWebinarPaymentById(payment.getId()));
         }
         return payment;
@@ -367,7 +368,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
     @Override
     public String getLink(WebinarUserPayment payment) throws EltilandManagerException {
-        if (!payment.getStatus()) {
+        if (!payment.getStatus().equals(PaidStatus.CONFIRMED)) {
             return null;
         }
 
@@ -402,7 +403,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
         if (datas != null) {
             for (WebinarUserPayment payment : webinar.getWebinarUserPayments()) {
-                if (payment.getStatus() &&
+                if (payment.getStatus().equals(PaidStatus.CONFIRMED) &&
                         !(datas.containsKey(payment.getUserEmail())) &&
                         !(payment.getRole().equals(WebinarUserPayment.Role.MODERATOR))) {
                     resultList.add(payment);

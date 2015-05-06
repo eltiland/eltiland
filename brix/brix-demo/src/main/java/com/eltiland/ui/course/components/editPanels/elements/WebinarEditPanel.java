@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.course.WebinarCourseItem;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.components.ResourcesUtils;
@@ -72,7 +73,7 @@ public class WebinarEditPanel extends AbstractCourseItemEditPanel<WebinarCourseI
                     WebinarUserPayment userPayment = new WebinarUserPayment();
                     populateWebinarModerator(userPayment, webinar);
                     userPayment.setRole(WebinarUserPayment.Role.MODERATOR);
-                    userPayment.setStatus(true);
+                    userPayment.setStatus(PaidStatus.CONFIRMED);
                     genericManager.saveNew(userPayment);
                 } catch (EltilandManagerException | ConstraintException e) {
                     LOGGER.error("Cannot create course item", e);

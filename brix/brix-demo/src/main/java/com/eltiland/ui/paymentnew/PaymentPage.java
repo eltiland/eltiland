@@ -4,6 +4,8 @@ import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.payment.PaidEntityNew;
+import com.eltiland.model.webinar.WebinarRecordPayment;
+import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.OneColumnPage;
 import com.eltiland.ui.common.components.button.paybutton.PayButton;
 import org.apache.wicket.WicketRuntimeException;
@@ -57,9 +59,21 @@ public class PaymentPage extends OneColumnPage {
         final IModel<PaidEntityNew> paidEntityModel = new LoadableDetachableModel<PaidEntityNew>() {
             @Override
             protected PaidEntityNew load() {
-                ELTCourseListener entity1 = courseListenerManager.getById(parameters.get(PARAM_ID).toLong());
+
+                long id = parameters.get(PARAM_ID).toLong();
+                ELTCourseListener entity1 = courseListenerManager.getById(id);
                 if (entity1 == null) {
-                    return null;
+                    WebinarRecordPayment entity2 = genericManager.getObject(WebinarRecordPayment.class, id);
+                    if( entity2 == null ) {
+                        WebinarUserPayment entity3 = genericManager.getObject(WebinarUserPayment.class, id);
+                        if( entity3 != null ) {
+                            return entity3;
+                        } else {
+                            return null;
+                        }
+                    } else {
+                        return entity2;
+                    }
                 } else {
                     return entity1;
                 }

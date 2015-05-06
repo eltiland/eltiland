@@ -32,12 +32,13 @@ public class WebinarPaymentPage extends AbstractWebinarPaymentPage {
         WebMarkupContainer container = getMain();
 
         WebinarPayButton payButton = new WebinarPayButton("payButton");
-        payButton.setPaymentData(payment);
+    //    payButton.setPaymentData(payment);
         container.add(payButton);
     }
 
     @Override
     protected PaidEntity getEntity(String code) {
-        return webinarUserPaymentManager.getPaymentByLink(code);
+        //return webinarUserPaymentManager.getPaymentByLink(code);
+        return null;
     }
 }

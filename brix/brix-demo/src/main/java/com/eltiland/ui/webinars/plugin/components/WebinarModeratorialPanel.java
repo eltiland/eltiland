@@ -7,6 +7,7 @@ import com.eltiland.bl.user.UserManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -252,7 +253,7 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
             @Override
             public Component newCell(WebMarkupContainer parent,
                                      String componentId, IModel<WebinarUserPayment> rowModel) {
-                boolean status = rowModel.getObject().getStatus();
+                boolean status = rowModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
                 return new Label(componentId, new ResourceModel(status ? "CONFIRMED" : "PAYS"));
             }
 
@@ -316,7 +317,7 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                 return new WebinarLinkPanel(componentId, rowModel) {
                     @Override
                     protected boolean showLink() {
-                        return rowModel.getObject().getStatus() &&
+                        return rowModel.getObject().getStatus().equals(PaidStatus.CONFIRMED) &&
                                 !(rowModel.getObject().getRole().equals(WebinarUserPayment.Role.MODERATOR));
                     }
                 };

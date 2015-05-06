@@ -9,6 +9,7 @@ import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.UserException;
 import com.eltiland.model.course.paidservice.CoursePayment;
 import com.eltiland.model.magazine.Client;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.WebinarMultiplyPayment;
 import com.eltiland.model.webinar.WebinarRecordPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -114,7 +115,7 @@ public class W1PaymentPage extends WebPage implements IMarkupResourceStreamProvi
                 }
             } else if (paidWebinars) {
                 WebinarUserPayment payment = webinarUserPaymentManager.getWebinarPaymentById(id);
-                if (payment != null && !(payment.getStatus())) {
+                if (payment != null && !(payment.getStatus().equals(PaidStatus.CONFIRMED))) {
                     webinarUserPaymentManager.payWebinarUserPayment(payment);
                 }
             } else if (paidCourse) {
@@ -133,8 +134,8 @@ public class W1PaymentPage extends WebPage implements IMarkupResourceStreamProvi
                 }
             } else if (paidRecord) {
                 WebinarRecordPayment payment = genericManager.getObject(WebinarRecordPayment.class, (long) id);
-                if (payment != null && !(payment.getStatus())) {
-                    payment.setStatus(true);
+                if (payment != null && !(payment.getStatus().equals(PaidStatus.CONFIRMED))) {
+                    payment.setStatus(PaidStatus.CONFIRMED);
                     payment.setDate(DateUtils.getCurrentDate());
                     genericManager.update(payment);
 

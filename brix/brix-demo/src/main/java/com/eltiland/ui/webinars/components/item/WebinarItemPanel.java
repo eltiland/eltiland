@@ -3,6 +3,7 @@ package com.eltiland.ui.webinars.components.item;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -90,7 +91,7 @@ public class WebinarItemPanel extends AbstractItemPanel<Webinar> {
 
         Label status = new Label("status", new Model<String>());
         status.setVisible(getModelObject().getStartDate().after(DateUtils.getCurrentDate()));
-        boolean paid = paymentIModel.getObject().getStatus();
+        boolean paid = paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
         status.setDefaultModelObject(paid ? getString("open") :
                 String.format(getString("closed"), paymentIModel.getObject().getPrice().toString()));
         status.add(new AttributeAppender("class", new Model<>(paid ? "open" : "closed"), " "));
@@ -146,9 +147,9 @@ public class WebinarItemPanel extends AbstractItemPanel<Webinar> {
             case DOWNLOAD:
                 return logged && history && !(getModelObject().isCourse());
             case PREVIEW:
-                return logged && !history && paymentIModel.getObject().getStatus();
+                return logged && !history && paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
             case PAY:
-                return logged && !history && !paymentIModel.getObject().getStatus();
+                return logged && !history && !paymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED);
             default:
                 return false;
         }

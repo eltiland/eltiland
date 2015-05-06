@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
@@ -92,7 +93,7 @@ public class WebinarPriceColumn<T> extends AbstractColumn<T, WebinarUserPayment>
                         payment.setPrice(model.getObject());
                         try {
                             if (model.getObject().equals(BigDecimal.valueOf(0))) {
-                                payment.setStatus(true);
+                                payment.setStatus(PaidStatus.CONFIRMED);
                                 genericManager.initialize(payment, payment.getWebinar());
                                 webinarServiceManager.addUser(payment);
                             }
@@ -141,7 +142,7 @@ public class WebinarPriceColumn<T> extends AbstractColumn<T, WebinarUserPayment>
 
                 @Override
                 public boolean isVisible() {
-                    return isChangeVisible() && !(webinarUserPaymentIModel.getObject().getStatus());
+                    return isChangeVisible() && !(webinarUserPaymentIModel.getObject().getStatus().equals(PaidStatus.CONFIRMED));
                 }
             });
 

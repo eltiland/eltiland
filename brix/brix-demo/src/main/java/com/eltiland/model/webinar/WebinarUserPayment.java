@@ -3,6 +3,8 @@ package com.eltiland.model.webinar;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.AbstractIdentifiable;
 import com.eltiland.model.export.Exportable;
+import com.eltiland.model.payment.PaidEntityNew;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.payment.WebinarPayment;
 import com.eltiland.model.search.WebinarUserSearchFilterFactory;
 import com.eltiland.model.user.User;
@@ -25,7 +27,7 @@ import java.util.Date;
         @FullTextFilterDef(name = "webinarUserFilterFactory", impl = WebinarUserSearchFilterFactory.class)
 })
 @Indexed
-public class WebinarUserPayment extends AbstractIdentifiable implements WebinarPayment, Exportable {
+public class WebinarUserPayment extends AbstractIdentifiable implements Exportable, PaidEntityNew {
     @SpringBean
     private GenericManager genericManager;
 
@@ -37,7 +39,7 @@ public class WebinarUserPayment extends AbstractIdentifiable implements WebinarP
     private String userSurname;
     private String patronymic;
 
-    private boolean status;
+    private PaidStatus status;
     private String userEmail;
     private BigDecimal price;
     private Role role;
@@ -66,6 +68,14 @@ public class WebinarUserPayment extends AbstractIdentifiable implements WebinarP
 
     public void setUserProfile(User userProfile) {
         this.userProfile = userProfile;
+    }
+
+    @Override
+    @Transient
+    public String getEntityName() {
+        Injector.get().inject(this);
+        genericManager.initialize(this, this.getWebinar());
+        return getWebinar().getName();
     }
 
     @Column(name = "userName", length = 255)
@@ -129,7 +139,13 @@ public class WebinarUserPayment extends AbstractIdentifiable implements WebinarP
         Injector.get().inject(this);
         genericManager.initialize(this, this.getWebinar());
 
-        return "Оплата за вебинар \""+ getWebinar().getName() + "\"";
+        return "Оплата за вебинар \"" + getWebinar().getName() + "\"";
+    }
+
+    @Override
+    @Transient
+    public Long getPaidId() {
+        return getId();
     }
 
     @Override
@@ -144,12 +160,18 @@ public class WebinarUserPayment extends AbstractIdentifiable implements WebinarP
 
     @Column(name = "status", nullable = false)
     @Field
-    public boolean getStatus() {
+    public PaidStatus getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(PaidStatus status) {
         this.status = status;
+    }
+
+    @Override
+    @Transient
+    public void setPayDate(Date date) {
+        setDate(date);
     }
 
     @Column(name = "role", nullable = false)
@@ -189,12 +211,6 @@ public class WebinarUserPayment extends AbstractIdentifiable implements WebinarP
 
     public void setPaylink(String paylink) {
         this.paylink = paylink;
-    }
-
-    @Override
-    @Transient
-    public Long getPaidId() {
-        return getId();
     }
 
     @Column(name = "webinarlink")
