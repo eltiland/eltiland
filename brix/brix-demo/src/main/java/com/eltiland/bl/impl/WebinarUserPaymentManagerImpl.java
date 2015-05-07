@@ -98,7 +98,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
             user.setStatus(PaidStatus.CONFIRMED);
             result = webinarServiceManager.addUser(user);
         } else { // paid access
-            user.setStatus(PaidStatus.CONFIRMED);
+            user.setStatus(PaidStatus.NEW);
             user.setPaylink(RandomStringUtils.randomAlphanumeric(10));
         }
         if (!result) {

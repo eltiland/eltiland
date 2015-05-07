@@ -1,18 +1,18 @@
 package com.eltiland.ui.service.plugin;
 
-import com.eltiland.bl.CourseManager;
-import com.eltiland.bl.CourseUserDataManager;
-import com.eltiland.bl.FileManager;
-import com.eltiland.bl.GenericManager;
+import com.eltiland.bl.*;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
 import com.eltiland.bl.user.UserManager;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.FileException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.file.File;
 import com.eltiland.model.user.User;
+import com.eltiland.model.webinar.Webinar;
+import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.behavior.ConfirmationDialogBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
@@ -53,6 +53,8 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
     private UserManager userManager;
     @SpringBean
     private CourseManager courseManager;
+    @SpringBean
+    private EmailMessageManager emailMessageManager;
 
     protected ServicePanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
@@ -121,6 +123,24 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                     List<File> files = filePanel.getFiles(true);
                 } catch (FileException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        });
+
+        add(new EltiAjaxLink("webinarSend") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                Webinar webinar = genericManager.getObject(Webinar.class, (long) 53140);
+                genericManager.initialize(webinar, webinar.getWebinarUserPayments());
+                for (WebinarUserPayment payment : webinar.getWebinarUserPayments()) {
+                    if (payment.getRole().equals(WebinarUserPayment.Role.MEMBER)) {
+                        try {
+                            emailMessageManager.sendWebinarInvitationToUser(payment);
+                            LOGGER.info(String.format("send letter to %s", payment.getUserEmail()));
+                        } catch (EmailException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         });
