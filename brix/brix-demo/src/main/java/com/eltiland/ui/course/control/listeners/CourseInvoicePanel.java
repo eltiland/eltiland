@@ -555,9 +555,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
 
                 @Override
                 protected Iterator getIterator(int first, int count) {
-                    genericManager.initialize(courseListenerModel.getObject(),
-                            courseListenerModel.getObject().getListeners());
-                    return courseListenerModel.getObject().getListeners().iterator();
+                    return courseListenerManager.getChildList(courseListenerModel.getObject(), first, count,
+                            getSort().getProperty(), getSort().isAscending()).iterator();
                 }
 
                 @Override

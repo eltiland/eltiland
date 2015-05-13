@@ -171,6 +171,19 @@ public class ELTCourseListenerManagerImpl extends ManagerImpl implements ELTCour
 
     @Override
     @Transactional(readOnly = true)
+    public List<ELTCourseListener> getChildList(ELTCourseListener parent,
+                                                Integer index, Integer count, String sProperty, boolean isAscending) {
+        Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
+        criteria.setFetchMode("parent", FetchMode.JOIN);
+        criteria.add(Restrictions.eq("parent", parent));
+        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public boolean hasAccess(User user, ELTCourse course) {
         ELTCourseListener listener = getItem(user, course);
         if (listener == null || !listener.getStatus().equals(PaidStatus.CONFIRMED)) {

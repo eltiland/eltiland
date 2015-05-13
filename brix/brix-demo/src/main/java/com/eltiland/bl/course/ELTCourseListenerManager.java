@@ -91,6 +91,19 @@ public interface ELTCourseListenerManager {
     Integer getCount(ELTCourse course, String searchString, Boolean isListener, Boolean onlyParents);
 
     /**
+     * Get list of child listeners of the given listener.
+     *
+     * @param parent      parent listener item.
+     * @param index       index of the first item
+     * @param count       count of the items
+     * @param sProperty   sort property
+     * @param isAscending ascending/descending flag
+     * @return listener's list.
+     */
+    List<ELTCourseListener> getChildList(ELTCourseListener parent, Integer index, Integer count,
+                                         String sProperty, boolean isAscending);
+
+    /**
      * Check if the user has entire access to the course (means that course is paid).
      * 1 step - check if listener has confirmed status.
      * 2 step - check if listener has not time restrictions for access to the course or this restrictions does not work yet.
