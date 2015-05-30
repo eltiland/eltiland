@@ -351,6 +351,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
             listener.setStatus(PaidStatus.NEW);
             listener.setListener(currentUserModel.getObject());
             listener.setCourse(courseIModel.getObject());
+            listener.setPrice(courseIModel.getObject().getPrice());
             try {
                 courseListenerManager.create(listener);
                 genericManager.initialize(listener, listener.getListeners());

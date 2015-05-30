@@ -373,7 +373,11 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                             rowModel.getObject().setStatus(PaidStatus.PAYS);
                         }
                         try {
-                            emailMessageManager.sendTCUserAccepted(rowModel.getObject());
+                            if (course instanceof TrainingCourse) {
+                                emailMessageManager.sendTCUserAccepted(rowModel.getObject());
+                            } else {
+                                emailMessageManager.sendCourseAccessGrantedToUser(rowModel.getObject());
+                            }
                             courseListenerManager.update(rowModel.getObject());
                             target.add(grid);
                         } catch (EmailException | CourseException e) {
