@@ -69,7 +69,7 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                 course.setTraining(true);
                 course.setAuthor(user);
                 course.setCreationDate(DateUtils.getCurrentDate());
-                course.setName("Образовательные решения Lego Education для детей от 3 до 7 лет");
+                course.setName("Примерная образовательная программа «Детство» в условиях реализации ФГОС ДО");
                 course.setStatus(false);
 
                 course.setPublished(false);
