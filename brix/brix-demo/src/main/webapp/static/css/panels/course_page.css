@@ -52,6 +52,10 @@
     padding: 10px;
 }
 
+.course_page > .course_content > .block > .name > .name_closed {
+    color: lightgrey;
+}
+
 .course_page > .course_content > .block > .name {
     display: table;
     height: 20px;
