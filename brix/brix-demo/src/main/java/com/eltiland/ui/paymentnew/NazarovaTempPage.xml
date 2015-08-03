@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="pay.for">Оплата за </entry>
+
+    <entry key="ELTCourseListener.type">участие в курсе</entry>
+    <entry key="WebinarRecordPayment.type">запись вебинара</entry>
+    <entry key="WebinarUserPayment.type">участие в вебинаре</entry>
+
+    <entry key="ELTCourseListener.class">course</entry>
+    <entry key="WebinarRecordPayment.class">record</entry>
+    <entry key="WebinarUserPayment.class">webinar</entry>
+
+    <entry key="author.course">Авторский курс, автор %s.</entry>
+
+    <entry key="access.unlimited">Неограниченный доступ к материалам курса.</entry>
+    <entry key="access.limited">Доступ к материалам курса на %d дней.</entry>
+
+    <entry key="desc">Комиссионное вознаграждение ЗАО "ЭЛТИ-КУДИЦ" по договору 511-12-14 от 16.12.14</entry>
+    <entry key="name">Оплата за курс</entry>
+</properties>

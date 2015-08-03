@@ -49,10 +49,7 @@ import com.eltiland.ui.magazine.MagazineDownloadPage;
 import com.eltiland.ui.magazine.MagazinePage;
 import com.eltiland.ui.magazine.MagazinePayPage;
 import com.eltiland.ui.payment.*;
-import com.eltiland.ui.paymentnew.PaymentFailPage;
-import com.eltiland.ui.paymentnew.PaymentPage;
-import com.eltiland.ui.paymentnew.PaymentProcessingPage;
-import com.eltiland.ui.paymentnew.PaymentSuccessPage;
+import com.eltiland.ui.paymentnew.*;
 import com.eltiland.ui.subscribe.SubscribePage;
 import com.eltiland.ui.subscribe.UnsubscribePage;
 import com.eltiland.ui.video.VideoPage;
@@ -289,6 +286,7 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(PaymentProcessingPage.MOUNT_PATH, PaymentProcessingPage.class);
         mountPage(ResetPasswordPage.MOUNT_PATH, ResetPasswordPage.class);
         mountPage(CourseControlPage_old.MOUNT_PATH, CourseControlPage_old.class);
+        mountPage(NazarovaTempPage.MOUNT_PATH, NazarovaTempPage.class);
 
         getSharedResources().add(ResourcesUtils.COURSE_CONTENT_FOLDER,
                 new ContextRelativeResource(ResourcesUtils.IMAGE_COURSE_CONTENT_FOLDER_ITEM));

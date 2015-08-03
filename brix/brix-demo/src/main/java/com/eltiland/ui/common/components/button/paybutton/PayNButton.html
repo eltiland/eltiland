@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <form method="post" action="https://payments265.paysecure.ru/pay/order.cfm">
+        <input type="hidden" wicket:id="merchant_id">
+        <input type="hidden" wicket:id="order_number">
+        <input type="hidden" wicket:id="order_amount">
+        <input type="hidden" wicket:id="lastname" value="">
+        <input type="hidden" wicket:id="firstname" value="">
+        <input type="hidden" wicket:id="middlename" value="">
+        <input type="hidden" wicket:id="email">
+        <input type="hidden" wicket:id="url_ok">
+        <input type="hidden" wicket:id="url_no">
+        <input type="hidden" wicket:id="order_comment">
+        <button type="submit" class="pay-button">
+            <wicket:message key="pay"></wicket:message>
+        </button>
+    </form>
+</wicket:panel>
+</body>
+</html>
