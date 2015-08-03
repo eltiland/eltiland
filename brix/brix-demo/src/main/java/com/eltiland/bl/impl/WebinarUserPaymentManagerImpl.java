@@ -289,7 +289,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Transactional(readOnly = true)
     public int getPaidPaymentsCount(String searchString) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
-                .add(Restrictions.eq("status", true))
+                .add(Restrictions.eq("status", PaidStatus.CONFIRMED))
                 .add(Restrictions.isNotNull("price"))
                 .add(Restrictions.ne("price", BigDecimal.ZERO));
         if (searchString != null) {
@@ -313,7 +313,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     public List<WebinarUserPayment> getPaidPaymentsList(int index, Integer count,
                                                         String sProperty, boolean isAscending, String searchString) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
-                .add(Restrictions.eq("status", true))
+                .add(Restrictions.eq("status", PaidStatus.CONFIRMED))
                 .add(Restrictions.isNotNull("price"))
                 .add(Restrictions.ne("price", BigDecimal.ZERO));
         criteria.createAlias("webinar", "webinar");
