@@ -2,6 +2,7 @@ package com.eltiland.ui.webinars;
 
 import com.eltiland.BrixPanel;
 import com.eltiland.bl.*;
+import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
@@ -45,6 +46,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -288,6 +290,8 @@ public class WebinarsPage extends BaseEltilandPage {
         private WebinarRecordManager webinarRecordManager;
         @SpringBean
         private WebinarRecordPaymentManager webinarRecordPaymentManager;
+        @SpringBean
+        private WebinarCertificateGenerator webinarCertificateGenerator;
 
         @Override
         protected String getActionTooltip(GridAction action) {
@@ -345,9 +349,15 @@ public class WebinarsPage extends BaseEltilandPage {
                             ELTAlerts.renderWarningPopup(getString("alreadySendedError"), target);
                         } else {
                             WebinarRecordPayment payment = new WebinarRecordPayment();
+
+                            genericManager.initialize(rowModel.getObject(), rowModel.getObject().getWebinar());
+
                             payment.setPrice(rowModel.getObject().getPrice());
                             payment.setRecord(rowModel.getObject());
-                            if (!(rowModel.getObject().getPrice().longValue() == 0)) {
+                            payment.setDate(rowModel.getObject().getWebinar().getStartDate());
+
+                            boolean isFree = (rowModel.getObject().getPrice().longValue() == 0);
+                            if (!isFree) {
                                 payment.setPayLink(RandomStringUtils.randomAlphanumeric(10));
                             }
                             payment.setUserProfile(currentUserModel.getObject());
@@ -359,8 +369,15 @@ public class WebinarsPage extends BaseEltilandPage {
                                 throw new WicketRuntimeException("Can't create new record invoice", e);
                             }
                             try {
-                                emailMessageManager.sendRecordInvitationToUser(payment);
-                            } catch (EmailException e) {
+                                if( !isFree ) {
+                                    emailMessageManager.sendRecordInvitationToUser(payment);
+                                } else {
+                                    InputStream pdfStream =
+                                            webinarCertificateGenerator.generateRecordCertificate(payment);
+                                    emailMessageManager.sendRecordLinkToUser(payment, pdfStream);
+                                }
+
+                            } catch (EmailException | EltilandManagerException e) {
                                 LOGGER.error("Can't send mail", e);
                                 throw new WicketRuntimeException("Can't send mail", e);
                             }
