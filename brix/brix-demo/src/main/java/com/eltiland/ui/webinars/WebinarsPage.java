@@ -6,6 +6,7 @@ import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.*;
 import com.eltiland.session.EltilandSession;
@@ -355,6 +356,7 @@ public class WebinarsPage extends BaseEltilandPage {
                             payment.setPrice(rowModel.getObject().getPrice());
                             payment.setRecord(rowModel.getObject());
                             payment.setDate(rowModel.getObject().getWebinar().getStartDate());
+                            payment.setStatus(PaidStatus.NEW);
 
                             boolean isFree = (rowModel.getObject().getPrice().longValue() == 0);
                             if (!isFree) {

@@ -9,10 +9,7 @@ import com.eltiland.model.webinar.WebinarRecord;
 import com.eltiland.model.webinar.WebinarRecordPayment;
 import com.eltiland.session.EltilandSession;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -106,6 +103,8 @@ public class WebinarRecordPaymentManagerImpl extends ManagerImpl implements Webi
         Criteria criteria = getCurrentSession().createCriteria(WebinarRecordPayment.class);
         criteria.add(Restrictions.eq("record", webinarRecord));
         criteria.add(Restrictions.eq("userProfile", user));
+        criteria.addOrder(Order.desc("id"));
+        criteria.setMaxResults(1);
         return (WebinarRecordPayment) criteria.uniqueResult();
     }
 }

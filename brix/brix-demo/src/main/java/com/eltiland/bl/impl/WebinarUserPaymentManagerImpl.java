@@ -358,7 +358,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
             criteria.add(Restrictions.eq("status", true));
         } else {
             if (status != null) {
-                criteria.add(Restrictions.eq("status", status));
+                criteria.add(Restrictions.eq("status", status ? PaidStatus.CONFIRMED : PaidStatus.NEW));
             }
         }
         criteria.addOrder(Order.desc("registrationDate"));

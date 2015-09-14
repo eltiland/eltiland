@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarRecordManager;
 import com.eltiland.bl.WebinarRecordPaymentManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarRecord;
 import com.eltiland.model.webinar.WebinarRecordPayment;
@@ -125,6 +126,8 @@ public class RecordDataTablePanel extends DataTablePanel<WebinarRecord> {
                                 WebinarRecordPayment payment = new WebinarRecordPayment();
                                 payment.setPrice(rowModel.getObject().getPrice());
                                 payment.setRecord(rowModel.getObject());
+                                payment.setStatus(PaidStatus.NEW);
+
                                 if (!(rowModel.getObject().getPrice().longValue() == 0)) {
                                     payment.setPayLink(RandomStringUtils.randomAlphanumeric(10));
                                 }
