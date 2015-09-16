@@ -12,6 +12,7 @@ import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseListener;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.course2.ELTCourse;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.subscribe.Subscriber;
 import com.eltiland.model.user.*;
 import com.eltiland.model.webinar.Webinar;
@@ -409,7 +410,7 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
 
                 Criteria wPaymentCriteria = getCurrentSession().createCriteria(WebinarUserPayment.class);
                 wPaymentCriteria.add(Restrictions.eq("webinar", webinar));
-                wPaymentCriteria.add(Restrictions.eq("status", true));
+                wPaymentCriteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
                 wPaymentCriteria.setProjection(Projections.property("userProfile.id"));
                 wPaymentCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                 tList = wPaymentCriteria.list();
@@ -417,7 +418,7 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
                 Criteria rPaymentCriteria = getCurrentSession().createCriteria(WebinarRecordPayment.class);
                 rPaymentCriteria.createAlias("record", "record", JoinType.LEFT_OUTER_JOIN);
                 rPaymentCriteria.add(Restrictions.eq("record.webinar", webinar));
-                rPaymentCriteria.add(Restrictions.eq("status", true));
+                rPaymentCriteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
                 rPaymentCriteria.setProjection(Projections.property("userProfile.id"));
                 rPaymentCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                 tList = (List<Long>) CollectionUtils.union(tList, rPaymentCriteria.list());
@@ -434,8 +435,8 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
             criteria.createAlias("webinarRecordPayments", "recordPayments", JoinType.LEFT_OUTER_JOIN);
 
             Disjunction webinarCriteria = Restrictions.disjunction();
-            webinarCriteria.add(Restrictions.eq("payments.status", true));
-            webinarCriteria.add(Restrictions.eq("recordPayments.status", true));
+            webinarCriteria.add(Restrictions.eq("payments.status", PaidStatus.CONFIRMED));
+            webinarCriteria.add(Restrictions.eq("recordPayments.status", PaidStatus.CONFIRMED));
             criteria.add(webinarCriteria);
         } else {
             criteria.add(Restrictions.in("id", webinarUsers));
