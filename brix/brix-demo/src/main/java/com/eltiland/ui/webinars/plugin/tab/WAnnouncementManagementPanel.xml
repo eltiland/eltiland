@@ -19,6 +19,9 @@
     <entry key="editAction">Изменить данные</entry>
     <entry key="closeRegAction">Закрыть регистрацию</entry>
     <entry key="openRegAction">Открыть регистрацию</entry>
+    <entry key="sendAction">Отправить сообщение всем участникам</entry>
     <entry key="moderationAction">Модерировать участников</entry>
     <entry key="webinarEditHeader">Редактирование вебинара</entry>
+
+    <entry key="messageSend">Сообщение успешно отправлено.</entry>
 </properties>

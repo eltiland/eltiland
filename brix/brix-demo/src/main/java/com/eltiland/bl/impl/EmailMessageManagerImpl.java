@@ -1442,7 +1442,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
 
     @Override
     public void sendWebinarMessageToListeners(Webinar webinar, String text, boolean sentCertificate,
-                                              boolean sentFiles, boolean sentRecords) throws EmailException {
+                                              boolean sentFiles, boolean sentRecords, String header) throws EmailException {
         Map<String, Object> model = new HashMap<>();
 
         model.put(WEBINAR_NAME, webinar.getName());
@@ -1494,11 +1494,12 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
                 }
 
 
-                message.setSubject(mailHeadings.getProperty("webinarListenersMessage"));
+                message.setSubject(header == null ? mailHeadings.getProperty("webinarListenersMessage") : header);
                 message.setRecipients(Arrays.asList(recipient));
                 message.setText(messageBody);
 
                 mailSender.sendMessage(message);
+                LOGGER.info(String.format("message send to %s", recipient));
             } catch (VelocityCommonException | UnsupportedEncodingException |
                     AddressException | ResourceStreamNotFoundException e) {
                 throw new EmailException(EmailException.SEND_MAIL_ERROR, e);

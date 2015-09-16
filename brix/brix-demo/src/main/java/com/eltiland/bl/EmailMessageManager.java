@@ -167,15 +167,15 @@ public interface EmailMessageManager {
 
     /**
      * Sending message to all webinar users.
-     *
-     * @param webinar         webinar entity.
+     *  @param webinar         webinar entity.
      * @param text            message text.
      * @param sentCertificate if TRUE - sent also certificate file
      * @param sentFiles       if TRUE - sent also attached files
      * @param sentRecords     if TRUE - sent also links to the webinar records.
+     * @param header
      */
     void sendWebinarMessageToListeners(Webinar webinar, String text, boolean sentCertificate,
-                                       boolean sentFiles, boolean sentRecords) throws EmailException;
+                                       boolean sentFiles, boolean sentRecords, String header) throws EmailException;
 
 
     /******************************************************************************************************************/

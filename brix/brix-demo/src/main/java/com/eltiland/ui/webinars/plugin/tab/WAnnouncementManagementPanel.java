@@ -8,11 +8,13 @@ import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
+import com.eltiland.ui.common.CKEditorFull;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.checkbox.ELTAjaxCheckBox;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
+import com.eltiland.ui.common.components.dialog.callback.IDialogCloseCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleUpdateCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.form.FormRequired;
@@ -73,6 +75,8 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
     private WebinarUserPaymentManager webinarUserPaymentManager;
     @SpringBean
     private MailSender mailSender;
+    @SpringBean
+    private EmailMessageManager emailMessageManager;
     @SpringBean(name = "mailMessageHeadings")
     Properties mailHeadings;
 
@@ -139,6 +143,26 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                 @Override
                 public WebinarModeratorialPanel createDialogPanel(String id) {
                     return new WebinarModeratorialPanel(id);
+                }
+            };
+
+    private final Dialog<SendMessagePanel> sendMessagePanelDialog =
+            new Dialog<SendMessagePanel>("sendMessageDialog", 750) {
+                @Override
+                public SendMessagePanel createDialogPanel(String id) {
+                    return new SendMessagePanel(id);
+                }
+
+                @Override
+                public void registerCallback(SendMessagePanel panel) {
+                    panel.setCloseCallback(new IDialogCloseCallback.IDialogActionProcessor() {
+                        @Override
+                        public void process(AjaxRequestTarget target) {
+                            close(target);
+                            ELTAlerts.renderOKPopup(getString("messageSend"), target);
+                        }
+                    });
+                    super.registerCallback(panel);
                 }
             };
 
@@ -220,6 +244,8 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                         return getString("closeRegAction");
                     case ON:
                         return getString("openRegAction");
+                    case SEND:
+                        return getString("sendAction");
                     default:
                         return "";
                 }
@@ -239,7 +265,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<Webinar> rowModel) {
-                return Arrays.asList(GridAction.EDIT, GridAction.USERS, GridAction.OFF, GridAction.ON);
+                return Arrays.asList(GridAction.EDIT, GridAction.SEND, GridAction.USERS, GridAction.OFF, GridAction.ON);
             }
 
             @Override
@@ -317,6 +343,10 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                         target.add(grid);
 
                         break;
+
+                    case SEND:
+                        sendMessagePanelDialog.getDialogPanel().initData(rowModel);
+                        sendMessagePanelDialog.show(target);
                 }
             }
         };
@@ -325,6 +355,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
         add(webinarPropertyPanelDialog);
         add(webinarModeratorialPanelDialog);
         add(webinarAddUsersPanelDialog);
+        add(sendMessagePanelDialog);
         webinarModeratorialPanelDialog.setMinimalHeight(300);
     }
 
@@ -514,5 +545,61 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         response.renderCSSReference(ResourcesUtils.CSS_NEW_TABLE_STYLE);
+    }
+
+    private class SendMessagePanel extends ELTDialogPanel implements IDialogCloseCallback {
+
+        private CKEditorFull contentField = new CKEditorFull("content", sendMessagePanelDialog);
+        private ELTTextField<String> headerField = new ELTTextField<>(
+                "messageHeader", new ResourceModel("headerMessage"), new Model<String>(), String.class);
+        private IDialogActionProcessor callback;
+
+        private IModel<Webinar> webinarIModel = new GenericDBModel<Webinar>(Webinar.class);
+
+        public SendMessagePanel(String id) {
+            super(id);
+
+            form.add(contentField);
+            form.add(headerField);
+        }
+
+        public void initData(IModel<Webinar> webinarIModel) {
+            this.webinarIModel = webinarIModel;
+        }
+
+        @Override
+        protected String getHeader() {
+            return getString("headerLabel");
+        }
+
+        @Override
+        protected List<EVENT> getActionList() {
+            return new ArrayList<>(Collections.singletonList(EVENT.Send));
+        }
+
+        @Override
+        protected void eventHandler(EVENT event, AjaxRequestTarget target) {
+            if (event.equals(EVENT.Send)) {
+                try {
+                    emailMessageManager.sendWebinarMessageToListeners(
+                            webinarIModel.getObject(), contentField.getData(),
+                            false, false, false, headerField.getModelObject());
+                } catch (EmailException e) {
+                    LOGGER.error("Cannot send message", e);
+                    throw new WicketRuntimeException("Cannot send message", e);
+                }
+                callback.process(target);
+            }
+        }
+
+        @Override
+        public String getVariation() {
+            return "styled";
+        }
+
+        @Override
+        public void setCloseCallback(IDialogActionProcessor callback) {
+            this.callback = callback;
+        }
     }
 }

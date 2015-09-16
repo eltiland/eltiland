@@ -339,7 +339,7 @@ public class WHistoryManagementPanel extends BaseEltilandPanel<Workspace> {
                 try {
                     emailMessageManager.sendWebinarMessageToListeners(
                             webinarIModel.getObject(), mailText.getModelObject(),
-                            sentCert.getModelObject(), sentFile.getModelObject(), sentRecord.getModelObject());
+                            sentCert.getModelObject(), sentFile.getModelObject(), sentRecord.getModelObject(), null);
                     if (sentCert.getModelObject()) {
                         if (!(webinarIModel.getObject().isCertSended())) {
                             webinarIModel.getObject().setCertSended(true);
