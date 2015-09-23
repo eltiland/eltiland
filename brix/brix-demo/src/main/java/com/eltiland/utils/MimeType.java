@@ -46,6 +46,10 @@ public class MimeType {
         return new ArrayList<>(Arrays.asList(ZIP_TYPE, XZIP_TYPE, OCTET_TYPE, RAR_TYPE));
     }
 
+    public static List<String> getPDFTypes() {
+        return new ArrayList<>(Arrays.asList(PDF_TYPE));
+    }
+
     public static String getExtension(String mimeType) {
         switch (mimeType) {
             case MimeType.DOC_TYPE:

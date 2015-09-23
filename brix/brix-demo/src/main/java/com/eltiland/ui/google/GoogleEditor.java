@@ -30,8 +30,7 @@ abstract class GoogleEditor extends BaseEltilandPanel<GoogleDriveFile> {
             @Override
             public void onClick(GoogleDriveFile gFile) {
                 GoogleEditor.this.setModelObject(gFile);
-                editor.add(new AttributeModifier("src",
-                        "https://docs.google.com/" + getPrefix() + "/d/" + gFile.getGoogleId() + "/edit?hl=en_GB"));
+                editor.add(new AttributeModifier("src", getSource(gFile)));
                 onUpload(gFile);
             }
 
@@ -44,13 +43,14 @@ abstract class GoogleEditor extends BaseEltilandPanel<GoogleDriveFile> {
         uploadButton.add(new AttributeModifier("title", new ResourceModel("upload")));
         uploadButton.add(new TooltipBehavior());
 
-        editor.add(new AttributeAppender("src",
-                "https://docs.google.com/" + getPrefix() + "/d/" + getModelObject().getGoogleId() + "/edit?hl=en_GB"));
+        editor.add(new AttributeAppender("src", getSource(getModelObject())));
 
         add(getAdditionalPanel("additionalPanel"));
         add(editor);
         add(uploadButton);
     }
+
+    protected abstract String getSource(GoogleDriveFile gFile);
 
     protected abstract void onUpload(GoogleDriveFile file);
 

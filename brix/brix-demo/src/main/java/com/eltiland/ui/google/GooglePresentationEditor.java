@@ -18,6 +18,11 @@ abstract class GooglePresentationEditor extends GoogleEditor {
     }
 
     @Override
+    protected String getSource(GoogleDriveFile gFile) {
+        return "https://docs.google.com/" + getPrefix() + "/d/" + gFile.getGoogleId() + "/edit?hl=en_GB";
+    }
+
+    @Override
     protected String getPrefix() {
         return "presentation";
     }

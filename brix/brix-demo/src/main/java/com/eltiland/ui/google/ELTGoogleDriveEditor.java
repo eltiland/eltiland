@@ -32,17 +32,31 @@ public class ELTGoogleDriveEditor extends BaseEltilandPanel<GoogleDriveFile> {
             }
         } else if (mode.equals(MODE.EDIT)) {
             if (type.equals(GoogleDriveFile.TYPE.DOCUMENT)) {
-                add(new GoogleDocumentEditor("editor", getModel()) {
-                    @Override
-                    protected void onUpload(GoogleDriveFile file) {
-                        ELTGoogleDriveEditor.this.onUpload(file);
-                    }
+                if (getModelObject().getMimeType().equals(MimeType.PDF_TYPE)) {
+                    add(new GooglePDFEditor("editor", getModel()) {
+                        @Override
+                        protected void onUpload(GoogleDriveFile file) {
+                            ELTGoogleDriveEditor.this.onUpload(file);
+                        }
 
-                    @Override
-                    protected Panel getAdditionalPanel(String markupId) {
-                        return ELTGoogleDriveEditor.this.getAdditionalPanel(markupId);
-                    }
-                });
+                        @Override
+                        protected Panel getAdditionalPanel(String markupId) {
+                            return ELTGoogleDriveEditor.this.getAdditionalPanel(markupId);
+                        }
+                    });
+                } else {
+                    add(new GoogleDocumentEditor("editor", getModel()) {
+                        @Override
+                        protected void onUpload(GoogleDriveFile file) {
+                            ELTGoogleDriveEditor.this.onUpload(file);
+                        }
+
+                        @Override
+                        protected Panel getAdditionalPanel(String markupId) {
+                            return ELTGoogleDriveEditor.this.getAdditionalPanel(markupId);
+                        }
+                    });
+                }
             } else if (type.equals(GoogleDriveFile.TYPE.PRESENTATION)) {
                 add(new GooglePresentationEditor("editor", getModel()) {
                     @Override
