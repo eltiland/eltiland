@@ -199,8 +199,8 @@ public class WebinarServiceImpl implements WebinarServiceManager {
 
     @Override
     public boolean addUser(WebinarUserPayment user) throws EltilandManagerException {
-        try {
-            HttpClient client = new HttpClient();
+     //   try {
+         /*   HttpClient client = new HttpClient();
             PutMethod method = new PutMethod(WEBINAR_RU_API_URL
                     + eltilandProps.getProperty("webinar.login") + "/" + INVITE_ACTION);
             method.addRequestHeader("Authorization", getAuthString());
@@ -230,11 +230,11 @@ public class WebinarServiceImpl implements WebinarServiceManager {
             XStream xstream = new XStream();
             xstream.alias("xml", SimpleReply.class);
             SimpleReply reply = (SimpleReply) xstream.fromXML(method.getResponseBodyAsString());
-            user.setUserid((long) reply.id);
+            user.setUserid((long) reply.id);*/
 
-        } catch (IOException e) {
+     /*   } catch (IOException e) {
             throw new EltilandManagerException("Cannot add user to webinar event - most likely some error in parameters.", e);
-        }
+        }*/
         return true;
     }
 

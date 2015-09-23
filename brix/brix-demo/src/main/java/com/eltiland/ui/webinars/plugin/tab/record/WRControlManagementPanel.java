@@ -2,6 +2,7 @@ package com.eltiland.ui.webinars.plugin.tab.record;
 
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarManager;
+import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarRecord;
@@ -103,6 +104,10 @@ public class WRControlManagementPanel extends BaseEltilandPanel<Workspace> {
                         return getString("editAction");
                     case REMOVE:
                         return getString("cancelAction");
+                    case ON:
+                        return getString("onAction");
+                    case OFF:
+                        return getString("offAction");
                     default:
                         return "";
                 }
@@ -116,11 +121,13 @@ public class WRControlManagementPanel extends BaseEltilandPanel<Workspace> {
             @Override
             protected boolean isActionVisible(GridAction action, IModel<Webinar> rowModel) {
                 genericManager.initialize(rowModel.getObject(), rowModel.getObject().getRecord());
+                boolean hasRecord = rowModel.getObject().getRecord() != null;
+                boolean recordOpen = hasRecord && rowModel.getObject().getRecord().isOpen();
                 switch (action) {
                     case ADD:
-                        return rowModel.getObject().getRecord() == null;
+                        return !hasRecord;
                     case EDIT:
-                        return rowModel.getObject().getRecord() != null;
+                        return hasRecord;
                     case REMOVE:
                         // can be deleted only, if there are no payments
                         WebinarRecord webinarRecord = rowModel.getObject().getRecord();
@@ -129,6 +136,10 @@ public class WRControlManagementPanel extends BaseEltilandPanel<Workspace> {
                         }
                         genericManager.initialize(webinarRecord, webinarRecord.getPayments());
                         return webinarRecord.getPayments().size() == 0;
+                    case ON:
+                        return !recordOpen;
+                    case OFF:
+                        return recordOpen;
                     default:
                         return true;
                 }
@@ -136,7 +147,7 @@ public class WRControlManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<Webinar> rowModel) {
-                return Arrays.asList(GridAction.ADD, GridAction.EDIT, GridAction.REMOVE);
+                return Arrays.asList(GridAction.ADD, GridAction.EDIT, GridAction.REMOVE, GridAction.ON, GridAction.OFF);
             }
 
             @Override
@@ -188,6 +199,27 @@ public class WRControlManagementPanel extends BaseEltilandPanel<Workspace> {
                         }
                         target.add(grid);
 
+                        break;
+
+                    case ON:
+                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getRecord());
+                        try {
+                            rowModel.getObject().getRecord().setOpen(true);
+                            genericManager.update(rowModel.getObject().getRecord());
+                        } catch (ConstraintException e) {
+                            ELTAlerts.renderErrorPopup(getString("updateActionError"), target);
+                        }
+                        target.add(grid);
+                        break;
+                    case OFF:
+                        genericManager.initialize(rowModel.getObject(), rowModel.getObject().getRecord());
+                        try {
+                            rowModel.getObject().getRecord().setOpen(false);
+                            genericManager.update(rowModel.getObject().getRecord());
+                        } catch (ConstraintException e) {
+                            ELTAlerts.renderErrorPopup(getString("updateActionError"), target);
+                        }
+                        target.add(grid);
                         break;
                 }
             }

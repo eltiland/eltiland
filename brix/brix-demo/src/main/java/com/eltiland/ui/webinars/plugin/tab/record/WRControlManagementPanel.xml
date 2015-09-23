@@ -10,4 +10,7 @@
     <entry key="editAction">Редактирование записи</entry>
     <entry key="cancelAction">Удалить запись</entry>
     <entry key="cancelActionError">Ошибка при удалении записи</entry>
+    <entry key="onAction">Включить доступ к записи</entry>
+    <entry key="offAction">Отключить доступ к записи</entry>
+    <entry key="updateActionError">Ошибка при изменении записи</entry>
 </properties>

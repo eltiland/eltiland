@@ -27,6 +27,7 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
             criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
             criteria.add(Restrictions.eq("webinar.course", isCourse));
         }
+        criteria.add(Restrictions.eq("open", true));
         return criteria.list().size();
     }
 
@@ -39,6 +40,7 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
             criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
             criteria.add(Restrictions.eq("webinar.course", isCourse));
         }
+        criteria.add(Restrictions.eq("open", true));
         criteria.setFirstResult(index);
         criteria.setMaxResults(count);
         criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));

@@ -20,6 +20,7 @@ public class WebinarRecord extends AbstractIdentifiable {
     private String password;
     private Webinar webinar;
     private BigDecimal price;
+    private boolean open;
     private Set<WebinarRecordPayment> payments = new HashSet<>(0);
 
     @Column(name = "link", nullable = false, length = 255)
@@ -75,5 +76,14 @@ public class WebinarRecord extends AbstractIdentifiable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "open", nullable = false, columnDefinition = "boolean default TRUE")
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 }
