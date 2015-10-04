@@ -244,12 +244,14 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                         return getString("closeRegAction");
                     case ON:
                         return getString("openRegAction");
-                    case SEND:
-                        return getString("sendAction");
+                 //   case SEND:
+                 //       return getString("sendAction");
                     default:
                         return "";
                 }
             }
+
+
 
             @Override
             protected boolean isActionVisible(GridAction action, IModel<Webinar> rowModel) {
