@@ -6,6 +6,7 @@ import com.eltiland.bl.impl.ManagerImpl;
 import com.eltiland.bl.validators.CourseUserDataValidator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.CourseException;
+import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.listeners.ELTCourseUserData;
 import com.eltiland.model.course2.listeners.UserDataStatus;
@@ -16,6 +17,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Course manager implementation.
@@ -56,6 +59,21 @@ public class ELTCourseUserDataManagerImpl extends ManagerImpl implements ELTCour
             return genericManager.update(data);
         } catch (ConstraintException e) {
             throw new CourseException(CourseException.ERROR_USERDATA_UPDATE);
+        }
+    }
+
+    @Override
+    public void deleteForCourse(ELTCourse course) throws CourseException {
+        Criteria criteria = getCurrentSession().createCriteria(ELTCourseUserData.class);
+        criteria.add(Restrictions.eq("course", course));
+
+        List<ELTCourseUserData> userDataList = criteria.list();
+        for( ELTCourseUserData data : userDataList ) {
+            try {
+                genericManager.delete(data);
+            } catch (EltilandManagerException e) {
+                throw new CourseException(CourseException.ERROR_USERDATA_DELETE);
+            }
         }
     }
 

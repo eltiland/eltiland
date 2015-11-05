@@ -29,6 +29,13 @@ public interface ELTCourseUserDataManager {
     ELTCourseUserData update(ELTCourseUserData data) throws CourseException;
 
     /**
+     * Removes all user data, related to specified course.
+     *
+     * @param course course-owner of the data.
+     */
+     void  deleteForCourse(ELTCourse course) throws CourseException;
+
+    /**
      * Creating standart values of registration variables for the course.
      *
      * @param course course item.

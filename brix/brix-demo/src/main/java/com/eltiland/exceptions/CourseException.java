@@ -34,6 +34,7 @@ public class CourseException extends Exception {
 
     public static final String ERROR_USERDATA_CREATE = "Неизвестная ошибка при создании регистрационных данных.";
     public static final String ERROR_USERDATA_UPDATE = "Неизвестная ошибка при редактировании регистрационных данных.";
+    public static final String ERROR_USERDATA_DELETE = "Неизвестная ошибка при удалении регистрационных данных.";
 
     public static final String ERROR_COURSEADMIN_USER_EMPTY = "Не указан пользователь для администратора курса.";
     public static final String ERROR_COURSEADMIN_COURSE_EMPTY = "Не указан курс для администратора курса.";

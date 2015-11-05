@@ -65,6 +65,7 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
     @Transactional(rollbackFor = CourseException.class)
     public void delete(ELTCourse course) throws CourseException {
         try {
+            eltCourseUserDataManager.deleteForCourse(course);
             genericManager.delete(course);
         } catch (EltilandManagerException e) {
             throw new CourseException(CourseException.ERROR_COURSE_REMOVE);
