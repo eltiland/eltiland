@@ -355,7 +355,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
                 Restrictions.le("webinar.startDate", DateUtils.getCurrentDate()) :
                 Restrictions.ge("webinar.startDate", DateUtils.getCurrentDate()));
         if (history) {
-            criteria.add(Restrictions.eq("status", true));
+            criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
         } else {
             if (status != null) {
                 criteria.add(Restrictions.eq("status", status ? PaidStatus.CONFIRMED : PaidStatus.NEW));
