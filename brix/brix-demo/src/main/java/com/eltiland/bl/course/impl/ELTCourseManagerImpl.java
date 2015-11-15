@@ -199,6 +199,23 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
 
     @Override
     @Transactional(readOnly = true)
+    public List<AuthorCourse> getAuthorCourses(int index, int count, Boolean isModule) {
+        Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
+        criteria.setFetchMode("author", FetchMode.JOIN);
+        criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+
+        if( isModule != null ) {
+            criteria.add(Restrictions.eq("module", isModule));
+        }
+        criteria.addOrder(Order.desc("id"));
+
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<TrainingCourse> getActiveTrainingCourses() {
         Criteria criteria = getCurrentSession().createCriteria(TrainingCourse.class);
         criteria.setFetchMode("author", FetchMode.JOIN);
@@ -210,8 +227,12 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
 
     @Override
     @Transactional(readOnly = true)
-    public int getAuthorCoursesCount() {
+    public int getAuthorCoursesCount(Boolean isModule) {
         Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
+
+        if( isModule != null ) {
+            criteria.add(Restrictions.eq("module", isModule));
+        }
         criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
         return criteria.list().size();
     }

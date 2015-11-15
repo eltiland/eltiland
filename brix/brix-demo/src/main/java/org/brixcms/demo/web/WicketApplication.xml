@@ -132,6 +132,7 @@
     <entry key="tab.webinars">Вебинары</entry>
     <entry key="tab.qa">Вопрос-ответ</entry>
     <entry key="tab.courses">Курсы</entry>
+    <entry key="tab.courses.old">Курсы (для миграции)</entry>
     <entry key="tab.paidgroups">Платные группы</entry>
     <entry key="tab.users">Пользователи</entry>
     <entry key="tab.pei">ДОУ</entry>

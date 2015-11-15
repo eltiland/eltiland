@@ -1,7 +1,7 @@
 package com.eltiland.ui.course.plugin;
 
 import com.eltiland.ui.common.BaseEltilandPanel;
-import com.eltiland.ui.course.plugin.tab2.CourseAuthorManagementPanel;
+import com.eltiland.ui.course.plugin.tab2.author.CourseAuthorManagementPanel;
 import com.eltiland.ui.course.plugin.tab2.CourseControlManagementPanel;
 import com.eltiland.ui.course.plugin.tab2.CourseInvoiceManagementPanel;
 import com.eltiland.ui.course.plugin.tab2.CoursePaymentManagementPanel;

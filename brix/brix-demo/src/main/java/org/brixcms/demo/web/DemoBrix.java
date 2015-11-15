@@ -15,8 +15,8 @@
 package org.brixcms.demo.web;
 
 import brix.tinymce.TinyMceMarkupEditorFactory;
-import com.eltiland.ui.course.plugin.Courses2Plugin;
 import com.eltiland.ui.course.plugin.CoursesPlugin;
+import com.eltiland.ui.course.plugin.OldCoursesPlugin;
 import com.eltiland.ui.faq.plugin.FaqPlugin;
 import com.eltiland.ui.google.plugin.GooglePlugin;
 import com.eltiland.ui.google.tile.GoogleTile;
@@ -57,7 +57,6 @@ public class DemoBrix extends Brix {
         config.getRegistry().register(Plugin.POINT, new PeiPlugin());
         config.getRegistry().register(Plugin.POINT, new UserPlugin());
         config.getRegistry().register(Plugin.POINT, new CoursesPlugin());
-        config.getRegistry().register(Plugin.POINT, new Courses2Plugin());
         config.getRegistry().register(Plugin.POINT, new FaqPlugin());
         config.getRegistry().register(Plugin.POINT, new WebinarsPlugin());
         config.getRegistry().register(Plugin.POINT, new SubscribePlugin());
@@ -66,6 +65,7 @@ public class DemoBrix extends Brix {
         config.getRegistry().register(Plugin.POINT, new TagPlugin());
         config.getRegistry().register(Plugin.POINT, new ServicePlugin());
         config.getRegistry().register(Plugin.POINT, new MigrationPlugin());
+        config.getRegistry().register(Plugin.POINT, new OldCoursesPlugin());
         config.getRegistry().register(MarkupEditorFactory.POINT, new TinyMceMarkupEditorFactory());
 
 

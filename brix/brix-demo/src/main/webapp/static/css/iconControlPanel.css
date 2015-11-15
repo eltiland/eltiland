@@ -275,6 +275,10 @@
     background: url("../images/actions/16x16/user_mail_16x16.png");
 }
 
+.iconControlPanel .button .refresh16 {
+    background: url("../images/actions/16x16/refresh_16x16.png");
+}
+
 .iconControlPanel .whitespace16 {
     height: 16px;
     width: 7px;

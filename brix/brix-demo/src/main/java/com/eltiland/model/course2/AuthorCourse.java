@@ -16,6 +16,7 @@ import java.util.Set;
 @DiscriminatorValue("AUTHOR")
 public class AuthorCourse extends ELTCourse implements Countable {
     private Integer index;
+    private Boolean module;
     private Set<ELTCourseBlock> demoContent = new HashSet<>(0);
 
     @Column(name = "index")
@@ -34,5 +35,14 @@ public class AuthorCourse extends ELTCourse implements Countable {
 
     public void setDemoContent(Set<ELTCourseBlock> demoContent) {
         this.demoContent = demoContent;
+    }
+
+    @Column(name = "module", nullable = false, columnDefinition = "boolean default TRUE")
+    public Boolean isModule() {
+        return module;
+    }
+
+    public void setModule(Boolean module) {
+        this.module = module;
     }
 }

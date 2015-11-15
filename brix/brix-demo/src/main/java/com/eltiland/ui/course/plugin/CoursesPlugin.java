@@ -17,6 +17,6 @@ public class CoursesPlugin extends EltilandPlugin {
 
     @Override
     public Panel getTabPanel(String panelId, IModel<Workspace> workspaceIModel) {
-        return new CourseManagementPanel(panelId, workspaceIModel);
+        return new Course2ManagementPanel(panelId, workspaceIModel);
     }
 }

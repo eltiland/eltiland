@@ -9,14 +9,14 @@ import org.brixcms.workspace.Workspace;
 /**
  * Courses management plugin.
  */
-public class Courses2Plugin extends EltilandPlugin {
+public class OldCoursesPlugin extends EltilandPlugin {
     @Override
     public IModel<String> getTabName() {
-        return new ResourceModel("tab.courses");
+        return new ResourceModel("tab.courses.old");
     }
 
     @Override
     public Panel getTabPanel(String panelId, IModel<Workspace> workspaceIModel) {
-        return new Course2ManagementPanel(panelId, workspaceIModel);
+        return new CourseManagementPanel(panelId, workspaceIModel);
     }
 }

@@ -116,6 +116,21 @@ public interface ELTCourseManager {
      */
     List<AuthorCourse> getSortedAuthorCourses(int index, int count);
 
+    /**
+     * @param isModule is this author course a training module or not (NULL means - return all courses).
+     * @param index the start position of the first result, numbered from 0.
+     * @param count the maximum number of results to retrieve. {@code null} means no limit.
+     *
+     * @return published author courses list
+     */
+    List<AuthorCourse> getAuthorCourses(int index, int count, Boolean isModule);
+
+    /**
+     * @return count of the published author courses.
+     * @param isModule is this author course a training module or not (NULL means - return all courses).
+     */
+    int getAuthorCoursesCount(Boolean isModule);
+
     /*******************************************************
      * Training courses stuff
      *******************************************************/
@@ -125,11 +140,6 @@ public interface ELTCourseManager {
      * sorted by startDate.
      */
     List<TrainingCourse> getActiveTrainingCourses();
-
-    /**
-     * @return count of the published author courses.
-     */
-    int getAuthorCoursesCount();
 
     /**
      * @return list of the past training courses, which are active (finishDate > currentDate) and published,

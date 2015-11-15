@@ -1,11 +1,10 @@
-package com.eltiland.ui.course.plugin.tab2;
+package com.eltiland.ui.course.plugin.tab2.author;
 
 import com.eltiland.bl.CountableManager;
 import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.exceptions.CountableException;
 import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.ELTCourse;
-import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.grid.ELTTable;
@@ -15,6 +14,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -26,12 +26,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Author courses management panel.
- *
- * @author Aleksey Plotnikov.
+ * Page for manage order of appearance of the author courses.
  */
-public class CourseAuthorManagementPanel extends BaseEltilandPanel<Workspace> {
-
+public class AuthorCourseOrderPanel extends Panel {
     @SpringBean
     private ELTCourseManager courseManager;
     @SpringBean
@@ -39,7 +36,7 @@ public class CourseAuthorManagementPanel extends BaseEltilandPanel<Workspace> {
 
     private ELTTable<ELTCourse> grid;
 
-    public CourseAuthorManagementPanel(String id, IModel<Workspace> workspaceIModel) {
+    public AuthorCourseOrderPanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
 
         grid = new ELTTable<ELTCourse>("grid", 15) {
@@ -58,7 +55,7 @@ public class CourseAuthorManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected int getSize() {
-                return courseManager.getAuthorCoursesCount();
+                return courseManager.getAuthorCoursesCount(null);
             }
 
             @Override
@@ -81,7 +78,7 @@ public class CourseAuthorManagementPanel extends BaseEltilandPanel<Workspace> {
             @Override
             protected boolean isActionVisible(GridAction action, IModel<ELTCourse> rowModel) {
                 int index = ((AuthorCourse) rowModel.getObject()).getIndex();
-                int count = courseManager.getAuthorCoursesCount();
+                int count = courseManager.getAuthorCoursesCount(null);
                 switch (action) {
                     case UP:
                         return index > 0;
