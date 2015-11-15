@@ -1,6 +1,8 @@
 package com.eltiland.ui.common.components.menu;
 
+import com.eltiland.ui.common.AboutPage;
 import com.eltiland.ui.common.BaseEltilandPage;
+import com.eltiland.ui.common.TeachingPage;
 import com.eltiland.ui.common.compositepage.children.ChildrenPage;
 import com.eltiland.ui.common.compositepage.ipadclub.IPadClubPage;
 import com.eltiland.ui.common.compositepage.parents.ParentsPage;
@@ -29,6 +31,7 @@ public class ELTLeftMenu extends ELTMenu {
             @Override
             protected List<MenuData> load() {
                 return new ArrayList<>(Arrays.asList(
+                        new MenuData(TeachingPage.class, getString("aboutPage")),
                         new MenuData(ParentsPage.class, getString("parentsPage")),
                         new MenuData(ChildrenPage.class, getString("childPage")),
                         new MenuData(TeachersPage.class, getString("teachersPage")),
