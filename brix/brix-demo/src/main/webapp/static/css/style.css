@@ -500,7 +500,7 @@ div.menu-item > a {
     margin: auto;
     height: 80px;
     text-align: center;
-    width: 960px;
+    width: 1080px;
 }
 
 .elti-main-menu > .elti-menu-list {
@@ -559,9 +559,9 @@ div.menu-item > a:hover {
 
 div.menu-item > a > span {
     display: block;
-    width: 120px;
+    width: 135px;
     max-height: 60px;
-    max-width: 120px;
+    max-width: 135px;
     overflow: hidden;
 }
 

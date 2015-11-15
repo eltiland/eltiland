@@ -2,6 +2,7 @@ package com.eltiland.ui.common.components.menu;
 
 import com.eltiland.ui.common.*;
 import com.eltiland.ui.course.CourseListPage;
+import com.eltiland.ui.course.TeachingModulesPage;
 import com.eltiland.ui.faq.FaqPage;
 import com.eltiland.ui.forum.ForumPage;
 import com.eltiland.ui.library.LibraryPage;
@@ -35,9 +36,9 @@ public class ELTMainMenu extends ELTMenu {
             protected List<MenuData> load() {
                 return new ArrayList<>(Arrays.asList(
                         new MenuData(HomePage.class, getString("homePage")),
-                        new MenuData(TeachingPage.class, getString("teachPage")),
                         new MenuData(TrainingPage.class, getString("trainPage")),
                         new MenuData(CourseListPage.class, getString("coursesPage")),
+                        new MenuData(TeachingModulesPage.class, getString("modulePage")),
                         new MenuData(WebinarsPage.class, getString("webinarsPage")),
                         new MenuData(LibraryPage.class, getString("libraryPage")),
                         new MenuData(FaqPage.class, getString("faqPage")),
