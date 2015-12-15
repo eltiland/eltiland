@@ -22,7 +22,6 @@ import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.compositepage.allgames.AllGamesPage;
 import com.eltiland.ui.common.compositepage.children.ChildrenPage;
 import com.eltiland.ui.common.compositepage.gazeta.ChildJournalPage;
-import com.eltiland.ui.common.compositepage.ipadclub.IPadClubPage;
 import com.eltiland.ui.common.compositepage.parents.ParentsPage;
 import com.eltiland.ui.common.compositepage.teachers.TeachersPage;
 import com.eltiland.ui.common.resource.ImageResourceReference;
@@ -256,7 +255,6 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(CourseContentPage.MOUNT_PATH, CourseContentPage.class);
         mountPage(VideoPage.MOUNT_PATH, VideoPage.class);
         mountPage(ForumPage.MOUNT_PATH, ForumPage.class);
-        mountPage(IPadClubPage.MOUNT_PATH, IPadClubPage.class);
         mountPage(UnsubscribePage.MOUNT_PATH, UnsubscribePage.class);
         mountPage(ForumThreadPage.MOUNT_PATH, ForumThreadPage.class);
         mountPage(ForumMessagePage.MOUNT_PATH, ForumMessagePage.class);
