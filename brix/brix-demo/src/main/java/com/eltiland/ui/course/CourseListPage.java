@@ -1,11 +1,13 @@
 package com.eltiland.ui.course;
 
+import com.eltiland.BrixPanel;
 import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.ui.common.BaseEltilandPage;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.components.CourseIconPanel;
+import com.eltiland.utils.UrlUtils;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -43,6 +45,8 @@ public class CourseListPage extends BaseEltilandPage {
      * Page constructor.
      */
     public CourseListPage() {
+        add(new BrixPanel("brix.panel", UrlUtils.createBrixPathForPanel("COURSE/authorInfo.html")));
+
         add(new ListView<AuthorCourse>("courseListView", courseListModel) {
             @Override
             protected void populateItem(ListItem<AuthorCourse> item) {
