@@ -22,6 +22,7 @@ import java.util.Set;
 @Table(name = "webinar", schema = "public")
 @Indexed
 public class Webinar extends AbstractIdentifiable implements Serializable {
+
     public enum Status {OPENED, CLOSED, DELETED}
 
     private String name;
@@ -44,6 +45,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
     private boolean certSended;
     private Set<File> files = new HashSet<>(0);
     private Set<WebinarMultiplyPayment> multiplyPayments = new HashSet<>(0);
+    private Boolean needConfirm;
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -225,5 +227,14 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
 
     public void setMultiplyPayments(Set<WebinarMultiplyPayment> multiplyPayments) {
         this.multiplyPayments = multiplyPayments;
+    }
+
+    @Column(name = "confirm", nullable = false, columnDefinition = "boolean default FALSE")
+    public Boolean isNeedConfirm() {
+        return needConfirm;
+    }
+
+    public void setNeedConfirm(Boolean needConfirm) {
+        this.needConfirm = needConfirm;
     }
 }

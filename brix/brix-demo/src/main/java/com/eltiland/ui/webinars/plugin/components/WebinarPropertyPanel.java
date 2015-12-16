@@ -174,6 +174,14 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         }
     };
 
+    private ELTAjaxCheckBox confirmField =
+            new ELTAjaxCheckBox("confirm", new ResourceModel("label.confirmation"), new Model<>(false)) {
+        @Override
+        protected void onUpdate(AjaxRequestTarget target) {
+
+        }
+    };
+
     private void addComponents() {
         add(headerContainer);
         headerContainer.setVisible(false);
@@ -194,6 +202,7 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         form.add(durationField.setOutputMarkupId(true));
         form.add(createButton);
         form.add(saveButton.setVisible(false));
+        form.add(confirmField);
 
         form.add(new WebinarPropertyValidator());
 
@@ -277,6 +286,7 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         webinar.setManagername((String) leaderNameField.getModelObject());
         webinar.setManagersurname((String) leaderSurnameField.getModelObject());
         webinar.setRegistrationDeadline(deadlineField.getModelObject());
+        webinar.setNeedConfirm(confirmField.getModelObject());
     }
 
     /**

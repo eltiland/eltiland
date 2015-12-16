@@ -387,6 +387,15 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                 new ResourceModel("webinarPasswordRetryLabel"), new Model<String>(), true);
         private ELTTextField<Integer> durationField = new ELTTextField<>("duration",
                 new ResourceModel("webinarDurationLabel"), new Model<Integer>(), Integer.class, true);
+
+        private ELTAjaxCheckBox confirmField =
+                new ELTAjaxCheckBox("confirm", new ResourceModel("label.confirmation"), new Model<>(false)) {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+
+            }
+        };
+
         private ELTAjaxCheckBox changePassword = new ELTAjaxCheckBox("changePassword",
                 new ResourceModel("changePasswordLabel"), new Model<>(false)) {
             @Override
@@ -433,6 +442,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
             form.add(passwordField.setOutputMarkupId(true));
             form.add(passwordRetryField.setOutputMarkupId(true));
             form.add(durationField.setOutputMarkupId(true));
+            form.add(confirmField);
 
             form.add(new WebinarPropertyValidator());
             form.add(new FormRequired("required"));
@@ -458,6 +468,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
             passwordField.setEnabled(false);
             passwordRetryField.setEnabled(false);
             changePassword.setModelObject(false);
+            confirmField.setModelObject(webinarIModel.getObject().isNeedConfirm());
         }
 
         @Override
@@ -480,6 +491,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
             webinar.setManagername(leaderNameField.getModelObject());
             webinar.setManagersurname(leaderSurnameField.getModelObject());
             webinar.setRegistrationDeadline(deadlineField.getModelObject());
+            webinar.setNeedConfirm(confirmField.getModelObject());
             if (passwordField.isEnabled()) {
                 webinar.setPassword(passwordField.getModelObject());
             }

@@ -27,4 +27,7 @@
     <entry key="messageWebinarCreated">Вебинар успешно создан</entry>
 
     <entry key="header">Изменение данных вебинара</entry>
+
+    <entry key="label.confirmation">Подтверждение заявки на вебинар</entry>
+
 </properties>

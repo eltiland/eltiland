@@ -19,6 +19,8 @@
 
     <entry key="freeWebinarLabel">Бесплатный вебинар</entry>
 
+    <entry key="label.confirmation">Включить необходимость подтверждения заявки на вебинар</entry>
+
     <entry key="errorPasswordNotMatch">Ошибка - пароли не совпадают!</entry>
     <entry key="errorStartDatePast">Ошибка - дата начала не может быть в прошлом!</entry>
     <entry key="errorDeadlineDatePast">Ошибка - дата окончания регистрации не может быть в прошлом!</entry>
