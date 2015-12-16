@@ -109,6 +109,38 @@ public class ProfilePanel extends BaseEltilandPanel<User> {
     };
 
 
+    private final SelectorLink modulesLink = new SelectorLink("modulesLink") {
+        @Override
+        public void changeSelection(AjaxRequestTarget target) {
+            if (!(modulesLink.getMarkupId().equals(currentPage.getMarkupId()))) {
+                User user = userManager.initializeSimpleUserInfo(ProfilePanel.this.getModelObject());
+                informationContainer.replace(new ProfileCoursePanel("informationPanel",
+                        new GenericDBModel<>(User.class, user)) {
+                    @Override
+                    protected boolean isTraining() {
+                        return false;
+                    }
+
+                    @Override
+                    protected boolean isModule() {
+                        return true;
+                    }
+                });
+                setCurrentSelection(target, modulesLink);
+            }
+        }
+
+        @Override
+        public String getLabelText() {
+            return getString("profile.modules");
+        }
+
+        @Override
+        public IModel<String> getIconModelClass() {
+            return new Model<>(COURSE_CLASS);
+        }
+    };
+
     private final SelectorLink coursesLink = new SelectorLink("coursesLink") {
         @Override
         public void changeSelection(AjaxRequestTarget target) {
@@ -213,11 +245,13 @@ public class ProfilePanel extends BaseEltilandPanel<User> {
             editLink.changeSelection(null);
         } else if (currentTab == 2) {
             coursesLink.changeSelection(null);
-        } else if (currentTab == 3) {
-            trainingLink.changeSelection(null);
+        } else if( currentTab == 3 ) {
+            modulesLink.changeSelection(null);
         } else if (currentTab == 4) {
-            webinarsLink.changeSelection(null);
+            trainingLink.changeSelection(null);
         } else if (currentTab == 5) {
+            webinarsLink.changeSelection(null);
+        } else if (currentTab == 6) {
             filesLink.changeSelection(null);
         }
 
@@ -231,6 +265,7 @@ public class ProfilePanel extends BaseEltilandPanel<User> {
         }
         add(editLink);
         add(coursesLink);
+        add(modulesLink);
         add(trainingLink);
         add(webinarsLink);
         add(filesLink);

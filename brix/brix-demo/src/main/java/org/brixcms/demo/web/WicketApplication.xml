@@ -160,6 +160,7 @@
 
     <entry key="profile.general">Общая информация</entry>
     <entry key="profile.courses">Авторские курсы</entry>
+    <entry key="profile.modules">Образовательные модули</entry>
     <entry key="profile.training">Курсы повышения квалификации</entry>
     <entry key="profile.webinars">Вебинары</entry>
     <entry key="profile.files">Файлы</entry>

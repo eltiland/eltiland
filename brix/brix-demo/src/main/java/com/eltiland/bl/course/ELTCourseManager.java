@@ -98,12 +98,12 @@ public interface ELTCourseManager {
     /**
      * Get list of courses in which user is a listener.
      *
-     * @param user  user to check.
-     * @param clazz of the courses (Training of Author). Null - returns general list of all courses.
+     * @param user      user to check.
+     * @param clazz     of the courses (Training of Author). Null - returns general list of all courses.
+     * @param isModule  if TRUE - return only modules.
      * @return list of courses, in which user is a listener.
      */
-    List<? extends ELTCourse> getListenerCourses(User user, Class<? extends ELTCourse> clazz);
-
+    List<? extends ELTCourse> getListenerCourses(User user, Class<? extends ELTCourse> clazz, Boolean isModule);
 
     /*******************************************************
      * Author courses stuff

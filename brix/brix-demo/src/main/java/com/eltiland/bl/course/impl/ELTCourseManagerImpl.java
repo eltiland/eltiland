@@ -165,18 +165,23 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
 
     @Override
     @Transactional(readOnly = true)
-    public List<? extends ELTCourse> getListenerCourses(User user, Class<? extends ELTCourse> clazz) {
+    public List<? extends ELTCourse> getListenerCourses(User user, Class<? extends ELTCourse> clazz, Boolean isModule) {
         Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
         criteria.createAlias("listener", "listener", JoinType.LEFT_OUTER_JOIN);
         criteria.createAlias("course", "course", JoinType.LEFT_OUTER_JOIN);
         criteria.add(Restrictions.eq("listener.id", user.getId()));
+
         List<ELTCourseListener> listeners = criteria.list();
         List<ELTCourse> courses = new ArrayList<>();
         for (ELTCourseListener listener : listeners) {
             if (clazz != null) {
-                if ((clazz.equals(TrainingCourse.class) && (listener.getCourse() instanceof TrainingCourse)) ||
-                        (clazz.equals(AuthorCourse.class) && (listener.getCourse() instanceof AuthorCourse))) {
+                if( clazz.equals(TrainingCourse.class) && (listener.getCourse() instanceof TrainingCourse)) {
                     courses.add(listener.getCourse());
+                } else if(clazz.equals(AuthorCourse.class) && (listener.getCourse() instanceof AuthorCourse)) {
+                    boolean moduleCourse = ((AuthorCourse)listener.getCourse()).isModule();
+                    if( isModule == null || (isModule == moduleCourse)) {
+                        courses.add(listener.getCourse());
+                    }
                 }
             } else {
                 courses.add(listener.getCourse());

@@ -77,7 +77,7 @@ public abstract class ProfileCoursePanel extends BaseEltilandPanel<User> {
             } else {
                 if (!isAuthor) {
                     return (List<ELTCourse>) eltCourseManager.getListenerCourses(
-                            getModelObject(), isTraining() ? TrainingCourse.class : AuthorCourse.class);
+                            getModelObject(), isTraining() ? TrainingCourse.class : AuthorCourse.class, isModule());
                 } else {
                     return eltCourseManager.getAdminCourses(getModelObject(),
                             isTraining() ? TrainingCourse.class : AuthorCourse.class);
@@ -142,4 +142,7 @@ public abstract class ProfileCoursePanel extends BaseEltilandPanel<User> {
 
     protected abstract boolean isTraining();
 
+    protected boolean isModule() {
+        return false;
+    }
 }
