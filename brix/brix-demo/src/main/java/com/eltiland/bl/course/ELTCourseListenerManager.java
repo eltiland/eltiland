@@ -113,4 +113,23 @@ public interface ELTCourseListenerManager {
      * @return TRUE if user has access to the course.
      */
     boolean hasAccess(User user, ELTCourse course);
+
+    /**
+     * Get list of confirmed listeners.
+     *
+     * @param index       index of the first item
+     * @param count       count of the items
+     * @param sProperty   sort property
+     * @param isAscending ascending/descending flag
+     * @return listener's list.
+     */
+    List<ELTCourseListener> getConfirmedListeners(Integer index, Integer count, String sProperty, boolean isAscending);
+
+
+    /**
+     *  @return count of the confirmed users.
+     */
+    Integer getConfirmedListenersCount();
+
+
 }

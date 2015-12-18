@@ -199,4 +199,26 @@ public class ELTCourseListenerManagerImpl extends ManagerImpl implements ELTCour
             }
         }
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ELTCourseListener> getConfirmedListeners(
+            Integer index, Integer count, String sProperty, boolean isAscending) {
+        Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
+        criteria.setFetchMode("course", FetchMode.JOIN);
+        criteria.setFetchMode("listener", FetchMode.JOIN);
+        criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
+        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Integer getConfirmedListenersCount() {
+        Criteria criteria = getCurrentSession().createCriteria(ELTCourseListener.class);
+        criteria.add( Restrictions.eq("status", PaidStatus.CONFIRMED));
+        return criteria.list().size();
+    }
 }
