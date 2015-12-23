@@ -24,6 +24,7 @@ import com.eltiland.ui.common.components.pricefield.PriceField;
 import com.eltiland.ui.common.components.textfield.*;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.webinars.components.multiply.WebinarAddUsersPanel;
+import com.eltiland.ui.webinars.plugin.components.WebinarModeratePanel;
 import com.eltiland.ui.webinars.plugin.components.WebinarModeratorialPanel;
 import com.eltiland.ui.webinars.plugin.components.WebinarPropertyPanel;
 import com.eltiland.utils.DateUtils;
@@ -139,12 +140,20 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
             };
 
     private final Dialog<WebinarModeratorialPanel> webinarModeratorialPanelDialog =
-            new Dialog<WebinarModeratorialPanel>("moderateWebinarDialog", 965) {
+            new Dialog<WebinarModeratorialPanel>("moderationWebinarDialog", 965) {
                 @Override
                 public WebinarModeratorialPanel createDialogPanel(String id) {
                     return new WebinarModeratorialPanel(id);
                 }
             };
+
+    private final Dialog<WebinarModeratePanel> webinarModeratePanelDialog =
+            new Dialog<WebinarModeratePanel>("moderateWebinarDialog", 980) {
+        @Override
+        public WebinarModeratePanel createDialogPanel(String id) {
+            return new WebinarModeratePanel(id);
+        }
+    };
 
     private final Dialog<SendMessagePanel> sendMessagePanelDialog =
             new Dialog<SendMessagePanel>("sendMessageDialog", 750) {
@@ -267,7 +276,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<Webinar> rowModel) {
-                return Arrays.asList(GridAction.EDIT, GridAction.SEND, GridAction.USERS, GridAction.OFF, GridAction.ON);
+                return Arrays.asList(GridAction.EDIT, GridAction.SEND, GridAction.ADD, GridAction.USERS, GridAction.OFF, GridAction.ON);
             }
 
             @Override
@@ -312,11 +321,13 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
 
                         break;
 
+                    case ADD:
+                        webinarModeratePanelDialog.getDialogPanel().initWebinarData(rowModel);
+                        webinarModeratePanelDialog.show(target);
+                        break;
+
                     case USERS:
                         webinarIModel.setObject(rowModel.getObject());
-                        // TODO: Данная панель не доделана. Возвращаю на старую
-                        /*webinarAddUsersPanelDialog.getDialogPanel().initWebinarData(rowModel.getObject());
-                        webinarAddUsersPanelDialog.show(target);*/
                         webinarModeratorialPanelDialog.getDialogPanel().initWebinarData(rowModel);
                         webinarModeratorialPanelDialog.show(target);
 
@@ -356,6 +367,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
         add(grid);
         add(webinarPropertyPanelDialog);
         add(webinarModeratorialPanelDialog);
+        add(webinarModeratePanelDialog);
         add(webinarAddUsersPanelDialog);
         add(sendMessagePanelDialog);
         webinarModeratorialPanelDialog.setMinimalHeight(300);

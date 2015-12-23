@@ -99,7 +99,7 @@
     background: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* IE10+ */
     background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#ededed', GradientType = 0); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0); /* IE6-9 */
 
     color: #000000;
     border: 1px solid lightgray;
@@ -220,4 +220,24 @@
 
 .webinar-filter .filter {
     margin-bottom: 5px;
+}
+
+.webinar-moderate .name {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.webinar-moderate .user-count {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.webinar-moderate .user-count .capacity {
+    float: left;
+}
+
+.webinar-moderate .user-count .confirmed {
+    float: right;
 }

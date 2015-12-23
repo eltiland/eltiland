@@ -9,7 +9,7 @@ public enum GridAction {
     EDIT, REMOVE, ADD, DOWNLOAD, PLAY, APPLY, CHILDREN, INFO,
     PREVIEW, UP, DOWN, PAGE_PREVIEW, EXPORT_EXCEL,
     CONTROL_SET, CONTROL_RESET, PAY, FULL_APPLY, EDIT_PAYMENT,
-    UPLOAD, SEND, USERS, CERTIFICATE, PROFILE, ON, OFF, SETTINGS, LOCK, UNLOCK, TIME, COURSE, USER_SEND, REFRESH;
+    UPLOAD, SEND, USERS, CERTIFICATE, PROFILE, ON, OFF, SETTINGS, LOCK, UNLOCK, TIME, COURSE, USER_SEND, REFRESH, CHECK;
 
     @Override
     public String toString() {
@@ -78,6 +78,8 @@ public enum GridAction {
                 return "user_send16";
             case REFRESH:
                 return "refresh16";
+            case CHECK:
+                return "check16";
             default:
                 return "";
         }
