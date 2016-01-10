@@ -1,5 +1,6 @@
 package com.eltiland.ui.webinars.plugin.components;
 
+import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.payment.PaidStatus;
@@ -42,6 +43,8 @@ public class WebinarModeratePanel extends ELTDialogPanel {
     private Properties eltilandProps;
     @SpringBean
     private WebinarUserPaymentManager webinarUserPaymentManager;
+    @SpringBean
+    private GenericManager genericManager;
 
     private IModel<Webinar> webinarIModel = new GenericDBModel<>(Webinar.class);
 
@@ -79,6 +82,8 @@ public class WebinarModeratePanel extends ELTDialogPanel {
             @Override
             protected List<IColumn<WebinarUserPayment>> getColumns() {
                 List<IColumn<WebinarUserPayment>> columns = new ArrayList<>();
+                columns.add(new PropertyColumn<WebinarUserPayment>(
+                        new ResourceModel("name.title"), "userFullName", "userFullName"));
                 columns.add(new PropertyColumn<WebinarUserPayment>(
                         new ResourceModel("email.title"), "userEmail", "userEmail"));
                 columns.add(new PriceColumn(new ResourceModel("price.title"), "price", "price"));

@@ -276,7 +276,7 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<Webinar> rowModel) {
-                return Arrays.asList(GridAction.EDIT, GridAction.SEND, GridAction.ADD, GridAction.USERS, GridAction.OFF, GridAction.ON);
+                return Arrays.asList(GridAction.EDIT, GridAction.SEND, GridAction.USERS, GridAction.OFF, GridAction.ON);
             }
 
             @Override
@@ -321,16 +321,18 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
 
                         break;
 
-                    case ADD:
+            /*        case ADD:
                         webinarModeratePanelDialog.getDialogPanel().initWebinarData(rowModel);
                         webinarModeratePanelDialog.show(target);
-                        break;
+                        break;*/
 
                     case USERS:
-                        webinarIModel.setObject(rowModel.getObject());
+                     /*   webinarIModel.setObject(rowModel.getObject());
                         webinarModeratorialPanelDialog.getDialogPanel().initWebinarData(rowModel);
-                        webinarModeratorialPanelDialog.show(target);
+                        webinarModeratorialPanelDialog.show(target);*/
 
+                        webinarModeratePanelDialog.getDialogPanel().initWebinarData(rowModel);
+                        webinarModeratePanelDialog.show(target);
                         break;
 
                     case OFF:

@@ -8,6 +8,7 @@ import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.payment.WebinarPayment;
 import com.eltiland.model.search.WebinarUserSearchFilterFactory;
 import com.eltiland.model.user.User;
+import com.eltiland.utils.StringUtils;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.hibernate.search.annotations.*;
@@ -48,6 +49,15 @@ public class WebinarUserPayment extends AbstractIdentifiable implements Exportab
     private Long userid;
     private String paylink;
     private String webinarlink;
+
+    private String userFullName;
+
+    @Transient
+    public String getUserFullName() {
+        Injector.get().inject(this);
+        genericManager.initialize(this, this.getUserProfile());
+        return (getUserProfile() == null) ? StringUtils.EMPTY_STRING : getUserProfile().getName();
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "webinar")
