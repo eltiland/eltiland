@@ -3,6 +3,7 @@ package com.eltiland.model.course2.listeners;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.AbstractIdentifiable;
 import com.eltiland.model.course2.ELTCourse;
+import com.eltiland.model.course2.content.google.CourseItemPrintStat;
 import com.eltiland.model.course2.content.test.ELTTestStatistics;
 import com.eltiland.model.export.Exportable;
 import com.eltiland.model.payment.PaidEntityNew;
@@ -45,6 +46,7 @@ public class ELTCourseListener extends AbstractIdentifiable implements PaidEntit
 
     private Set<ELTCourseListener> listeners = new HashSet<>(0);
     private Set<ELTTestStatistics> statistics = new HashSet<>(0);
+    private Set<CourseItemPrintStat> printStatistics = new HashSet<>(0);
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course", nullable = false)
@@ -219,5 +221,14 @@ public class ELTCourseListener extends AbstractIdentifiable implements PaidEntit
 
     public void setDays(Long days) {
         this.days = days;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "listener")
+    public Set<CourseItemPrintStat> getPrintStatistics() {
+        return printStatistics;
+    }
+
+    public void setPrintStatistics(Set<CourseItemPrintStat> printStatistics) {
+        this.printStatistics = printStatistics;
     }
 }
