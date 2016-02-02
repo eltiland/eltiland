@@ -90,6 +90,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
     };
 
     ListenerType kind = ListenerType.PHYSICAL;
+    ListenerEducation education = ListenerEducation.SECONDARY;
 
     private ELTTextField<String> nameField = new ELTTextField<String>(
             "nameField", new ResourceModel("name"), new Model<String>(), String.class, true) {
@@ -192,6 +193,23 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
         }
     };
 
+    private AjaxRadioPanel<ValueMap> educationSelector = new AjaxRadioPanel<ValueMap>(
+            "educationSelector", getEducationValues(), getEducationValues().get(0), "name") {
+        @Override
+        protected void onRadioSelect(AjaxRequestTarget target, ValueMap newSelection) {
+            if (newSelection.equals(getEducationValues().get(0))) {
+                education = ListenerEducation.SECONDARY;
+            } else if (newSelection.equals(getEducationValues().get(1))) {
+                education = ListenerEducation.SECONDARY_PROFESSIONAL;
+            } else if (newSelection.equals(getEducationValues().get(2))) {
+                education = ListenerEducation.HIGH_NOT_FINISHED;
+            } else if (newSelection.equals(getEducationValues().get(2))) {
+                education = ListenerEducation.HIGH;
+            }
+            target.add(legalContainer);
+        }
+    };
+
     public CourseInvoicePanel(String id, IModel<ELTCourse> courseIModel) {
         super(id);
         this.courseIModel = courseIModel;
@@ -211,6 +229,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
         form.add(phoneField);
         form.add(experienceField);
         form.add(addressField);
+        form.add(educationSelector);
         form.add(legalContainer.setOutputMarkupPlaceholderTag(true));
         childTable = new ELTTable<User>("childTable", 10) {
             @Override
@@ -348,6 +367,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
 
             ELTCourseListener listener = new ELTCourseListener();
             listener.setType(kind);
+            listener.setEducation(education);
             listener.setStatus(PaidStatus.NEW);
             listener.setListener(currentUserModel.getObject());
             listener.setCourse(courseIModel.getObject());
@@ -419,6 +439,15 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
         map.put("name", valueName);
 
         return map;
+    }
+
+    private List<ValueMap> getEducationValues() {
+        List<ValueMap> values = new ArrayList<>();
+        values.add(newValue(getString("secondary")));
+        values.add(newValue(getString("secondary.prof")));
+        values.add(newValue(getString("high.notfinished")));
+        values.add(newValue(getString("high")));
+        return values;
     }
 
     @Override

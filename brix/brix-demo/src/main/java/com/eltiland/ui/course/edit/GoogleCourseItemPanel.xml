@@ -4,6 +4,7 @@
     <entry key="save.tooltip">Опубликовать документ.</entry>
     <entry key="enable.print.tooltip">Разрешить печать документа.</entry>
     <entry key="disable.print.tooltip">Запретить печать документа.</entry>
+    <entry key="control.print.tooltip">Управление печатью документа.</entry>
 
     <entry key="saveMessage">Элемент курса успешно опубликован.</entry>
 </properties>

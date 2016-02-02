@@ -385,4 +385,5 @@
     <include file="changesets/2015-12-16_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2016-01-10_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2016-01-10_ap_1.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/2016-02-02_ap_0.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

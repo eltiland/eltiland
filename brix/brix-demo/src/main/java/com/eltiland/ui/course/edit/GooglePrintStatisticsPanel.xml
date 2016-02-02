@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="header">Управление печатью документа</entry>
+    <entry key="print.enabled">Печать документа разрешена</entry>
+    <entry key="print.disabled">Печать документа запрещена</entry>
+
+    <entry key="apply.action">Разрешить</entry>
+    <entry key="deny.action">Запретить</entry>
+    <entry key="change.action">Изменить</entry>
+
+    <entry key="limit.label">Лимит печати</entry>
+    <entry key="limit.null">не установлен</entry>
+    <entry key="limit.small">%s раза</entry>
+    <entry key="limit.big">%s раз</entry>
+</properties>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:extend>
+    <div class="print_statistics_dialog">
+        <div class="info">
+            <div class="status" wicket:id="label.status"></div>
+            <div class="action" wicket:id="apply.print.action"></div>
+            <div class="action" wicket:id="deny.print.action"></div>
+        </div>
+        <div class="limit" wicket:id="limit.container">
+            <div class="labels">
+                <div class="status" wicket:id="limit.label"></div>
+                <div class="status count" wicket:id="limit.count"></div>
+            </div>
+            <div class="action" wicket:id="limit.change.action"></div>
+        </div>
+    </div>
+    <div wicket:id="limitDialog"></div>
+</wicket:extend>
+</body>
+</html>

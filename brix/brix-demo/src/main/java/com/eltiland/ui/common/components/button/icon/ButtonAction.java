@@ -6,7 +6,7 @@ package com.eltiland.ui.common.components.button.icon;
  * @author Aleksey Plotnikov.
  */
 public enum ButtonAction {
-    PREVIEW, EDIT, ADD, TAG, COLLECTION, DOWNLOAD, REMOVE, SEND, SETTINGS, SUPPORT, ENTER, UPLOAD, PAY, PAYMENT, BACK;
+    PREVIEW, EDIT, ADD, TAG, COLLECTION, DOWNLOAD, REMOVE, SEND, SETTINGS, SUPPORT, ENTER, UPLOAD, PAY, PAYMENT, BACK, APPLY;
 
     @Override
     public String toString() {
@@ -41,6 +41,8 @@ public enum ButtonAction {
                 return "paymentAction";
             case BACK:
                 return "backAction";
+            case APPLY:
+                return "applyAction";
             default:
                 return "";
         }

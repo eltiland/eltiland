@@ -9,6 +9,12 @@
     <entry key="legal">Юридическое лицо</entry>
     <entry key="legal_portal">Юридическое лицо, "Портал поставщиков"</entry>
 
+    <entry key="education">Образование</entry>
+    <entry key="secondary">Среднее</entry>
+    <entry key="secondary.prof">Среднее специальное</entry>
+    <entry key="high.notfinished">Высшее не законченное</entry>
+    <entry key="high">Высшее</entry>
+
     <entry key="name.column">ФИО</entry>
 
     <entry key="no.users">Пользователи не найдены</entry>

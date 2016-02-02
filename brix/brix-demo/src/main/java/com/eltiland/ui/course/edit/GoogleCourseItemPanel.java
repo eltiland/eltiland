@@ -5,15 +5,19 @@ import com.eltiland.bl.course.ELTCourseItemManager;
 import com.eltiland.bl.drive.GoogleDriveManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.exceptions.GoogleDriveException;
+import com.eltiland.model.course2.content.ELTCourseBlock;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
+import com.eltiland.model.course2.content.group.ELTGroupCourseItem;
 import com.eltiland.model.google.ELTGooglePermissions;
 import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.behavior.TooltipBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
+import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
+import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.google.ELTGoogleDriveEditor;
 import org.apache.wicket.AttributeModifier;
@@ -35,6 +39,25 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
     private GenericManager genericManager;
     @SpringBean
     private GoogleDriveManager googleDriveManager;
+
+    private Dialog<GooglePrintStatisticsPanel> printStatisticsPanelDialog =
+            new Dialog<GooglePrintStatisticsPanel>("printStatisticsDialog", 510) {
+        @Override
+        public GooglePrintStatisticsPanel createDialogPanel(String id) {
+            return new GooglePrintStatisticsPanel(id);
+        }
+
+        @Override
+        public void registerCallback(GooglePrintStatisticsPanel panel) {
+            super.registerCallback(panel);
+            panel.setUpdateCallback(new IDialogUpdateCallback.IDialogActionProcessor<ELTDocumentCourseItem>() {
+                @Override
+                public void process(IModel<ELTDocumentCourseItem> model, AjaxRequestTarget target) {
+                    close(target);
+                }
+            });
+        }
+    };
 
     public GoogleCourseItemPanel(String id, IModel<ELTGoogleCourseItem> eltCourseItemIModel) {
         super(id, eltCourseItemIModel);
@@ -68,7 +91,7 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
 
     public class ActionPanel extends BaseEltilandPanel<ELTGoogleCourseItem> {
 
-        EltiAjaxLink enablePrintButton, disablePrintButton;
+        EltiAjaxLink enablePrintButton, disablePrintButton, printControlButton;
 
         protected ActionPanel(String id, IModel<ELTGoogleCourseItem> googleCourseItemIModel) {
             super(id, googleCourseItemIModel);
@@ -122,14 +145,43 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                 }
             };
 
+            printControlButton = new EltiAjaxLink("printControlButton") {
+                @Override
+                public void onClick(AjaxRequestTarget target) {
+                    printStatisticsPanelDialog.getDialogPanel().initData(GoogleCourseItemPanel.this.getModel());
+                    printStatisticsPanelDialog.show(target);
+                }
+            };
+
+            // check for demo or full
+            genericManager.initialize(getModelObject(), getModelObject().getBlock());
+            boolean isFull = false;
+
+            if (getModelObject().getBlock() != null) {
+                ELTCourseBlock block = getModelObject().getBlock();
+                genericManager.initialize(block, block.getCourse());
+                isFull = block.getCourse() != null;
+            } else {
+                genericManager.initialize(getModelObject(), getModelObject().getParent());
+                ELTGroupCourseItem group = getModelObject().getParent();
+                genericManager.initialize(group, group.getBlock());
+                genericManager.initialize(group.getBlock(), group.getBlock().getCourse());
+                isFull = group.getBlock().getCourse() != null;
+            }
+
             boolean isDoc = getModelObject() instanceof ELTDocumentCourseItem;
             boolean isPrint = isDoc && ((ELTDocumentCourseItem) getModelObject()).isPrintable();
-            enablePrintButton.setVisible(isDoc && !isPrint);
-            disablePrintButton.setVisible(isDoc && isPrint);
+            enablePrintButton.setVisible(isDoc && !isPrint && !isFull);
+            disablePrintButton.setVisible(isDoc && isPrint && !isFull);
+
+            // Temporary
+            printControlButton.setVisible(false);
+            //printControlButton.setVisible(isDoc && isFull);
 
             add(saveButton);
             add(enablePrintButton.setOutputMarkupPlaceholderTag(true));
             add(disablePrintButton.setOutputMarkupPlaceholderTag(true));
+            add(printControlButton.setOutputMarkupPlaceholderTag(true));
             saveButton.add(new AttributeModifier("title", GoogleCourseItemPanel.this.getString("save.tooltip")));
             saveButton.add(new TooltipBehavior());
             enablePrintButton.add(new AttributeModifier("title",
@@ -138,6 +190,11 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
             disablePrintButton.add(new AttributeModifier("title",
                     GoogleCourseItemPanel.this.getString("disable.print.tooltip")));
             disablePrintButton.add(new TooltipBehavior());
+            printControlButton.add(new AttributeModifier("title",
+                    GoogleCourseItemPanel.this.getString("control.print.tooltip")));
+            printControlButton.add(new TooltipBehavior());
+
+            add(printStatisticsPanelDialog);
         }
     }
 }

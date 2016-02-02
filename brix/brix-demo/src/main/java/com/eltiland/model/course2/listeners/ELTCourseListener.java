@@ -36,6 +36,7 @@ public class ELTCourseListener extends AbstractIdentifiable implements PaidEntit
     private String offer;
     private String requisites;
     private ListenerType type;
+    private ListenerEducation education;
     private ELTCourseListener parent;
 
     /* paid and export stuff */
@@ -230,5 +231,15 @@ public class ELTCourseListener extends AbstractIdentifiable implements PaidEntit
 
     public void setPrintStatistics(Set<CourseItemPrintStat> printStatistics) {
         this.printStatistics = printStatistics;
+    }
+
+    @Column(name = "education", length = 23)
+    @Enumerated(value = EnumType.STRING)
+    public ListenerEducation getEducation() {
+        return education;
+    }
+
+    public void setEducation(ListenerEducation education) {
+        this.education = education;
     }
 }
