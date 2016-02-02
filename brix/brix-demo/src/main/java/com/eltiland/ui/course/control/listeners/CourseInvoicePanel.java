@@ -13,6 +13,7 @@ import com.eltiland.exceptions.UserException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
+import com.eltiland.model.course2.listeners.ListenerEducation;
 import com.eltiland.model.course2.listeners.ListenerType;
 import com.eltiland.model.file.CourseFileAccess;
 import com.eltiland.model.file.File;
@@ -193,6 +194,17 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         cellItem.add(new TypePanel(componentId, rowModel));
                     }
                 });
+
+                columns.add(new AbstractColumn<ELTCourseListener>(new ResourceModel("educationColumn"), "education") {
+                    @Override
+                    public void populateItem(Item<ICellPopulator<ELTCourseListener>> cellItem,
+                                             String componentId, IModel<ELTCourseListener> rowModel) {
+                        ListenerEducation education = rowModel.getObject().getEducation();
+                        String educationString = (education == null) ? "education.not.set" : education.toString();
+                        cellItem.add(new Label(componentId, getString(educationString)));
+                    }
+                });
+
                 columns.add(new AbstractColumn<ELTCourseListener>(new ResourceModel("statusColumn"), "status") {
                     @Override
                     public void populateItem(Item<ICellPopulator<ELTCourseListener>> cellItem,

@@ -20,6 +20,7 @@
     <entry key="typeColumn">Тип</entry>
     <entry key="statusColumn">Статус</entry>
     <entry key="organizationColumn">Место работы</entry>
+    <entry key="educationColumn">Образование</entry>
 
     <entry key="NEW">Новая заявка</entry>
     <entry key="APPROVED">Подтвержден</entry>
@@ -29,6 +30,12 @@
     <entry key="PHYSICAL">Физическое лицо</entry>
     <entry key="LEGAL">Юридическое лицо</entry>
     <entry key="MOSCOW">Портал поставщиков</entry>
+
+    <entry key="SECONDARY">Среднее</entry>
+    <entry key="SECONDARY_PROFESSIONAL">Среднее специальноее</entry>
+    <entry key="HIGH_NOT_FINISHED">Высшее неоконченное</entry>
+    <entry key="HIGH">Высшее</entry>
+    <entry key="education.not.set">Не указано</entry>
 
     <entry key="activated">Активирован</entry>
     <entry key="no_activated">Не активирован</entry>
