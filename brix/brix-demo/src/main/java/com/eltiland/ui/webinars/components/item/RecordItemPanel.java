@@ -14,7 +14,7 @@ import com.eltiland.ui.common.components.behavior.AjaxDownload;
 import com.eltiland.ui.common.components.button.icon.ButtonAction;
 import com.eltiland.ui.common.components.item.AbstractItemPanel;
 import com.eltiland.ui.common.resource.StaticImage;
-import com.eltiland.ui.payment.RecordPaymentPage;
+import com.eltiland.ui.paymentnew.PaymentPage;
 import com.eltiland.utils.UrlUtils;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -145,8 +145,8 @@ public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
                 ajaxDownload.initiate(target);
                 break;
             case PAY:
-                setResponsePage(RecordPaymentPage.class, new PageParameters().add(
-                        UrlUtils.PAYMENT_CODE_PARAMETER_NAME, paymentIModel.getObject().getPayLink()));
+                setResponsePage(PaymentPage.class,
+                        new PageParameters().add(PaymentPage.PARAM_ID, paymentIModel.getObject().getId()));
                 break;
         }
     }

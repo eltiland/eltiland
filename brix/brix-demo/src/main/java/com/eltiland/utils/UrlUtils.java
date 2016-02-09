@@ -15,9 +15,7 @@ public class UrlUtils {
     public static final String RESET_PAGE_MOUNT_PATH = "/reset";
     public static final String UNSUBSCRIBE_PAGE_MOUNT_PATH = "/unsubscribe";
     public static final String REGISTER_PAGE_MOUNT_PATH = "/register";
-    public static final String WEBINAR_PAYMENT_PATH = "/webinarPayment";
     public static final String WEBINAR_MPAYMENT_PATH = "/webinarMPayment";
-    public static final String RECORD_PAYMENT_PATH = "/recordPayment";
     public static final String MAGAZINE_DOWNLOAD_LINK = "/downloadMagazine";
     public static final String PAYMENT_LINK = "/payment";
 
