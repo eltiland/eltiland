@@ -5,6 +5,10 @@
     <entry key="enable.print.tooltip">Разрешить печать документа.</entry>
     <entry key="disable.print.tooltip">Запретить печать документа.</entry>
     <entry key="control.print.tooltip">Управление печатью документа.</entry>
+    <entry key="enable.author.warning">Включить предупреждение об авторских правах</entry>
+    <entry key="disable.author.warning">Выключить предупреждение об авторских правах</entry>
 
     <entry key="saveMessage">Элемент курса успешно опубликован.</entry>
+    <entry key="authorMessageON">Сообщение об аврских правах включено.</entry>
+    <entry key="authorMessageOFF">Сообщение об авторских правах отключено.</entry>
 </properties>

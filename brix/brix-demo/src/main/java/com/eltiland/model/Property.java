@@ -18,6 +18,7 @@ public class Property extends AbstractIdentifiable {
     // Means count of videos on page.
     public static final String VIDEO_PAGING = "video_count";
     public static final String SHOW_SLIDER = "show_slider";
+    public static final String COURSE_AUTHOR_WARNING = "course_author_warning";
 
     @Column(name = "property", nullable = false)
     public String getProperty() {

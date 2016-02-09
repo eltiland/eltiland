@@ -7,5 +7,6 @@
     <entry key="confirmationMessage">Вы собираетесь принять серьезные изменения в системе. Уверены?</entry>
     <entry key="recreateSearchIndexesMessage">Пересоздание индексов запущено - следите за файлами журналов!</entry>
     <entry key="createStandart">Заполнить стандартные значения</entry>
+    <entry key="createProperty">Создать текст</entry>
     <entry key="success">Генерация успешна</entry>
 </properties>

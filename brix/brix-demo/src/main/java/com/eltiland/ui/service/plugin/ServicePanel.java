@@ -4,9 +4,11 @@ import com.eltiland.bl.*;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
 import com.eltiland.bl.user.UserManager;
+import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.FileException;
+import com.eltiland.model.Property;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.file.File;
@@ -144,6 +146,22 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                 }
             }
         });
+
+        add(new EltiAjaxLink("createProperty") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                Property property = new Property();
+                property.setValue("Любое использование материала, полностью или частично, без разрешения правообладателя, запрещается и влечет наказание в соответствии с Уголовным кодексом РФ (ст. 146, 147, 180)");
+                property.setProperty("course_author_warning");
+
+                try {
+                    genericManager.saveNew(property);
+                    ELTAlerts.renderOKPopup("Created OK", target);
+                } catch (ConstraintException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.add(new ConfirmationDialogBehavior()));
 
 //        Form form = new Form("form");
 //        add(form);

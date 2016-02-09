@@ -89,4 +89,9 @@ public final class ELTAlerts {
         return String.format("alertError('%s', %d, %d, 'center',true)", message,
                 UIConstants.ALERT_SHOW_TIME_LONG, UIConstants.ALERT_FADEOUT_TIME);
     }
+
+    static String getWarningPopupModalJS(String message) {
+        return String.format("alertWarning('%s', %d, %d, 'center',true)", message,
+                UIConstants.ALERT_SHOW_TIME_LONG, UIConstants.ALERT_FADEOUT_TIME);
+    }
 }

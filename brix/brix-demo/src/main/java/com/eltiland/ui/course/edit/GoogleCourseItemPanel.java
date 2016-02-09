@@ -91,7 +91,8 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
 
     public class ActionPanel extends BaseEltilandPanel<ELTGoogleCourseItem> {
 
-        EltiAjaxLink enablePrintButton, disablePrintButton, printControlButton;
+        EltiAjaxLink enablePrintButton, disablePrintButton,
+                printControlButton, enableAuthorWarning, disableAuthorWarning;
 
         protected ActionPanel(String id, IModel<ELTGoogleCourseItem> googleCourseItemIModel) {
             super(id, googleCourseItemIModel);
@@ -145,6 +146,40 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                 }
             };
 
+            enableAuthorWarning = new EltiAjaxLink("enableAuthorWarning") {
+                @Override
+                public void onClick(AjaxRequestTarget target) {
+                    ActionPanel.this.getModelObject().setHasWarning(true);
+                    try {
+                        courseItemManager.update(ActionPanel.this.getModelObject());
+                        ELTAlerts.renderOKPopup(getString("authorMessageON"), target);
+                    } catch (CourseException e) {
+                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    }
+                    enableAuthorWarning.setVisible(false);
+                    disableAuthorWarning.setVisible(true);
+                    target.add(enableAuthorWarning);
+                    target.add(disableAuthorWarning);
+                }
+            };
+
+            disableAuthorWarning = new EltiAjaxLink("disableAuthorWarning") {
+                @Override
+                public void onClick(AjaxRequestTarget target) {
+                    ActionPanel.this.getModelObject().setHasWarning(false);
+                    try {
+                        courseItemManager.update(ActionPanel.this.getModelObject());
+                        ELTAlerts.renderOKPopup(getString("authorMessageOFF"), target);
+                    } catch (CourseException e) {
+                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    }
+                    enableAuthorWarning.setVisible(true);
+                    disableAuthorWarning.setVisible(false);
+                    target.add(enableAuthorWarning);
+                    target.add(disableAuthorWarning);
+                }
+            };
+
             printControlButton = new EltiAjaxLink("printControlButton") {
                 @Override
                 public void onClick(AjaxRequestTarget target) {
@@ -171,8 +206,11 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
 
             boolean isDoc = getModelObject() instanceof ELTDocumentCourseItem;
             boolean isPrint = isDoc && ((ELTDocumentCourseItem) getModelObject()).isPrintable();
+            boolean isWarning = getModelObject().isHasWarning();
             enablePrintButton.setVisible(isDoc && !isPrint && !isFull);
             disablePrintButton.setVisible(isDoc && isPrint && !isFull);
+            enableAuthorWarning.setVisible(!isWarning);
+            disableAuthorWarning.setVisible(isWarning);
 
             // Temporary
             printControlButton.setVisible(false);
@@ -182,6 +220,8 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
             add(enablePrintButton.setOutputMarkupPlaceholderTag(true));
             add(disablePrintButton.setOutputMarkupPlaceholderTag(true));
             add(printControlButton.setOutputMarkupPlaceholderTag(true));
+            add(enableAuthorWarning.setOutputMarkupPlaceholderTag(true));
+            add(disableAuthorWarning.setOutputMarkupPlaceholderTag(true));
             saveButton.add(new AttributeModifier("title", GoogleCourseItemPanel.this.getString("save.tooltip")));
             saveButton.add(new TooltipBehavior());
             enablePrintButton.add(new AttributeModifier("title",
@@ -193,6 +233,12 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
             printControlButton.add(new AttributeModifier("title",
                     GoogleCourseItemPanel.this.getString("control.print.tooltip")));
             printControlButton.add(new TooltipBehavior());
+            enableAuthorWarning.add(new AttributeModifier("title",
+                    GoogleCourseItemPanel.this.getString("enable.author.warning")));
+            enableAuthorWarning.add(new TooltipBehavior());
+            disableAuthorWarning.add(new AttributeModifier("title",
+                    GoogleCourseItemPanel.this.getString("disable.author.warning")));
+            disableAuthorWarning.add(new TooltipBehavior());
 
             add(printStatisticsPanelDialog);
         }

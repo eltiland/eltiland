@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="alex.plotnikov">
+        <comment>Increasing lenght of property</comment>
+        <modifyDataType tableName="property" columnName="value" newDataType="varchar(1024)"/>
+    </changeSet>
+    <changeSet id="1" author="alex.plotnikov">
+        <comment>Warning field for course item</comment>
+        <sql>
+            ALTER TABLE "course"."item" ADD COLUMN "warning" BOOLEAN DEFAULT 'false' NOT NULL;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

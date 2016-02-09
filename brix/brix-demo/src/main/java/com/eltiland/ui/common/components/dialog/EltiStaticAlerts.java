@@ -29,6 +29,16 @@ public final class EltiStaticAlerts {
     /**
      * Filter  returns success messages.
      */
+    public static final IFeedbackMessageFilter WARNING_MESSAGE = new IFeedbackMessageFilter() {
+        @Override
+        public boolean accept(FeedbackMessage message) {
+            return message.isWarning();
+        }
+    };
+
+    /**
+     * Filter  returns success messages.
+     */
     public static final IFeedbackMessageFilter ERROR_MESSAGE = new IFeedbackMessageFilter() {
         @Override
         public boolean accept(FeedbackMessage message) {
@@ -58,12 +68,26 @@ public final class EltiStaticAlerts {
     }
 
     /**
+     * Registers message that will be shown on next page.
+     *
+     * @param message message OK message to show. May contain HTML.
+     */
+    public static void registerWarningPopup(String message) {
+        Session.get().warn(message);
+    }
+
+    /**
      * Registers message that will be shown on next page in modal mode.
      *
      * @param message message OK message to show. May contain HTML.
      */
     public static void registerOKPopupModal(String message) {
         Session.get().getFeedbackMessages().add(new ModalFeedbackMessage(message, FeedbackMessage.SUCCESS));
+        Session.get().dirty();
+    }
+
+    public static void registerWarningPopupModal(String message) {
+        Session.get().getFeedbackMessages().add(new ModalFeedbackMessage(message, FeedbackMessage.WARNING));
         Session.get().dirty();
     }
 
@@ -100,6 +124,19 @@ public final class EltiStaticAlerts {
                 response.renderOnDomReadyJavaScript(ELTAlerts.getErrorPopupModalJS(message.getMessage().toString()));
             } else {
                 response.renderOnDomReadyJavaScript(ELTAlerts.getErrorPopupJS(message.getMessage().toString()));
+            }
+            message.markRendered();
+        }
+    }
+
+    public static void renderWarningPopups(IHeaderResponse response) {
+
+        for (FeedbackMessage message : Session.get().getFeedbackMessages().messages(WARNING_MESSAGE)) {
+            // for now function alertInfo() can render last message
+            if (message instanceof ModalFeedbackMessage) {
+                response.renderOnDomReadyJavaScript(ELTAlerts.getWarningPopupModalJS(message.getMessage().toString()));
+            } else {
+                response.renderOnDomReadyJavaScript(ELTAlerts.getWarningPopupJS(message.getMessage().toString()));
             }
             message.markRendered();
         }

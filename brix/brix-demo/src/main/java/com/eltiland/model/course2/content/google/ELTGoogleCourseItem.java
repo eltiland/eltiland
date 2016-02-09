@@ -3,10 +3,7 @@ package com.eltiland.model.course2.content.google;
 import com.eltiland.model.course2.content.ELTCourseItem;
 import com.eltiland.model.google.GoogleDriveFile;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Course item, which is hosted in Google.
@@ -16,6 +13,7 @@ import javax.persistence.OneToOne;
 @Entity
 public abstract class ELTGoogleCourseItem extends ELTCourseItem {
     private GoogleDriveFile item;
+    private Boolean hasWarning;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item")
@@ -25,5 +23,14 @@ public abstract class ELTGoogleCourseItem extends ELTCourseItem {
 
     public void setItem(GoogleDriveFile item) {
         this.item = item;
+    }
+
+    @Column(name = "warning", nullable = false, columnDefinition = "boolean default FALSE")
+    public Boolean isHasWarning() {
+        return hasWarning;
+    }
+
+    public void setHasWarning(Boolean hasWarning) {
+        this.hasWarning = hasWarning;
     }
 }

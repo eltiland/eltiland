@@ -1,9 +1,13 @@
 package com.eltiland.ui.course.content2.components;
 
+import com.eltiland.bl.PropertyManager;
 import com.eltiland.bl.course.ELTCourseItemManager;
+import com.eltiland.model.Property;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.content.group.ELTGroupCourseItem;
 import com.eltiland.ui.common.BaseEltilandPanel;
+import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.course.CourseItemPage;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.ajax.AjaxEventBehavior;
@@ -31,6 +35,8 @@ public class ItemContentPanel extends BaseEltilandPanel<ELTCourseItem> {
 
     @SpringBean
     private ELTCourseItemManager courseItemManager;
+    @SpringBean
+    private PropertyManager propertyManager;
 
     private IModel<List<ELTCourseItem>> subItemModel = new LoadableDetachableModel<List<ELTCourseItem>>() {
         @Override
@@ -54,6 +60,12 @@ public class ItemContentPanel extends BaseEltilandPanel<ELTCourseItem> {
             name.add(new AjaxEventBehavior("onclick") {
                 @Override
                 protected void onEvent(AjaxRequestTarget target) {
+                    if( getModelObject() instanceof ELTGoogleCourseItem ) {
+                        if( ((ELTGoogleCourseItem)getModelObject()).isHasWarning()) {
+                            EltiStaticAlerts.registerWarningPopupModal(
+                                    propertyManager.getProperty(Property.COURSE_AUTHOR_WARNING));
+                        }
+                    }
                     throw new RestartResponseException(CourseItemPage.class,
                             new PageParameters().add(CourseItemPage.PARAM_ID, getModelObject().getId()));
                 }

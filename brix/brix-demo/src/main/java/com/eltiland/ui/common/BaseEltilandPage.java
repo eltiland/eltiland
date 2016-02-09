@@ -173,6 +173,7 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
 
         EltiStaticAlerts.renderOKPopups(response);
         EltiStaticAlerts.renderErrorPopups(response);
+        EltiStaticAlerts.renderWarningPopups(response);
     }
 
     /**
