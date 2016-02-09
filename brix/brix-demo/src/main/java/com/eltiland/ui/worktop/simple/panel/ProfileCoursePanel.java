@@ -57,6 +57,11 @@ public abstract class ProfileCoursePanel extends BaseEltilandPanel<User> {
         }
 
         @Override
+        protected boolean isModule() {
+            return ProfileCoursePanel.this.isModule();
+        }
+
+        @Override
         public boolean isVisible() {
             return index == 2 && !(eltCourseManager.hasInvoices());
         }

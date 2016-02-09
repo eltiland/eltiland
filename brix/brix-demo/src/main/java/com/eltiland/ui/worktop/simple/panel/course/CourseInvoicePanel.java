@@ -108,6 +108,7 @@ public abstract class CourseInvoicePanel extends ELTDialogPanel {
             ((TrainingCourse) course).setFinishDate(intervalField.getModelObject().getEnd().toDate());
         } else {
             ((AuthorCourse) course).setIndex(-1);
+            ((AuthorCourse) course).setModule(isModule());
         }
 
         try {
@@ -119,6 +120,8 @@ public abstract class CourseInvoicePanel extends ELTDialogPanel {
     }
 
     protected abstract void onCreate(ELTCourse course, AjaxRequestTarget target);
+
+    protected abstract boolean isModule();
 
     @Override
     public String getVariation() {
