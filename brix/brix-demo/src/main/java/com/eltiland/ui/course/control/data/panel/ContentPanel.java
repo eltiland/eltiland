@@ -211,6 +211,7 @@ public class ContentPanel extends BaseEltilandPanel<ELTCourse> {
                                         model.getObject().getName(), GoogleDriveFile.TYPE.PRESENTATION);
                             }
                             ((ELTGoogleCourseItem) model.getObject()).setItem(file);
+                            ((ELTGoogleCourseItem) model.getObject()).setHasWarning(false);
                         }
 
                         courseItemManager.create(model.getObject());
