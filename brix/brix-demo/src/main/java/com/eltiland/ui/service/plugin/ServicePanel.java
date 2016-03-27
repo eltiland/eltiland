@@ -30,6 +30,7 @@ import org.brixcms.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -65,19 +66,32 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("createCourse") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                User user = userManager.getUserByEmail("yum_test@mailinator.com");
+                User user = userManager.getUserByEmail("aleksey.plotnikov@logicify.com");
 
                 Course course = new Course();
                 course.setTraining(true);
                 course.setAuthor(user);
                 course.setCreationDate(DateUtils.getCurrentDate());
-                course.setName("Примерная образовательная программа «Детство» в условиях реализации ФГОС ДО");
+                course.setName("Реализуем ФГОС ДО: новые подходы к организации конструирования в современном образовательном пространстве");
                 course.setStatus(false);
 
                 course.setPublished(false);
                 try {
                     courseManager.createCourse(course);
                 } catch (EltilandManagerException e) {
+                    e.printStackTrace();
+                }
+
+                CourseSession session = new CourseSession();
+                session.setActive(true);
+                session.setStartDate(DateUtils.getCurrentDate());
+                session.setFinishDate(DateUtils.getCurrentDate());
+                session.setPrejoinDate(DateUtils.getCurrentDate());
+                session.setCourse(course);
+
+                try {
+                    genericManager.saveNew(session);
+                } catch (ConstraintException e) {
                     e.printStackTrace();
                 }
 
@@ -150,7 +164,18 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("createProperty") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                Property property = new Property();
+              /*  Course course = new Course();
+                course.setName("Реализуем ФГОС ДО: новые подходы к организации конструирования в современном образовательном пространстве");
+                course.setStatus(false);
+                course.setPublished(false);
+                course.setAutoJoin(true);
+
+                try {
+                    genericManager.saveNew(course);
+                } catch (ConstraintException e) {
+                    e.printStackTrace();
+                }
+          /*      Property property = new Property();
                 property.setValue("Любое использование материала, полностью или частично, без разрешения правообладателя, запрещается и влечет наказание в соответствии с Уголовным кодексом РФ (ст. 146, 147, 180)");
                 property.setProperty("course_author_warning");
 
@@ -159,7 +184,7 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                     ELTAlerts.renderOKPopup("Created OK", target);
                 } catch (ConstraintException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }.add(new ConfirmationDialogBehavior()));
 
