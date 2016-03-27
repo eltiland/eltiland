@@ -3,6 +3,7 @@ package com.eltiland.ui.service.plugin;
 import com.eltiland.bl.*;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
+import com.eltiland.bl.test.TestAttemptManager;
 import com.eltiland.bl.user.UserManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
@@ -11,6 +12,9 @@ import com.eltiland.exceptions.FileException;
 import com.eltiland.model.Property;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
+import com.eltiland.model.course.TaskCourseItem;
+import com.eltiland.model.course.test.TestCourseItem;
+import com.eltiland.model.course.test.UserTestAttempt;
 import com.eltiland.model.file.File;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
@@ -31,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -135,10 +140,20 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("save") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                try {
-                    List<File> files = filePanel.getFiles(true);
-                } catch (FileException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                List<Integer> userIds = Arrays.asList(66855, 67125, 67126, 67124, 16510, 67289, 63815, 67284);
+                for( Integer id : userIds ) {
+                    UserTestAttempt attempt = new UserTestAttempt();
+                    attempt.setUser(userManager.getUserById((long)id));
+                    attempt.setTest(genericManager.getObject(TestCourseItem.class, (long) 68530));
+                    attempt.setAttemptCount(1);
+                    attempt.setAttemptLimit(3);
+                    attempt.setCompleted(true);
+                    LOGGER.info(String.format("Created user %d", id));
+                    try {
+                        genericManager.saveNew(attempt);
+                    } catch (ConstraintException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
