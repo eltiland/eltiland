@@ -105,7 +105,14 @@ public class CourseIconPanel extends BaseEltilandPanel<ELTCourse> {
         genericManager.initialize(course, course.getAuthor());
 
         add(new CourseFileIconPanel("imagePanel", new GenericDBModel<>(
-                File.class, course.getIcon()), new Model<>(courseIModel.getObject().getName())));
+                File.class, course.getIcon()), new Model<>(courseIModel.getObject().getName()))
+                .add(new AjaxEventBehavior("onclick") {
+                    @Override
+                    protected void onEvent(AjaxRequestTarget target) {
+                        throw new RestartResponseException(CourseNewPage.class, new PageParameters().add(
+                                CourseNewPage.PARAM_ID, CourseIconPanel.this.getModelObject().getId()));
+                    }
+                }));
 
         final boolean isTraining = course instanceof TrainingCourse;
         final boolean isModule = isTraining ? false : ((AuthorCourse)course).isModule();

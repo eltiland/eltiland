@@ -410,6 +410,7 @@
     height: 150px;
     border: rgb(208, 209, 230) 1px solid;
     background-image: url("../images/course/course_default.png");
+    cursor: pointer;
 }
 
 .courseIcon .header {
