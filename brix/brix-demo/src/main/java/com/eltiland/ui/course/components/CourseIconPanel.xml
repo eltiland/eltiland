@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="authorCourse">Авторский курс</entry>
+    <entry key="moduleCourse">Образовательный модуль</entry>
     <entry key="trainingCourse">Курс повышения квалификации</entry>
 
     <entry key="about">Подробнее</entry>

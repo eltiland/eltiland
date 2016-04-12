@@ -4,6 +4,7 @@ import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.bl.impl.integration.IndexCreator;
+import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
@@ -107,8 +108,10 @@ public class CourseIconPanel extends BaseEltilandPanel<ELTCourse> {
                 File.class, course.getIcon()), new Model<>(courseIModel.getObject().getName())));
 
         final boolean isTraining = course instanceof TrainingCourse;
+        final boolean isModule = isTraining ? false : ((AuthorCourse)course).isModule();
         Label label = new Label("label", new Model<String>());
-        label.setDefaultModelObject(getString(isTraining ? "trainingCourse" : "authorCourse"));
+        label.setDefaultModelObject(
+                getString(isTraining ? "trainingCourse" : (isModule ? "moduleCourse" : "authorCourse")));
         if (isTraining) {
             label.add(new AttributeAppender("class", new Model<>("training_label"), " "));
         }
