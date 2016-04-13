@@ -11,6 +11,7 @@ import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.button.EltiAjaxSubmitLink;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSelectCallback;
+import com.eltiland.ui.course.CourseNewPage;
 import com.eltiland.ui.login.LoginPage;
 import com.eltiland.ui.login.RegisterPage;
 import org.apache.wicket.RestartResponseException;
@@ -78,8 +79,15 @@ public class LoginPanel extends BaseEltilandPanel {
      *
      * @param id panel's id
      */
-    public LoginPanel(String id) {
+    public LoginPanel(String id, final Long courseId) {
         super(id);
+
+        add(new WebMarkupContainer("course_login") {
+            @Override
+            public boolean isVisible() {
+                return courseId != null;
+            }
+        });
 
         Form form = new Form("form");
         add(form);
@@ -102,7 +110,13 @@ public class LoginPanel extends BaseEltilandPanel {
                 session.bind();
                 if (session.signIn(loginField.getModelObject(), passField.getModelObject())) {
                     if (!continueToOriginalDestination()) {
-                        throw new RestartResponseException(HomePage.class);
+                        if (courseId != null) {
+                            // Redirect back to details page of the course
+                            throw new RestartResponseException(CourseNewPage.class,
+                                    new PageParameters().add(CourseNewPage.PARAM_ID, courseId));
+                        } else {
+                            throw new RestartResponseException(HomePage.class);
+                        }
                     }
                 } else {
                     PageParameters pp = new PageParameters();
@@ -128,7 +142,12 @@ public class LoginPanel extends BaseEltilandPanel {
         registerLink.add(new AjaxEventBehavior("onclick") {
             @Override
             protected void onEvent(AjaxRequestTarget target) {
-                throw new RestartResponseException(RegisterPage.class);
+                if (courseId == null) {
+                    throw new RestartResponseException(RegisterPage.class);
+                } else {
+                    throw new RestartResponseException(RegisterPage.class,
+                            new PageParameters().add(RegisterPage.PARAM_COURSE, courseId));
+                }
             }
         });
 

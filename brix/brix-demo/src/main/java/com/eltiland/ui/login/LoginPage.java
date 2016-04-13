@@ -21,6 +21,8 @@ public class LoginPage extends TwoColumnPage {
 
     public static final String FAILED_LOGIN_PARAM = "fl";
 
+    public static final String PARAM_COURSE = "course";
+
     @SpringBean
     private ConfirmationManager confirmationManager;
 
@@ -36,7 +38,13 @@ public class LoginPage extends TwoColumnPage {
      * @param parameters page parameters
      */
     public LoginPage(PageParameters parameters) {
-        LoginPanel loginPanel2 = new LoginPanel("loginPanel2");
+
+        Long courseId = null;
+        if (parameters.getNamedKeys().contains(PARAM_COURSE)) {
+            courseId = Long.parseLong(parameters.get(PARAM_COURSE).toString());
+        }
+
+        LoginPanel loginPanel2 = new LoginPanel("loginPanel2", courseId);
         ActivationPanel activationPanel = new ActivationPanel("activationPanel");
 
         String secretCode = parameters.get(UrlUtils.SECRET_CODE_PARAMETER_NAME).toString();

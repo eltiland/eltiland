@@ -153,8 +153,7 @@ public class CourseNewPage extends BaseEltilandPage {
             @Override
             public boolean isVisible() {
                 genericManager.initialize(courseIModel.getObject(), courseIModel.getObject().getContent());
-                return currentUserModel.getObject() != null && courseIModel.getObject().getContent() != null &&
-                        courseIModel.getObject().getContent().size() > 0;
+                return courseIModel.getObject().getContent() != null && courseIModel.getObject().getContent().size() > 0;
             }
         });
     }

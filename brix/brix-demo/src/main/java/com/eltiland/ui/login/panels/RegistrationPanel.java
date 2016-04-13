@@ -18,9 +18,11 @@ import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSelectCallback;
+import com.eltiland.ui.course.CourseNewPage;
 import com.eltiland.utils.StringUtils;
 import com.eltiland.utils.UrlUtils;
 import org.apache.wicket.Application;
+import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -31,6 +33,7 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,7 +94,7 @@ public class RegistrationPanel extends BaseEltilandPanel {
      *
      * @param id markup id.
      */
-    public RegistrationPanel(String id) {
+    public RegistrationPanel(String id, final Long courseId) {
         super(id);
 
         Form form = new Form("form");
@@ -144,7 +147,14 @@ public class RegistrationPanel extends BaseEltilandPanel {
                     session.signIn(newUser.getEmail(), passField.getModelObject());
                     emailMessageManager.sendEmailToUserRegistered(newUser);
                     EltiStaticAlerts.registerOKPopupModal(getString("newUserRegistrationMessage"));
-                    setResponsePage(Application.get().getHomePage());
+
+                    if (courseId != null) {
+                        // Redirect back to details page of the course
+                        throw new RestartResponseException(CourseNewPage.class,
+                                new PageParameters().add(CourseNewPage.PARAM_ID, courseId));
+                    } else {
+                        setResponsePage(Application.get().getHomePage());
+                    }
                 } catch (EltilandManagerException | UserException e) {
                     LOGGER.error("Cannot create user", e);
                     throw new WicketRuntimeException("Got exception when creating user", e);

@@ -8,4 +8,6 @@
     <entry key="registerAction">Регистрация</entry>
 
     <entry key="loginError">Такая комбинация e-mail и пароля не найдена.</entry>
+
+    <entry key="course.login">Для доступа к полной версии курса необходимо зарегистрироваться на портале.</entry>
 </properties>

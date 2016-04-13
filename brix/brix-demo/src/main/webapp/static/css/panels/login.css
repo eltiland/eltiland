@@ -23,6 +23,15 @@
 
 /*   -------   Styles for login panel   -------   */
 /**************************************************************************************************/
+.login_course {
+    margin: 0 auto;
+    display: table;
+    border: lightgrey;
+    font-size: 17px;
+    padding: 5px;
+    font-weight: bold;
+}
+
 .login_main_panel {
     margin: 0 auto;
     display: table;

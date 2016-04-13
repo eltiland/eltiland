@@ -17,6 +17,7 @@ import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.callback.IDialogNewCallback;
 import com.eltiland.ui.course.CourseNewContentPage;
 import com.eltiland.ui.course.components.panels.CourseInvoicePanel;
+import com.eltiland.ui.login.LoginPage;
 import com.eltiland.ui.paymentnew.PaymentPage;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.ajax.AjaxEventBehavior;
@@ -82,6 +83,7 @@ public class CourseVersionButton extends BaseEltilandPanel<ELTCourse> {
         final boolean isFree = !isInvoice && (price == null || price.equals(BigDecimal.ZERO));
         final boolean isEnter = !isFree && !isInvoice &&
                 courseListenerManager.hasAccess(currentUserModel.getObject(), getModelObject());
+        final boolean isLoggedUser = currentUserModel.getObject() != null;
 
         genericManager.initialize(getModelObject(), getModelObject().getContent());
         final boolean isFullPresent = getModelObject().getContent() != null && getModelObject().getContent().size() > 0;
@@ -128,32 +130,37 @@ public class CourseVersionButton extends BaseEltilandPanel<ELTCourse> {
                             .add(CourseNewContentPage.PARAM_ID, CourseVersionButton.this.getModelObject().getId())
                             .add(CourseNewContentPage.PARAM_VERSION, CourseNewContentPage.DEMO_VERSION));
                 } else {
-                    if (isFree || isEnter) {
-                        throw new RestartResponseException(CourseNewContentPage.class, new PageParameters()
-                                .add(CourseNewContentPage.PARAM_ID, CourseVersionButton.this.getModelObject().getId())
-                                .add(CourseNewContentPage.PARAM_VERSION, CourseNewContentPage.FULL_VERSION));
+                    if (!isLoggedUser) {
+                        throw new RestartResponseException(LoginPage.class, new PageParameters()
+                                .add(LoginPage.PARAM_COURSE, CourseVersionButton.this.getModelObject().getId()));
                     } else {
-                        if (isInvoice) {
-                            invoicePanelDialog.show(target);
+                        if (isFree || isEnter) {
+                            throw new RestartResponseException(CourseNewContentPage.class, new PageParameters()
+                                    .add(CourseNewContentPage.PARAM_ID, CourseVersionButton.this.getModelObject().getId())
+                                    .add(CourseNewContentPage.PARAM_VERSION, CourseNewContentPage.FULL_VERSION));
                         } else {
-                            ELTCourseListener listener = courseListenerManager.getItem(
-                                    currentUserModel.getObject(), getModelObject());
-                            if (listener == null) {
-                                listener = new ELTCourseListener();
-                                listener.setStatus(PaidStatus.NEW);
-                                listener.setCourse(getModelObject());
-                                listener.setDays(getModelObject().getDays());
-                                listener.setPrice(getModelObject().getPrice());
-                                listener.setListener(currentUserModel.getObject());
-                                listener.setType(ListenerType.PHYSICAL);
-                                try {
-                                    listener = courseListenerManager.create(listener);
-                                } catch (CourseException e) {
-                                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                            if (isInvoice) {
+                                invoicePanelDialog.show(target);
+                            } else {
+                                ELTCourseListener listener = courseListenerManager.getItem(
+                                        currentUserModel.getObject(), getModelObject());
+                                if (listener == null) {
+                                    listener = new ELTCourseListener();
+                                    listener.setStatus(PaidStatus.NEW);
+                                    listener.setCourse(getModelObject());
+                                    listener.setDays(getModelObject().getDays());
+                                    listener.setPrice(getModelObject().getPrice());
+                                    listener.setListener(currentUserModel.getObject());
+                                    listener.setType(ListenerType.PHYSICAL);
+                                    try {
+                                        listener = courseListenerManager.create(listener);
+                                    } catch (CourseException e) {
+                                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                                    }
                                 }
+                                throw new RestartResponseException(PaymentPage.class,
+                                        new PageParameters().add(PaymentPage.PARAM_ID, listener.getId()));
                             }
-                            throw new RestartResponseException(PaymentPage.class,
-                                    new PageParameters().add(PaymentPage.PARAM_ID, listener.getId()));
                         }
                     }
                 }
@@ -161,6 +168,7 @@ public class CourseVersionButton extends BaseEltilandPanel<ELTCourse> {
         });
 
         button.add(new AttributeAppender("class", new Model<>(isDemo ? "demo_button" : "full_button"), " "));
+
         add(button);
         add(invoicePanelDialog);
 
