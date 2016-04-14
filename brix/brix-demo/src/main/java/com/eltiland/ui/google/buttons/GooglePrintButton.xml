@@ -2,4 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="print">Печать</entry>
+
+    <entry key="error.limit.print">Вы исчерпали лимит количества печати этого документа.</entry>
 </properties>

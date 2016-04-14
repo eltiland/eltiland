@@ -11,6 +11,7 @@ import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.google.ELTGoogleDriveEditor;
 import com.eltiland.ui.google.buttons.GooglePrintButton;
 import com.eltiland.utils.MimeType;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -72,7 +73,22 @@ public class GoogleContentPanel extends CourseContentPanel<GoogleCourseItem> {
         protected ActionPanel(String id, IModel<GoogleDriveFile> googleDriveFileIModel) {
             super(id, googleDriveFileIModel);
 
-            add(new GooglePrintButton("printButton", new GenericDBModel<>(GoogleDriveFile.class, getModelObject())));
+            add(new GooglePrintButton("printButton", new GenericDBModel<>(GoogleDriveFile.class, getModelObject())) {
+                @Override
+                protected Long getCurrentPrint(AjaxRequestTarget target) {
+                    return null;
+                }
+
+                @Override
+                protected void onAfterPrint(AjaxRequestTarget target) {
+
+                }
+
+                @Override
+                protected Long getLimit() {
+                    return null;
+                }
+            });
         }
     }
 }

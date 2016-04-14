@@ -213,8 +213,7 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
             disableAuthorWarning.setVisible(isWarning);
 
             // Temporary
-            printControlButton.setVisible(false);
-            //printControlButton.setVisible(isDoc && isFull);
+            printControlButton.setVisible(isDoc && isFull);
 
             add(saveButton);
             add(enablePrintButton.setOutputMarkupPlaceholderTag(true));

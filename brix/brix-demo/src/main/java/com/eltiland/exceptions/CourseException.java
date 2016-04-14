@@ -95,6 +95,15 @@ public class CourseException extends Exception {
     public static final String ERROR_LISTENER_DELETE = "Неизвестная ошибка при удалении слушателя курса";
     public static final String ERROR_LISTENER_UPDATE = "Неизвестная ошибка при сохранении слушателя курса";
 
+    public static final String ERROR_PRINTSTAT_ITEM_EMPTY = "Элемент курса для статистики печати не может быть пустым";
+    public static final String ERROR_PRINTSTAT_LISTENER_EMPTY = "Слушатель для статистики печати не может быть пустым";
+    public static final String ERROR_PRINTSTAT_NULL_VALUE = "Данные статистики печати не могут быть пустыми";
+    public static final String ERROR_PRINTSTAT_NEGATIVE_VALUE = "Данные статистики печати не могут быть отрицательными";
+    public static final String ERROR_PRINTSTAT_WRONG_VALUE = "Данные статистики печати для пользователя не может быть больше лимита печати";
+    public static final String ERROR_PRINTSTAT_CREATE = "Неизвестная ошибка при создании статистики печати элемента курса";
+    public static final String ERROR_PRINTSTAT_DELETE = "Неизвестная ошибка при удалении статистики печати элемента курса";
+    public static final String ERROR_PRINTSTAT_UPDATE = "Неизвестная ошибка при сохранении статистики печати элемента курса";
+
     public CourseException() {
     }
 
