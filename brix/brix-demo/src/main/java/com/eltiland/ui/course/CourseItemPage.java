@@ -3,6 +3,7 @@ package com.eltiland.ui.course;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.content.google.ELTPresentationCourseItem;
@@ -13,6 +14,7 @@ import com.eltiland.ui.common.BaseEltilandPage;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.content.TestContentPanel;
+import com.eltiland.ui.course.content2.ContentPanel;
 import com.eltiland.ui.course.content2.GoogleContentPanel;
 import com.eltiland.ui.course.content2.VideoContentPanel;
 import org.apache.wicket.WicketRuntimeException;
@@ -67,14 +69,17 @@ public class CourseItemPage extends BaseEltilandPage {
         };
 
         Class clazz = courseItemIModel.getObject().getClass();
-        if (clazz.equals(ELTDocumentCourseItem.class)) {
+        if (clazz.equals(ELTContentCourseItem.class)) {
+            add(new ContentPanel("panel", new GenericDBModel<>(ELTContentCourseItem.class,
+                    (ELTContentCourseItem) courseItemIModel.getObject())));
+        } else if (clazz.equals(ELTDocumentCourseItem.class)) {
             add(new GoogleContentPanel("panel", new GenericDBModel<>(ELTGoogleCourseItem.class,
                     (ELTGoogleCourseItem) courseItemIModel.getObject())));
         } else if (clazz.equals(ELTPresentationCourseItem.class)) {
             add(new GoogleContentPanel("panel", new GenericDBModel<>(ELTGoogleCourseItem.class,
                     (ELTGoogleCourseItem) courseItemIModel.getObject())));
         } else if (clazz.equals(ELTTestCourseItem.class)) {
-            add(new TestContentPanel("panel", new GenericDBModel<>(TestCourseItem.class,(long)68530)));
+            add(new TestContentPanel("panel", new GenericDBModel<>(TestCourseItem.class, (long) 68530)));
         } else if (clazz.equals(ELTVideoCourseItem.class)) {
             add(new VideoContentPanel("panel", new GenericDBModel<>(ELTVideoCourseItem.class,
                     (ELTVideoCourseItem) courseItemIModel.getObject())));

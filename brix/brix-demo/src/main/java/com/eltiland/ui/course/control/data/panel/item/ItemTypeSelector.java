@@ -3,6 +3,7 @@ package com.eltiland.ui.course.control.data.panel.item;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.content.ELTCourseBlock;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTPresentationCourseItem;
 import com.eltiland.model.course2.content.group.ELTGroupCourseItem;
@@ -30,6 +31,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
     private IDialogActionProcessor<ELTCourseItem> newCallback;
 
     private TypeItem document;
+    private TypeItem content;
     private TypeItem presentation;
     private TypeItem test;
     private TypeItem video;
@@ -48,6 +50,29 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
             protected void onClick(AjaxRequestTarget target, boolean newValue) {
                 if (newValue) {
                     clazz = ELTDocumentCourseItem.class;
+                    content.reset(target);
+                    presentation.reset(target);
+                    test.reset(target);
+                    video.reset(target);
+                    webinar.reset(target);
+                    group.reset(target);
+                } else {
+                    clazz = null;
+                }
+            }
+
+            @Override
+            protected String getImage() {
+                return "document";
+            }
+        };
+
+        content = new TypeItem("editor_doc", ELTContentCourseItem.class) {
+            @Override
+            protected void onClick(AjaxRequestTarget target, boolean newValue) {
+                if (newValue) {
+                    clazz = ELTContentCourseItem.class;
+                    document.reset(target);
                     presentation.reset(target);
                     test.reset(target);
                     video.reset(target);
@@ -70,6 +95,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                 if (newValue) {
                     clazz = ELTPresentationCourseItem.class;
                     document.reset(target);
+                    content.reset(target);
                     test.reset(target);
                     video.reset(target);
                     webinar.reset(target);
@@ -91,6 +117,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                 if (newValue) {
                     clazz = ELTTestCourseItem.class;
                     document.reset(target);
+                    content.reset(target);
                     presentation.reset(target);
                     video.reset(target);
                     webinar.reset(target);
@@ -112,6 +139,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                 if (newValue) {
                     clazz = ELTVideoCourseItem.class;
                     document.reset(target);
+                    content.reset(target);
                     test.reset(target);
                     presentation.reset(target);
                     webinar.reset(target);
@@ -133,6 +161,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                 if (newValue) {
                     clazz = ELTWebinarCourseItem.class;
                     document.reset(target);
+                    content.reset(target);
                     test.reset(target);
                     video.reset(target);
                     presentation.reset(target);
@@ -154,6 +183,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                 if (newValue) {
                     clazz = ELTGroupCourseItem.class;
                     document.reset(target);
+                    content.reset(target);
                     test.reset(target);
                     video.reset(target);
                     webinar.reset(target);
@@ -176,6 +206,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
 
 
         form.add(document);
+        form.add(content);
         form.add(presentation);
         form.add(test);
         form.add(video);

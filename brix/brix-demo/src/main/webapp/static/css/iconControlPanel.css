@@ -131,6 +131,10 @@
     background: url("../images/actions/24x24/control_reset.png");
 }
 
+.iconControlPanel .button .refresh {
+    background: url("../images/actions/24x24/refresh.png");
+}
+
 .iconControlPanel .button .shield_on {
     background: url("../images/actions/24x24/shield-warning.png");
 }

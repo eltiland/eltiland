@@ -175,8 +175,8 @@ public class GooglePrintStatisticsPanel extends ELTDialogPanel implements IDialo
         limitContainer.add(changeButton);
     }
 
-    public void initData(IModel<ELTGoogleCourseItem> itemModel) {
-        this.itemModel.setObject((ELTDocumentCourseItem) (itemModel.getObject()));
+    public void initData(IModel<ELTDocumentCourseItem> itemModel) {
+        this.itemModel.setObject(itemModel.getObject());
     }
 
     @Override

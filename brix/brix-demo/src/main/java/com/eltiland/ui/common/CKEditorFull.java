@@ -31,7 +31,7 @@ public class CKEditorFull extends Panel {
     }
 
     public String getData() {
-        return container.getModelObject();
+        return container.getConvertedInput();
     }
 
     public CKEditorFull(String id, Dialog dialog) {

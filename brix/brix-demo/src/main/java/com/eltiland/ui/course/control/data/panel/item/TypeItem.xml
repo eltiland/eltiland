@@ -7,6 +7,7 @@
 
     <entry key="ELTDocumentCourseItem.class">Документ</entry>
     <entry key="ELTPresentationCourseItem.class">Презентация</entry>
+    <entry key="ELTContentCourseItem.class">Документ (редактор)</entry>
     <entry key="ELTTestCourseItem.class">Тест</entry>
     <entry key="ELTVideoCourseItem.class">Видео</entry>
     <entry key="ELTWebinarCourseItem.class">Вебинар</entry>

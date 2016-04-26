@@ -12,6 +12,7 @@ import com.eltiland.model.course2.ContentStatus;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.content.ELTCourseBlock;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.content.google.ELTPresentationCourseItem;
@@ -203,12 +204,14 @@ public class ContentPanel extends BaseEltilandPanel<ELTCourse> {
 
                         if (model.getObject() instanceof ELTGoogleCourseItem) {
                             GoogleDriveFile file = null;
-                            if (model.getObject() instanceof ELTDocumentCourseItem) {
-                                file = googleDriveManager.createEmptyDoc(
-                                        model.getObject().getName(), GoogleDriveFile.TYPE.DOCUMENT);
-                            } else if (model.getObject() instanceof ELTPresentationCourseItem) {
-                                file = googleDriveManager.createEmptyDoc(
-                                        model.getObject().getName(), GoogleDriveFile.TYPE.PRESENTATION);
+                            if (!(model.getObject() instanceof ELTContentCourseItem)) {
+                                if (model.getObject() instanceof ELTDocumentCourseItem) {
+                                    file = googleDriveManager.createEmptyDoc(
+                                            model.getObject().getName(), GoogleDriveFile.TYPE.DOCUMENT);
+                                } else if (model.getObject() instanceof ELTPresentationCourseItem) {
+                                    file = googleDriveManager.createEmptyDoc(
+                                            model.getObject().getName(), GoogleDriveFile.TYPE.PRESENTATION);
+                                }
                             }
                             ((ELTGoogleCourseItem) model.getObject()).setItem(file);
                             ((ELTGoogleCourseItem) model.getObject()).setHasWarning(false);
@@ -438,7 +441,7 @@ public class ContentPanel extends BaseEltilandPanel<ELTCourse> {
                 throw new RestartResponseException(CourseNewContentPage.class, new PageParameters().add(
                         CourseNewContentPage.PARAM_ID, ContentPanel.this.getModelObject().getId()).add(
                         CourseNewContentPage.PARAM_VERSION, ContentPanel.this.status.equals(ContentStatus.DEMO) ?
-                        CourseNewContentPage.DEMO_VERSION : CourseNewContentPage.FULL_VERSION));
+                                CourseNewContentPage.DEMO_VERSION : CourseNewContentPage.FULL_VERSION));
             }
         };
 

@@ -104,6 +104,9 @@ public class CourseException extends Exception {
     public static final String ERROR_PRINTSTAT_DELETE = "Неизвестная ошибка при удалении статистики печати элемента курса";
     public static final String ERROR_PRINTSTAT_UPDATE = "Неизвестная ошибка при сохранении статистики печати элемента курса";
 
+    public static final String ERROR_CONTENT_CREATE = "Неизвестная ошибка при создании контента элемента курса";
+    public static final String ERROR_CONTENT_UPDATE = "Неизвестная ошибка при сохранении контента элемента курса";
+
     public CourseException() {
     }
 

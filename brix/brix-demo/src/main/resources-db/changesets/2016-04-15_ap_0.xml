@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="alex.plotnikov">
+        <comment>Table for item content</comment>
+        <sql>
+            CREATE TABLE "course"."item_content" (
+            "_id" NUMERIC NOT NULL UNIQUE,
+            "body" CHARACTER VARYING( 65535 ) COLLATE "pg_catalog"."default",
+            PRIMARY KEY ( "_id" )
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="alex.plotnikov">
+        <comment>Content fields in item</comment>
+        <sql>
+            ALTER TABLE "course"."item" ADD COLUMN "editor" BOOLEAN DEFAULT 'false' NOT NULL;
+            ALTER TABLE "course"."item" ADD COLUMN "content" NUMERIC;
+            ALTER TABLE "course"."item" ADD CONSTRAINT "item_content" FOREIGN KEY ( "content" ) REFERENCES
+            "course"."item_content" ( "_id" ) MATCH SIMPLE ON DELETE NO ACTION ON UPDATE NO ACTION;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

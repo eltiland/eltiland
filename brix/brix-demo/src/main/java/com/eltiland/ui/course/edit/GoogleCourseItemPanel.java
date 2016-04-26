@@ -42,22 +42,22 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
 
     private Dialog<GooglePrintStatisticsPanel> printStatisticsPanelDialog =
             new Dialog<GooglePrintStatisticsPanel>("printStatisticsDialog", 510) {
-        @Override
-        public GooglePrintStatisticsPanel createDialogPanel(String id) {
-            return new GooglePrintStatisticsPanel(id);
-        }
-
-        @Override
-        public void registerCallback(GooglePrintStatisticsPanel panel) {
-            super.registerCallback(panel);
-            panel.setUpdateCallback(new IDialogUpdateCallback.IDialogActionProcessor<ELTDocumentCourseItem>() {
                 @Override
-                public void process(IModel<ELTDocumentCourseItem> model, AjaxRequestTarget target) {
-                    close(target);
+                public GooglePrintStatisticsPanel createDialogPanel(String id) {
+                    return new GooglePrintStatisticsPanel(id);
                 }
-            });
-        }
-    };
+
+                @Override
+                public void registerCallback(GooglePrintStatisticsPanel panel) {
+                    super.registerCallback(panel);
+                    panel.setUpdateCallback(new IDialogUpdateCallback.IDialogActionProcessor<ELTDocumentCourseItem>() {
+                        @Override
+                        public void process(IModel<ELTDocumentCourseItem> model, AjaxRequestTarget target) {
+                            close(target);
+                        }
+                    });
+                }
+            };
 
     public GoogleCourseItemPanel(String id, IModel<ELTGoogleCourseItem> eltCourseItemIModel) {
         super(id, eltCourseItemIModel);
@@ -183,7 +183,8 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
             printControlButton = new EltiAjaxLink("printControlButton") {
                 @Override
                 public void onClick(AjaxRequestTarget target) {
-                    printStatisticsPanelDialog.getDialogPanel().initData(GoogleCourseItemPanel.this.getModel());
+                    printStatisticsPanelDialog.getDialogPanel().initData(new GenericDBModel<>(ELTDocumentCourseItem.class,
+                            ((ELTDocumentCourseItem) GoogleCourseItemPanel.this.getModelObject())));
                     printStatisticsPanelDialog.show(target);
                 }
             };

@@ -2,6 +2,7 @@ package com.eltiland.ui.course;
 
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.content.google.ELTPresentationCourseItem;
@@ -12,10 +13,7 @@ import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
 import com.eltiland.ui.common.BaseEltilandPage;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.model.GenericDBModel;
-import com.eltiland.ui.course.edit.GoogleCourseItemPanel;
-import com.eltiland.ui.course.edit.TestCourseItemPanel;
-import com.eltiland.ui.course.edit.VideoCourseItemPanel;
-import com.eltiland.ui.course.edit.WebinarCourseItemPanel;
+import com.eltiland.ui.course.edit.*;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.model.IModel;
@@ -83,6 +81,9 @@ public class CourseEditPage extends BaseEltilandPage {
         } else if (clazz.equals(ELTWebinarCourseItem.class)) {
             add(new WebinarCourseItemPanel("panel", new GenericDBModel<>(ELTWebinarCourseItem.class,
                     (ELTWebinarCourseItem) courseItemIModel.getObject())));
+        } else if (clazz.equals(ELTContentCourseItem.class)) {
+            add(new ContentCourseItemPanel("panel", new GenericDBModel<>(ELTContentCourseItem.class,
+                    (ELTContentCourseItem) courseItemIModel.getObject())));
         }
     }
 
