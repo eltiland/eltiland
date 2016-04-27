@@ -35,7 +35,8 @@ abstract class AbstractDocActionPanel extends BaseEltilandPanel<ELTGoogleCourseI
 
 
     EltiAjaxLink enablePrintButton, disablePrintButton,
-            printControlButton, enableAuthorWarning, disableAuthorWarning;
+            printControlButton, enableAuthorWarning, disableAuthorWarning,
+            enableSelectButton, disableSelectButton;
 
     private Dialog<GooglePrintStatisticsPanel> printStatisticsPanelDialog =
             new Dialog<GooglePrintStatisticsPanel>("printStatisticsDialog", 510) {
@@ -63,6 +64,23 @@ abstract class AbstractDocActionPanel extends BaseEltilandPanel<ELTGoogleCourseI
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 AbstractDocActionPanel.this.onClick(target);
+            }
+
+            @Override
+            public boolean isVisible() {
+                return isForm();
+            }
+        };
+
+        EltiAjaxLink saveLinkButton = new EltiAjaxLink("saveLinkButton") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                AbstractDocActionPanel.this.onClick(target);
+            }
+
+            @Override
+            public boolean isVisible() {
+                return !isForm();
             }
         };
 
@@ -132,6 +150,40 @@ abstract class AbstractDocActionPanel extends BaseEltilandPanel<ELTGoogleCourseI
             }
         };
 
+        enableSelectButton = new EltiAjaxLink("enableSelectionButton") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                ((ELTDocumentCourseItem)AbstractDocActionPanel.this.getModelObject()).setProhibitSelect(false);
+                try {
+                    courseItemManager.update(AbstractDocActionPanel.this.getModelObject());
+                    ELTAlerts.renderOKPopup(getString("selectionON"), target);
+                } catch (CourseException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
+                disableSelectButton.setVisible(true);
+                enableSelectButton.setVisible(false);
+                target.add(disableSelectButton);
+                target.add(enableSelectButton);
+            }
+        };
+
+        disableSelectButton = new EltiAjaxLink("disableSelectionButton") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                ((ELTDocumentCourseItem)AbstractDocActionPanel.this.getModelObject()).setProhibitSelect(true);
+                try {
+                    courseItemManager.update(AbstractDocActionPanel.this.getModelObject());
+                    ELTAlerts.renderOKPopup(getString("selectionOFF"), target);
+                } catch (CourseException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
+                disableSelectButton.setVisible(false);
+                enableSelectButton.setVisible(true);
+                target.add(disableSelectButton);
+                target.add(enableSelectButton);
+            }
+        };
+
         printControlButton = new EltiAjaxLink("printControlButton") {
             @Override
             public void onClick(AjaxRequestTarget target) {
@@ -160,20 +212,26 @@ abstract class AbstractDocActionPanel extends BaseEltilandPanel<ELTGoogleCourseI
         boolean isDoc = getModelObject() instanceof ELTDocumentCourseItem;
         boolean isPrint = isDoc && ((ELTDocumentCourseItem) getModelObject()).isPrintable();
         boolean isWarning = getModelObject().isHasWarning();
+        boolean isSelect = isDoc && !(((ELTDocumentCourseItem) getModelObject()).isProhibitSelect());
         enablePrintButton.setVisible(isDoc && !isPrint && !isFull);
         disablePrintButton.setVisible(isDoc && isPrint && !isFull);
         enableAuthorWarning.setVisible(!isWarning);
         disableAuthorWarning.setVisible(isWarning);
+        enableSelectButton.setVisible(isDoc && !isSelect);
+        disableSelectButton.setVisible(isDoc && isSelect);
 
         // Temporary
         printControlButton.setVisible(isDoc && isFull);
 
         add(saveButton);
+        add(saveLinkButton);
         add(enablePrintButton.setOutputMarkupPlaceholderTag(true));
         add(disablePrintButton.setOutputMarkupPlaceholderTag(true));
         add(printControlButton.setOutputMarkupPlaceholderTag(true));
         add(enableAuthorWarning.setOutputMarkupPlaceholderTag(true));
         add(disableAuthorWarning.setOutputMarkupPlaceholderTag(true));
+        add(enableSelectButton.setOutputMarkupPlaceholderTag(true));
+        add(disableSelectButton.setOutputMarkupPlaceholderTag(true));
         saveButton.add(new AttributeModifier("title", AbstractDocActionPanel.this.getString("save.tooltip")));
         saveButton.add(new TooltipBehavior());
         enablePrintButton.add(new AttributeModifier("title",
@@ -192,8 +250,19 @@ abstract class AbstractDocActionPanel extends BaseEltilandPanel<ELTGoogleCourseI
                 AbstractDocActionPanel.this.getString("disable.author.warning")));
         disableAuthorWarning.add(new TooltipBehavior());
 
+        enableSelectButton.add(new AttributeModifier("title",
+                AbstractDocActionPanel.this.getString("enable.selection")));
+        enableSelectButton.add(new TooltipBehavior());
+        disableSelectButton.add(new AttributeModifier("title",
+                AbstractDocActionPanel.this.getString("disable.selection")));
+        disableSelectButton.add(new TooltipBehavior());
+
         add(printStatisticsPanelDialog);
     }
 
     abstract protected void onClick(AjaxRequestTarget target);
+
+    protected boolean isForm() {
+        return true;
+    }
 }

@@ -21,8 +21,10 @@ import com.eltiland.ui.google.ELTGoogleDriveEditor;
 import com.eltiland.ui.google.buttons.GooglePrintButton;
 import com.eltiland.utils.MimeType;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -97,9 +99,16 @@ public class GoogleContentPanel extends AbstractCourseContentPanel<ELTGoogleCour
             }
         });
 
-        add(new ELTGoogleDriveEditor("contentField",
+        ELTGoogleDriveEditor contentField = new ELTGoogleDriveEditor("contentField",
                 new GenericDBModel<>(GoogleDriveFile.class, getModelObject().getItem()),
-                ELTGoogleDriveEditor.MODE.VIEW, type));
+                ELTGoogleDriveEditor.MODE.VIEW, type);
+        add(contentField);
+
+        if (getModelObject() instanceof ELTDocumentCourseItem) {
+            if (((ELTDocumentCourseItem) getModelObject()).isProhibitSelect()) {
+                contentField.add(new AttributeAppender("class", new Model<>("no-select"), " "));
+            }
+        }
     }
 
     private class ActionPanel extends BaseEltilandPanel<GoogleDriveFile> {

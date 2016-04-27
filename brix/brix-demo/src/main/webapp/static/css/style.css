@@ -1111,3 +1111,12 @@ div.menu-item-active {
     padding: 5px;
     cursor: pointer;
 }
+
+/**************************************************************************************************/
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+}

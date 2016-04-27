@@ -7,7 +7,11 @@
     <entry key="control.print.tooltip">Управление печатью документа.</entry>
     <entry key="enable.author.warning">Включить предупреждение об авторских правах</entry>
     <entry key="disable.author.warning">Выключить предупреждение об авторских правах</entry>
+    <entry key="enable.selection">Включить возможность выделения текста</entry>
+    <entry key="disable.selection">Отключить возможность выделения текста</entry>
 
     <entry key="authorMessageON">Сообщение об аврских правах включено.</entry>
     <entry key="authorMessageOFF">Сообщение об авторских правах отключено.</entry>
+    <entry key="selectionOFF">Возможность выделения текста отключена.</entry>
+    <entry key="selectionON">Возможность выделения текста включена.</entry>
 </properties>

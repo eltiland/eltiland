@@ -13,6 +13,7 @@ import java.util.Set;
 @DiscriminatorValue("DOC")
 public class ELTDocumentCourseItem extends ELTGoogleCourseItem {
     private boolean printable;
+    private boolean prohibitSelect;
     private Long printLimit;
     private Set<CourseItemPrintStat> printStatistics = new HashSet<>(0);
 
@@ -41,5 +42,14 @@ public class ELTDocumentCourseItem extends ELTGoogleCourseItem {
 
     public void setPrintStatistics(Set<CourseItemPrintStat> printStatistics) {
         this.printStatistics = printStatistics;
+    }
+
+    @Column(name = "prohibit_select", nullable = false, columnDefinition = "boolean default FALSE")
+    public boolean isProhibitSelect() {
+        return prohibitSelect;
+    }
+
+    public void setProhibitSelect(boolean prohibitSelect) {
+        this.prohibitSelect = prohibitSelect;
     }
 }
