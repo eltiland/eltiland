@@ -50,7 +50,7 @@ public class AuthorCourseOrderPanel extends Panel {
 
             @Override
             protected Iterator getIterator(int first, int count) {
-                return courseManager.getSortedAuthorCourses(first, count).iterator();
+                return courseManager.getSortedAuthorCourses(first, count, null).iterator();
             }
 
             @Override

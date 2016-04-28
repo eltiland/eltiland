@@ -20,6 +20,7 @@ import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,11 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
     public ELTCourse create(ELTCourse course) throws CourseException {
         courseValidator.isCourseValid(course);
         try {
+            // new index
+            if (course instanceof AuthorCourse) {
+                ((AuthorCourse) course).setIndex(getMaxNumber(((AuthorCourse) course).isModule()) + 1);
+            }
+
             course = genericManager.saveNew(course);
             eltCourseUserDataManager.createStandart(course);
             return course;
@@ -65,6 +71,17 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
     @Transactional(rollbackFor = CourseException.class)
     public void delete(ELTCourse course) throws CourseException {
         try {
+            // index
+            if (course instanceof AuthorCourse) {
+                int oldIndex = ((AuthorCourse) course).getIndex();
+
+                int currentIndex;
+                for (currentIndex = oldIndex;
+                     currentIndex < getAuthorCoursesCount(((AuthorCourse) course).isModule()); currentIndex++) {
+                    moveAuthorCourse((AuthorCourse) course, true, ((AuthorCourse) course).isModule());
+                }
+            }
+
             eltCourseUserDataManager.deleteForCourse(course);
             genericManager.delete(course);
         } catch (EltilandManagerException e) {
@@ -175,11 +192,11 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         List<ELTCourse> courses = new ArrayList<>();
         for (ELTCourseListener listener : listeners) {
             if (clazz != null) {
-                if( clazz.equals(TrainingCourse.class) && (listener.getCourse() instanceof TrainingCourse)) {
+                if (clazz.equals(TrainingCourse.class) && (listener.getCourse() instanceof TrainingCourse)) {
                     courses.add(listener.getCourse());
-                } else if(clazz.equals(AuthorCourse.class) && (listener.getCourse() instanceof AuthorCourse)) {
-                    boolean moduleCourse = ((AuthorCourse)listener.getCourse()).isModule();
-                    if( isModule == null || (isModule == moduleCourse)) {
+                } else if (clazz.equals(AuthorCourse.class) && (listener.getCourse() instanceof AuthorCourse)) {
+                    boolean moduleCourse = ((AuthorCourse) listener.getCourse()).isModule();
+                    if (isModule == null || (isModule == moduleCourse)) {
                         courses.add(listener.getCourse());
                     }
                 }
@@ -192,12 +209,15 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
 
     @Override
     @Transactional(readOnly = true)
-    public List<AuthorCourse> getSortedAuthorCourses(int index, int count) {
+    public List<AuthorCourse> getSortedAuthorCourses(int index, int count, Boolean isModule) {
         Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
         criteria.setFetchMode("author", FetchMode.JOIN);
         criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
         criteria.setFirstResult(index);
         criteria.setMaxResults(count);
+        if (isModule != null) {
+            criteria.add(Restrictions.eq("module", isModule));
+        }
         criteria.addOrder(Order.asc("index"));
         return criteria.list();
     }
@@ -211,7 +231,7 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         criteria.setFirstResult(index);
         criteria.setMaxResults(count);
 
-        if( isModule != null ) {
+        if (isModule != null) {
             criteria.add(Restrictions.eq("module", isModule));
         }
         criteria.addOrder(Order.desc("id"));
@@ -235,11 +255,55 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
     public int getAuthorCoursesCount(Boolean isModule) {
         Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
 
-        if( isModule != null ) {
+        if (isModule != null) {
             criteria.add(Restrictions.eq("module", isModule));
         }
         criteria.add(Restrictions.eq("status", CourseStatus.PUBLISHED));
         return criteria.list().size();
+    }
+
+    @Override
+    @Transactional(rollbackFor = CourseException.class)
+    public void moveAuthorCourse(AuthorCourse course, boolean direction, boolean isModule) throws CourseException {
+        int oldIndex = course.getIndex();
+
+        if (direction) {
+            if (oldIndex != 0) {
+                AuthorCourse prevEntity = getEntityByIndex(oldIndex - 1, isModule);
+                prevEntity.setIndex(oldIndex);
+                course.setIndex(oldIndex - 1);
+
+                update(course);
+            }
+        } else {
+            int count = getAuthorCoursesCount(isModule);
+
+            if (oldIndex != count) {
+                AuthorCourse nextEntity = getEntityByIndex(oldIndex + 1, isModule);
+                nextEntity.setIndex(oldIndex);
+                course.setIndex(oldIndex + 1);
+
+                update(course);
+            }
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = CourseException.class)
+    public void changeAuthorCourseType(AuthorCourse course) throws CourseException {
+        boolean isModule = course.isModule();
+        Integer index = course.getIndex();
+
+        Integer newIndex = getAuthorCoursesCount(!isModule);
+        course.setIndex(newIndex);
+        course.setModule(!isModule);
+
+        update(course);
+
+        // move up all same types.
+        for (int currentIndex = (index + 1); currentIndex < getAuthorCoursesCount(isModule); currentIndex++) {
+            moveAuthorCourse(getEntityByIndex(currentIndex, isModule), true, isModule);
+        }
     }
 
     @Override
@@ -279,5 +343,21 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         criteria.setMaxResults(count);
         criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
         return criteria.list();
+    }
+
+    @Transactional(readOnly = true)
+    private Integer getMaxNumber(boolean isModule) {
+        Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
+        criteria.add(Restrictions.eq("module", isModule));
+        criteria.setProjection(Projections.max("index"));
+        return (Integer) criteria.uniqueResult();
+    }
+
+    @Transactional(readOnly = true)
+    private AuthorCourse getEntityByIndex(Integer index, boolean isModule) {
+        Criteria criteria = getCurrentSession().createCriteria(AuthorCourse.class);
+        criteria.add(Restrictions.eq("module", isModule));
+        criteria.add(Restrictions.eq("index", index));
+        return (AuthorCourse) criteria.uniqueResult();
     }
 }

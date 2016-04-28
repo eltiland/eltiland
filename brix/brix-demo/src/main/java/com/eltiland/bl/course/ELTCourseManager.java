@@ -112,9 +112,10 @@ public interface ELTCourseManager {
     /**
      * @param index the start position of the first result, numbered from 0.
      * @param count the maximum number of results to retrieve. {@code null} means no limit.
+     * @param isModule
      * @return published author courses list, sorted by index.
      */
-    List<AuthorCourse> getSortedAuthorCourses(int index, int count);
+    List<AuthorCourse> getSortedAuthorCourses(int index, int count, Boolean isModule);
 
     /**
      * @param isModule is this author course a training module or not (NULL means - return all courses).
@@ -130,6 +131,20 @@ public interface ELTCourseManager {
      * @param isModule is this author course a training module or not (NULL means - return all courses).
      */
     int getAuthorCoursesCount(Boolean isModule);
+
+    /**
+     * @param course
+     * @param direction direction of movement (true - up, false - down)
+     * @param isModule is this author course a training module or not.
+     */
+    void moveAuthorCourse(AuthorCourse course, boolean direction, boolean isModule) throws CourseException;
+
+    /**
+     * Changeing type pf the course - Author Course/Training Module
+     *
+     * @param course course to change.
+     */
+    void changeAuthorCourseType(AuthorCourse course) throws CourseException;
 
     /*******************************************************
      * Training courses stuff

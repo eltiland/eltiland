@@ -3,10 +3,11 @@
 <properties>
     <entry key="nameLabel">Название курса</entry>
     <entry key="authorLabel">Автор</entry>
-    <entry key="pageLabel">Страница</entry>
 
     <entry key="author.page">Авторские курсы</entry>
     <entry key="module.page">Образовательные модули</entry>
 
     <entry key="change.tooltip">Изменить</entry>
+    <entry key="up.tooltip">Поднят вверх на 1 позицию</entry>
+    <entry key="down.tooltip">Опустить вниз на 1 позицию</entry>
 </properties>

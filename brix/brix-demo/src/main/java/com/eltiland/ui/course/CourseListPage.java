@@ -37,7 +37,7 @@ public class CourseListPage extends BaseEltilandPage {
     private IModel<List<AuthorCourse>> courseListModel = new LoadableDetachableModel<List<AuthorCourse>>() {
         @Override
         protected List<AuthorCourse> load() {
-            return courseManager.getAuthorCourses(0, 20, false);
+            return courseManager.getSortedAuthorCourses(0, 20, false);
         }
     };
 
