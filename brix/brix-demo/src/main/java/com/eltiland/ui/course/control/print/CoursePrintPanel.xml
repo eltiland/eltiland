@@ -5,4 +5,7 @@
     <entry key="item.column">Элемент курса</entry>
     <entry key="count.column">Печатано</entry>
     <entry key="limit.column">Лимит</entry>
+
+    <entry key="up.action">Увеличить лимит</entry>
+    <entry key="down.action">Уменьшить лимит</entry>
 </properties>
