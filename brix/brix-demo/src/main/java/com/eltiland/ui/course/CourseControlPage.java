@@ -16,6 +16,7 @@ import com.eltiland.ui.course.control.document.CourseDocumentPanel;
 import com.eltiland.ui.course.control.general.CourseGeneralPanel;
 import com.eltiland.ui.course.control.listeners.CourseInvoicePanel;
 import com.eltiland.ui.course.control.listeners.CourseListenersPanel;
+import com.eltiland.ui.course.control.print.CoursePrintPanel;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -107,6 +108,7 @@ public class CourseControlPage extends BaseEltilandPage {
             public List<TabMenuData> getMenuItems() {
                 List<TabMenuData> menuItems = new ArrayList<>();
 
+                menuItems.add(new TabMenuData((short) 6, getMenuCaption((short) 6)));
                 menuItems.add(new TabMenuData((short) 5, getMenuCaption((short) 5)));
                 menuItems.add(new TabMenuData((short) 4, getMenuCaption((short) 4)));
                 if (courseModel.getObject() instanceof TrainingCourse) {
@@ -133,6 +135,8 @@ public class CourseControlPage extends BaseEltilandPage {
                     infoContainer.replace(new CourseListenersPanel("infoPanel", courseModel));
                 } else if (index == 5) {
                     infoContainer.replace(new CourseAdminPanel("infoPanel", courseModel));
+                } else if (index == 6) {
+                    infoContainer.replace(new CoursePrintPanel("infoPanel", courseModel));
                 }
                 target.add(infoContainer);
             }
@@ -158,6 +162,8 @@ public class CourseControlPage extends BaseEltilandPage {
                 return getString("listener.menu");
             case 5:
                 return getString("admin.menu");
+            case 6:
+                return getString("print.menu");
             default:
                 return "";
         }

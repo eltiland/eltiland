@@ -2,19 +2,25 @@ package com.eltiland.bl.course.impl;
 
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.CoursePrintStatManager;
+import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.bl.impl.ManagerImpl;
 import com.eltiland.bl.validators.CourseItemPrintStatValidator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.CourseException;
+import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.content.google.CourseItemPrintStat;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Course item print statistics manager.
@@ -26,6 +32,8 @@ public class CoursePrintStatManagerImpl extends ManagerImpl implements CoursePri
 
     @Autowired
     private GenericManager genericManager;
+    @Autowired
+    private ELTCourseListenerManager courseListenerManager;
     @Autowired
     private CourseItemPrintStatValidator courseItemPrintStatValidator;
 
@@ -72,5 +80,35 @@ public class CoursePrintStatManagerImpl extends ManagerImpl implements CoursePri
         criteria.add(Restrictions.eq("listener", listener));
         criteria.add(Restrictions.eq("item", item));
         return (CourseItemPrintStat) criteria.uniqueResult();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CourseItemPrintStat> getItems(ELTCourse course, Integer index,
+                                              Integer count, String sProperty, boolean isAscending) {
+        List<ELTCourseListener> listeners = courseListenerManager.getList(course, true, false);
+
+        Criteria criteria = getCurrentSession().createCriteria(CourseItemPrintStat.class);
+        criteria.createAlias("listener", "listener", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("item", "item", JoinType.LEFT_OUTER_JOIN);
+
+        criteria.add(Restrictions.in("listener", listeners));
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Integer getCount(ELTCourse course) {
+        List<ELTCourseListener> listeners = courseListenerManager.getList(course, true, false);
+
+        Criteria criteria = getCurrentSession().createCriteria(CourseItemPrintStat.class);
+        criteria.createAlias("listener", "listener", JoinType.LEFT_OUTER_JOIN);
+
+        criteria.add(Restrictions.in("listener", listeners));
+        return criteria.list().size();
     }
 }
