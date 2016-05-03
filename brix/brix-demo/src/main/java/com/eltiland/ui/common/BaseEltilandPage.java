@@ -48,12 +48,6 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
         StaticImage image = new StaticImage("logo",
                 eltilandProps.getProperty("application.base.url") + "/static/images/homepage/eltiland_logo.png");
         add(image);
-        image.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                setResponsePage(HomePage.class);
-            }
-        });
 
         add(new ELTMainMenu("ELTmenu", this.getClass()));
 
