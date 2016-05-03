@@ -2,6 +2,7 @@ package com.eltiland.bl.course;
 
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.ELTCourse;
+import com.eltiland.model.course2.content.ELTCourseItem;
 import com.eltiland.model.course2.content.google.CourseItemPrintStat;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
@@ -33,6 +34,14 @@ public interface CoursePrintStatManager {
     CourseItemPrintStat update(CourseItemPrintStat stat) throws CourseException;
 
     /**
+     * Set limit of print attempts for all users for given item.
+     *
+     * @param item  course item.
+     * @param limit new limit.
+     */
+    void updateLimits(ELTCourseItem item, Long limit) throws CourseException;
+
+    /**
      * @param listener listener.
      * @param item     course item.
      * @return statistics for given data.
@@ -55,7 +64,7 @@ public interface CoursePrintStatManager {
     /**
      * Get count of print statictica for given course.
      *
-     * @param course      course item.
+     * @param course course item.
      * @return count of items.
      */
     Integer getCount(ELTCourse course);

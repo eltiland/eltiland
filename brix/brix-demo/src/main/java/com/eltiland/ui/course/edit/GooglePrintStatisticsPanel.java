@@ -1,5 +1,6 @@
 package com.eltiland.ui.course.edit;
 
+import com.eltiland.bl.course.CoursePrintStatManager;
 import com.eltiland.bl.course.ELTCourseItemManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
@@ -33,6 +34,8 @@ public class GooglePrintStatisticsPanel extends ELTDialogPanel implements IDialo
 
     @SpringBean
     private ELTCourseItemManager courseItemManager;
+    @SpringBean
+    private CoursePrintStatManager coursePrintStatManager;
 
     private IModel<ELTDocumentCourseItem> itemModel = new GenericDBModel<>(ELTDocumentCourseItem.class);
 
@@ -84,14 +87,20 @@ public class GooglePrintStatisticsPanel extends ELTDialogPanel implements IDialo
                 public void process(IModel<Long> uploadedFileModel, AjaxRequestTarget target) {
                     close(target);
 
-                    itemModel.getObject().setLimit(uploadedFileModel.getObject());
-                    try {
-                        courseItemManager.update(itemModel.getObject());
-                    } catch (CourseException e) {
-                        ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    Long limit = itemModel.getObject().getLimit();
+                    Long newLimit = uploadedFileModel.getObject();
+
+                    if (limit != newLimit) {
+                        itemModel.getObject().setLimit(uploadedFileModel.getObject());
+                        try {
+                            courseItemManager.update(itemModel.getObject());
+                            coursePrintStatManager.updateLimits(itemModel.getObject(), newLimit);
+                        } catch (CourseException e) {
+                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                        }
+                        countModel.detach();
+                        target.add(limitContainer);
                     }
-                    countModel.detach();
-                    target.add(limitContainer);
                 }
             });
         }
@@ -119,13 +128,16 @@ public class GooglePrintStatisticsPanel extends ELTDialogPanel implements IDialo
         @Override
         protected void onClick(AjaxRequestTarget target) {
             itemModel.getObject().setPrintable(true);
-            itemModel.getObject().setLimit((long) 1);
-            try {
-                courseItemManager.update(itemModel.getObject());
-            } catch (CourseException e) {
-                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            if (itemModel.getObject().getLimit() != 1) {
+                itemModel.getObject().setLimit((long) 1);
+                try {
+                    courseItemManager.update(itemModel.getObject());
+                    coursePrintStatManager.updateLimits(itemModel.getObject(), (long) 1);
+                } catch (CourseException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
+                redrawInfo(target, true);
             }
-            redrawInfo(target, true);
         }
 
         @Override
@@ -139,13 +151,17 @@ public class GooglePrintStatisticsPanel extends ELTDialogPanel implements IDialo
         @Override
         protected void onClick(AjaxRequestTarget target) {
             itemModel.getObject().setPrintable(false);
-            itemModel.getObject().setLimit((long) 1);
-            try {
-                courseItemManager.update(itemModel.getObject());
-            } catch (CourseException e) {
-                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+            itemModel.getObject().setLimit((long) 0);
+            if (itemModel.getObject().getLimit() != 0) {
+                itemModel.getObject().setLimit((long) 0);
+                try {
+                    courseItemManager.update(itemModel.getObject());
+                    coursePrintStatManager.updateLimits(itemModel.getObject(), (long) 0);
+                } catch (CourseException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
+                redrawInfo(target, true);
             }
-            redrawInfo(target, false);
         }
 
         @Override

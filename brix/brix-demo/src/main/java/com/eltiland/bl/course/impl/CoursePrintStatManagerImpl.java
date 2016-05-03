@@ -8,6 +8,7 @@ import com.eltiland.bl.validators.CourseItemPrintStatValidator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.ELTCourse;
+import com.eltiland.model.course2.content.ELTCourseItem;
 import com.eltiland.model.course2.content.google.CourseItemPrintStat;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
@@ -71,6 +72,19 @@ public class CoursePrintStatManagerImpl extends ManagerImpl implements CoursePri
             throw new CourseException(CourseException.ERROR_PRINTSTAT_UPDATE, e);
         }
         return stat;
+    }
+
+    @Override
+    @Transactional
+    public void updateLimits(ELTCourseItem item, Long limit) throws CourseException {
+        Criteria criteria = getCurrentSession().createCriteria(CourseItemPrintStat.class);
+        criteria.add(Restrictions.eq("item", item));
+        List<CourseItemPrintStat> stats = criteria.list();
+
+        for (CourseItemPrintStat stat : stats) {
+            stat.setPrintLimit(limit);
+            update(stat);
+        }
     }
 
     @Override
