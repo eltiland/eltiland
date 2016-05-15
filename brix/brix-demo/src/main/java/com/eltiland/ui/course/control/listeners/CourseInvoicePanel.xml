@@ -14,6 +14,7 @@
     <entry key="listener.tooltip">Перевести в слушатели</entry>
     <entry key="send.tooltip">Отправить сообщение всем слушателям</entry>
     <entry key="send.user.tooltip">Отправить сообщение слушателю</entry>
+    <entry key="add.tooltip">Добавить пользователя</entry>
 
     <entry key="nameColumn">ФИО</entry>
     <entry key="contactColumn">Общие данные</entry>
@@ -48,6 +49,12 @@
 
     <entry key="message.listener">Пользователь переведен в статус слушателя.</entry>
     <entry key="message.send">Сообщение успешно отправлено.</entry>
+
+    <entry key="user.select">Выбор пользователя</entry>
+    <entry key="user.search">Поиск пользователя</entry>
+
+    <entry key="name.column">ФИО</entry>
+    <entry key="email.column">Email</entry>
 </properties>
 
 

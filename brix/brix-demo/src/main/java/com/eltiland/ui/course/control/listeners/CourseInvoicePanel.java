@@ -7,6 +7,7 @@ import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.bl.user.CourseFileAccessManager;
 import com.eltiland.bl.user.UserFileAccessManager;
 import com.eltiland.bl.user.UserFileManager;
+import com.eltiland.bl.user.UserManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.UserException;
@@ -20,6 +21,7 @@ import com.eltiland.model.file.File;
 import com.eltiland.model.file.UserFile;
 import com.eltiland.model.file.UserFileAccess;
 import com.eltiland.model.payment.PaidStatus;
+import com.eltiland.model.user.User;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ReadonlyObjects;
 import com.eltiland.ui.common.components.ResourcesUtils;
@@ -31,6 +33,7 @@ import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallbac
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.common.components.selector.ELTSelectDialog;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.control.listeners.panel.*;
@@ -76,6 +79,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
     private UserFileAccessManager userFileAccessManager;
     @SpringBean
     private CourseFileAccessManager courseFileAccessManager;
+    @SpringBean
+    private UserManager userManager;
 
     private IModel<ELTCourseListener> currentListenerModel =
             new GenericDBModel<ELTCourseListener>(ELTCourseListener.class);
@@ -148,6 +153,69 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
         }
     };
 
+    private ELTSelectDialog<User> selectDialog = new ELTSelectDialog<User>("selectDialog", 880) {
+        @Override
+        protected int getMaxRows() {
+            return 20;
+        }
+
+        @Override
+        protected String getHeader() {
+            return getString("user.select");
+        }
+
+        @Override
+        protected void onSelect(AjaxRequestTarget target, List<Long> selectedIds) {
+            close(target);
+
+            for (Long id : selectedIds) {
+                User user = genericManager.getObject(User.class, id);
+                ELTCourseListener listener = courseListenerManager.getItem(
+                        user, CourseInvoicePanel.this.getModelObject());
+                if (listener != null)
+                    continue;
+
+                listener = new ELTCourseListener();
+                listener.setStatus(PaidStatus.NEW);
+                listener.setCourse(getModelObject());
+                listener.setDays(getModelObject().getDays());
+                listener.setPrice(getModelObject().getPrice());
+                listener.setListener(user);
+                listener.setType(ListenerType.PHYSICAL);
+                try {
+                    listener = courseListenerManager.create(listener);
+                } catch (CourseException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                }
+                target.add(grid);
+            }
+        }
+
+        @Override
+        protected List<IColumn<User>> getColumns() {
+            List<IColumn<User>> columns = new ArrayList<>();
+            columns.add(new PropertyColumn<User>(new ResourceModel("name.column"), "name", "name"));
+            columns.add(new PropertyColumn<User>(new ResourceModel("email.column"), "email", "email"));
+            return columns;
+        }
+
+        @Override
+        protected Iterator getIterator(int first, int count) {
+            return userManager.getUserSearchList(first, count,
+                    getSearchString(), getSort().getProperty(), getSort().isAscending()).iterator();
+        }
+
+        @Override
+        protected int getSize() {
+            return userManager.getUserSearchCount(getSearchString());
+        }
+
+        @Override
+        protected String getSearchPlaceholder() {
+            return getString("user.search");
+        }
+    };
+
     /**
      * Panel ctor.
      *
@@ -160,6 +228,7 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
         add(offerPanelDialog);
         add(fileDialog);
         add(sendDialog);
+        add(selectDialog);
 
         grid = new ELTTable<ELTCourseListener>("grid", 30) {
             @Override
@@ -234,7 +303,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
             @Override
             protected List<GridAction> getControlActions() {
                 return new ArrayList<>(Arrays.asList(
-                        GridAction.SEND, GridAction.ON, GridAction.OFF, GridAction.LOCK, GridAction.UNLOCK));
+                        GridAction.SEND, GridAction.ON, GridAction.OFF,
+                        GridAction.LOCK, GridAction.UNLOCK, GridAction.ADD));
             }
 
             @Override
@@ -261,6 +331,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         return isTraining && !isOpen;
                     case SEND:
                         return getSize() > 0;
+                    case ADD:
+                        return true;
                     default:
                         return false;
 
@@ -296,6 +368,8 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                         return getString("send.tooltip");
                     case USER_SEND:
                         return getString("send.user.tooltip");
+                    case ADD:
+                        return getString("add.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
@@ -476,6 +550,9 @@ public class CourseInvoicePanel extends BaseEltilandPanel<ELTCourse> {
                     case USER_SEND:
                         currentListenerModel.setObject(rowModel.getObject());
                         sendDialog.show(target);
+                        break;
+                    case ADD:
+                        selectDialog.show(target);
                         break;
                 }
                 if (action.equals(GridAction.ON) || action.equals(GridAction.OFF) ||
