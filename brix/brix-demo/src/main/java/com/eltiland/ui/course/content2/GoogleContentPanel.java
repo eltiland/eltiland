@@ -157,7 +157,13 @@ public class GoogleContentPanel extends AbstractCourseContentPanel<ELTGoogleCour
                             if (!(((ELTDocumentCourseItem) item).isPrintable())) {
                                 return null;
                             } else {
-                                return ((ELTDocumentCourseItem) item).getLimit();
+                                CourseItemPrintStat stat = coursePrintStatManager.getItem(
+                                        listenerModel.getObject(), item);
+                                if( stat != null ) {
+                                    return stat.getPrintLimit();
+                                } else {
+                                    return ((ELTDocumentCourseItem) item).getLimit();
+                                }
                             }
                         }
                     }
