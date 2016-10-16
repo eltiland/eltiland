@@ -137,13 +137,9 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     @Override
     @Transactional(readOnly = true)
     public int getWebinarUserCount(Webinar webinar, String pattern) throws EltilandManagerException {
-        try {
-            FullTextQuery query = createWebinarUserSearchFullTextQuery(
-                    createWebinarUserSearchCriteria(webinar, pattern));
-            return query.list().size();
-        } catch (IOException | ParseException e) {
-            throw new EltilandManagerException("Error while searching by webinar users", e);
-        }
+        Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
+                .add(Restrictions.eq("webinar", webinar));
+        return criteria.list().size();
     }
 
     @Override
@@ -190,7 +186,14 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     public List<WebinarUserPayment> getWebinarUserList(
             Webinar webinar, int index, Integer count, String sProperty,
             boolean isAscending, String pattern) throws EltilandManagerException {
-        try {
+        Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
+                .add(Restrictions.eq("webinar", webinar))
+                //.addOrder( isAscending ? Order.asc() :Order.desc())
+                .setFetchSize(count)
+                .setFirstResult(index);
+        return criteria.list();
+
+    /*    try {
             FullTextQuery query = createWebinarUserSearchFullTextQuery(
                     createWebinarUserSearchCriteria(webinar, pattern));
             query.setMaxResults(count);
@@ -199,7 +202,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
             return query.list();
         } catch (IOException | ParseException e) {
             throw new EltilandManagerException("Error while searching by webinar users", e);
-        }
+        }*/
     }
 
     @Override
