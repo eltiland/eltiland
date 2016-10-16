@@ -22,7 +22,7 @@ import com.eltiland.session.EltilandSession;
 import com.eltiland.utils.DateUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.morphology.russian.RussianAnalyzer;
+import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -491,7 +491,8 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
 
         org.apache.lucene.search.Query query = null;
 
-        RussianAnalyzer russianAnalyzer = new RussianAnalyzer();
+        RussianAnalyzer russianAnalyzer;
+        russianAnalyzer = new RussianAnalyzer(Version.LUCENE_36);
         MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, fields, russianAnalyzer);
 
         if (StringUtils.isEmpty(searchString)) {
@@ -513,7 +514,7 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
         FullTextSession fullTextSession = Search.getFullTextSession(getCurrentSession());
 
         org.apache.lucene.search.Query query = null;
-        RussianAnalyzer russianAnalyzer = new RussianAnalyzer();
+        RussianAnalyzer russianAnalyzer = new RussianAnalyzer(Version.LUCENE_36);
         MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_36, fields, russianAnalyzer);
 
         if (StringUtils.isEmpty(criteria.getSearchQuery())) {

@@ -10,7 +10,7 @@ import com.eltiland.model.library.LibraryCollection;
 import com.eltiland.model.library.LibraryRecord;
 import com.eltiland.model.library.RecordCollection;
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.morphology.russian.RussianAnalyzer;
+import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.Sort;
@@ -137,7 +137,7 @@ public class LibraryCollectionManagerImpl extends ManagerImpl implements Library
 
         org.apache.lucene.search.Query query;
 
-        RussianAnalyzer russianAnalyzer = new RussianAnalyzer();
+        RussianAnalyzer russianAnalyzer = new RussianAnalyzer(Version.LUCENE_36);
         QueryParser parser = new QueryParser(Version.LUCENE_36, "name", russianAnalyzer);
 
         if (StringUtils.isEmpty(searchString)) {

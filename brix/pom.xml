@@ -758,9 +758,12 @@
             <url>https://repository.apache.org/content/repositories/snapshots</url>
         </repository>
         <repository>
-            <id>russian-morphology.lucene.apache.org</id>
-            <name>Lucene Russian Morphology Repository for Maven</name>
-            <url>http://russianmorphology.googlecode.com/svn/repo/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-akuznetsov-russianmorphology</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/akuznetsov/russianmorphology</url>
         </repository>
         <repository>
             <id>visural-common</id>
@@ -772,6 +775,5 @@
             <name>visural-wicket</name>
             <url>http://visural-wicket.googlecode.com/svn/trunk/visural-wicket/maven/</url>
         </repository>
-
     </repositories>
 </project>

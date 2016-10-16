@@ -52,7 +52,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
                 <!--hiberante-search configuration-->
                 <prop key="hibernate.search.default.directory_provider">filesystem</prop>
                 <prop key="hibernate.search.default.indexBase">${props.lucene.search.index}</prop>
-                <prop key="hibernate.search.analyzer">com.eltiland.model.search.RussianAnalyzerStopWords</prop>
+                <!--<prop key="hibernate.search.analyzer">com.eltiland.model.search.RussianAnalyzerStopWords</prop>-->
                 <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property>

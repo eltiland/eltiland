@@ -41,13 +41,13 @@ public class WebinarsManagementPanel extends BaseEltilandPanel<Workspace> {
     protected WebinarsManagementPanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
 
-        try {
+     /*   try {
             webinarManager.authenticate();
         } catch (EltilandManagerException e) {
             LOGGER.error("Cannot authenticate to use Webinar.ru API", e);
             EltiStaticAlerts.registerErrorPopup(getString("errorAPIAccess"));
             throw new RestartResponseException(AdminPage.class);
-        }
+        }*/
 
         add(new BrixTabbedPanel("pgTabPanel",
                 Arrays.<IBrixTab>asList(new AbstractWorkspaceTab(new ResourceModel("announcementTab"), workspaceIModel) {
