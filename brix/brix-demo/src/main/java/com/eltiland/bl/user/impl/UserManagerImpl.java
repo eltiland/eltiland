@@ -207,30 +207,38 @@ public class UserManagerImpl extends ManagerImpl implements UserManager {
     @Transactional(readOnly = true)
     public List<User> getUserSearchList(int index, int count,
                                         String searchString, String sortProperty, boolean isAscending) {
-        try {
-            FullTextQuery hibQuery = createUserSearchFullTextQuery(searchString);
-            hibQuery.setFirstResult(index);
-            hibQuery.setMaxResults(count);
-            hibQuery.setSort(new Sort(new SortField(sortProperty, SortField.STRING, isAscending)));
+        Criteria criteria = getCurrentSession().createCriteria(User.class);
 
-            return hibQuery.list();
-        } catch (IOException | ParseException e) {
-            LOGGER.error("Error querying", e);
-            throw new IllegalStateException("Error querying Teacher index", e);
+        if( searchString != null ) {
+            Disjunction searchCriteria = Restrictions.disjunction();
+            searchCriteria.add(Restrictions.ilike("email", searchString));
+            searchCriteria.add(Restrictions.ilike("name", searchString));
+            criteria.add(searchCriteria);
         }
+
+        if( sortProperty != null ) {
+            criteria.addOrder(isAscending ? Order.asc(sortProperty) : Order.desc(sortProperty));
+        }
+
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+
+        return criteria.list();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Integer getUserSearchCount(String searchString) {
-        try {
-            FullTextQuery hibQuery = createUserSearchFullTextQuery(searchString);
+        Criteria criteria = getCurrentSession().createCriteria(User.class);
 
-            return hibQuery.getResultSize();
-        } catch (IOException | ParseException e) {
-            LOGGER.error("Error querying", e);
-            throw new IllegalStateException("Error querying PEI index", e);
+        if( searchString != null ) {
+            Disjunction searchCriteria = Restrictions.disjunction();
+            searchCriteria.add(Restrictions.ilike("email", searchString));
+            searchCriteria.add(Restrictions.ilike("name", searchString));
+            criteria.add(searchCriteria);
         }
+
+        return criteria.list().size();
     }
 
     @Override

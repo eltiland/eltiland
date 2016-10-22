@@ -243,6 +243,8 @@ public class TestContentPanel extends CourseContentPanel<TestCourseItem> {
         access = start == null || end == null ||
                 start.before(DateUtils.getCurrentDate()) && end.after(DateUtils.getCurrentDate());
 
+       // increaseAttempt();
+
 //        if (getModelObject().getAttemptLimit() > 0 && access) {
 //            if (!(testAttemptManager.hasAttemptRecord(getModelObject()))) {
 //                UserTestAttempt attempt = new UserTestAttempt();

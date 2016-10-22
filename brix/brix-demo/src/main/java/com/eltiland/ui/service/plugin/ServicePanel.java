@@ -77,7 +77,7 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                 course.setTraining(true);
                 course.setAuthor(user);
                 course.setCreationDate(DateUtils.getCurrentDate());
-                course.setName("Реализуем ФГОС ДО: новые подходы к организации конструирования в современном образовательном пространстве");
+                course.setName("Современные подходы к организации образовательной среды в условиях реализации ФГОС ДО. 72 часа");
                 course.setStatus(false);
 
                 course.setPublished(false);
