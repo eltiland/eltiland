@@ -79,7 +79,7 @@ public class CourseItemPage extends BaseEltilandPage {
             add(new GoogleContentPanel("panel", new GenericDBModel<>(ELTGoogleCourseItem.class,
                     (ELTGoogleCourseItem) courseItemIModel.getObject())));
         } else if (clazz.equals(ELTTestCourseItem.class)) {
-            add(new TestContentPanel("panel", new GenericDBModel<>(TestCourseItem.class, (long) 74880)));
+            add(new TestContentPanel("panel", new GenericDBModel<>(TestCourseItem.class, (long) 76120)));
         } else if (clazz.equals(ELTVideoCourseItem.class)) {
             add(new VideoContentPanel("panel", new GenericDBModel<>(ELTVideoCourseItem.class,
                     (ELTVideoCourseItem) courseItemIModel.getObject())));

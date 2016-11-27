@@ -179,14 +179,15 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("createProperty") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-              /*  Course course = new Course();
-                course.setName("Реализуем ФГОС ДО: новые подходы к организации конструирования в современном образовательном пространстве");
+                Course course = new Course();
+                course.setName("Современные подходы к организации образовательной среды в условиях реализации ФГОС ДО");
                 course.setStatus(false);
                 course.setPublished(false);
                 course.setAutoJoin(true);
 
                 try {
                     genericManager.saveNew(course);
+                    ELTAlerts.renderOKPopup("Created OK", target);
                 } catch (ConstraintException e) {
                     e.printStackTrace();
                 }
