@@ -11,8 +11,8 @@ import com.eltiland.model.webinar.WebinarMultiplyPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.utils.DateUtils;
 import org.hibernate.Query;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +28,7 @@ public class WebinarMultiplyPaymentManagerImpl extends ManagerImpl implements We
 
     @Autowired
     private GenericManager genericManager;
+    @Qualifier("webinarServiceV3Impl")
     @Autowired
     private WebinarServiceManager webinarServiceManager;
 

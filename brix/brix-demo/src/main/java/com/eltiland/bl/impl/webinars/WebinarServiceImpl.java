@@ -4,6 +4,7 @@ import com.eltiland.bl.utils.http.DeleteMethod;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.webinar.Webinar;
+import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.codec.binary.Base64;
@@ -107,6 +108,11 @@ public class WebinarServiceImpl implements WebinarServiceManager {
                 throw new EltilandManagerException("Cannot get answer from server. May be API access is closed.", e);
             }
         }
+    }
+
+    @Override
+    public Long createEvent(WebinarEvent event) {
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override

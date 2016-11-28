@@ -22,7 +22,6 @@ import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -48,6 +47,7 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     @Autowired
     private GenericManager genericManager;
 
+    @Qualifier("webinarServiceV3Impl")
     @Autowired
     private WebinarServiceManager webinarServiceManager;
 

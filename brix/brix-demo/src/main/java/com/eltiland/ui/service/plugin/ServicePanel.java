@@ -3,22 +3,18 @@ package com.eltiland.ui.service.plugin;
 import com.eltiland.bl.*;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
-import com.eltiland.bl.test.TestAttemptManager;
 import com.eltiland.bl.user.UserManager;
+import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
-import com.eltiland.exceptions.EmailException;
-import com.eltiland.exceptions.FileException;
-import com.eltiland.model.Property;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
-import com.eltiland.model.course.TaskCourseItem;
 import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course.test.UserTestAttempt;
 import com.eltiland.model.file.File;
 import com.eltiland.model.user.User;
-import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarUserPayment;
+import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.behavior.ConfirmationDialogBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
@@ -34,7 +30,6 @@ import org.brixcms.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,6 +58,10 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
     private CourseManager courseManager;
     @SpringBean
     private EmailMessageManager emailMessageManager;
+    @SpringBean(name = "webinarServiceV3Impl")
+    private WebinarServiceManager webinarServiceManager;
+    @SpringBean
+    private WebinarEventManager webinarEventManager;
 
     protected ServicePanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
@@ -161,7 +160,7 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("webinarSend") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                Webinar webinar = genericManager.getObject(Webinar.class, (long) 53140);
+           /*     Webinar webinar = genericManager.getObject(Webinar.class, (long) 53140);
                 genericManager.initialize(webinar, webinar.getWebinarUserPayments());
                 for (WebinarUserPayment payment : webinar.getWebinarUserPayments()) {
                     if (payment.getRole().equals(WebinarUserPayment.Role.MEMBER)) {
@@ -172,6 +171,14 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                             e.printStackTrace();
                         }
                     }
+                }*/
+
+                WebinarEvent event = new WebinarEvent();
+                event.setName("Супер тестовый вебинар 4");
+                try {
+                    webinarEventManager.create(event);
+                } catch (WebinarException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
                 }
             }
         });

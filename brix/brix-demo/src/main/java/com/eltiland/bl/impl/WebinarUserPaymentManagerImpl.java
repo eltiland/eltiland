@@ -15,12 +15,9 @@ import com.eltiland.utils.DateUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
-import org.apache.lucene.morphology.russian.RussianAnalayzer;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.Sort;
-import org.apache.lucene.search.SortField;
 import org.apache.lucene.util.Version;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -31,6 +28,7 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +49,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
     @Autowired
     private GenericManager genericManager;
+    @Qualifier("webinarServiceV3Impl")
     @Autowired
     private WebinarServiceManager webinarServiceManager;
     @Autowired

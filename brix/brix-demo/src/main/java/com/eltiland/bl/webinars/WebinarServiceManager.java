@@ -1,10 +1,11 @@
 package com.eltiland.bl.webinars;
 
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
+import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.model.webinar.WebinarUserPayment;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +19,14 @@ public interface WebinarServiceManager {
      * Authentication.
      */
     void authenticate() throws EltilandManagerException;
+
+    /**
+     * Event creation
+     *
+     * @param event event structure to create.
+     * @return event id.
+     */
+    Long createEvent(WebinarEvent event) throws WebinarException;
 
     /**
      * Webinar creation.
