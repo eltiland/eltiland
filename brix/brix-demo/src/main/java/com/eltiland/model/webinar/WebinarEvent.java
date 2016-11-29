@@ -2,9 +2,9 @@ package com.eltiland.model.webinar;
 
 import com.eltiland.model.AbstractIdentifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Webinar entity entity.
@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class WebinarEvent extends AbstractIdentifiable {
     private String name;
     private Long   eventId;
+    private Set<Webinar> webinars = new HashSet<>(0);
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -31,5 +32,14 @@ public class WebinarEvent extends AbstractIdentifiable {
 
     public void setEventId(long eventId) {
         this.eventId = eventId;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
+    public Set<Webinar> getWebinars() {
+        return webinars;
+    }
+
+    public void setWebinars(Set<Webinar> webinars) {
+        this.webinars = webinars;
     }
 }
