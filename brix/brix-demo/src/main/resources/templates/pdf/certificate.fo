@@ -16,8 +16,8 @@
             </block>
         </static-content>
         <flow flow-name="xsl-region-body">
-            <block text-align="center" text-decoration="underline" font-size="16pt" font-style="italic"
-                   padding-top="10cm" font-weight="bold" font-family="ArialRegular">
+            <block text-align="center" font-size="16pt" font-style="italic"
+                   padding-top="9.5cm" font-weight="bold" font-family="ArialRegular">
                 $userName
             </block>
             <block text-align="center" font-size="16pt" font-style="italic" font-weight="bold"
