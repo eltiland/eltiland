@@ -4,7 +4,6 @@ import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.content.ELTCourseItem;
 import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
-import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,9 +33,6 @@ public class CourseItemValidator {
         if (item instanceof ELTGoogleCourseItem && !(item instanceof ELTContentCourseItem)
                 && ((ELTGoogleCourseItem) item).getItem() == null) {
             throw new CourseException(CourseException.ERROR_ITEM_DOCUMENT_EMPTY);
-        }
-        if (item instanceof ELTWebinarCourseItem && ((ELTWebinarCourseItem) item).getWebinar() == null) {
-            throw new CourseException(CourseException.ERROR_ITEM_WEBINAR_EMPTY);
         }
     }
 }
