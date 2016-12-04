@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="no.webinars">В данном курсе нет вебинаров, доступных для управления</entry>
+
+    <entry key="name.column">Название вебинара</entry>
+</properties>

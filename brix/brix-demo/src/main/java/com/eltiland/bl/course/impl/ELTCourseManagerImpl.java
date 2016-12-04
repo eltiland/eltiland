@@ -12,6 +12,7 @@ import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.CourseStatus;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
+import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.user.User;
 import com.eltiland.session.EltilandSession;
@@ -326,6 +327,45 @@ public class ELTCourseManagerImpl extends ManagerImpl implements ELTCourseManage
         criteria.setFetchMode("legalDoc", FetchMode.JOIN);
         criteria.add(Restrictions.eq("id", id));
         return (TrainingCourse) criteria.uniqueResult();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ELTWebinarCourseItem> getWebinars(
+            ELTCourse course, int index, Integer count, String sProperty, boolean isAscending) {
+        Criteria criteria = getCurrentSession().createCriteria(ELTWebinarCourseItem.class);
+
+        criteria.createAlias("parent", "parent", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("block", "block", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("block.course", "block.course", JoinType.LEFT_OUTER_JOIN);
+
+        Disjunction courseCriteria = Restrictions.disjunction();
+        courseCriteria.add(Restrictions.eq("parent", course));
+        courseCriteria.add(Restrictions.eq("block.course", course));
+        criteria.add(courseCriteria);
+
+        criteria.setMaxResults(count);
+        criteria.setFirstResult(index);
+        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public int getWebinarsCount(ELTCourse course) {
+        Criteria criteria = getCurrentSession().createCriteria(ELTWebinarCourseItem.class);
+
+        criteria.createAlias("parent", "parent", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("block", "block", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("block.course", "block.course", JoinType.LEFT_OUTER_JOIN);
+
+        Disjunction courseCriteria = Restrictions.disjunction();
+        courseCriteria.add(Restrictions.eq("parent", course));
+        courseCriteria.add(Restrictions.eq("block.course", course));
+        criteria.add(courseCriteria);
+
+        return criteria.list().size();
     }
 
     @Override

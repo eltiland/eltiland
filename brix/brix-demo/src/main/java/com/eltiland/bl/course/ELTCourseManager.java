@@ -5,6 +5,7 @@ import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.CourseStatus;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
+import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
 import com.eltiland.model.user.User;
 
 import java.util.List;
@@ -98,9 +99,9 @@ public interface ELTCourseManager {
     /**
      * Get list of courses in which user is a listener.
      *
-     * @param user      user to check.
-     * @param clazz     of the courses (Training of Author). Null - returns general list of all courses.
-     * @param isModule  if TRUE - return only modules.
+     * @param user     user to check.
+     * @param clazz    of the courses (Training of Author). Null - returns general list of all courses.
+     * @param isModule if TRUE - return only modules.
      * @return list of courses, in which user is a listener.
      */
     List<? extends ELTCourse> getListenerCourses(User user, Class<? extends ELTCourse> clazz, Boolean isModule);
@@ -110,8 +111,8 @@ public interface ELTCourseManager {
      *******************************************************/
 
     /**
-     * @param index the start position of the first result, numbered from 0.
-     * @param count the maximum number of results to retrieve. {@code null} means no limit.
+     * @param index    the start position of the first result, numbered from 0.
+     * @param count    the maximum number of results to retrieve. {@code null} means no limit.
      * @param isModule
      * @return published author courses list, sorted by index.
      */
@@ -119,23 +120,22 @@ public interface ELTCourseManager {
 
     /**
      * @param isModule is this author course a training module or not (NULL means - return all courses).
-     * @param index the start position of the first result, numbered from 0.
-     * @param count the maximum number of results to retrieve. {@code null} means no limit.
-     *
+     * @param index    the start position of the first result, numbered from 0.
+     * @param count    the maximum number of results to retrieve. {@code null} means no limit.
      * @return published author courses list
      */
     List<AuthorCourse> getAuthorCourses(int index, int count, Boolean isModule);
 
     /**
-     * @return count of the published author courses.
      * @param isModule is this author course a training module or not (NULL means - return all courses).
+     * @return count of the published author courses.
      */
     int getAuthorCoursesCount(Boolean isModule);
 
     /**
      * @param course
      * @param direction direction of movement (true - up, false - down)
-     * @param isModule is this author course a training module or not.
+     * @param isModule  is this author course a training module or not.
      */
     void moveAuthorCourse(AuthorCourse course, boolean direction, boolean isModule) throws CourseException;
 
@@ -169,4 +169,23 @@ public interface ELTCourseManager {
      * @return course with fetched docs
      */
     TrainingCourse fetchDocuments(Long id);
+
+    /**
+     * Returns list of items-webinars for given course
+     *
+     * @param course course item
+     * @param index starting fetch index
+     * @param count count of elements in fetch
+     * @param sProperty sort property
+     * @param isAscending ascending flag
+     * @return list of webinars
+     */
+    List<ELTWebinarCourseItem> getWebinars(
+            ELTCourse course, int index, Integer count, String sProperty, boolean isAscending);
+
+    /**
+     * @param course course item
+     * @return count of items-webinars.
+     */
+    int getWebinarsCount(ELTCourse course);
 }

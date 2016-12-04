@@ -7,5 +7,6 @@
     <entry key="listener.menu">Управление слушателями</entry>
     <entry key="general.menu">Общая информация</entry>
     <entry key="admin.menu">Администраторы курса</entry>
+    <entry key="webinar.menu">Управление вебинарами</entry>
     <entry key="print.menu">Статистика печати</entry>
 </properties>
