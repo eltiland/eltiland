@@ -57,7 +57,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "description", nullable = false, length = 1024)
+    @Column(name = "description", length = 1024)
     public String getDescription() {
         return description;
     }
@@ -66,7 +66,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "shortDesc", nullable = false, length = 1024)
+    @Column(name = "shortDesc", length = 1024)
     public String getShortDesc() {
         return shortDesc;
     }
@@ -84,7 +84,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.startDate = startDate;
     }
 
-    @Column(name = "registrationDeadline", nullable = false)
+    @Column(name = "registrationDeadline")
     public Date getRegistrationDeadline() {
         return registrationDeadline;
     }
@@ -120,7 +120,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.duration = duration;
     }
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -139,7 +139,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.webinarid = webinarid;
     }
 
-    @Column(name = "managername", nullable = false, length = 255)
+    @Column(name = "managername", length = 255)
     public String getManagername() {
         return managername;
     }
@@ -148,7 +148,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.managername = managername;
     }
 
-    @Column(name = "managersurname", nullable = false, length = 255)
+    @Column(name = "managersurname", length = 255)
     public String getManagersurname() {
         return managersurname;
     }

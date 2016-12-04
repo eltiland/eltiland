@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="alex.plotnikov">
+        <comment>Removing not null constraint in webinar item</comment>
+        <dropNotNullConstraint tableName="webinar" columnName="description" schemaName="public"/>
+        <dropNotNullConstraint tableName="webinar" columnName="shortdesc" schemaName="public"/>
+        <dropNotNullConstraint tableName="webinar" columnName="registrationdeadline" schemaName="public"/>
+        <dropNotNullConstraint tableName="webinar" columnName="password" schemaName="public"/>
+        <dropNotNullConstraint tableName="webinar" columnName="managername" schemaName="public"/>
+        <dropNotNullConstraint tableName="webinar" columnName="managersurname" schemaName="public"/>
+    </changeSet>
+</databaseChangeLog>

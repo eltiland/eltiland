@@ -295,6 +295,10 @@
     background: url("../images/actions/16x16/check_16x16.png");
 }
 
+.iconControlPanel .button .new16 {
+    background: url("../images/actions/16x16/new_16x16.png");
+}
+
 .iconControlPanel .whitespace16 {
     height: 16px;
     width: 7px;

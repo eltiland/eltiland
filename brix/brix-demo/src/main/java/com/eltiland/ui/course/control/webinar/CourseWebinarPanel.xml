@@ -4,4 +4,10 @@
     <entry key="no.webinars">В данном курсе нет вебинаров, доступных для управления</entry>
 
     <entry key="name.column">Название вебинара</entry>
+    <entry key="status.column">Создан на платформе</entry>
+
+    <entry key="new.action">Создать вебинар на платформе</entry>
+
+    <entry key="yes">Да</entry>
+    <entry key="no">Нет</entry>
 </properties>

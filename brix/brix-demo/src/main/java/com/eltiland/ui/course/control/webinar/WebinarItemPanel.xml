@@ -4,5 +4,6 @@
     <entry key="webinar.header">Свойства вебинара</entry>
     <entry key="webinar.item.name">Название вебинара</entry>
     <entry key="webinar.item.date">Дата начала</entry>
+    <entry key="webinar.item.duration">Длительность (минуты)</entry>
 </properties>
 
