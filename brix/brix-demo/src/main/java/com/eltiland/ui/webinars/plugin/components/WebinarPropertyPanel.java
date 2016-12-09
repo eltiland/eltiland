@@ -5,6 +5,7 @@ import com.eltiland.bl.WebinarManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -312,6 +313,8 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         } catch (EltilandManagerException e) {
             LOGGER.error("Cannot create webinar.", e);
             throw new WicketRuntimeException("Cannot create webinar.", e);
+        } catch (WebinarException e) {
+            e.printStackTrace();
         }
 
         WebinarUserPayment userPayment = new WebinarUserPayment();

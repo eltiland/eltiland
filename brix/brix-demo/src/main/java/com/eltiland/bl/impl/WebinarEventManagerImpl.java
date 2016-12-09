@@ -4,7 +4,6 @@ import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarEventManager;
 import com.eltiland.bl.validators.WebinarEventValidator;
 import com.eltiland.bl.webinars.WebinarServiceManager;
-import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.WebinarEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class WebinarEventManagerImpl extends ManagerImpl implements WebinarEvent
 
     @Override
     public WebinarEvent create(WebinarEvent event) throws WebinarException {
-        webinarEventValidator.isValid(event);
+    /*    webinarEventValidator.isValid(event);
 
         try {
             event.setEventId(0);
@@ -46,6 +45,7 @@ public class WebinarEventManagerImpl extends ManagerImpl implements WebinarEvent
             return event;
         } catch (ConstraintException e) {
             throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE, e);
-        }
+        }*/
+        return null;
     }
 }

@@ -24,17 +24,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Webinar service implementation, based on Webinar.ru v3 API
  */
 @Component
 @Service("webinarServiceV3Impl")
-public class WebinarServiceV3Impl implements WebinarServiceManager{
+public class WebinarServiceV3Impl implements WebinarServiceManager {
 
     @Autowired
     @Qualifier("eltilandProperties")
@@ -49,17 +46,36 @@ public class WebinarServiceV3Impl implements WebinarServiceManager{
 
     private static String getContentFromInputStream(InputStream is) throws IOException {
         String line;
-        StringBuilder sb=new StringBuilder();
-        BufferedReader reader=new BufferedReader(new InputStreamReader(is));
-        while((line=reader.readLine())!=null) {
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        while ((line = reader.readLine()) != null) {
             sb.append(line);
         }
         reader.close();
         return sb.toString();
     }
 
+    private static List<BasicNameValuePair> getStartDateString(Date date) {
+        List<BasicNameValuePair> params = new ArrayList<>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+
+        params.add(new BasicNameValuePair("startsAt[date][year]", String.valueOf(calendar.get(Calendar.YEAR))));
+        params.add(new BasicNameValuePair("startsAt[date][month]", String.valueOf(calendar.get(Calendar.MONTH))));
+        params.add(new BasicNameValuePair("startsAt[time][hour]", String.valueOf(calendar.get(Calendar.HOUR))));
+        params.add(new BasicNameValuePair("startsAt[time][minute]", String.valueOf(calendar.get(Calendar.MINUTE))));
+
+        return params;
+    }
+
+    private static String getDurationString(int duration) {
+        int hours = duration / 60;
+        int minutes = duration % 60;
+        return String.format("PT%dH%dM0S", hours, minutes);
+    }
+
     @Override
-    public Long createEvent(WebinarEvent event) throws WebinarException {
+    public Long createEvent(Webinar event) throws WebinarException {
 
         DefaultHttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(WEBINAR_RU_API_URL + CREATE_EVENT_ACTION);
@@ -69,9 +85,13 @@ public class WebinarServiceV3Impl implements WebinarServiceManager{
 
         httppost.setHeader("x-auth-token", eltilandProps.getProperty("webinar.apikey"));
 
-        List<BasicNameValuePair> params=new ArrayList<>();
+        List<BasicNameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("name", event.getName()));
         params.add(new BasicNameValuePair("access", "8"));
+        for (BasicNameValuePair param : getStartDateString(event.getStartDate())) {
+            params.add(param);
+        }
+        params.add(new BasicNameValuePair("duration", getDurationString(event.getDuration())));
 
         try {
 
@@ -79,10 +99,10 @@ public class WebinarServiceV3Impl implements WebinarServiceManager{
             HttpResponse response = httpclient.execute(httppost);
 
             int statusCode = response.getStatusLine().getStatusCode();
-            if( statusCode == 400 ) {
+            if (statusCode == 400) {
                 throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE_PARAMS);
             }
-            if( statusCode == 401 || statusCode == 403 ) {
+            if (statusCode == 401 || statusCode == 403) {
                 throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE_AUTH);
             }
 

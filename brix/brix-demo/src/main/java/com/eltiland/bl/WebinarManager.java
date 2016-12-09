@@ -1,6 +1,7 @@
 package com.eltiland.bl;
 
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 
@@ -26,7 +27,7 @@ public interface WebinarManager {
      * @param webinar webinar structure to create.
      * @return newly persisted webinar entity.
      */
-    Webinar create(Webinar webinar) throws EltilandManagerException;
+    Webinar create(Webinar webinar) throws EltilandManagerException, WebinarException;
 
     /**
      * Webinar removing. Drop webinar event and removes persisted item.

@@ -1,18 +1,22 @@
 package com.eltiland.ui.service.plugin;
 
 import com.eltiland.bl.*;
+import com.eltiland.bl.drive.GoogleDriveManager;
 import com.eltiland.bl.impl.integration.IconsLoader;
 import com.eltiland.bl.impl.integration.IndexCreator;
 import com.eltiland.bl.user.UserManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.GoogleDriveException;
 import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course.test.UserTestAttempt;
 import com.eltiland.model.file.File;
+import com.eltiland.model.google.ELTGooglePermissions;
+import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.ui.common.BaseEltilandPanel;
@@ -62,6 +66,8 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
     private WebinarServiceManager webinarServiceManager;
     @SpringBean
     private WebinarEventManager webinarEventManager;
+    @SpringBean
+    private GoogleDriveManager googleDriveManager;
 
     protected ServicePanel(String id, IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
@@ -210,6 +216,20 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
                 }*/
             }
         }.add(new ConfirmationDialogBehavior()));
+
+        add(new EltiAjaxLink("fixGoogle") {
+            @Override
+            public void onClick(AjaxRequestTarget ajaxRequestTarget) {
+                GoogleDriveFile driveFile = genericManager.getObject(GoogleDriveFile.class, (long) 30561);
+                try {
+                    googleDriveManager.insertPermission(driveFile, new ELTGooglePermissions(ELTGooglePermissions.ROLE.OWNER, ELTGooglePermissions.TYPE.USER, "eltiland.portal@gmail.com"));
+                    googleDriveManager.publishDocument(driveFile);
+                    int a = 0;
+                } catch (GoogleDriveException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 //        Form form = new Form("form");
 //        add(form);

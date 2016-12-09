@@ -26,7 +26,7 @@ public interface WebinarServiceManager {
      * @param event event structure to create.
      * @return event id.
      */
-    Long createEvent(WebinarEvent event) throws WebinarException;
+    Long createEvent(Webinar event) throws WebinarException;
 
     /**
      * Webinar creation.

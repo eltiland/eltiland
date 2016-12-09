@@ -10,4 +10,6 @@
 
     <entry key="yes">Да</entry>
     <entry key="no">Нет</entry>
+
+    <entry key="webinar.created">Вебинар успешно создан</entry>
 </properties>

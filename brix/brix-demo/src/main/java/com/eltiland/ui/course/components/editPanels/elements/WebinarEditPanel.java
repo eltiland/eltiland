@@ -5,6 +5,7 @@ import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course.WebinarCourseItem;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
@@ -78,6 +79,8 @@ public class WebinarEditPanel extends AbstractCourseItemEditPanel<WebinarCourseI
                 } catch (EltilandManagerException | ConstraintException e) {
                     LOGGER.error("Cannot create course item", e);
                     throw new WicketRuntimeException("Cannot create course item", e);
+                } catch (WebinarException e) {
+                    e.printStackTrace();
                 }
                 ELTAlerts.renderOKPopup(getString("createMessage"), target);
                 webinarIModel.setObject(webinar);

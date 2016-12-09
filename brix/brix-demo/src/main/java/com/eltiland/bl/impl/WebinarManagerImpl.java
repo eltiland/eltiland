@@ -7,6 +7,7 @@ import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.FileException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.file.File;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
@@ -64,9 +65,9 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
 
     @Override
     @Transactional
-    public Webinar create(Webinar webinar) throws EltilandManagerException {
+    public Webinar create(Webinar webinar) throws EltilandManagerException, WebinarException {
         if (webinar.isApproved()) {
-            webinarServiceManager.createWebinar(webinar);
+            webinarServiceManager.createEvent(webinar);
         }
         try {
             genericManager.saveNew(webinar);

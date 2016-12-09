@@ -1,13 +1,23 @@
 package com.eltiland.ui.course.control.webinar;
 
+import com.eltiland.bl.WebinarEventManager;
+import com.eltiland.bl.WebinarManager;
+import com.eltiland.bl.course.ELTCourseItemManager;
 import com.eltiland.bl.course.ELTCourseManager;
+import com.eltiland.exceptions.CourseException;
+import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
+import com.eltiland.model.webinar.Webinar;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
+import com.eltiland.ui.common.components.dialog.ELTAlerts;
+import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.utils.StringUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -37,14 +47,59 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
 
     @SpringBean
     private ELTCourseManager courseManager;
+    @SpringBean
+    private WebinarManager webinarManager;
+    @SpringBean
+    private WebinarEventManager webinarEventManager;
+    @SpringBean
+    private ELTCourseItemManager courseItemManager;
 
     private ELTTable<ELTWebinarCourseItem> grid;
+
+    private IModel<ELTWebinarCourseItem> courseItemIModel = new GenericDBModel<>(ELTWebinarCourseItem.class);
 
     private Dialog<WebinarItemPanel> webinarItemPanelDialog =
             new Dialog<WebinarItemPanel>("webinar_property_dialog", 400) {
                 @Override
                 public WebinarItemPanel createDialogPanel(String id) {
                     return new WebinarItemPanel(id);
+                }
+
+                @Override
+                public void registerCallback(WebinarItemPanel panel) {
+                    super.registerCallback(panel);
+                    panel.setSimpleNewCallback(new IDialogSimpleNewCallback.IDialogActionProcessor<WebinarData>() {
+                        @Override
+                        public void process(IModel<WebinarData> model, AjaxRequestTarget target) {
+
+                            // creating webinar item
+                            Webinar webinar = new Webinar();
+                            webinar.setName(model.getObject().getName());
+                            webinar.setStartDate(model.getObject().getDate());
+                            webinar.setDuration(model.getObject().getDuration().intValue());
+                            webinar.setStatus(Webinar.Status.OPENED);
+                            webinar.setCourse(true);
+                            webinar.setNeedConfirm(false);
+                            webinar.setApproved(true);
+
+                            try {
+                                webinarManager.create(webinar);
+                            } catch (EltilandManagerException | WebinarException e) {
+                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                            }
+
+                            courseItemIModel.getObject().setWebinar(webinar);
+                            try {
+                                courseItemManager.update(courseItemIModel.getObject());
+                            } catch (CourseException e) {
+                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                            }
+
+                            ELTAlerts.renderOKPopup(getString("webinar.created"), target);
+                            close(target);
+                            target.add(grid);
+                        }
+                    });
                 }
             };
 
@@ -109,6 +164,7 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
             @Override
             protected void onClick(IModel<ELTWebinarCourseItem> rowModel, GridAction action, AjaxRequestTarget target) {
                 if (action.equals(GridAction.NEW)) {
+                    courseItemIModel.setObject(rowModel.getObject());
                     webinarItemPanelDialog.show(target);
                 }
             }

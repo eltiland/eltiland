@@ -111,7 +111,7 @@ public class WebinarServiceImpl implements WebinarServiceManager {
     }
 
     @Override
-    public Long createEvent(WebinarEvent event) {
+    public Long createEvent(Webinar event) {
         throw new UnsupportedOperationException("This operation is not supported");
     }
 

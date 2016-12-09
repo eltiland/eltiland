@@ -18,4 +18,16 @@ class WebinarData implements Serializable {
         this.date = date;
         this.duration = duration;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
 }

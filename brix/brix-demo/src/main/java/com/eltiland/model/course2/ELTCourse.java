@@ -8,6 +8,7 @@ import com.eltiland.model.file.File;
 import com.eltiland.model.file.UserFile;
 import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.model.user.User;
+import com.eltiland.model.webinar.WebinarEvent;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -36,6 +37,7 @@ public abstract class ELTCourse extends AbstractIdentifiable {
     private Boolean needConfirm;
     private BigDecimal price;
     private Long days;
+    private WebinarEvent event;
 
     private Set<User> admins = new HashSet<>(0);
     private Set<ELTCourseBlock> content = new HashSet<>(0);
@@ -200,5 +202,15 @@ public abstract class ELTCourse extends AbstractIdentifiable {
 
     public void setDays(Long days) {
         this.days = days;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event")
+    public WebinarEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(WebinarEvent event) {
+        this.event = event;
     }
 }
