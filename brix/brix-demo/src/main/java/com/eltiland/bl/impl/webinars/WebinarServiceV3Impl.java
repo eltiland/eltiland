@@ -93,7 +93,7 @@ public class WebinarServiceV3Impl implements WebinarServiceManager {
 
         List<BasicNameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("name", event.getName()));
-        params.add(new BasicNameValuePair("access", "8"));
+        params.add(new BasicNameValuePair("access", "4"));
         for (BasicNameValuePair param : getStartDateString(event.getStartDate())) {
             params.add(param);
         }
