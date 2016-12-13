@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="alex.plotnikov">
+        <sql>
+            CREATE TABLE "course"."audio_item" (
+            "_id" Numeric NOT NULL,
+            "description" Character Varying( 2048 ) COLLATE "pg_catalog"."default",
+            "link" Character Varying( 128 ) COLLATE "pg_catalog"."default" NOT NULL,
+            "item" Numeric,
+            PRIMARY KEY ( "_id" ) );
+
+            ALTER TABLE "course"."audio_item"
+            ADD CONSTRAINT "audio_item" FOREIGN KEY ( "item" )
+            REFERENCES "course"."item" ( "_id" ) MATCH SIMPLE
+            ON DELETE No Action
+            ON UPDATE No Action;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

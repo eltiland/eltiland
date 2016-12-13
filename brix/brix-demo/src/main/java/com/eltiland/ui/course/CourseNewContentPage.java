@@ -3,6 +3,7 @@ package com.eltiland.ui.course;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseBlockManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
+import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.model.course2.ContentStatus;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.content.ELTCourseBlock;
@@ -45,6 +46,8 @@ public class CourseNewContentPage extends BaseEltilandPage {
     private ELTCourseBlockManager courseBlockManager;
     @SpringBean
     private ELTCourseListenerManager courseListenerManager;
+    @SpringBean
+    private ELTCourseManager courseManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseNewContentPage.class);
 
@@ -104,14 +107,31 @@ public class CourseNewContentPage extends BaseEltilandPage {
                 ? ContentStatus.DEMO : ContentStatus.FULL;
         final boolean demo = status.equals(ContentStatus.DEMO);
 
-        // check for the access to the course
-        boolean isFree = courseModel.getObject().getPrice() == null ||
-                courseModel.getObject().getPrice().equals(BigDecimal.ZERO);
-        ELTCourseListener listener =
-                courseListenerManager.getItem(currentUserModel.getObject(), courseModel.getObject());
-        boolean hasAccess = listener != null && listener.getStatus().equals(PaidStatus.CONFIRMED);
-        if (!demo && !isFree && !hasAccess) {
+        boolean isAdminAccess = false;
+        // check for superadmin or admn access to the course
+        if (currentUserModel.getObject() == null) {
             throw new AbortWithHttpErrorCodeException(HttpServletResponse.SC_NOT_FOUND);
+        } else {
+            if (!currentUserModel.getObject().isSuperUser()) {
+                List<ELTCourse> admins = courseManager.getAdminCourses(currentUserModel.getObject(), null);
+                if (admins.contains(courseModel.getObject())) {
+                    isAdminAccess = true;
+                }
+            } else {
+                isAdminAccess = true;
+            }
+        }
+
+        if (!isAdminAccess) {
+            // check for the access to the course
+            boolean isFree = courseModel.getObject().getPrice() == null ||
+                    courseModel.getObject().getPrice().equals(BigDecimal.ZERO);
+            ELTCourseListener listener =
+                    courseListenerManager.getItem(currentUserModel.getObject(), courseModel.getObject());
+            boolean hasAccess = listener != null && listener.getStatus().equals(PaidStatus.CONFIRMED);
+            if (!demo && !isFree && !hasAccess) {
+                throw new AbortWithHttpErrorCodeException(HttpServletResponse.SC_NOT_FOUND);
+            }
         }
 
         add(new Label("name", courseModel.getObject().getName()));

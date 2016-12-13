@@ -107,6 +107,13 @@ public class CourseException extends Exception {
     public static final String ERROR_CONTENT_CREATE = "Неизвестная ошибка при создании контента элемента курса";
     public static final String ERROR_CONTENT_UPDATE = "Неизвестная ошибка при сохранении контента элемента курса";
 
+    public static final String ERROR_AUDIO_ITEM_EMPTY = "Элемента курса не может быть пустым";
+    public static final String ERROR_AUDIO_DESCRIPTION_TOO_LONG = "Описание аудио не может превышать 2048 символов";
+    public static final String ERROR_AUDIO_LINK_EMPTY = "Ссылка на скачивание аудио не может быть пустой";
+    public static final String ERROR_AUDIO_ITEM_CREATE = "Неизвестная ошибка при создании элемента аудио";
+    public static final String ERROR_AUDIO_ITEM_UPDATE = "Неизвестная ошибка при сохранени элемента аудио";
+    public static final String ERROR_AUDIO_ITEM_DELETE = "Неизвестная ошибка при удалении элемента аудио";
+
     public CourseException() {
     }
 

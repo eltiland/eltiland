@@ -12,5 +12,6 @@
     <entry key="ELTVideoCourseItem.class">Видео</entry>
     <entry key="ELTWebinarCourseItem.class">Вебинар</entry>
     <entry key="ELTGroupCourseItem.class">Группа элементов</entry>
+    <entry key="ELTAudioCourseItem.class">Аудио</entry>
 </properties>
 

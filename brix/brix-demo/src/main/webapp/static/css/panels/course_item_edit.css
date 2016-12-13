@@ -24,3 +24,12 @@
     display: table-cell;
     padding-right: 5px;
 }
+
+.course_item_edit > .audio_edit {
+    margin-top: 45px !important;
+    margin: 10px;
+}
+
+.course_item_edit > .audio_edit .eltTextField {
+    margin-bottom: 10px;
+}

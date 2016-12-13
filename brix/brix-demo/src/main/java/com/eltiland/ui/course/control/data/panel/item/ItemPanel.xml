@@ -8,6 +8,7 @@
     <entry key="ELTVideoCourseItem.class">video</entry>
     <entry key="ELTWebinarCourseItem.class">webinar</entry>
     <entry key="ELTGroupCourseItem.class">group</entry>
+    <entry key="ELTAudioCourseItem.class">audio</entry>
 
     <entry key="add.tooltip">Добавить элемент в конец группы</entry>
     <entry key="up.tooltip">Поднять на 1 позицию</entry>

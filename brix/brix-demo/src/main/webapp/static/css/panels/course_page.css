@@ -108,6 +108,10 @@
     background-image: url("../../images/item/24x24/video.png");
 }
 
+.course_item > .audio {
+    background-image: url("../../images/item/24x24/audio.png");
+}
+
 .course_item > .name {
     display: table-cell;
     padding-left: 5px;

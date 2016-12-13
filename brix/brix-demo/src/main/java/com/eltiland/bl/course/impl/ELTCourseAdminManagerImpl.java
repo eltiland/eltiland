@@ -6,7 +6,6 @@ import com.eltiland.bl.impl.ManagerImpl;
 import com.eltiland.bl.validators.CourseAdminValidator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.CourseException;
-import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.model.course2.CourseAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

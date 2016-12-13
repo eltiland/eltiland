@@ -7,4 +7,5 @@
     <entry key="ELTVideoCourseItem.class">video</entry>
     <entry key="ELTWebinarCourseItem.class">webinar</entry>
     <entry key="ELTTestCourseItem.class">test</entry>
+    <entry key="ELTAudioCourseItem.class">audio</entry>
 </properties>

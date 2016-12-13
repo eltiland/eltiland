@@ -3,6 +3,7 @@ package com.eltiland.ui.course.control.data.panel.item;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.model.course2.content.ELTCourseBlock;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.audio.ELTAudioCourseItem;
 import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTPresentationCourseItem;
@@ -37,6 +38,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
     private TypeItem video;
     private TypeItem webinar;
     private TypeItem group;
+    private TypeItem audio;
 
     private Class<? extends ELTCourseItem> clazz = null;
 
@@ -56,6 +58,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     webinar.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -78,6 +81,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     webinar.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -100,6 +104,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     webinar.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -122,6 +127,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     webinar.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -144,6 +150,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     presentation.reset(target);
                     webinar.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -166,6 +173,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     presentation.reset(target);
                     group.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -188,6 +196,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
                     video.reset(target);
                     webinar.reset(target);
                     presentation.reset(target);
+                    audio.reset(target);
                 } else {
                     clazz = null;
                 }
@@ -204,6 +213,33 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
             }
         };
 
+        audio = new TypeItem("audio", ELTAudioCourseItem.class) {
+            @Override
+            protected void onClick(AjaxRequestTarget target, boolean newValue) {
+                if (newValue) {
+                    clazz = ELTAudioCourseItem.class;
+                    document.reset(target);
+                    content.reset(target);
+                    test.reset(target);
+                    video.reset(target);
+                    webinar.reset(target);
+                    presentation.reset(target);
+                } else {
+                    clazz = null;
+                }
+            }
+
+            @Override
+            protected String getImage() {
+                return "audio";
+            }
+
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+
 
         form.add(document);
         form.add(content);
@@ -212,6 +248,7 @@ public class ItemTypeSelector extends ELTDialogPanel implements IDialogNewCallba
         form.add(video);
         form.add(webinar);
         form.add(group);
+        form.add(audio);
         form.setMultiPart(true);
     }
 

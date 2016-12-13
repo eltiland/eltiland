@@ -2,6 +2,7 @@ package com.eltiland.ui.course;
 
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.audio.ELTAudioCourseItem;
 import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
@@ -84,6 +85,9 @@ public class CourseEditPage extends BaseEltilandPage {
         } else if (clazz.equals(ELTContentCourseItem.class)) {
             add(new ContentCourseItemPanel("panel", new GenericDBModel<>(ELTContentCourseItem.class,
                     (ELTContentCourseItem) courseItemIModel.getObject())));
+        } else if (clazz.equals(ELTAudioCourseItem.class)) {
+            add(new AudioCourseItemPanel("panel", new GenericDBModel<>(ELTAudioCourseItem.class,
+                    (ELTAudioCourseItem) courseItemIModel.getObject())));
         }
     }
 

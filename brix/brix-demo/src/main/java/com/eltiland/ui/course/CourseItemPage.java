@@ -3,6 +3,7 @@ package com.eltiland.ui.course;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course2.content.ELTCourseItem;
+import com.eltiland.model.course2.content.audio.ELTAudioCourseItem;
 import com.eltiland.model.course2.content.google.ELTContentCourseItem;
 import com.eltiland.model.course2.content.google.ELTDocumentCourseItem;
 import com.eltiland.model.course2.content.google.ELTGoogleCourseItem;
@@ -14,6 +15,7 @@ import com.eltiland.ui.common.BaseEltilandPage;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.content.TestContentPanel;
+import com.eltiland.ui.course.content2.AudioContentPanel;
 import com.eltiland.ui.course.content2.ContentPanel;
 import com.eltiland.ui.course.content2.GoogleContentPanel;
 import com.eltiland.ui.course.content2.VideoContentPanel;
@@ -86,6 +88,9 @@ public class CourseItemPage extends BaseEltilandPage {
         } else if (clazz.equals(ELTWebinarCourseItem.class)) {
 //            add(new WebinarCourseItemPanel("panel", new GenericDBModel<>(ELTWebinarCourseItem.class,
 //                    (ELTWebinarCourseItem) courseItemIModel.getObject())));
+        } else if (clazz.equals(ELTAudioCourseItem.class)) {
+            add(new AudioContentPanel("panel", new GenericDBModel<>(
+                    ELTAudioCourseItem.class, (ELTAudioCourseItem) courseItemIModel.getObject())));
         }
     }
 
