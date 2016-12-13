@@ -46,7 +46,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
     private Set<File> files = new HashSet<>(0);
     private Set<WebinarMultiplyPayment> multiplyPayments = new HashSet<>(0);
     private Boolean needConfirm;
-    private WebinarEvent event;
+    private Long eventId;
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -239,13 +239,12 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
         this.needConfirm = needConfirm;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event")
-    public WebinarEvent getEvent() {
-        return event;
+    @Column(name = "event_id")
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setEvent(WebinarEvent event) {
-        this.event = event;
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 }

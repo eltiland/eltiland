@@ -1,15 +1,21 @@
 package com.eltiland.ui.course.control.webinar;
 
-import com.eltiland.bl.WebinarEventManager;
+import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarManager;
+import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.course.ELTCourseItemManager;
+import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.EmailException;
 import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.content.webinar.ELTWebinarCourseItem;
+import com.eltiland.model.course2.listeners.ELTCourseListener;
+import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
+import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
@@ -32,7 +38,10 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.util.string.Strings;
+import org.joda.time.DateTime;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -50,9 +59,13 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
     @SpringBean
     private WebinarManager webinarManager;
     @SpringBean
-    private WebinarEventManager webinarEventManager;
-    @SpringBean
     private ELTCourseItemManager courseItemManager;
+    @SpringBean
+    private ELTCourseListenerManager courseListenerManager;
+    @SpringBean
+    private WebinarUserPaymentManager webinarUserPaymentManager;
+    @SpringBean
+    private GenericManager genericManager;
 
     private ELTTable<ELTWebinarCourseItem> grid;
 
@@ -139,14 +152,16 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
 
             @Override
             protected List<GridAction> getGridActions(IModel<ELTWebinarCourseItem> rowModel) {
-                return new ArrayList<>(Arrays.asList(GridAction.NEW));
+                return new ArrayList<>(Arrays.asList(GridAction.NEW, GridAction.SYNC));
             }
 
             @Override
             protected boolean isActionVisible(GridAction action, IModel<ELTWebinarCourseItem> rowModel) {
+                boolean hasWebinar = rowModel.getObject().getWebinar() != null;
                 if (action.equals(GridAction.NEW)) {
-                    boolean hasWebinar = rowModel.getObject().getWebinar() != null;
                     return !hasWebinar;
+                } else if (action.equals(GridAction.SYNC)) {
+                    return hasWebinar;
                 } else {
                     return false;
                 }
@@ -156,9 +171,16 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
             protected String getActionTooltip(GridAction action) {
                 if (action.equals(GridAction.NEW)) {
                     return getString("new.action");
+                } else if (action.equals(GridAction.SYNC)) {
+                    return getString("sync.action");
                 } else {
                     return StringUtils.EMPTY_STRING;
                 }
+            }
+
+            @Override
+            protected boolean hasConfirmation(GridAction action) {
+                return action.equals(GridAction.SYNC);
             }
 
             @Override
@@ -166,6 +188,41 @@ public class CourseWebinarPanel extends BaseEltilandPanel<ELTCourse> {
                 if (action.equals(GridAction.NEW)) {
                     courseItemIModel.setObject(rowModel.getObject());
                     webinarItemPanelDialog.show(target);
+                } else if (action.equals(GridAction.SYNC)) {
+                    genericManager.initialize(rowModel.getObject(), rowModel.getObject().getWebinar());
+                    Webinar webinar = rowModel.getObject().getWebinar();
+
+
+                    for (ELTCourseListener listener : courseListenerManager.getList(getModelObject(), true, false)) {
+
+                        if (webinarUserPaymentManager.hasAlreadyRegistered(webinar, listener.getUserEmail()))
+                            continue;
+
+                        WebinarUserPayment userPayment = new WebinarUserPayment();
+                        userPayment.setUserEmail(listener.getUserEmail());
+
+                        String names[] = Strings.split(listener.getUserName(), ' ');
+                        userPayment.setUserSurname(names[0]);
+                        if (names.length > 1) {
+                            userPayment.setUserName(names[1]);
+                        }
+                        if (names.length > 2) {
+                            userPayment.setPatronymic(names[2]);
+                        }
+
+                        userPayment.setStatus(PaidStatus.CONFIRMED);
+                        userPayment.setWebinar(webinar);
+                        userPayment.setRole(WebinarUserPayment.Role.MEMBER);
+                        userPayment.setPrice(BigDecimal.ZERO);
+                        userPayment.setRegistrationDate(DateTime.now().toDate());
+
+                        try {
+                            webinarUserPaymentManager.createUser(userPayment);
+                        } catch (EltilandManagerException | EmailException | WebinarException e) {
+                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                        }
+                    }
+                    ELTAlerts.renderOKPopup(getString("sync.created"), target);
                 }
             }
 

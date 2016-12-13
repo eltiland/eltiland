@@ -67,7 +67,8 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     @Transactional
     public Webinar create(Webinar webinar) throws EltilandManagerException, WebinarException {
         if (webinar.isApproved()) {
-            webinarServiceManager.createEvent(webinar);
+            Long eventId = webinarServiceManager.createEvent(webinar);
+            webinar.setEventId(eventId);
         }
         try {
             genericManager.saveNew(webinar);
@@ -111,7 +112,7 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     }
 
     @Override
-    public void apply(Webinar webinar, WebinarUserPayment moderator) throws EltilandManagerException {
+    public void apply(Webinar webinar, WebinarUserPayment moderator) throws EltilandManagerException, WebinarException {
         simpleCreate(webinar);
         simpleAdd(moderator);
     }
@@ -127,7 +128,7 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     }
 
     @Transactional
-    private void simpleAdd(WebinarUserPayment payment) throws EltilandManagerException {
+    private void simpleAdd(WebinarUserPayment payment) throws EltilandManagerException, WebinarException {
         genericManager.initialize(payment, payment.getWebinar());
         webinarServiceManager.addUser(payment);
     }

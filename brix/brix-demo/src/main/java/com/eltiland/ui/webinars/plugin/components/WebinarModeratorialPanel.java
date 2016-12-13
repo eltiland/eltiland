@@ -7,6 +7,7 @@ import com.eltiland.bl.user.UserManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
@@ -123,6 +124,8 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                                 } catch (EltilandManagerException e) {
                                     LOGGER.error("Cannot add user to webinar", e);
                                     throw new WicketRuntimeException("Cannot add user to webinar", e);
+                                } catch (WebinarException e) {
+                                    e.printStackTrace();
                                 }
                             }
                             close(target);
@@ -167,7 +170,11 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                                     payment.setUserEmail(user.getEmail());
 
                                     try {
-                                        webinarUserPaymentManager.createUser(payment);
+                                        try {
+                                            webinarUserPaymentManager.createUser(payment);
+                                        } catch (WebinarException e) {
+                                            e.printStackTrace();
+                                        }
                                     } catch (EltilandManagerException e) {
                                         LOGGER.error("Got exception when creating user", e);
                                         throw new WicketRuntimeException("Got exception when creating user", e);
@@ -388,6 +395,8 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                     } catch (EmailException e) {
                         LOGGER.error("Got exception when sending email", e);
                         throw new WicketRuntimeException("Got exception when sending email", e);
+                    } catch (WebinarException e) {
+                        e.printStackTrace();
                     }
                     target.add(grid);
                 }
@@ -457,6 +466,8 @@ public class WebinarModeratorialPanel extends BaseEltilandPanel<Webinar> {
                 } catch (EmailException e) {
                     LOGGER.error("Got exception when sending email", e);
                     throw new WicketRuntimeException("Got exception when sending email", e);
+                } catch (WebinarException e) {
+                    e.printStackTrace();
                 }
                 callback.process(target);
             }

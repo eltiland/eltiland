@@ -3,6 +3,7 @@ package com.eltiland.ui.webinars.components;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -76,7 +77,11 @@ public class WebinarLoginPanel extends BaseEltilandPanel {
             user.setUserProfile(currentUser);
             user.setUserEmail(currentUser.getEmail());
             try {
-                webinarUserPaymentManager.createUser(user);
+                try {
+                    webinarUserPaymentManager.createUser(user);
+                } catch (WebinarException e) {
+                    e.printStackTrace();
+                }
 
                 boolean isFree = (user.getPrice() == null) || (user.getPrice().equals(BigDecimal.valueOf(0)));
 

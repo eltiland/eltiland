@@ -4,6 +4,7 @@ import com.eltiland.bl.WebinarManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.components.ReadonlyObjects;
@@ -68,6 +69,8 @@ public abstract class AvailableWebinarDataTablePanel extends WebinarDataTablePan
                     } catch (EmailException e) {
                         LOGGER.error("Cannot send mail to user", e);
                         throw new WicketRuntimeException("Cannot send mail to user", e);
+                    } catch (WebinarException e) {
+                        e.printStackTrace();
                     }
 
                     close(target);

@@ -7,6 +7,7 @@ import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
@@ -77,7 +78,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
     @Override
     @Transactional
-    public boolean createModerator(WebinarUserPayment user) throws EltilandManagerException {
+    public boolean createModerator(WebinarUserPayment user) throws EltilandManagerException, WebinarException {
         user.setRole(WebinarUserPayment.Role.MODERATOR);
         user.setStatus(PaidStatus.CONFIRMED);
         boolean result = webinarServiceManager.addUser(user);
@@ -90,7 +91,7 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
     }
 
     @Override
-    public boolean createUser(WebinarUserPayment user) throws EltilandManagerException, EmailException {
+    public boolean createUser(WebinarUserPayment user) throws EltilandManagerException, EmailException, WebinarException {
         user.setRole(WebinarUserPayment.Role.MEMBER);
 
         boolean result = true;
@@ -261,7 +262,11 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
         genericManager.initialize(payment, payment.getWebinar());
         Webinar webinar = payment.getWebinar();
         if (!(webinar.getStartDate().before(nowDate))) {
-            result = webinarServiceManager.addUser(payment);
+            try {
+                result = webinarServiceManager.addUser(payment);
+            } catch (WebinarException e) {
+                e.printStackTrace();
+            }
             if (!result) {
                 return false;
             }
@@ -389,7 +394,11 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
                 update(payment);
                 return link;
             } else {
-                webinarServiceManager.addUser(payment);
+                try {
+                    webinarServiceManager.addUser(payment);
+                } catch (WebinarException e) {
+                    e.printStackTrace();
+                }
                 return getLink(payment);
             }
         }

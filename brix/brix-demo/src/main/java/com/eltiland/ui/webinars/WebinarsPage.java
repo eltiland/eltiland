@@ -6,6 +6,7 @@ import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.*;
@@ -167,6 +168,8 @@ public class WebinarsPage extends BaseEltilandPage {
                     } catch (EmailException e) {
                         LOGGER.error("Cannot send mail to user", e);
                         throw new WicketRuntimeException("Cannot send mail to user", e);
+                    } catch (WebinarException e) {
+                        e.printStackTrace();
                     }
 
                     close(target);

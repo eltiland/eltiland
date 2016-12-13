@@ -3,7 +3,6 @@ package com.eltiland.bl.webinars;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.model.webinar.WebinarUserPayment;
 
 import java.util.Map;
@@ -58,7 +57,7 @@ public interface WebinarServiceManager {
      * @param user user to add.
      * @return TRUE, if request successful.
      */
-    boolean addUser(WebinarUserPayment user) throws EltilandManagerException;
+    boolean addUser(WebinarUserPayment user) throws WebinarException;
 
     /**
      * Removing user from webinar.

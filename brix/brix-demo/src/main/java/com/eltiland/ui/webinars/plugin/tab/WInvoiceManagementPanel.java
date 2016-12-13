@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course.WebinarCourseItem;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
@@ -136,6 +137,8 @@ public class WInvoiceManagementPanel extends BaseEltilandPanel<Workspace> {
                                 } catch (ConstraintException | EltilandManagerException e) {
                                     LOGGER.error("Cannot apply webinar", e);
                                     throw new WicketRuntimeException("Cannot apply webinar", e);
+                                } catch (WebinarException e) {
+                                    e.printStackTrace();
                                 }
 
                                 ELTAlerts.renderOKPopup(getString("messageApplySuccess"), target);

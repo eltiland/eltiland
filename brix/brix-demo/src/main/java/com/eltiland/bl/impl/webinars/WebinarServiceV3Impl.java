@@ -1,10 +1,11 @@
 package com.eltiland.bl.impl.webinars;
 
+import com.eltiland.bl.GenericManager;
+import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -36,9 +37,14 @@ public class WebinarServiceV3Impl implements WebinarServiceManager {
     @Autowired
     @Qualifier("eltilandProperties")
     private Properties eltilandProps;
+    @Autowired
+    private WebinarUserPaymentManager userPaymentManager;
+    @Autowired
+    private GenericManager genericManager;
 
     private static final String WEBINAR_RU_API_URL = "https://userapi.webinar.ru/v3/";
     private static final String CREATE_EVENT_ACTION = "events";
+    private static final String REGISTER_USER_ACTION = "register";
 
     @Override
     public void authenticate() throws EltilandManagerException {
@@ -134,8 +140,54 @@ public class WebinarServiceV3Impl implements WebinarServiceManager {
     }
 
     @Override
-    public boolean addUser(WebinarUserPayment user) throws EltilandManagerException {
-        return false;
+    public boolean addUser(WebinarUserPayment user) throws WebinarException {
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+
+        genericManager.initialize(user, user.getWebinar());
+        Long eventId = user.getWebinar().getEventId();
+        HttpPost httppost = new HttpPost(
+                WEBINAR_RU_API_URL + CREATE_EVENT_ACTION + "/" + eventId + "/" + REGISTER_USER_ACTION);
+
+        httpclient.getParams().setParameter("http.protocol.version", HttpVersion.HTTP_1_1);
+        httpclient.getParams().setParameter("http.protocol.content-charset", "UTF-8");
+
+        httppost.setHeader("x-auth-token", eltilandProps.getProperty("webinar.apikey"));
+
+        List<BasicNameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("email", user.getUserEmail()));
+        params.add(new BasicNameValuePair("name", user.getName()));
+        params.add(new BasicNameValuePair("secondName", user.getUserSurname()));
+
+        try {
+            httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+            HttpResponse response = httpclient.execute(httppost);
+
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 400) {
+                throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE_PARAMS);
+            }
+            if (statusCode == 401 || statusCode == 403) {
+                throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE_AUTH);
+            }
+
+            String result = getContentFromInputStream(response.getEntity().getContent());
+
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(result);
+            JSONObject jsonObject = (JSONObject) obj;
+            Long userId = (Long) jsonObject.get("participationId");
+            String link = (String) jsonObject.get("link");
+
+            user.setUserid(userId);
+            user.setWebinarlink(link);
+            userPaymentManager.update(user);
+
+            return true;
+        } catch (IOException | ParseException e) {
+            throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE, e);
+        } catch (EltilandManagerException e) {
+            throw new WebinarException(WebinarException.ERROR_WEBINAR_EVENT_CREATE, e);
+        }
     }
 
     @Override

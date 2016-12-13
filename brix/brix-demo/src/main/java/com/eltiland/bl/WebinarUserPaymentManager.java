@@ -2,6 +2,7 @@ package com.eltiland.bl;
 
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
@@ -30,7 +31,7 @@ public interface WebinarUserPaymentManager {
      * @param user webinar user to add.
      * @return TRUE if request was successful.
      */
-    boolean createModerator(WebinarUserPayment user) throws EltilandManagerException;
+    boolean createModerator(WebinarUserPayment user) throws EltilandManagerException, WebinarException;
 
     /**
      * Adding new user to given Webinar, persist it.
@@ -38,7 +39,7 @@ public interface WebinarUserPaymentManager {
      * @param user webinar user to add.
      * @return TRUE if request was successful.
      */
-    boolean createUser(WebinarUserPayment user) throws EltilandManagerException, EmailException;
+    boolean createUser(WebinarUserPayment user) throws EltilandManagerException, EmailException, WebinarException;
 
     /**
      * @param webinar webinar to check.

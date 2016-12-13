@@ -3,6 +3,7 @@ package com.eltiland.ui.webinars.plugin.tab;
 import com.eltiland.bl.*;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.EmailMessage;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
@@ -220,6 +221,8 @@ public class WAnnouncementManagementPanel extends BaseEltilandPanel<Workspace> {
                                     } catch (EmailException e) {
                                         LOGGER.error("Got exception when sending email", e);
                                         throw new WicketRuntimeException("Got exception when sending email", e);
+                                    } catch (WebinarException e) {
+                                        e.printStackTrace();
                                     }
 
                                 }

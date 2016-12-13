@@ -325,6 +325,8 @@ public class WebinarPropertyPanel extends BaseEltilandPanel<Webinar> implements 
         } catch (EltilandManagerException e) {
             LOGGER.error("Cannot create moderator of the webinar.", e);
             throw new WicketRuntimeException("Cannot create moderator of the webinar.", e);
+        } catch (WebinarException e) {
+            e.printStackTrace();
         }
 
         try {

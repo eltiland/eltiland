@@ -51,7 +51,7 @@ public interface WebinarManager {
      * @param webinar webinar structure to apply.
      * @param moderator moderator to create
      */
-    void apply(Webinar webinar, WebinarUserPayment moderator) throws EltilandManagerException;
+    void apply(Webinar webinar, WebinarUserPayment moderator) throws EltilandManagerException, WebinarException;
 
     /**
      * @param isFuture   if TRUE - return count of future webinars, otherwise - past webinars.

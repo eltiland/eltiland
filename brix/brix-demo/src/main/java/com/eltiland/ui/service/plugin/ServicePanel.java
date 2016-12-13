@@ -9,7 +9,6 @@ import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.GoogleDriveException;
-import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course.Course;
 import com.eltiland.model.course.CourseSession;
 import com.eltiland.model.course.test.TestCourseItem;
@@ -18,7 +17,6 @@ import com.eltiland.model.file.File;
 import com.eltiland.model.google.ELTGooglePermissions;
 import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.model.user.User;
-import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.behavior.ConfirmationDialogBehavior;
 import com.eltiland.ui.common.components.button.EltiAjaxLink;
@@ -64,8 +62,6 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
     private EmailMessageManager emailMessageManager;
     @SpringBean(name = "webinarServiceV3Impl")
     private WebinarServiceManager webinarServiceManager;
-    @SpringBean
-    private WebinarEventManager webinarEventManager;
     @SpringBean
     private GoogleDriveManager googleDriveManager;
 
@@ -166,26 +162,6 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("webinarSend") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-           /*     Webinar webinar = genericManager.getObject(Webinar.class, (long) 53140);
-                genericManager.initialize(webinar, webinar.getWebinarUserPayments());
-                for (WebinarUserPayment payment : webinar.getWebinarUserPayments()) {
-                    if (payment.getRole().equals(WebinarUserPayment.Role.MEMBER)) {
-                        try {
-                            emailMessageManager.sendWebinarInvitationToUser(payment);
-                            LOGGER.info(String.format("send letter to %s", payment.getUserEmail()));
-                        } catch (EmailException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }*/
-
-                WebinarEvent event = new WebinarEvent();
-                event.setName("Супер тестовый вебинар 4");
-                try {
-                    webinarEventManager.create(event);
-                } catch (WebinarException e) {
-                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                }
             }
         });
 

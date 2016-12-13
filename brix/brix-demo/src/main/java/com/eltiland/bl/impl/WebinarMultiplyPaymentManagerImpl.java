@@ -5,6 +5,7 @@ import com.eltiland.bl.WebinarMultiplyPaymentManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarMultiplyPayment;
@@ -75,7 +76,11 @@ public class WebinarMultiplyPaymentManagerImpl extends ManagerImpl implements We
                         "Cannot create userPayment - most likely it's constraint violation", e);
             }
 
-            result = webinarServiceManager.addUser(userPayment);
+            try {
+                result = webinarServiceManager.addUser(userPayment);
+            } catch (WebinarException e) {
+                e.printStackTrace();
+            }
             if (!result) {
                 return false;
             }

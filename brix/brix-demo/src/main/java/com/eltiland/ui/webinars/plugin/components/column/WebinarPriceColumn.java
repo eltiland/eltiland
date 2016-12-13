@@ -6,6 +6,7 @@ import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.BaseEltilandPanel;
@@ -102,6 +103,8 @@ public class WebinarPriceColumn<T> extends AbstractColumn<T, WebinarUserPayment>
                         } catch (EltilandManagerException e) {
                             LOGGER.error("Cannot change price for user", e);
                             throw new WicketRuntimeException("Cannot change price for user", e);
+                        } catch (WebinarException e) {
+                            e.printStackTrace();
                         }
 
                         try {

@@ -3,8 +3,8 @@ package com.eltiland.bl.impl.webinars;
 import com.eltiland.bl.utils.http.DeleteMethod;
 import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarEvent;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.codec.binary.Base64;
@@ -204,7 +204,7 @@ public class WebinarServiceImpl implements WebinarServiceManager {
     }
 
     @Override
-    public boolean addUser(WebinarUserPayment user) throws EltilandManagerException {
+    public boolean addUser(WebinarUserPayment user) throws WebinarException {
      //   try {
          /*   HttpClient client = new HttpClient();
             PutMethod method = new PutMethod(WEBINAR_RU_API_URL
