@@ -60,7 +60,9 @@ import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.http.WebRequest;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 import org.apache.wicket.resource.IPropertiesFactoryContext;
 import org.apache.wicket.resource.PropertiesFactory;
@@ -115,7 +117,15 @@ public final class WicketApplication extends AbstractWicketApplication {
      */
     @Override
     public Class<? extends Page> getHomePage() {
-        return HomePage.class;
+        //return HomePage.class;
+        Url url = ((WebRequest)RequestCycle.get().getRequest()).getUrl();
+        String fullUrl = RequestCycle.get().getUrlRenderer().renderFullUrl(url);
+
+        if( fullUrl.contains("modulteka")) {
+            return ModultekaPage.class;
+        } else {
+            return HomePage.class;
+        }
     }
 
     public List<Long> getRandomOnlineUsersIds(int limit) {
@@ -212,7 +222,7 @@ public final class WicketApplication extends AbstractWicketApplication {
             initializeRepository();
             initDefaultWorkspace();
 
-            // we don't need this here anymore since 1.5 - idea of
+            // we don't need this here anymore since 1.5 c- idea of
             // requestcycleprocessor has been replaced by requestmappers
             // getRequestCycleListeners().add(new
             // BrixRequestCyclerocessor(brix));
