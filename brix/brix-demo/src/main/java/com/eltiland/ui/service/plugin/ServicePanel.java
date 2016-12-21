@@ -72,13 +72,13 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("createCourse") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                User user = userManager.getUserByEmail("aleksey.plotnikov@logicify.com");
+                User user = userManager.getUserByEmail("eltroot1@gmail.com");
 
                 Course course = new Course();
                 course.setTraining(true);
                 course.setAuthor(user);
                 course.setCreationDate(DateUtils.getCurrentDate());
-                course.setName("Современные подходы к организации образовательной среды в условиях реализации ФГОС ДО. 72 часа");
+                course.setName("Организация инклюзивного образования в дошкольной образовательной организации");
                 course.setStatus(false);
 
                 course.setPublished(false);
@@ -169,7 +169,7 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 Course course = new Course();
-                course.setName("Современные подходы к организации образовательной среды в условиях реализации ФГОС ДО");
+                course.setName("Организация инклюзивного образования в дошкольной образовательной организации");
                 course.setStatus(false);
                 course.setPublished(false);
                 course.setAutoJoin(true);
