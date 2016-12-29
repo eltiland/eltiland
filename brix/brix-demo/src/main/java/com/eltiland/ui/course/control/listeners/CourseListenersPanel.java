@@ -3,9 +3,11 @@ package com.eltiland.ui.course.control.listeners;
 import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.course.ELTCourseListenerManager;
+import com.eltiland.bl.test.TestAttemptManager;
 import com.eltiland.bl.user.UserFileManager;
 import com.eltiland.exceptions.CourseException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.model.course.test.UserTestAttempt;
 import com.eltiland.model.course2.ELTCourse;
 import com.eltiland.model.course2.TrainingCourse;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
@@ -56,6 +58,8 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
     private EmailMessageManager emailMessageManager;
     @SpringBean
     private UserFileManager userFileManager;
+    @SpringBean
+    private TestAttemptManager testAttemptManager;
 
     private ELTTable<ELTCourseListener> grid;
 
@@ -138,9 +142,22 @@ public class CourseListenersPanel extends BaseEltilandPanel<ELTCourse> {
                     @Override
                     public void populateItem(Item<ICellPopulator<ELTCourseListener>> components,
                                              String s, IModel<ELTCourseListener> courseListenerIModel) {
+                        // TEMP
+                        boolean isCompleted = false;
+                        genericManager.initialize(getModelObject(), getModelObject().getTest());
+                        if (getModelObject().getTest() != null) {
+                            genericManager.initialize(courseListenerIModel.getObject(),
+                                    courseListenerIModel.getObject().getListener());
+                            UserTestAttempt result = testAttemptManager.checkResult(
+                                    courseListenerIModel.getObject().getListener(), getModelObject().getTest());
+                            if (result != null) {
+                                isCompleted = result.isCompleted();
+                            }
+                        }
+
                         Label label = new Label(s, getString(
-                                courseListenerIModel.getObject().isCompleted() ? "completed" : "not_completed"));
-                        if (courseListenerIModel.getObject().isCompleted()) {
+                                isCompleted ? "completed" : "not_completed"));
+                        if (isCompleted) {
                             label.add(new AttributeAppender("style", "color:red;font-weight:bold"));
                         }
                         components.add(label);

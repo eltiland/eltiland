@@ -133,6 +133,16 @@ public class TestAttemptManagerImpl extends ManagerImpl implements TestAttemptMa
         return addSortCriteria(criteria, index, count, sProperty, isAscending).list();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public UserTestAttempt checkResult(User user, TestCourseItem test) {
+        Criteria criteria = getCurrentSession().createCriteria(UserTestAttempt.class);
+
+        criteria.add(Restrictions.eq("user", user));
+        criteria.add(Restrictions.eq("test", test));
+        return (UserTestAttempt) criteria.uniqueResult();
+    }
+
     private Criteria addSortCriteria(
             Criteria criteria, int index, Integer count, String sProperty, boolean isAscending) {
         criteria.setFirstResult(index);

@@ -1,6 +1,7 @@
 package com.eltiland.model.course2;
 
 import com.eltiland.model.AbstractIdentifiable;
+import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course2.content.ELTCourseBlock;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.course2.listeners.ELTCourseUserData;
@@ -36,6 +37,7 @@ public abstract class ELTCourse extends AbstractIdentifiable {
     private Boolean needConfirm;
     private BigDecimal price;
     private Long days;
+    private TestCourseItem test;
 
     private Set<User> admins = new HashSet<>(0);
     private Set<ELTCourseBlock> content = new HashSet<>(0);
@@ -200,5 +202,15 @@ public abstract class ELTCourse extends AbstractIdentifiable {
 
     public void setDays(Long days) {
         this.days = days;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test")
+    public TestCourseItem getTest() {
+        return test;
+    }
+
+    public void setTest(TestCourseItem test) {
+        this.test = test;
     }
 }

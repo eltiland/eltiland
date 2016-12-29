@@ -2,6 +2,7 @@ package com.eltiland.bl.test;
 
 import com.eltiland.model.course.test.TestCourseItem;
 import com.eltiland.model.course.test.UserTestAttempt;
+import com.eltiland.model.user.User;
 
 import java.util.List;
 
@@ -77,4 +78,6 @@ public interface TestAttemptManager {
      */
     List<UserTestAttempt> getLimitList(
             int index, Integer count, String sProperty, boolean isAscending, String searchString);
+
+    UserTestAttempt checkResult(User user, TestCourseItem test);
 }
