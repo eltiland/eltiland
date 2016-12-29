@@ -18,10 +18,12 @@
     display: table;
     margin: 0 auto;
     font-style: italic;
-    font-size: 24px;
+    font-size: 15px;
     margin-bottom: 5px;
     margin-top: 5px;
     cursor: pointer;
+    color: blue;
+    text-decoration: underline;
 }
 
 .course_list > .list .item {
