@@ -71,6 +71,8 @@ public interface GoogleDriveManager {
      */
     InputStream downloadFileAsPDF(GoogleDriveFile file) throws GoogleDriveException;
 
+    String getWebContentLink(GoogleDriveFile file) throws GoogleDriveException;
+
     /**
      * Add new permission to file.
      *

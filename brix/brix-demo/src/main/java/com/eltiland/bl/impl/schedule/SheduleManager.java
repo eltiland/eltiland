@@ -80,18 +80,18 @@ public class SheduleManager {
                     record.setPublishAttempts(record.getPublishAttempts() + 1);
                     genericManager.update(record);
 
-                    GoogleDriveFile folder = genericManager.getObject(GoogleDriveFile.class,
-                            Long.decode(eltilandProps.get("gdrive.lib.id").toString()));
+                 /*   GoogleDriveFile folder = genericManager.getObject(GoogleDriveFile.class,
+                            Long.decode(eltilandProps.get("gdrive.lib.id").toString()));*/
 
                     GoogleDriveFile gFile = googleDriveManager.insertFile(
                             new ELTGoogleFile(record.getFileContent(), record.getFileContent().getName(),
-                                    record.getFileContent().getName(), record.getFileContent().getType()), folder);
+                                    record.getFileContent().getName(), record.getFileContent().getType()));
                     googleDriveManager.publishDocument(gFile);
-                    if (!(record.getFileContent().getType().equals(MimeType.PDF_TYPE))) {
+               /*     if (!(record.getFileContent().getType().equals(MimeType.PDF_TYPE))) {
                         googleDriveManager.insertPermission(gFile,
                                 new ELTGooglePermissions(ELTGooglePermissions.ROLE.OWNER,
                                         ELTGooglePermissions.TYPE.USER, eltilandProps.get("gdrive.mail").toString()));
-                    }
+                    }*/
                     googleDriveManager.insertPermission(gFile, new ELTGooglePermissions(
                             ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
                     AUDIT.info(String.format(

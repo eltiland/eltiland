@@ -72,9 +72,12 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
                         file, upload.getClientFileName(), upload.getClientFileName(), upload.getContentType()),
                         getFolder());
                 if (doPublish()) {
-                    googleDriveManager.publishDocument(gFile);
+                  /*  googleDriveManager.insertPermission(gFile,
+                            new ELTGooglePermissions(ELTGooglePermissions.ROLE.OWNER,
+                                    ELTGooglePermissions.TYPE.USER, eltilandProps.get("gdrive.mail").toString()));*/
                     googleDriveManager.insertPermission(gFile, new ELTGooglePermissions(
                             ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
+                    googleDriveManager.publishDocument(gFile);
                 }
 
             } catch (GoogleDriveException e) {

@@ -33,9 +33,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +80,7 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
                             httpRequest.setReadTimeout(300 * 60000);
                         }
                     }).build();
-        } catch (GeneralSecurityException | IOException e) {
+        } catch (IOException | GeneralSecurityException e) {
             throw new GoogleDriveException(GoogleDriveException.ERROR_AUTH, e);
         }
     }
@@ -214,6 +212,14 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
     }
 
     @Override
+    public String getWebContentLink(GoogleDriveFile file) throws GoogleDriveException {
+        Drive drive = authorize();
+        com.google.api.services.drive.model.File gFile = getFile(drive, file);
+
+        return gFile.getEmbedLink();
+    }
+
+    @Override
     public void insertPermission(GoogleDriveFile file, ELTGooglePermissions permission) throws GoogleDriveException {
         Drive drive = authorize();
         try {
@@ -245,11 +251,11 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
         }
 
         // insert permissions to access the document.
-        insertPermission(file, new ELTGooglePermissions(
-                ELTGooglePermissions.ROLE.READER, ELTGooglePermissions.TYPE.ANYONE));
-        insertPermission(file, new ELTGooglePermissions(
+    /*    insertPermission(file, new ELTGooglePermissions(
+                ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
+     /*   insertPermission(file, new ELTGooglePermissions(
                 ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.USER,
-                eltilandProps.getProperty("gdrive.mail")));
+                eltilandProps.getProperty("gdrive.mail")));*/
     }
 
     private InputStream download(GoogleDriveFile file, String type) throws GoogleDriveException {
