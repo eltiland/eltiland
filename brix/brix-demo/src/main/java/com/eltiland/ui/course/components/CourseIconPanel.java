@@ -115,7 +115,7 @@ public class CourseIconPanel extends BaseEltilandPanel<ELTCourse> {
                 }));
 
         final boolean isTraining = course instanceof TrainingCourse;
-        final boolean isModule = isTraining ? false : ((AuthorCourse)course).isModule();
+        final boolean isModule = isTraining ? false : ((AuthorCourse) course).isModule();
         Label label = new Label("label", new Model<String>());
         label.setDefaultModelObject(
                 getString(isTraining ? "trainingCourse" : (isModule ? "moduleCourse" : "authorCourse")));
@@ -186,13 +186,16 @@ public class CourseIconPanel extends BaseEltilandPanel<ELTCourse> {
         trainingContainer.setVisible(isTraining);
 
         if (isTraining) {
-            trainingContainer.add(new Label("teach", String.format(getString("teach"),
-                    DateUtils.formatRussianDate(((TrainingCourse) getModelObject()).getStartDate()),
-                    DateUtils.formatRussianDate(((TrainingCourse) getModelObject()).getFinishDate()))));
+            String labelText = String.format(getString("teach"),
+                    DateUtils.formatDate(((TrainingCourse) getModelObject()).getStartDate()),
+                    DateUtils.formatDate(((TrainingCourse) getModelObject()).getFinishDate()));
+
             boolean isOpen = ((TrainingCourse) getModelObject()).isOpen();
-            Label join = new Label("join", isOpen ? String.format(getString("join.on"),
-                    DateUtils.formatRussianDate(((TrainingCourse) getModelObject()).getJoinDate())) :
+
+            labelText += ", " + (isOpen ? String.format(getString("join.on"),
+                    DateUtils.formatDate(((TrainingCourse) getModelObject()).getJoinDate())) :
                     getString("join.off"));
+            Label join = new Label("join",labelText);
             join.add(new AttributeAppender("class", new Model<>(isOpen ? "opened" : "closed"), " "));
             trainingContainer.add(join);
         }

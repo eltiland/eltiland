@@ -57,7 +57,7 @@
     text-align: center;
     font-size: 12px;
     font-weight: bold;
-    height: 28px;
+    height: 18px;
 }
 
 .course_icon_panel > .info > .about {
@@ -101,6 +101,10 @@
     display: table;
     margin: 0 auto;
     cursor: pointer;
+}
+
+.course_icon_panel > .info > .dates {
+    padding-top: 10px;
 }
 
 .course_icon_panel > .info > .dates > .opened {
