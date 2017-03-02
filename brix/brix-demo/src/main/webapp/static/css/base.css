@@ -50,6 +50,7 @@ hr {
     margin: 0 auto;
     width: 85%;
     min-width: 1024px;
+    margin-top: -30px !important;
 }
 
 .eltiland-logo > img {

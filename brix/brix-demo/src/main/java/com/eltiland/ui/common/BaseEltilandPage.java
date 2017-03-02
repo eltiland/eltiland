@@ -11,6 +11,7 @@ import com.eltiland.ui.faq.FaqPage;
 import com.eltiland.ui.forum.ForumPage;
 import com.eltiland.ui.library.LibraryPage;
 import com.eltiland.ui.login.panels.HeadLoginPanel;
+import com.eltiland.ui.login.panels.HeadSocialPanel;
 import com.eltiland.ui.webinars.WebinarsPage;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -45,6 +46,7 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
         super.onInitialize();
 
         add(new HeadLoginPanel("headLogin"));
+        add(new HeadSocialPanel("socialPanel"));
         StaticImage image = new StaticImage("logo",
                 eltilandProps.getProperty("application.base.url") + "/static/images/homepage/eltiland_logo.png");
         add(image);

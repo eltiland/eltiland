@@ -11,6 +11,34 @@
     padding-top: 3px;
 }
 
+.social_panel {
+    width: 85%;
+    height: 30px;
+    min-width: 1024px;
+    margin: 0 auto;
+    padding-top: 3px;
+}
+
+.social_panel > .social_widget {
+    position: relative;
+    cursor: pointer;
+}
+
+.social_panel > .facebook {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../images/social/facebook.png");
+    left: 89%;
+}
+
+.social_panel > .instagram {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../images/social/instagram.png");
+    left: 93%;
+    margin-top: -32px;
+}
+
 .login_panel > .login_action {
     display: inline-block;
     padding: 3px;
