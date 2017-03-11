@@ -2,10 +2,7 @@ package com.eltiland.model.google;
 
 import com.eltiland.model.AbstractIdentifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -19,6 +16,7 @@ public class GoogleDriveFile extends AbstractIdentifiable implements Serializabl
     private String googleId;
     private String mimeType;
     private GooglePage page;
+    private Content content;
 
     public enum TYPE {
         DOCUMENT, PRESENTATION
@@ -49,5 +47,15 @@ public class GoogleDriveFile extends AbstractIdentifiable implements Serializabl
 
     public void setPage(GooglePage page) {
         this.page = page;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "content")
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
     }
 }
