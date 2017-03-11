@@ -36,6 +36,10 @@ public class MimeType {
         return new ArrayList<>(Arrays.asList(DOC_TYPE, DOCX_TYPE, PDF_TYPE, ODT_TYPE));
     }
 
+    public static List<String> getWordDocumentTypes() {
+        return new ArrayList<>(Arrays.asList(DOC_TYPE, DOCX_TYPE, ODT_TYPE));
+    }
+
     public static List<String> getPresentationTypes() {
         return new ArrayList<>(Arrays.asList(PPT_TYPE, PPTX_TYPE, ODP_TYPE));
     }

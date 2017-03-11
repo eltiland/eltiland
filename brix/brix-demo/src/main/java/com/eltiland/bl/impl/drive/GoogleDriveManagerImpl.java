@@ -30,6 +30,8 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.wicket.util.resource.IResourceStream;
 import org.apache.wicket.util.resource.ResourceStreamNotFoundException;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -255,6 +257,14 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
         } catch (ConstraintException e) {
             throw new GoogleDriveException(GoogleDriveException.EROOR_CACHING, e);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GoogleDriveFile> getFilesToCache() {
+        Criteria criteria = getCurrentSession().createCriteria(GoogleDriveFile.class);
+        criteria.add(Restrictions.in("mimeType", MimeType.getWordDocumentTypes()));
+        return criteria.list();
     }
 
     @Override

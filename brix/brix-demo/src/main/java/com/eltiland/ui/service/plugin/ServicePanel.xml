@@ -6,7 +6,8 @@
     <entry key="recreateSearchIndexesLabel">Перегенерировать поисковые индексы. ОСТОРОЖНО! Займет много времени!</entry>
     <entry key="confirmationMessage">Вы собираетесь принять серьезные изменения в системе. Уверены?</entry>
     <entry key="recreateSearchIndexesMessage">Пересоздание индексов запущено - следите за файлами журналов!</entry>
-    <entry key="createStandart">Заполнить стандартные значения</entry>
-    <entry key="createProperty">Создать текст</entry>
+    <entry key="cacheMessage">Кеширование запущено - следите за файлами журналов!</entry>
+    <entry key="cacheGoogle">Кэшировать все объекты google</entry>
     <entry key="success">Генерация успешна</entry>
+    <entry key="successCache">Кэширование успешно завершенл</entry>
 </properties>

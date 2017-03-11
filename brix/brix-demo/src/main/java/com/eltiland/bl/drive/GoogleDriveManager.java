@@ -6,6 +6,7 @@ import com.eltiland.model.google.ELTGooglePermissions;
 import com.eltiland.model.google.GoogleDriveFile;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Google Drive API manager.
@@ -76,7 +77,13 @@ public interface GoogleDriveManager {
      *
      * @param file File to Save
      */
-    void    cacheFile(GoogleDriveFile file) throws GoogleDriveException;
+    void cacheFile(GoogleDriveFile file) throws GoogleDriveException;
+
+    /**
+     * Return all documents, which can be cached.
+     *
+     */
+    List<GoogleDriveFile> getFilesToCache();
 
     /**
      * Add new permission to file.
