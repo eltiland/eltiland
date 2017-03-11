@@ -71,7 +71,12 @@ public interface GoogleDriveManager {
      */
     InputStream downloadFileAsPDF(GoogleDriveFile file) throws GoogleDriveException;
 
-    String getWebContentLink(GoogleDriveFile file) throws GoogleDriveException;
+    /**
+     * Saves given google file to database.
+     *
+     * @param file File to Save
+     */
+    void    cacheFile(GoogleDriveFile file) throws GoogleDriveException;
 
     /**
      * Add new permission to file.

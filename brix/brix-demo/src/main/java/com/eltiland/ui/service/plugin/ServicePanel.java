@@ -107,91 +107,11 @@ public class ServicePanel extends BaseEltilandPanel<Workspace> {
         add(new EltiAjaxLink("createCourse") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                //
-
-               // try {
-                   /* HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-                    DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
-
-                    InputStream in = new FileInputStream("C:/tmp/client_secret.json");
-                    GoogleClientSecrets clientSecrets =
-                            GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-
-                    final GoogleCredential credential = new GoogleCredential.Builder().setTransport(HTTP_TRANSPORT).setJsonFactory(JSON_FACTORY)
-                            .setClientSecrets(clientSecrets).build();
-
-                    Drive drive = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                            .setHttpRequestInitializer(new HttpRequestInitializer() {
-                                @Override
-                                public void initialize(HttpRequest httpRequest) throws IOException {
-                                    credential.initialize(httpRequest);
-                                    httpRequest.setConnectTimeout(300 * 60000);
-                                    httpRequest.setReadTimeout(300 * 60000);
-                                }
-                            }).build();
-
-                    com.google.api.services.drive.model.File body = new com.google.api.services.drive.model.File();
-                    body.setTitle("Test45");
-                    body.setDescription("Test");
-                    body.setMimeType("application/msword");
-                    boolean convert = !(file.getMimeType().equals(MimeType.PDF_TYPE));
-                    return insert(file, body, true);
-
-//                    GoogleAuthorizationCodeFlow flow =
-//                            new GoogleAuthorizationCodeFlow.Builder(
-//                                    HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-//                                    .setDataStoreFactory(DATA_STORE_FACTORY)
-//                                    .setAccessType("offline")
-//                                    .build();
-//                    Credential credential = new AuthorizationCodeInstalledApp(
-//                            flow, new LocalServerReceiver()).authorize("user");
-                    System.out.println(
-                            "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (GeneralSecurityException e) {
-                    e.printStackTrace();
-                }*/
-
-                GoogleDriveFile driveFile = genericManager.getObject(GoogleDriveFile.class, (long) 79880);
                 try {
-                    String link = googleDriveManager.getWebContentLink(driveFile);
+                    googleDriveManager.cacheFile(genericManager.getObject(GoogleDriveFile.class, (long) 71637));
                 } catch (GoogleDriveException e) {
                     e.printStackTrace();
                 }
-
-//                User user = userManager.getUserByEmail("eltroot1@gmail.com");
-//
-//                Course course = new Course();
-//                course.setTraining(true);
-//                course.setAuthor(user);
-//                course.setCreationDate(DateUtils.getCurrentDate());
-//                course.setName("Организация инклюзивного образования в дошкольной образовательной организации");
-//                course.setStatus(false);
-//
-//                course.setPublished(false);
-//                try {
-//                    courseManager.createCourse(course);
-//                } catch (EltilandManagerException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                CourseSession session = new CourseSession();
-//                session.setActive(true);
-//                session.setStartDate(DateUtils.getCurrentDate());
-//                session.setFinishDate(DateUtils.getCurrentDate());
-//                session.setPrejoinDate(DateUtils.getCurrentDate());
-//                session.setCourse(course);
-//
-//                try {
-//                    genericManager.saveNew(session);
-//                } catch (ConstraintException e) {
-//                    e.printStackTrace();
-//                }
-
             }
         }.add(new ConfirmationDialogBehavior()));
 

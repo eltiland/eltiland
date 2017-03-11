@@ -2,6 +2,7 @@ package com.eltiland.bl.impl.drive;
 
 import com.eltiland.bl.FileManager;
 import com.eltiland.bl.GenericManager;
+import com.eltiland.bl.drive.ContentManager;
 import com.eltiland.bl.drive.GoogleDriveManager;
 import com.eltiland.bl.impl.ManagerImpl;
 import com.eltiland.bl.impl.integration.FileUtility;
@@ -9,6 +10,7 @@ import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.GoogleDriveException;
 import com.eltiland.model.file.File;
+import com.eltiland.model.google.Content;
 import com.eltiland.model.google.ELTGoogleFile;
 import com.eltiland.model.google.ELTGooglePermissions;
 import com.eltiland.model.google.GoogleDriveFile;
@@ -37,6 +39,7 @@ import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -57,6 +60,8 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
     private FileUtility fileUtility;
     @Autowired
     private FileManager fileManager;
+    @Autowired
+    private ContentManager contentManager;
 
     private Drive authorize() throws GoogleDriveException {
         HttpTransport httpTransport = new NetHttpTransport();
@@ -212,11 +217,44 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
     }
 
     @Override
-    public String getWebContentLink(GoogleDriveFile file) throws GoogleDriveException {
-        Drive drive = authorize();
-        com.google.api.services.drive.model.File gFile = getFile(drive, file);
+    @Transactional(rollbackFor = GoogleDriveException.class)
+    public void cacheFile(GoogleDriveFile file) throws GoogleDriveException {
+        InputStream fileStream = download(file, MimeType.HTML_TYPE);
 
-        return gFile.getEmbedLink();
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+
+        String line;
+        try {
+            br = new BufferedReader(new InputStreamReader(fileStream));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            throw new GoogleDriveException(GoogleDriveException.EROOR_CACHING, e);
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    throw new GoogleDriveException(GoogleDriveException.EROOR_CACHING, e);
+                }
+            }
+        }
+
+        String stContent = sb.toString();
+
+        Content content = new Content();
+        content.setContent(stContent);
+        contentManager.create(content);
+
+        file.setContent(content);
+        try {
+            genericManager.update(file);
+        } catch (ConstraintException e) {
+            throw new GoogleDriveException(GoogleDriveException.EROOR_CACHING, e);
+        }
     }
 
     @Override
@@ -272,6 +310,8 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
         String url;
         if (file.getMimeType().equals(MimeType.PDF_TYPE)) {
             url = gFile.getWebContentLink();
+        } else if(Objects.equals(type, MimeType.HTML_TYPE)) {
+            url = gFile.getExportLinks().get(type);
         } else {
             url = ((gFile.getDownloadUrl() != null) && (gFile.getDownloadUrl().length() > 0))
                     ? gFile.getDownloadUrl() : gFile.getExportLinks().get(type);

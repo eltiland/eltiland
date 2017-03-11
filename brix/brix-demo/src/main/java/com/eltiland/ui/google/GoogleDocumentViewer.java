@@ -1,11 +1,13 @@
 package com.eltiland.ui.google;
 
+import com.eltiland.bl.GenericManager;
 import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +25,9 @@ import java.util.regex.Pattern;
  */
 class GoogleDocumentViewer extends BaseEltilandPanel<GoogleDriveFile> {
 
+    @SpringBean
+    private GenericManager genericManager;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(GoogleDocumentViewer.class);
 
     private String googleResponse = "";
@@ -30,17 +35,23 @@ class GoogleDocumentViewer extends BaseEltilandPanel<GoogleDriveFile> {
     public GoogleDocumentViewer(String id, IModel<GoogleDriveFile> googleDriveFileIModel) {
         super(id, googleDriveFileIModel);
 
-        String link = "https://docs.google.com/document/d/" + getModelObject().getGoogleId() + "/pub?embedded=true";
-        try {
-            URL url = new URL(link);
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                googleResponse += inputLine;
+        genericManager.initialize(getModelObject(), getModelObject().getContent());
+
+        if( getModelObject().getContent() == null ) {
+            String link = "https://docs.google.com/document/d/" + getModelObject().getGoogleId() + "/pub?embedded=true";
+            try {
+                URL url = new URL(link);
+                BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    googleResponse += inputLine;
+                }
+            } catch (IOException e) {
+                LOGGER.error("Error while getting response from Google Drive", e);
+                throw new WicketRuntimeException("Error while getting response from Google Drive", e);
             }
-        } catch (IOException e) {
-            LOGGER.error("Error while getting response from Google Drive", e);
-            throw new WicketRuntimeException("Error while getting response from Google Drive", e);
+        } else {
+            googleResponse = getModelObject().getContent().getContent();
         }
 
         String contentString = parseContent("body");

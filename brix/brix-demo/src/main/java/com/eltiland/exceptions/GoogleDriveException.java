@@ -15,6 +15,10 @@ public class GoogleDriveException extends Exception {
     public static final String ERROR_PUBLISH = "Ошибка публикации файла";
     public static final String ERROR_NO_EMPTY_FILE = "Ошибка - отсутствует файл образца документа";
 
+    public static final String ERROR_CONTENT_CREATE = "Ошибка при создании объекта кэширования";
+    public static final String ERROR_CONTENT_UPDATE = "Ошибка при изменении объекта кэширования";
+    public static final String EROOR_CACHING = "Ошибка при кэшировании";
+
 
     /**
      * Default constructor.

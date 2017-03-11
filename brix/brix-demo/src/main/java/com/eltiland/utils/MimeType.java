@@ -24,6 +24,8 @@ public class MimeType {
     public static final String PNG_TYPE = "image/png";
     public static final String BMP_TYPE = "image/bmp";
 
+    public static final String HTML_TYPE = "text/html";
+
     public static final String ZIP_TYPE = "application/zip";
     public static final String OCTET_TYPE = "application/octet-stream";
     public static final String XZIP_TYPE = "application/x-zip-compressed";
