@@ -111,6 +111,11 @@ public class SheduleManager {
                     }
                     AUDIT.info(String.format(
                             "GOOGLE PUBLISHER - Record with id %d SUCCESSFULLY cleaned", record.getId()));
+
+                    googleDriveManager.cacheFile(gFile);
+                    AUDIT.info(String.format(
+                            "GOOGLE PUBLISHER - Record with id %d SUCCESSFULLY cached", record.getId()));
+
                 } catch (GoogleDriveException e) {
                     AUDIT.error("Error while publishing google document", e);
                     record.setPublishing(false);

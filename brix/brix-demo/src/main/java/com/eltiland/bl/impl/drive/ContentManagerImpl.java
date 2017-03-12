@@ -30,4 +30,14 @@ public class ContentManagerImpl extends ManagerImpl implements ContentManager {
         }
         return content;
     }
+
+    @Override
+    @Transactional(rollbackFor = GoogleDriveException.class)
+    public void update(Content content) throws GoogleDriveException {
+        try {
+            genericManager.update(content);
+        } catch (ConstraintException e) {
+            throw new GoogleDriveException(GoogleDriveException.ERROR_CONTENT_UPDATE, e);
+        }
+    }
 }

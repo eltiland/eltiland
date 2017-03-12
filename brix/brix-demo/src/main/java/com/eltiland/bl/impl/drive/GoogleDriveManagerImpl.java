@@ -222,10 +222,12 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
     @Transactional(rollbackFor = GoogleDriveException.class)
     public void cacheFile(GoogleDriveFile file) throws GoogleDriveException {
         InputStream fileStream = download(file, MimeType.HTML_TYPE);
+        if (fileStream == null) {
+            throw new GoogleDriveException(GoogleDriveException.EROOR_CACHING_FORMAT);
+        }
 
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
-
 
         String line;
         try {
@@ -247,9 +249,16 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
 
         String stContent = sb.toString();
 
-        Content content = new Content();
+        genericManager.initialize(file, file.getContent());
+        boolean toCreate = file.getContent() == null;
+        Content content = (toCreate) ? new Content() : file.getContent();
+
         content.setContent(stContent);
-        contentManager.create(content);
+        if (toCreate) {
+            contentManager.create(content);
+        } else {
+            contentManager.update(content);
+        }
 
         file.setContent(content);
         try {
@@ -320,7 +329,7 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
         String url;
         if (file.getMimeType().equals(MimeType.PDF_TYPE)) {
             url = gFile.getWebContentLink();
-        } else if(Objects.equals(type, MimeType.HTML_TYPE)) {
+        } else if (Objects.equals(type, MimeType.HTML_TYPE)) {
             url = gFile.getExportLinks().get(type);
         } else {
             url = ((gFile.getDownloadUrl() != null) && (gFile.getDownloadUrl().length() > 0))

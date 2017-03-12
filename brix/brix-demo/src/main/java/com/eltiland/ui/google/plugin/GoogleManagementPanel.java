@@ -227,6 +227,7 @@ public class GoogleManagementPanel extends BaseEltilandPanel<Workspace> {
                         googleDriveManager.insertPermission(pageIModel.getObject().getContent(),
                                 new ELTGooglePermissions(ELTGooglePermissions.ROLE.WRITER,
                                         ELTGooglePermissions.TYPE.ANYONE));
+                        googleDriveManager.cacheFile(pageIModel.getObject().getContent());
                     } catch (GoogleDriveException e) {
                         LOGGER.error("Error while publish course");
                         throw new WicketRuntimeException("Error while publish course", e);

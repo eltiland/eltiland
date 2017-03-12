@@ -58,6 +58,9 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                 return new AbstractDocActionPanel(markupId, GoogleCourseItemPanel.this.getModel()) {
                     @Override
                     protected void onClick(AjaxRequestTarget target) {
+                        genericManager.initialize(GoogleCourseItemPanel.this.getModelObject(),
+                                GoogleCourseItemPanel.this.getModelObject().getItem());
+
                         try {
                             genericManager.initialize(GoogleCourseItemPanel.this.getModelObject(),
                                     GoogleCourseItemPanel.this.getModelObject().getItem());
@@ -68,6 +71,14 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                         } catch (GoogleDriveException e) {
                             ELTAlerts.renderErrorPopup(e.getMessage(), target);
                         }
+
+                        // caching course document
+                        try {
+                            googleDriveManager.cacheFile(GoogleCourseItemPanel.this.getModelObject().getItem());
+                        } catch (GoogleDriveException e) {
+                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                        }
+
                         ELTAlerts.renderOKPopup(getString("saveMessage"), target);
                     }
 

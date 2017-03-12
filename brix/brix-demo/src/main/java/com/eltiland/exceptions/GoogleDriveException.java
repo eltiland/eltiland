@@ -18,6 +18,7 @@ public class GoogleDriveException extends Exception {
     public static final String ERROR_CONTENT_CREATE = "Ошибка при создании объекта кэширования";
     public static final String ERROR_CONTENT_UPDATE = "Ошибка при изменении объекта кэширования";
     public static final String EROOR_CACHING = "Ошибка при кэшировании";
+    public static final String EROOR_CACHING_FORMAT = "Ошибка при кэшировании. Некорреткный формат файла";
 
 
     /**

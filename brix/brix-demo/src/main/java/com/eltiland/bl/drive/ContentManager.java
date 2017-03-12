@@ -16,4 +16,11 @@ public interface ContentManager {
      * @return persisted content.
      */
     Content create(Content content) throws GoogleDriveException;
+
+    /**
+     * Updates Content entity.
+     *
+     * @param content Content to update.
+     */
+    void update(Content content) throws GoogleDriveException;
 }
