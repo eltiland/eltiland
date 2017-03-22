@@ -109,16 +109,18 @@ public class CourseNewContentPage extends BaseEltilandPage {
 
         boolean isAdminAccess = false;
         // check for superadmin or admn access to the course
-        if (currentUserModel.getObject() == null) {
-            throw new AbortWithHttpErrorCodeException(HttpServletResponse.SC_NOT_FOUND);
-        } else {
-            if (!currentUserModel.getObject().isSuperUser()) {
-                List<ELTCourse> admins = courseManager.getAdminCourses(currentUserModel.getObject(), null);
-                if (admins.contains(courseModel.getObject())) {
+        if (!demo) {
+            if (currentUserModel.getObject() == null) {
+                throw new AbortWithHttpErrorCodeException(HttpServletResponse.SC_NOT_FOUND);
+            } else {
+                if (!currentUserModel.getObject().isSuperUser()) {
+                    List<ELTCourse> admins = courseManager.getAdminCourses(currentUserModel.getObject(), null);
+                    if (admins.contains(courseModel.getObject())) {
+                        isAdminAccess = true;
+                    }
+                } else {
                     isAdminAccess = true;
                 }
-            } else {
-                isAdminAccess = true;
             }
         }
 
