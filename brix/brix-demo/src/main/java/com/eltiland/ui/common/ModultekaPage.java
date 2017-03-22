@@ -1,5 +1,7 @@
 package com.eltiland.ui.common;
 
+import com.eltiland.ui.course.TeachingModulesPage;
+import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.flow.RedirectToUrlException;
@@ -14,7 +16,8 @@ public class ModultekaPage extends GenericWebPage {
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        throw new RedirectToUrlException("http://modulteka.mmr.lclients.ru");
+        throw new RestartResponseException(TeachingModulesPage.class);
+        //throw new RedirectToUrlException("http://modulteka.mmr.lclients.ru");
     }
 
     public ModultekaPage() {
