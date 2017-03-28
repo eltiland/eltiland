@@ -19,6 +19,7 @@ import com.eltiland.ui.common.components.video.YoutubeVideoPlayer;
 import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.course.components.CourseVersionButton;
 import com.eltiland.ui.google.ELTGoogleDriveEditor;
+import com.eltiland.utils.DateUtils;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.IHeaderResponse;
@@ -34,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -152,6 +154,14 @@ public class CourseNewPage extends BaseEltilandPage {
         add(new CourseVersionButton("full", courseIModel, ContentStatus.FULL) {
             @Override
             public boolean isVisible() {
+                if (courseIModel.getObject() instanceof TrainingCourse) {
+                    Date currentDate = DateUtils.getCurrentDate();
+                    if (!(currentDate.after(((TrainingCourse) courseIModel.getObject()).getStartDate()) &&
+                            currentDate.before(((TrainingCourse) courseIModel.getObject()).getFinishDate()))) {
+                        return false;
+                    }
+                }
+
                 genericManager.initialize(courseIModel.getObject(), courseIModel.getObject().getContent());
                 return courseIModel.getObject().getContent() != null && courseIModel.getObject().getContent().size() > 0;
             }
