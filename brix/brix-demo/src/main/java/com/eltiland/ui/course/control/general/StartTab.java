@@ -66,6 +66,7 @@ class StartTab extends BaseEltilandPanel<ELTCourse> {
                     googleDriveManager.publishDocument(StartTab.this.getModelObject().getStartPage());
                     googleDriveManager.insertPermission(StartTab.this.getModelObject().getStartPage(),
                             new ELTGooglePermissions(ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
+                    googleDriveManager.cacheFile(StartTab.this.getModelObject().getStartPage());
                 } catch (GoogleDriveException e) {
                     ELTAlerts.renderErrorPopup(e.getMessage(), target);
                 }
