@@ -11,6 +11,11 @@ import com.eltiland.model.google.ELTGoogleFile;
 import com.eltiland.model.google.ELTGooglePermissions;
 import com.eltiland.model.google.GoogleDriveFile;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
+import com.eltiland.utils.StringUtils;
+import net.sf.jmimemagic.Magic;
+import net.sf.jmimemagic.MagicException;
+import net.sf.jmimemagic.MagicMatchNotFoundException;
+import net.sf.jmimemagic.MagicParseException;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -42,7 +47,16 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
     @Override
     protected void onSubmit() {
         FileUpload upload = uploadField.getFileUpload();
-        if (!getAvailibleMimeTypes().contains(upload.getContentType())) {
+
+        String mimeType = StringUtils.EMPTY_STRING;
+
+        try {
+            mimeType = Magic.getMagicMatch(upload.getBytes(), false).getMimeType();
+        } catch (MagicParseException | MagicMatchNotFoundException | MagicException e) {
+            EltiStaticAlerts.registerErrorPopup(getString("mimeTypeErrorMessage"));
+        }
+
+        if (!getAvailibleMimeTypes().contains(mimeType)) {
             EltiStaticAlerts.registerErrorPopup(getString("formatErrorMessage"));
             return;
         }
@@ -51,7 +65,7 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
         if (upload != null) {
             file.setName(upload.getClientFileName());
             file.setSize(upload.getSize());
-            file.setType(upload.getContentType());
+            file.setType(mimeType);
 
             FileBody fileBody = new FileBody();
             fileBody.setHash(fileUtility.saveTemporalFile(upload.getBytes()));
@@ -69,7 +83,7 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
 
             try {
                 gFile = googleDriveManager.insertFile(new ELTGoogleFile(
-                        file, upload.getClientFileName(), upload.getClientFileName(), upload.getContentType()),
+                        file, upload.getClientFileName(), upload.getClientFileName(), mimeType),
                         getFolder());
                 if (doPublish()) {
                   /*  googleDriveManager.insertPermission(gFile,
@@ -78,6 +92,7 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
                     googleDriveManager.insertPermission(gFile, new ELTGooglePermissions(
                             ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
                     googleDriveManager.publishDocument(gFile);
+                    googleDriveManager.cacheFile(gFile);
                 }
 
             } catch (GoogleDriveException e) {
