@@ -2,4 +2,5 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="formatErrorMessage">Ошибка - Неправильный формат файла!</entry>
+    <entry key="mimeTypeErrorMessage">Ошибка - Невозможно определить формат файла!</entry>
 </properties>
