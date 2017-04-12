@@ -248,6 +248,8 @@ public class GoogleDriveManagerImpl extends ManagerImpl implements GoogleDriveMa
         }
 
         String stContent = sb.toString();
+        stContent = stContent.replaceAll( "https://www.google.com/url\\?q=", "");
+        stContent = stContent.replaceAll( "\\&amp.*?\\>", "\">");
 
         genericManager.initialize(file, file.getContent());
         boolean toCreate = file.getContent() == null;
