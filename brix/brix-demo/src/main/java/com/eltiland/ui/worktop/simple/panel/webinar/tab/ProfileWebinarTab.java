@@ -33,7 +33,7 @@ public class ProfileWebinarTab extends BaseEltilandPanel<User> {
         }
     };
 
-    public ProfileWebinarTab(String id, IModel<User> userIModel) {
+    public ProfileWebinarTab(String id, final IModel<User> userIModel) {
         super(id, userIModel);
 
         add(new ListView<WebinarUserPayment>("webinarList", webinars) {
@@ -41,7 +41,12 @@ public class ProfileWebinarTab extends BaseEltilandPanel<User> {
             protected void populateItem(ListItem<WebinarUserPayment> item) {
                 genericManager.initialize(item.getModelObject(), item.getModelObject().getWebinar());
                 item.add(new WebinarItemPanel("webinarInfoPanel",
-                        new GenericDBModel<>(Webinar.class, item.getModelObject().getWebinar())));
+                        new GenericDBModel<>(Webinar.class, item.getModelObject().getWebinar())) {
+                    @Override
+                    protected User getUser() {
+                        return userIModel.getObject();
+                    }
+                });
             }
         });
     }

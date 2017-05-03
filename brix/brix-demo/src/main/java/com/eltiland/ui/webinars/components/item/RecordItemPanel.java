@@ -8,7 +8,6 @@ import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.WebinarRecord;
 import com.eltiland.model.webinar.WebinarRecordPayment;
-import com.eltiland.session.EltilandSession;
 import com.eltiland.ui.common.components.ReadonlyObjects;
 import com.eltiland.ui.common.components.behavior.AjaxDownload;
 import com.eltiland.ui.common.components.button.icon.ButtonAction;
@@ -45,7 +44,7 @@ import java.util.List;
  *
  * @author Aleksey Plotnikov.
  */
-public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
+public abstract class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecordItemPanel.class);
 
@@ -59,7 +58,7 @@ public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
     private IModel<User> currentUserModel = new LoadableDetachableModel<User>() {
         @Override
         protected User load() {
-            return EltilandSession.get().getCurrentUser();
+            return getUser();
         }
     };
 
@@ -189,4 +188,6 @@ public class RecordItemPanel extends AbstractItemPanel<WebinarRecord> {
             };
         }
     };
+
+    protected abstract User getUser();
 }
