@@ -35,6 +35,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.hibernate.annotations.Check;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,6 +65,7 @@ public class RegistrationPanel extends BaseEltilandPanel {
     private PasswordTextField rePassField = new PasswordTextField("rePass", new Model<String>());
 
     private final CheckBox subscribeCheckBox = new CheckBox("subscribeCheckBox", new Model<Boolean>());
+    private final CheckBox confirmationCheckBox = new CheckBox("confirmCheckBox", new Model<Boolean>());
 
     private Dialog<ResetPassPanel> resetPassPanelDialog = new Dialog<ResetPassPanel>("resetPassDialog", 325) {
         @Override
@@ -106,7 +108,9 @@ public class RegistrationPanel extends BaseEltilandPanel {
         form.add(passField.setRequired(true));
         form.add(rePassField.setRequired(true));
         form.add(subscribeCheckBox);
+        form.add(confirmationCheckBox);
         subscribeCheckBox.setModelObject(true);
+        confirmationCheckBox.setModelObject(false);
 
         WebMarkupContainer resetLink = new WebMarkupContainer("forget");
         add(resetLink);
