@@ -24,6 +24,7 @@ import com.eltiland.ui.common.compositepage.children.ChildrenPage;
 import com.eltiland.ui.common.compositepage.gazeta.ChildJournalPage;
 import com.eltiland.ui.common.compositepage.parents.ParentsPage;
 import com.eltiland.ui.common.compositepage.teachers.TeachersPage;
+import com.eltiland.ui.common.general.ConfirmationPage;
 import com.eltiland.ui.common.resource.ImageResourceReference;
 import com.eltiland.ui.course.*;
 import com.eltiland.ui.faq.FaqPage;
@@ -296,6 +297,7 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(ResetPasswordPage.MOUNT_PATH, ResetPasswordPage.class);
         mountPage(CourseControlPage_old.MOUNT_PATH, CourseControlPage_old.class);
         mountPage(NazarovaTempPage.MOUNT_PATH, NazarovaTempPage.class);
+        mountPage(ConfirmationPage.MOUNT_PATH, ConfirmationPage.class);
 
         getSharedResources().add(ResourcesUtils.COURSE_CONTENT_FOLDER,
                 new ContextRelativeResource(ResourcesUtils.IMAGE_COURSE_CONTENT_FOLDER_ITEM));

@@ -535,7 +535,7 @@ div.menu-item-active > a > span > p {
     font-size: 11px;
 }
 
-div.menu-item> a:active {
+div.menu-item > a:active {
     background-color: #F49594;
 }
 
@@ -705,7 +705,7 @@ div.menu-item-active {
     background: -o-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #617b99 0%, #7db9e8 100%); /* IE10+ */
     background: linear-gradient(to bottom, #617b99 0%, #7db9e8 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#617b99', endColorstr = '#7db9e8', GradientType = 0); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#617b99', endColorstr='#7db9e8', GradientType=0); /* IE6-9 */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -1014,6 +1014,10 @@ div.menu-item-active {
 /**************************************************************************************************/
 .subscribeText {
     font-size: 15px;
+}
+
+.confirmationText {
+    font-size: 11px;
 }
 
 /**************************************************************************************************/

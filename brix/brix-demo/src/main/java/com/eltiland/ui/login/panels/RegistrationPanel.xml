@@ -7,10 +7,16 @@
     <entry key="forgetAction">Забыли пароль?</entry>
 
     <entry key="subscribeMessage">Подписаться на рассылку портала</entry>
+    <entry key="confirmationMessage">Нажимая на кнопку "Зарегистрироваться", Вы соглашаетесь на</entry>
+    <entry key="confirmationLink">обработку персональных данных</entry>
 
     <entry key="notFilledMessage">Ошибка - все поля должны быть заполнены!</entry>
     <entry key="validateEmailUnique">Ошибка - Email должен быть уникальным!</entry>
     <entry key="validatePasswordConfirm">Ошибка - пароли не совпадают!</entry>
 
     <entry key="newUserRegistrationMessage">Вы успешно зарегистрировались на портале Элтиленд. Добро пожаловать!</entry>
+
+    <entry key="error.no.confirmation">Для регистрации на портале Вы должны согласиться на обработку персональных
+        данных.
+    </entry>
 </properties>

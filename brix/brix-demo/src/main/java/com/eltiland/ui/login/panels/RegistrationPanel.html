@@ -52,9 +52,13 @@
                 <div class="clear"></div>
 
                 <input type="checkbox" wicket:id="confirmCheckBox" style="margin-bottom: 10px">
-                 <span class="subscribeText">
-                    <wicket:message key="subscribeMessage"/>
-                </span>
+                 <span class="confirmationText">
+                    <wicket:message key="confirmationMessage"/>
+                    <br>
+                    <a wicket:id="confirmLink">
+                        <wicket:message key="confirmationLink"></wicket:message>
+                    </a>
+                 </span>
             </form>
         </div>
         <div class="actions">

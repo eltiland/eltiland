@@ -18,6 +18,7 @@ import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSelectCallback;
+import com.eltiland.ui.common.general.ConfirmationPage;
 import com.eltiland.ui.course.CourseNewPage;
 import com.eltiland.utils.StringUtils;
 import com.eltiland.utils.UrlUtils;
@@ -31,11 +32,11 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.hibernate.annotations.Check;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -109,6 +110,9 @@ public class RegistrationPanel extends BaseEltilandPanel {
         form.add(rePassField.setRequired(true));
         form.add(subscribeCheckBox);
         form.add(confirmationCheckBox);
+
+        form.add(new BookmarkablePageLink<>("confirmLink", ConfirmationPage.class));
+
         subscribeCheckBox.setModelObject(true);
         confirmationCheckBox.setModelObject(false);
 
@@ -126,6 +130,11 @@ public class RegistrationPanel extends BaseEltilandPanel {
         form.add(new EltiAjaxSubmitLink("registerButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form form) {
+                if (!confirmationCheckBox.getModelObject()) {
+                    ELTAlerts.renderErrorPopup(getString("error.no.confirmation"), target);
+                    return;
+                }
+
                 if (!(passField.getConvertedInput().equals(rePassField.getConvertedInput()))) {
                     ELTAlerts.renderErrorPopup(getString("validatePasswordConfirm"), target);
                     return;
