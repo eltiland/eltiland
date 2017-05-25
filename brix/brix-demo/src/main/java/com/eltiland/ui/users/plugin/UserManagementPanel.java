@@ -154,6 +154,17 @@ public class UserManagementPanel extends BaseEltilandPanel<Workspace> {
                         cellItem.add(label);
                     }
                 });
+                columns.add(new AbstractColumn<User>(new ResourceModel("checkedColumn"), "isChecked") {
+                    @Override
+                    public void populateItem(Item<ICellPopulator<User>> cellItem,
+                                             String componentId, IModel<User> rowModel) {
+                        boolean active = rowModel.getObject().isChecked();
+                        Label label = new Label(componentId, getString(active ? "yes" : "no"));
+                        label.add(new AttributeModifier("class",
+                                new Model<>(active ? ACTIVE_CLASS : DISACTIVE_CLASS)));
+                        cellItem.add(label);
+                    }
+                });
                 return columns;
             }
 

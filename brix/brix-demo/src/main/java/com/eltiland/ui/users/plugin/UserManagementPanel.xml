@@ -5,6 +5,7 @@
     <entry key="emailColumn">Email</entry>
     <entry key="confirmColumn">Дата подтверждения</entry>
     <entry key="activeColumn">Активирован</entry>
+    <entry key="checkedColumn">Согласие</entry>
 
     <entry key="not_confirmed">Не подтвержден</entry>
 
