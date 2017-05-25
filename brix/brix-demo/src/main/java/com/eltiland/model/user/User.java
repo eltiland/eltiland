@@ -60,6 +60,7 @@ public class User extends AbstractIdentifiable implements Serializable, IWithAva
     private Integer experience;
 
     private boolean isActive;
+    private boolean isChecked;
 
     private Set<Course> authCourses = new HashSet<>(0);
     private Set<Course> courses = new HashSet<>(0);
@@ -468,6 +469,16 @@ public class User extends AbstractIdentifiable implements Serializable, IWithAva
     public void setAvailableFiles(Set<UserFile> availableFiles) {
         this.availableFiles = availableFiles;
     }
+
+    @Column(name = "checked", nullable = false, columnDefinition = "boolean default FALSE")
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+
 
     /**
      * Synthetic class for represent webinar user search criteria.
