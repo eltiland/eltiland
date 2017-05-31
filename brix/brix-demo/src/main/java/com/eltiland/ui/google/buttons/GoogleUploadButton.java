@@ -89,9 +89,9 @@ public abstract class GoogleUploadButton extends AbstractUploadButton {
                   /*  googleDriveManager.insertPermission(gFile,
                             new ELTGooglePermissions(ELTGooglePermissions.ROLE.OWNER,
                                     ELTGooglePermissions.TYPE.USER, eltilandProps.get("gdrive.mail").toString()));*/
-                    googleDriveManager.insertPermission(gFile, new ELTGooglePermissions(
+                   /* googleDriveManager.insertPermission(gFile, new ELTGooglePermissions(
                             ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
-                    googleDriveManager.publishDocument(gFile);
+                    googleDriveManager.publishDocument(gFile);*/
                     googleDriveManager.cacheFile(gFile);
                 }
 

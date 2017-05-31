@@ -61,7 +61,7 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                         genericManager.initialize(GoogleCourseItemPanel.this.getModelObject(),
                                 GoogleCourseItemPanel.this.getModelObject().getItem());
 
-                        try {
+                   /*     try {
                             genericManager.initialize(GoogleCourseItemPanel.this.getModelObject(),
                                     GoogleCourseItemPanel.this.getModelObject().getItem());
                             googleDriveManager.publishDocument(GoogleCourseItemPanel.this.getModelObject().getItem());
@@ -70,7 +70,7 @@ public class GoogleCourseItemPanel extends AbstractCourseItemPanel<ELTGoogleCour
                                             ELTGooglePermissions.TYPE.ANYONE));
                         } catch (GoogleDriveException e) {
                             ELTAlerts.renderErrorPopup(e.getMessage(), target);
-                        }
+                        }*/
 
                         // caching course document
                         try {

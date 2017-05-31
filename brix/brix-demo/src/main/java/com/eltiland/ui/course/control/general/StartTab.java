@@ -63,9 +63,9 @@ class StartTab extends BaseEltilandPanel<ELTCourse> {
                 try {
                     genericManager.initialize(StartTab.this.getModelObject(),
                             StartTab.this.getModelObject().getStartPage());
-                    googleDriveManager.publishDocument(StartTab.this.getModelObject().getStartPage());
+              /*      googleDriveManager.publishDocument(StartTab.this.getModelObject().getStartPage());
                     googleDriveManager.insertPermission(StartTab.this.getModelObject().getStartPage(),
-                            new ELTGooglePermissions(ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));
+                            new ELTGooglePermissions(ELTGooglePermissions.ROLE.WRITER, ELTGooglePermissions.TYPE.ANYONE));*/
                     googleDriveManager.cacheFile(StartTab.this.getModelObject().getStartPage());
                 } catch (GoogleDriveException e) {
                     ELTAlerts.renderErrorPopup(e.getMessage(), target);

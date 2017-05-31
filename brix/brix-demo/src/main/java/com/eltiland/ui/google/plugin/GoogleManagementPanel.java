@@ -223,10 +223,10 @@ public class GoogleManagementPanel extends BaseEltilandPanel<Workspace> {
                 public void onClick(AjaxRequestTarget target) {
                     try {
                         genericManager.initialize(pageIModel.getObject(), pageIModel.getObject().getContent());
-                        googleDriveManager.publishDocument(pageIModel.getObject().getContent());
+/*                        googleDriveManager.publishDocument(pageIModel.getObject().getContent());
                         googleDriveManager.insertPermission(pageIModel.getObject().getContent(),
                                 new ELTGooglePermissions(ELTGooglePermissions.ROLE.WRITER,
-                                        ELTGooglePermissions.TYPE.ANYONE));
+                                        ELTGooglePermissions.TYPE.ANYONE));*/
                         googleDriveManager.cacheFile(pageIModel.getObject().getContent());
                     } catch (GoogleDriveException e) {
                         LOGGER.error("Error while publish course");
