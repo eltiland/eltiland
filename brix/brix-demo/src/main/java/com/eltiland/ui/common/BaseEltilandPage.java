@@ -156,7 +156,7 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_FUNCTION);
         response.renderJavaScriptReference(ResourcesUtils.JS_VISUAL_EFECTS);
         response.renderJavaScriptReference(ResourcesUtils.JS_NUMBERFORMATTER);
-        response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
+       // response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
         response.renderJavaScriptReference(ResourcesUtils.JS_TIMEPICKER);
         response.renderJavaScriptReference(ResourcesUtils.JS_COURSE);
         response.renderJavaScriptReference(ResourcesUtils.JS_INDICATOR);

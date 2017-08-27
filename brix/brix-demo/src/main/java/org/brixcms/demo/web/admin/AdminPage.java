@@ -77,7 +77,7 @@ public class AdminPage extends GenericWebPage {
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_FUNCTION);
         response.renderJavaScriptReference(ResourcesUtils.JS_VISUAL_EFECTS);
         response.renderJavaScriptReference(ResourcesUtils.JS_NUMBERFORMATTER);
-        response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
+        //response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
         response.renderJavaScriptReference(ResourcesUtils.JS_TIMEPICKER);
 
         response.renderOnDomReadyJavaScript(String.format("tryRegisterWicketAjaxOnFailure('%s')",

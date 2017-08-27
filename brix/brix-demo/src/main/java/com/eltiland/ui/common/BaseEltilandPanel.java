@@ -35,7 +35,7 @@ public abstract class BaseEltilandPanel<T> extends GenericPanel<T> {
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_COMPONENTS);
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_FUNCTION);
         response.renderJavaScriptReference(ResourcesUtils.JS_VISUAL_EFECTS);
-        response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
+       // response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
         response.renderJavaScriptReference(ResourcesUtils.JS_INDICATOR_FUNCTION);
     }
 }

@@ -2,21 +2,13 @@ package com.eltiland.ui.common;
 
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
-import com.eltiland.ui.common.components.dialog.ELTAlerts;
-import org.apache.wicket.Component;
-import org.apache.wicket.WicketRuntimeException;
-import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * CKEditor panel
@@ -75,7 +67,7 @@ public class CKEditorFull extends Panel {
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_COMPONENTS);
         response.renderJavaScriptReference(ResourcesUtils.JS_JQUERY_FUNCTION);
         response.renderJavaScriptReference(ResourcesUtils.JS_VISUAL_EFECTS);
-        response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
+        //response.renderJavaScriptReference(ResourcesUtils.JS_YASHARE);
         response.renderJavaScriptReference(ResourcesUtils.JS_INDICATOR_FUNCTION);
     }
 
