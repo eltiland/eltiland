@@ -63,12 +63,13 @@ public class WebinarServiceV3Impl implements WebinarServiceManager {
 
     private static List<BasicNameValuePair> getStartDateString(Date date) {
         List<BasicNameValuePair> params = new ArrayList<>();
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
         params.add(new BasicNameValuePair("startsAt[date][year]", String.valueOf(calendar.get(Calendar.YEAR))));
-        params.add(new BasicNameValuePair("startsAt[date][month]", String.valueOf(calendar.get(Calendar.MONTH))));
-        params.add(new BasicNameValuePair("startsAt[time][hour]", String.valueOf(calendar.get(Calendar.HOUR))));
+        params.add(new BasicNameValuePair("startsAt[date][month]", String.valueOf(calendar.get(Calendar.MONTH)+1)));
+        params.add(new BasicNameValuePair("startsAt[date][day]", String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))));
+        params.add(new BasicNameValuePair("startsAt[time][hour]", String.valueOf(calendar.get(Calendar.HOUR_OF_DAY))));
         params.add(new BasicNameValuePair("startsAt[time][minute]", String.valueOf(calendar.get(Calendar.MINUTE))));
 
         return params;
