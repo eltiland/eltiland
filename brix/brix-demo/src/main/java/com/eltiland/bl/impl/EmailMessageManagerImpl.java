@@ -1471,7 +1471,7 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
                         mailHeadings.getProperty("robotFromName"),
                         "UTF-8"));
 
-                if (sentCertificate) {
+                if (sentCertificate && payment.isCert()) {
                     FileContent fileContent = new FileContent();
                     fileContent.setContent(IOUtils.toByteArray(
                             webinarCertificateGenerator.generateCertificate(payment)));

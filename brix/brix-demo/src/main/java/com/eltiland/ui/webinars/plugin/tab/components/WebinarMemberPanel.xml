@@ -6,13 +6,20 @@
     <entry key="fioColumnTitle">ФИО участника</entry>
     <entry key="emailColumnTitle">Email</entry>
     <entry key="roleColumnTitle">Роль пользователя</entry>
+    <entry key="certTitle">Сертификат</entry>
 
     <entry key="MEMBER.role">Участник</entry>
     <entry key="OBSERVER.role">Обозреватель</entry>
     <entry key="MODERATOR.role">Модератор</entry>
 
+    <entry key="enabled">Разрешено</entry>
+    <entry key="disabled">Не разрешено</entry>
+
     <entry key="download.tooltip">Скачать сертификат</entry>
     <entry key="send.tooltip">Отправить сертификат</entry>
+    <entry key="on.tooltip">Разрешить отправку сертификата</entry>
+    <entry key="off.tooltip">Запретить отправку сертификата</entry>
+
 
     <entry key="send.error">Невозможно отправить сертификат - не прикреплена запись.</entry>
     <entry key="send.message">Сертификат отправлен</entry>

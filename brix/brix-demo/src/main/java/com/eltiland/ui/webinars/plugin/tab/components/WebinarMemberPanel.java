@@ -57,10 +57,12 @@ public class WebinarMemberPanel extends ELTDialogPanel {
 
     private IModel<Webinar> webinarIModel = new GenericDBModel<>(Webinar.class);
 
+    private ELTTable<WebinarUserPayment> grid;
+
     public WebinarMemberPanel(String id) {
         super(id);
 
-        ELTTable<WebinarUserPayment> grid = new ELTTable<WebinarUserPayment>("grid", 20) {
+        grid = new ELTTable<WebinarUserPayment>("grid", 20) {
             @Override
             protected List<IColumn<WebinarUserPayment>> getColumns() {
                 List<IColumn<WebinarUserPayment>> columns = new ArrayList<>();
@@ -73,6 +75,13 @@ public class WebinarMemberPanel extends ELTDialogPanel {
                                              String componentId, IModel<WebinarUserPayment> rowModel) {
                         cellItem.add(new Label(componentId,
                                 getString(rowModel.getObject().getRole().toString() + ".role")));
+                    }
+                });
+                columns.add(new AbstractColumn<WebinarUserPayment>(new ResourceModel("certTitle"), "cert") {
+                    @Override
+                    public void populateItem(Item<ICellPopulator<WebinarUserPayment>> item,
+                                             String s, IModel<WebinarUserPayment> iModel) {
+                        item.add(new Label(s, getString(iModel.getObject().isCert() ? "enabled" : "disabled")));
                     }
                 });
                 return columns;
@@ -96,7 +105,8 @@ public class WebinarMemberPanel extends ELTDialogPanel {
 
             @Override
             protected List<GridAction> getGridActions(IModel<WebinarUserPayment> rowModel) {
-                return new ArrayList<>(Arrays.asList(GridAction.DOWNLOAD, GridAction.CERTIFICATE));
+                return new ArrayList<>(Arrays.asList(
+                        GridAction.DOWNLOAD, GridAction.CERTIFICATE, GridAction.ON, GridAction.OFF));
             }
 
             @Override
@@ -122,11 +132,26 @@ public class WebinarMemberPanel extends ELTDialogPanel {
                         return getString("download.tooltip");
                     case CERTIFICATE:
                         return getString("send.tooltip");
+                    case ON:
+                        return getString("on.tooltip");
+                    case OFF:
+                        return getString("off.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
             }
 
+            @Override
+            protected boolean isActionVisible(GridAction action, IModel<WebinarUserPayment> rowModel) {
+                switch (action) {
+                    case ON:
+                        return !(rowModel.getObject().isCert());
+                    case OFF:
+                        return rowModel.getObject().isCert();
+                    default:
+                        return true;
+                }
+            }
 
             @Override
             protected void onClick(IModel<WebinarUserPayment> rowModel, GridAction action, AjaxRequestTarget target) {
@@ -152,11 +177,35 @@ public class WebinarMemberPanel extends ELTDialogPanel {
                             }
                             ELTAlerts.renderOKPopup(getString("send.message"), target);
                         }
+                    case ON:
+                    {
+                        rowModel.getObject().setCert(true);
+                        try {
+                            webinarUserPaymentManager.update(rowModel.getObject());
+                        } catch (EltilandManagerException e) {
+                            LOGGER.error("Error while saving user payment", e);
+                            ELTAlerts.renderErrorPopup("Error while saving user payment", target);
+                        }
+                        target.add(grid);
+                        break;
+                    }
+                    case OFF:
+                    {
+                        rowModel.getObject().setCert(false);
+                        try {
+                            webinarUserPaymentManager.update(rowModel.getObject());
+                        } catch (EltilandManagerException e) {
+                            LOGGER.error("Error while saving user payment", e);
+                            ELTAlerts.renderErrorPopup("Error while saving user payment", target);
+                        }
+                        target.add(grid);
+                        break;
+                    }
                 }
             }
         };
 
-        form.add(grid);
+        form.add(grid.setOutputMarkupId(true));
     }
 
     public void initData(IModel<Webinar> webinarIModel) {

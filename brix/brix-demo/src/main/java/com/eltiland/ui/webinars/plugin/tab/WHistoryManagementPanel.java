@@ -238,8 +238,10 @@ public class WHistoryManagementPanel extends BaseEltilandPanel<Workspace> {
                                 List<WebinarUserPayment> users =
                                         webinarUserPaymentManager.getWebinarRealListeners(rowModel.getObject());
                                 for (WebinarUserPayment user : users) {
-                                    InputStream stream = webinarCertificateGenerator.generateCertificate(user);
-                                    emailMessageManager.sendWebinarCertificate(user, stream);
+                                    if( user.isCert() ) {
+                                        InputStream stream = webinarCertificateGenerator.generateCertificate(user);
+                                        emailMessageManager.sendWebinarCertificate(user, stream);
+                                    }
                                 }
 
                                 if (!(rowModel.getObject().isCertSended())) {

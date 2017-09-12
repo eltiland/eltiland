@@ -50,6 +50,8 @@ public class WebinarUserPayment extends AbstractIdentifiable implements Exportab
     private String paylink;
     private String webinarlink;
 
+    private boolean cert;
+
     private String userFullName;
 
     @Transient
@@ -57,6 +59,15 @@ public class WebinarUserPayment extends AbstractIdentifiable implements Exportab
         Injector.get().inject(this);
         genericManager.initialize(this, this.getUserProfile());
         return (getUserProfile() == null) ? StringUtils.EMPTY_STRING : getUserProfile().getName();
+    }
+
+    @Column(name = "cert", nullable = false, columnDefinition = "boolean default FALSE")
+    public boolean isCert() {
+        return cert;
+    }
+
+    public void setCert(boolean cert) {
+        this.cert = cert;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
