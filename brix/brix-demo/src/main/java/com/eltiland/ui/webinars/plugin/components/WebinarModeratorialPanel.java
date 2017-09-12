@@ -22,9 +22,7 @@ import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
 import com.eltiland.ui.common.components.dialog.callback.IDialogCloseCallback;
-import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleNewCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSimpleUpdateCallback;
-import com.eltiland.ui.common.components.interval.ELTIntervalDialog;
 import com.eltiland.ui.common.components.textfield.ELTTextEmailField;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
 import com.eltiland.ui.common.model.GenericDBModel;
@@ -48,7 +46,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -14,6 +14,7 @@
 
     <entry key="add.tooltip">Добавить пользователя</entry>
     <entry key="check.tooltip">Проверить всех пользователей</entry>
+    <entry key="link.tooltip">Показать ссылку на участие</entry>
 
     <entry key="CONFIRMED">Подтвержден</entry>
     <entry key="PAYS">Оплачивает</entry>

@@ -10,7 +10,7 @@ public enum GridAction {
     PREVIEW, UP, DOWN, PAGE_PREVIEW, EXPORT_EXCEL,
     CONTROL_SET, CONTROL_RESET, PAY, FULL_APPLY, EDIT_PAYMENT,
     UPLOAD, SEND, USERS, CERTIFICATE, PROFILE, ON, OFF, SETTINGS,
-    LOCK, UNLOCK, TIME, COURSE, USER_SEND, REFRESH, CHECK, NEW, SYNC;
+    LOCK, UNLOCK, TIME, COURSE, USER_SEND, REFRESH, CHECK, NEW, SYNC, LINK;
 
     @Override
     public String toString() {
@@ -85,6 +85,8 @@ public enum GridAction {
                 return "new16";
             case SYNC:
                 return "sync16";
+            case LINK:
+                return "link16";
             default:
                 return "";
         }

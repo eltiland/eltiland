@@ -303,6 +303,10 @@
     background: url("../images/actions/16x16/sync_16x16.png");
 }
 
+.iconControlPanel .button .link16 {
+    background: url("../images/actions/16x16/link_16x16.png");
+}
+
 .iconControlPanel .whitespace16 {
     height: 16px;
     width: 7px;

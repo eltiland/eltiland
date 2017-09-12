@@ -7,9 +7,12 @@ import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.column.PriceColumn;
+import com.eltiland.ui.common.components.ReadonlyObjects;
+import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.common.components.textfield.ELTTextField;
 import com.eltiland.ui.common.model.GenericDBModel;
 import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.WicketRuntimeException;
@@ -66,6 +69,13 @@ public class WebinarModeratePanel extends ELTDialogPanel {
 
     private ELTTable<WebinarUserPayment> grid;
 
+    private Dialog<ShowLinkPanel> showLinkPanel = new Dialog<ShowLinkPanel>("showLinkDialog", 500) {
+        @Override
+        public ShowLinkPanel createDialogPanel(String id) {
+            return new ShowLinkPanel(id);
+        }
+    };
+
     /**
      * Конструктор панели.
      *
@@ -115,7 +125,9 @@ public class WebinarModeratePanel extends ELTDialogPanel {
                     LOGGER.error("Cannot get list of users", e);
                     throw new WicketRuntimeException("Cannot get list of users", e);
                 }
-            };
+            }
+
+            ;
 
             @Override
             protected int getSize() {
@@ -144,23 +156,47 @@ public class WebinarModeratePanel extends ELTDialogPanel {
             }
 
             @Override
+            protected List<GridAction> getGridActions(IModel<WebinarUserPayment> rowModel) {
+                return Arrays.asList(GridAction.LINK);
+            }
+
+            @Override
             protected String getActionTooltip(GridAction action) {
-                switch(action) {
+                switch (action) {
                     case ADD:
                         return getString("add.tooltip");
                     case CHECK:
                         return getString("check.tooltip");
+                    case LINK:
+                        return getString("link.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
             }
 
             @Override
-            protected void onClick(IModel<WebinarUserPayment> rowModel, GridAction action, AjaxRequestTarget target) {
+            protected boolean isActionVisible(GridAction action, IModel<WebinarUserPayment> rowModel) {
+                switch (action) {
+                    case LINK:
+                        return rowModel.getObject().getWebinarlink() != null;
+                    default:
+                        return false;
+                }
+            }
 
+            @Override
+            protected void onClick(IModel<WebinarUserPayment> rowModel, GridAction action, AjaxRequestTarget target) {
+                switch (action) {
+                    case LINK:
+                    {
+                        showLinkPanel.getDialogPanel().initPanel(rowModel.getObject().getWebinarlink());
+                        showLinkPanel.show(target);
+                    }
+                }
             }
         };
         form.add(grid.setOutputMarkupId(true));
+        form.add(showLinkPanel);
     }
 
     public void initWebinarData(IModel<Webinar> model) {
@@ -186,5 +222,44 @@ public class WebinarModeratePanel extends ELTDialogPanel {
     @Override
     public String getVariation() {
         return "styled";
+    }
+
+    private class ShowLinkPanel extends ELTDialogPanel {
+
+        private ELTTextField linkField = new ELTTextField<String>("linkField",
+                ReadonlyObjects.EMPTY_DISPLAY_MODEL, new Model<String>(), String.class) {
+            @Override
+            protected int getInitialWidth() {
+                return 450;
+            }
+        };
+
+        public ShowLinkPanel(String id) {
+            super(id);
+            form.add(linkField);
+        }
+
+        public void initPanel(String link) {
+            linkField.setModelObject(link);
+        }
+
+        @Override
+        protected String getHeader() {
+            return getString("headerLink");
+        }
+
+        @Override
+        protected List<EVENT> getActionList() {
+            return new ArrayList<>();
+        }
+
+        @Override
+        protected void eventHandler(EVENT event, AjaxRequestTarget target) {
+        }
+
+        @Override
+        public String getVariation() {
+            return "styled";
+        }
     }
 }
