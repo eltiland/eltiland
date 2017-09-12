@@ -5,6 +5,7 @@
     <entry key="webinar.name">Вебинар: %s</entry>
     <entry key="webinar.capacity">Вместимость аккаунта: %s человек</entry>
     <entry key="webinar.confirmed">Подтверждено: %s человек</entry>
+    <entry key="webinar.user.confirmed">Пользователь подтвержден</entry>
 
     <entry key="name.title">ФИО</entry>
     <entry key="email.title">Email</entry>
@@ -15,6 +16,7 @@
     <entry key="add.tooltip">Добавить пользователя</entry>
     <entry key="check.tooltip">Проверить всех пользователей</entry>
     <entry key="link.tooltip">Показать ссылку на участие</entry>
+    <entry key="apply.tooltip">Подвердить пользователя</entry>
 
     <entry key="CONFIRMED">Подтвержден</entry>
     <entry key="PAYS">Оплачивает</entry>

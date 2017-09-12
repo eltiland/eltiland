@@ -2,13 +2,16 @@ package com.eltiland.ui.webinars.plugin.components;
 
 import com.eltiland.bl.GenericManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
+import com.eltiland.bl.webinars.WebinarServiceManager;
 import com.eltiland.exceptions.EltilandManagerException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.column.PriceColumn;
 import com.eltiland.ui.common.components.ReadonlyObjects;
 import com.eltiland.ui.common.components.dialog.Dialog;
+import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
@@ -48,6 +51,9 @@ public class WebinarModeratePanel extends ELTDialogPanel {
     private WebinarUserPaymentManager webinarUserPaymentManager;
     @SpringBean
     private GenericManager genericManager;
+    @SpringBean(name = "webinarServiceV3Impl")
+    private WebinarServiceManager webinarServiceManager;
+
 
     private IModel<Webinar> webinarIModel = new GenericDBModel<>(Webinar.class);
 
@@ -157,7 +163,7 @@ public class WebinarModeratePanel extends ELTDialogPanel {
 
             @Override
             protected List<GridAction> getGridActions(IModel<WebinarUserPayment> rowModel) {
-                return Arrays.asList(GridAction.LINK);
+                return Arrays.asList(GridAction.APPLY, GridAction.LINK);
             }
 
             @Override
@@ -169,6 +175,8 @@ public class WebinarModeratePanel extends ELTDialogPanel {
                         return getString("check.tooltip");
                     case LINK:
                         return getString("link.tooltip");
+                    case APPLY:
+                        return getString("apply.tooltip");
                     default:
                         return StringUtils.EMPTY;
                 }
@@ -179,6 +187,8 @@ public class WebinarModeratePanel extends ELTDialogPanel {
                 switch (action) {
                     case LINK:
                         return rowModel.getObject().getWebinarlink() != null;
+                    case APPLY:
+                        return rowModel.getObject().getWebinarlink() == null;
                     default:
                         return false;
                 }
@@ -191,7 +201,23 @@ public class WebinarModeratePanel extends ELTDialogPanel {
                     {
                         showLinkPanel.getDialogPanel().initPanel(rowModel.getObject().getWebinarlink());
                         showLinkPanel.show(target);
+                        break;
                     }
+                    case APPLY:
+                    {
+                        try {
+                            rowModel.getObject().setStatus(PaidStatus.CONFIRMED);
+                            if( webinarServiceManager.addUser(rowModel.getObject())) {
+                                target.add(grid);
+                                ELTAlerts.renderOKPopup(getString("webinar.user.confirmed"), target);
+                            };
+                            break;
+                        } catch (WebinarException e) {
+                            ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                        }
+                    }
+                    default:
+                        break;
                 }
             }
         };
