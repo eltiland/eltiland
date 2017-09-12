@@ -173,6 +173,14 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
 
     @Override
     @Transactional(readOnly = true)
+    public List<WebinarUserPayment> getWebinarUsers(Webinar webinar) {
+        Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
+                .add(Restrictions.eq("webinar", webinar));
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<WebinarUserPayment> getWebinarRealListeners(Webinar webinar) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
                 .add(Restrictions.eq("webinar", webinar))
@@ -188,21 +196,9 @@ public class WebinarUserPaymentManagerImpl extends ManagerImpl implements Webina
             boolean isAscending, String pattern) throws EltilandManagerException {
         Criteria criteria = getCurrentSession().createCriteria(WebinarUserPayment.class)
                 .add(Restrictions.eq("webinar", webinar))
-                //.addOrder( isAscending ? Order.asc() :Order.desc())
                 .setFetchSize(count)
                 .setFirstResult(index);
         return criteria.list();
-
-    /*    try {
-            FullTextQuery query = createWebinarUserSearchFullTextQuery(
-                    createWebinarUserSearchCriteria(webinar, pattern));
-            query.setMaxResults(count);
-            query.setFirstResult(index);
-            query.setSort(new Sort(new SortField(sProperty, SortField.STRING, isAscending)));
-            return query.list();
-        } catch (IOException | ParseException e) {
-            throw new EltilandManagerException("Error while searching by webinar users", e);
-        }*/
     }
 
     @Override

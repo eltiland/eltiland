@@ -85,6 +85,8 @@ public interface WebinarUserPaymentManager {
                                                 String sProperty, boolean isAscending,
                                                 PaidStatus status) throws EltilandManagerException;
 
+    List<WebinarUserPayment> getWebinarUsers(Webinar webinar);
+
     /**
      * Return list of users for given webinar (not moderators).
      *

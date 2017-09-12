@@ -216,10 +216,29 @@ public class WebinarModeratePanel extends ELTDialogPanel {
                             ELTAlerts.renderErrorPopup(e.getMessage(), target);
                         }
                     }
+                    case CHECK:
+                    {
+                        List<WebinarUserPayment> users = webinarUserPaymentManager.getWebinarUsers(webinarIModel.getObject());
+                        for( WebinarUserPayment user : users) {
+                            if( user.getWebinarlink() == null && user.getStatus().equals(PaidStatus.CONFIRMED)) {
+                                try {
+                                    webinarServiceManager.addUser(user);
+                                } catch (WebinarException e) {
+                                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                                    return;
+                                }
+                            }
+                        }
+                        target.add(grid);
+                        ELTAlerts.renderOKPopup(getString("webinar.confirmed"), target);
+                        break;
+                    }
                     default:
                         break;
                 }
             }
+
+
         };
         form.add(grid.setOutputMarkupId(true));
         form.add(showLinkPanel);
