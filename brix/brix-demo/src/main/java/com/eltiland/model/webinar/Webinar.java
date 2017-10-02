@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,6 +48,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
     private Set<WebinarMultiplyPayment> multiplyPayments = new HashSet<>(0);
     private Boolean needConfirm;
     private Long eventId;
+    private List<WebinarSubscription> subscriptions;
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -246,5 +248,14 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
 
     public void setEventId(Long eventId) {
         this.eventId = eventId;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "webinars")
+    public List<WebinarSubscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<WebinarSubscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }

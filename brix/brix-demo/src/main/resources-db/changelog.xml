@@ -404,4 +404,5 @@
     <include file="changesets/2017-09-12_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2017-10-02_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2017-10-02_ap_1.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/2017-10-02_ap_2.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

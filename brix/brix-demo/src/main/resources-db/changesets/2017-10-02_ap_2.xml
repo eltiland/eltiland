@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="0" author="alex.plotnikov">
+        <comment>Creating table for webinar subscription  to webinar link</comment>
+        <sql>
+            CREATE TABLE "webinar"."subscription_webinar" (
+            "subscription_id" Numeric NOT NULL,
+            "webinar_id" Numeric NOT NULL );
+        </sql>
+    </changeSet>
+    <changeSet id="1" author="alex.plotnikov">
+        <comment>Creating links</comment>
+        <sql>
+            ALTER TABLE "webinar"."subscription_webinar"
+            ADD CONSTRAINT "subscription_webinar" FOREIGN KEY ( "webinar_id" )
+            REFERENCES "public"."webinar" ( "_id" ) MATCH SIMPLE
+            ON DELETE No Action
+            ON UPDATE No Action;
+            ALTER TABLE "webinar"."subscription_webinar"
+            ADD CONSTRAINT "subscription_subscription" FOREIGN KEY ( "subscription_id" )
+            REFERENCES "webinar"."webinar_subscription" ( "_id" ) MATCH SIMPLE
+            ON DELETE No Action
+            ON UPDATE No Action;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

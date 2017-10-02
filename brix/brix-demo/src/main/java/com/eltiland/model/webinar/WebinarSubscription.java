@@ -2,10 +2,9 @@ package com.eltiland.model.webinar;
 
 import com.eltiland.model.AbstractIdentifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Абонемент на вебинары. Основная сущность.
@@ -18,6 +17,7 @@ public class WebinarSubscription extends AbstractIdentifiable {
     private String name;
     private String info;
     private BigDecimal price;
+    private List<Webinar> webinars;
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -44,5 +44,19 @@ public class WebinarSubscription extends AbstractIdentifiable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinTable(
+            name = "subscription_webinar", schema = "webinar",
+            joinColumns = @JoinColumn(name = "subscription_id"),
+            inverseJoinColumns = @JoinColumn(name = "webinar_id")
+    )
+    public List<Webinar> getWebinars() {
+        return webinars;
+    }
+
+    public void setWebinars(List<Webinar> webinars) {
+        this.webinars = webinars;
     }
 }
