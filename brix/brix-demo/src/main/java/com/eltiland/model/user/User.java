@@ -20,6 +20,7 @@ import com.eltiland.model.library.LibraryRecord;
 import com.eltiland.model.search.UserTrainingCourseFactory;
 import com.eltiland.model.webinar.WebinarMultiplyPayment;
 import com.eltiland.model.webinar.WebinarRecordPayment;
+import com.eltiland.model.webinar.WebinarSubscriptionPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import org.hibernate.search.annotations.*;
 
@@ -78,6 +79,7 @@ public class User extends AbstractIdentifiable implements Serializable, IWithAva
     private Set<CourseListener> listenerSet = new HashSet<>(0);
     private Set<CourseListener> invitorSet = new HashSet<>(0);
     private Set<Child> children;
+    private Set<WebinarSubscriptionPayment> subscriptionPayments = new HashSet<>(0);
 
     private Set<ELTCourse> authorCourses = new HashSet<>(0);
     private Set<ELTCourse> adminCourses = new HashSet<>(0);
@@ -477,6 +479,15 @@ public class User extends AbstractIdentifiable implements Serializable, IWithAva
 
     public void setChecked(boolean isChecked) {
         this.isChecked = isChecked;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
+    public Set<WebinarSubscriptionPayment> getSubscriptionPayments() {
+        return subscriptionPayments;
+    }
+
+    public void setSubscriptionPayments(Set<WebinarSubscriptionPayment> subscriptionPayments) {
+        this.subscriptionPayments = subscriptionPayments;
     }
 
 

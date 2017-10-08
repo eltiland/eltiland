@@ -4,7 +4,9 @@ import com.eltiland.model.AbstractIdentifiable;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Абонемент на вебинары. Основная сущность.
@@ -18,6 +20,8 @@ public class WebinarSubscription extends AbstractIdentifiable {
     private String info;
     private BigDecimal price;
     private List<Webinar> webinars;
+
+    private Set<WebinarSubscriptionPayment> payments = new HashSet<>(0);
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -58,5 +62,14 @@ public class WebinarSubscription extends AbstractIdentifiable {
 
     public void setWebinars(List<Webinar> webinars) {
         this.webinars = webinars;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
+    public Set<WebinarSubscriptionPayment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<WebinarSubscriptionPayment> payments) {
+        this.payments = payments;
     }
 }

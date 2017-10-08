@@ -28,10 +28,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Class for managing Webinars.
@@ -211,6 +208,9 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     @Override
     @Transactional(readOnly = true)
     public List<Webinar> getWebinarAvailableList(int index, Integer count, String sProperty, boolean isAscending) {
+        if(Objects.equals(sProperty, "id")) {
+            sProperty = "startDate";
+        }
         String order = parseOrderCriteria("webinar", sProperty, isAscending).toString();
 
         User currentUser = EltilandSession.get().getCurrentUser();
