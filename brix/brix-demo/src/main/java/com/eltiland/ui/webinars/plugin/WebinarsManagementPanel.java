@@ -60,6 +60,11 @@ public class WebinarsManagementPanel extends BaseEltilandPanel<Workspace> {
                                             public Panel newPanel(String panelId, IModel<Workspace> workspaceModel) {
                                                 return new WCreationManagementPanel(panelId, workspaceModel);
                                             }
+                                        }, new AbstractWorkspaceTab(new ResourceModel("subscriptionTab"), workspaceIModel) {
+                                            @Override
+                                            public Panel newPanel(String panelId, IModel<Workspace> workspaceModel) {
+                                                return new WSubscriptionManagementPanel(panelId, workspaceModel);
+                                            }
                                         }, new AbstractWorkspaceTab(new ResourceModel("paymentTab"), workspaceIModel) {
                                             @Override
                                             public Panel newPanel(String panelId, IModel<Workspace> workspaceModel) {
