@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <entry key="createHeader">Новая запись вебинара</entry>
-    <entry key="editHeader">Редактирование записи вебинара</entry>
+    <entry key="createHeader">Новый абонемент</entry>
+    <entry key="editHeader">Редактирование абонемента</entry>
+
+    <entry key="nameLabel">Название</entry>
+    <entry key="descLabel">Описание</entry>
+    <entry key="priceLabel">Цена</entry>
 </properties>

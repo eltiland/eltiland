@@ -34,7 +34,7 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
 
     private ELTTable<WebinarSubscription> grid;
 
-    private Dialog<WSPropertyPanel> propertyPanelDialog = new Dialog<WSPropertyPanel>("subPropertyDialog", 350) {
+    private Dialog<WSPropertyPanel> propertyPanelDialog = new Dialog<WSPropertyPanel>("subPropertyDialog", 450) {
         @Override
         public WSPropertyPanel createDialogPanel(String id) {
             return new WSPropertyPanel(id);
