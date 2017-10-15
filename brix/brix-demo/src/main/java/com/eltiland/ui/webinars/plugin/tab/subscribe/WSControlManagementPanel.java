@@ -5,6 +5,7 @@ import com.eltiland.model.webinar.WebinarSubscription;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
+import com.eltiland.ui.common.components.dialog.callback.IDialogNewCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
 import com.eltiland.utils.StringUtils;
@@ -38,6 +39,18 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
         @Override
         public WSPropertyPanel createDialogPanel(String id) {
             return new WSPropertyPanel(id);
+        }
+
+        @Override
+        public void registerCallback(WSPropertyPanel panel) {
+            super.registerCallback(panel);
+            panel.setNewCallback(new IDialogNewCallback.IDialogActionProcessor<WebinarSubscription>() {
+                @Override
+                public void process(IModel<WebinarSubscription> model, AjaxRequestTarget target) {
+                    close(target);
+                    target.add(grid);
+                }
+            });
         }
     };
 

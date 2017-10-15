@@ -1,15 +1,23 @@
 package com.eltiland.ui.webinars.plugin.tab.subscribe;
 
+import com.eltiland.bl.WebinarSubscriptionManager;
+import com.eltiland.exceptions.WebinarException;
+import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarSubscription;
+import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.ELTDialogPanel;
 import com.eltiland.ui.common.components.dialog.callback.IDialogNewCallback;
 import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.pricefield.PriceField;
 import com.eltiland.ui.common.components.textfield.ELTTextArea;
 import com.eltiland.ui.common.components.textfield.ELTTextField;
+import com.eltiland.ui.common.model.GenericDBListModel;
+import com.eltiland.ui.common.model.GenericDBModel;
+import com.eltiland.ui.webinars.plugin.tab.subscribe.components.SubWebinarSelector;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +33,9 @@ import java.util.List;
  */
 public class WSPropertyPanel extends ELTDialogPanel
         implements IDialogNewCallback<WebinarSubscription>, IDialogUpdateCallback<WebinarSubscription> {
+
+    @SpringBean
+    private WebinarSubscriptionManager webinarSubscriptionManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WSPropertyPanel.class);
 
@@ -50,11 +61,16 @@ public class WSPropertyPanel extends ELTDialogPanel
 
     private PriceField priceField = new PriceField("price", new ResourceModel("priceLabel"), new Model<BigDecimal>());
 
+    private SubWebinarSelector selector = new SubWebinarSelector("selector",
+            new GenericDBListModel<>(Webinar.class));
+
     public WSPropertyPanel(String id) {
         super(id);
         form.add(nameField);
         form.add(descField);
         form.add(priceField);
+        form.add(selector);
+        selector.setModelObject(new ArrayList<Webinar>());
     }
 
     public void initCreateMode() {
@@ -77,7 +93,31 @@ public class WSPropertyPanel extends ELTDialogPanel
 
     @Override
     protected void eventHandler(EVENT event, AjaxRequestTarget target) {
+        switch(event) {
+            case Create:
+            {
+                WebinarSubscription subscription = new WebinarSubscription();
+                subscription.setName(nameField.getModelObject());
+                subscription.setInfo(descField.getModelObject());
+                subscription.setPrice(priceField.getModelObject());
+                subscription.setWebinars(selector.getModelObject());
 
+                try {
+                    webinarSubscriptionManager.create(subscription);
+                } catch (WebinarException e) {
+                    ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                    LOGGER.error(e.getMessage(), e);
+                }
+
+                newCallback.process(new GenericDBModel<>(WebinarSubscription.class, subscription), target);
+            }
+            case Save:
+            {
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     @Override

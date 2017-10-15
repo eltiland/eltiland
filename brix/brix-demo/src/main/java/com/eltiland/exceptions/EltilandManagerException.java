@@ -4,6 +4,8 @@ package com.eltiland.exceptions;
  * Generic manager exception.
  */
 public class EltilandManagerException extends Exception {
+
+    public static final String ERROR_EMPTY_ENTITY = "Ошибка базы данных - пустой элемент";
     /**
      * Default constructor.
      *

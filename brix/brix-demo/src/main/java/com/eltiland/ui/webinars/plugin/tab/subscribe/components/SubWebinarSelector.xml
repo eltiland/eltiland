@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="selectHeader">Выбор вебинара</entry>
+    <entry key="nameColumn">Название</entry>
+    <entry key="editWebinarList">Редактирование списка вебинаров</entry>
+</properties>
