@@ -3,16 +3,21 @@ package com.eltiland.ui.webinars.plugin.tab.subscribe;
 import com.eltiland.bl.WebinarSubscriptionManager;
 import com.eltiland.model.webinar.WebinarSubscription;
 import com.eltiland.ui.common.BaseEltilandPanel;
+import com.eltiland.ui.common.column.PriceColumn;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.callback.IDialogNewCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
+import com.eltiland.ui.webinars.plugin.tab.subscribe.components.WebinarListPanel;
 import com.eltiland.utils.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -68,6 +73,20 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
             protected List<IColumn<WebinarSubscription>> getColumns() {
                 List<IColumn<WebinarSubscription>> columns = new ArrayList<>();
                 columns.add(new PropertyColumn<WebinarSubscription>(new ResourceModel("nameLabel"), "name", "name"));
+                columns.add(new PropertyColumn<WebinarSubscription>(new ResourceModel("descLabel"), "info", "info"));
+                columns.add(new PriceColumn(new ResourceModel("priceLabel"), "price", "price") {
+                    @Override
+                    protected String getZeroPrice() {
+                        return getString("freeLabel");
+                    }
+                });
+                columns.add(new AbstractColumn<WebinarSubscription>(new ResourceModel("webinarLabel")) {
+                    @Override
+                    public void populateItem(Item<ICellPopulator<WebinarSubscription>> item,
+                                             String s, IModel<WebinarSubscription> iModel) {
+                        item.add(new WebinarListPanel(s, iModel));
+                    }
+                });
                 return columns;
             }
 
@@ -85,8 +104,7 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
             @Override
             protected void onClick(IModel<WebinarSubscription> rowModel, GridAction action, AjaxRequestTarget target) {
                 switch (action) {
-                    case NEW:
-                    {
+                    case NEW: {
                         propertyPanelDialog.getDialogPanel().initCreateMode();
                         propertyPanelDialog.show(target);
                         break;
@@ -108,7 +126,7 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
 
             @Override
             protected String getActionTooltip(GridAction action) {
-                switch(action) {
+                switch (action) {
                     case NEW:
                         return getString("createAction");
                     default:

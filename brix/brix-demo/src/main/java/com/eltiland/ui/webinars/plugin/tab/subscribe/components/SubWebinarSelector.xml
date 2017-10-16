@@ -4,4 +4,5 @@
     <entry key="selectHeader">Выбор вебинара</entry>
     <entry key="nameColumn">Название</entry>
     <entry key="editWebinarList">Редактирование списка вебинаров</entry>
+    <entry key="webinars">Вебинары:</entry>
 </properties>
