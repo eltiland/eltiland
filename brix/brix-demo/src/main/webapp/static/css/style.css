@@ -496,14 +496,14 @@ div.menu-item > a {
     font-size: 16px;
 }
 
-.elti-main-menu {
+.elti-main-menu-new {
     margin: auto;
     height: 80px;
     text-align: center;
-    width: 1080px;
+    width: 945px;
 }
 
-.elti-main-menu > .elti-menu-list {
+.elti-main-menu-new > .elti-menu-list {
     float: left;
 }
 
@@ -858,11 +858,11 @@ div.menu-item-active {
     width: 265px;
 }
 
-.sideMenu .elti-main-menu {
+.sideMenu .elti-main-menu-new {
     width: 265px;
 }
 
-.sideMenu .elti-main-menu .menu-item {
+.sideMenu .elti-main-menu-new .menu-item {
     float: none;
     width: 265px;
     border-bottom: 1px solid lightgray;
@@ -871,7 +871,7 @@ div.menu-item-active {
     border-right: 0;
 }
 
-.sideMenu .elti-main-menu .menu-item > a > span {
+.sideMenu .elti-main-menu-new .menu-item > a > span {
     max-width: 265px;
     width: 265px;
 }
