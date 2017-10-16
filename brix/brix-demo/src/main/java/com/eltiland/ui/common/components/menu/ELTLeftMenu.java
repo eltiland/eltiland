@@ -33,7 +33,8 @@ public class ELTLeftMenu extends ELTMenu {
                         new MenuData(ParentsPage.class, getString("parentsPage")),
                         new MenuData(ChildrenPage.class, getString("childPage")),
                         new MenuData(TeachersPage.class, getString("teachersPage")),
-                        new MenuData(VideoPage.class, getString("videoPage"))));
+                        new MenuData(VideoPage.class, getString("videoPage")),
+                        new MenuData(VideoPage.class, getString("forumPage"))));
             }
         };
     }
