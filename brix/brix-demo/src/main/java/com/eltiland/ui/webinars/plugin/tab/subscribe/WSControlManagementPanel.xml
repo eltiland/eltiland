@@ -7,5 +7,7 @@
     <entry key="webinarLabel">Вебинары</entry>
 
     <entry key="freeLabel">Бесплатно</entry>
+
     <entry key="createAction">Создать новый абонемент вебинаров</entry>
+    <entry key="editAction">Редактировать абоненмента</entry>
 </properties>

@@ -3,6 +3,7 @@ package com.eltiland.model.webinar;
 import com.eltiland.model.AbstractIdentifiable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "webinar_subscription", schema = "webinar")
-public class WebinarSubscription extends AbstractIdentifiable {
+public class WebinarSubscription extends AbstractIdentifiable implements Serializable{
     private String name;
     private String info;
     private BigDecimal price;

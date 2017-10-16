@@ -7,6 +7,7 @@ import com.eltiland.ui.common.column.PriceColumn;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.callback.IDialogNewCallback;
+import com.eltiland.ui.common.components.dialog.callback.IDialogUpdateCallback;
 import com.eltiland.ui.common.components.grid.ELTTable;
 import com.eltiland.ui.common.components.grid.GridAction;
 import com.eltiland.ui.webinars.plugin.tab.subscribe.components.WebinarListPanel;
@@ -50,6 +51,13 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
         public void registerCallback(WSPropertyPanel panel) {
             super.registerCallback(panel);
             panel.setNewCallback(new IDialogNewCallback.IDialogActionProcessor<WebinarSubscription>() {
+                @Override
+                public void process(IModel<WebinarSubscription> model, AjaxRequestTarget target) {
+                    close(target);
+                    target.add(grid);
+                }
+            });
+            panel.setUpdateCallback(new IDialogUpdateCallback.IDialogActionProcessor<WebinarSubscription>() {
                 @Override
                 public void process(IModel<WebinarSubscription> model, AjaxRequestTarget target) {
                     close(target);
@@ -109,6 +117,11 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
                         propertyPanelDialog.show(target);
                         break;
                     }
+                    case EDIT: {
+                        propertyPanelDialog.getDialogPanel().initEditMode(rowModel.getObject());
+                        propertyPanelDialog.show(target);
+                        break;
+                    }
                     default:
                         break;
                 }
@@ -125,10 +138,17 @@ public class WSControlManagementPanel extends BaseEltilandPanel<Workspace> {
             }
 
             @Override
+            protected List<GridAction> getGridActions(IModel<WebinarSubscription> rowModel) {
+                return new ArrayList<>(Arrays.asList(GridAction.EDIT));
+            }
+
+            @Override
             protected String getActionTooltip(GridAction action) {
                 switch (action) {
                     case NEW:
                         return getString("createAction");
+                    case EDIT:
+                        return getString("editAction");
                     default:
                         return StringUtils.EMPTY_STRING;
                 }

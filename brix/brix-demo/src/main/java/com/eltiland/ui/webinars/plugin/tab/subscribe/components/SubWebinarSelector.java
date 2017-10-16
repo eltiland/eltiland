@@ -116,6 +116,16 @@ public class SubWebinarSelector extends FormComponentPanel<List<Webinar>> {
         add(selectDialog);
     }
 
+    public void setWebinars(List<Webinar> webinars) {
+        webinarsModel.setObject(webinars);
+        webinarsViewModel.setObject(webinars);
+        List<Long> ids = new ArrayList<>();
+        for(Webinar webinar : webinarsModel.getObject()) {
+            ids.add(webinar.getId());
+        }
+        selectDialog.getDialogPanel().setSelectedIds(ids);
+    }
+
     @Override
     protected void convertInput() {
         setConvertedInput(webinarsModel.getObject());
