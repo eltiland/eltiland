@@ -37,7 +37,7 @@ public class ELTMainMenu extends ELTMenu {
                 return new ArrayList<>(Arrays.asList(
                         new MenuData(HomePage.class, getString("homePage")),
                         new MenuData(TrainingPage.class, getString("trainPage")),
-                        new MenuData(CourseListPage.class, getString("coursesPage")),
+                        new MenuData(SeminarsPage.class, getString("seminarsPage")),
                         new MenuData(TeachingModulesPage.class, getString("modulePage")),
                         new MenuData(WebinarsPage.class, getString("webinarsPage")),
                         new MenuData(LibraryPage.class, getString("libraryPage")),
