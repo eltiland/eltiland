@@ -3,6 +3,7 @@ package com.eltiland.bl.impl;
 import com.eltiland.bl.WebinarRecordManager;
 import com.eltiland.model.webinar.WebinarRecord;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
@@ -36,6 +37,7 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
     public List<WebinarRecord> getList(
             int index, Integer count, String sProperty, boolean isAscending, Boolean isCourse) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarRecord.class);
+        criteria.setFetchMode("webinar", FetchMode.JOIN);
         if (isCourse != null) {
             criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
             criteria.add(Restrictions.eq("webinar.course", isCourse));
@@ -43,7 +45,11 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
         criteria.add(Restrictions.eq("open", true));
         criteria.setFirstResult(index);
         criteria.setMaxResults(count);
-        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+        if (sProperty.equals("id")) {
+            criteria.addOrder(Order.desc("webinar.startDate"));
+        } else {
+            criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+        }
         return criteria.list();
     }
 }
