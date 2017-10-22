@@ -4,11 +4,13 @@
     <entry key="title">Вебинары, доступные для регистрации:</entry>
     <entry key="regtitle">Вебинары, на которыe вы зарегистрированы:</entry>
     <entry key="noWebinars">В настоящее время нет вебинаров, доступных для регистрации.</entry>
+    <entry key="abonementsHeader">Абонементы вебинаров:</entry>
 
     <entry key="myWebinars">Мои вебинары</entry>
 
     <entry key="webinarColumn">Название записи</entry>
     <entry key="managerColumn">Ведущий</entry>
+    <entry key="priceWebinar">Стоимость</entry>
     <entry key="priceColumn">Стоимость записи</entry>
 
     <entry key="freePrice">Бесплатно</entry>
@@ -20,6 +22,7 @@
         инструкциями.
     </entry>
     <entry key="nameColumn">Название</entry>
+    <entry key="webinarsColumn">Вебинары</entry>
     <entry key="descriptionColumn">Описание</entry>
     <entry key="startDateColumn">Дата начала</entry>
     <entry key="durationColumn">Длительность</entry>

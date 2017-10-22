@@ -2,6 +2,7 @@ package com.eltiland.ui.webinars.plugin.tab;
 
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.webinars.plugin.tab.subscribe.WSControlManagementPanel;
+import com.eltiland.ui.webinars.plugin.tab.subscribe.WSHistoryManagementPanel;
 import com.eltiland.ui.webinars.plugin.tab.subscribe.WSPaymentManagementPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -25,7 +26,7 @@ public class WSubscriptionManagementPanel extends BaseEltilandPanel<Workspace> {
      * @param id              panel's ID.
      * @param workspaceIModel workspace model.
      */
-    public WSubscriptionManagementPanel(String id, IModel<Workspace> workspaceIModel) {
+    public WSubscriptionManagementPanel(String id, final IModel<Workspace> workspaceIModel) {
         super(id, workspaceIModel);
         add(new BrixTabbedPanel("pgTabPanel",
                 Arrays.<IBrixTab>asList(new AbstractWorkspaceTab(new ResourceModel("controlTab"), workspaceIModel) {
@@ -37,6 +38,11 @@ public class WSubscriptionManagementPanel extends BaseEltilandPanel<Workspace> {
                                             @Override
                                             public Panel newPanel(String panelId, IModel<Workspace> workspaceModel) {
                                                 return new WSPaymentManagementPanel(panelId, workspaceModel);
+                                            }
+                                        }, new AbstractWorkspaceTab(new ResourceModel("historyTab"), workspaceIModel) {
+                                            @Override
+                                            public Panel newPanel(String panelId, IModel<Workspace> workspaceModel) {
+                                                return new WSHistoryManagementPanel(panelId, workspaceModel);
                                             }
                                         }
                 )) {

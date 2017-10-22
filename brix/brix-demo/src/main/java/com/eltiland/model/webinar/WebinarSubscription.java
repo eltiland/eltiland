@@ -5,6 +5,7 @@ import com.eltiland.model.AbstractIdentifiable;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,11 +17,12 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "webinar_subscription", schema = "webinar")
-public class WebinarSubscription extends AbstractIdentifiable implements Serializable{
+public class WebinarSubscription extends AbstractIdentifiable implements Serializable {
     private String name;
     private String info;
     private BigDecimal price;
     private List<Webinar> webinars;
+    private Date finalDate;
 
     private Set<WebinarSubscriptionPayment> payments = new HashSet<>(0);
 
@@ -72,5 +74,14 @@ public class WebinarSubscription extends AbstractIdentifiable implements Seriali
 
     public void setPayments(Set<WebinarSubscriptionPayment> payments) {
         this.payments = payments;
+    }
+
+    @Column(name = "final_date", nullable = false)
+    public Date getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
     }
 }

@@ -4,6 +4,7 @@ import com.eltiland.bl.GenericManager;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarSubscription;
 import com.eltiland.ui.common.BaseEltilandPanel;
+import com.eltiland.utils.DateUtils;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -26,7 +27,9 @@ public class WebinarListPanel extends BaseEltilandPanel<WebinarSubscription> {
         ListView<Webinar> webinarListView = new ListView<Webinar>("webinarList", getModelObject().getWebinars()) {
             @Override
             protected void populateItem(ListItem<Webinar> listItem) {
-                listItem.add(new Label("webinarInnerPanel", listItem.getModel().getObject().getName()));
+                listItem.add(new Label("webinarInnerPanel", String.format("%s (%s)",
+                        listItem.getModel().getObject().getName(),
+                        DateUtils.formatDate(listItem.getModel().getObject().getStartDate()))));
             }
         };
 

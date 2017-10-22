@@ -15,8 +15,12 @@ public interface WebinarSubscriptionManager {
 
     /**
      * Returns count of webinar subscriptions.
+     *
+     * @param active    if TRUE - only active subscriptions
+     *                  FALSE - past subscriptions
+     *                  NULL - both
      */
-    int getCount();
+    int getCount(Boolean active);
 
     /**
      * Returns list of webinar's subscription.
@@ -25,9 +29,12 @@ public interface WebinarSubscriptionManager {
      * @param count       the maximum number of results to retrieve. {@code null} means no limit.
      * @param sProperty   the sorting property name
      * @param isAscending the sorting direction.
+     * @param active    if TRUE - only active subscriptions
+     *                  FALSE - past subscriptions
+     *                  NULL - both
      * @return list of subscriptions.
      */
-    List<WebinarRecord> getList(int index, Integer count, String sProperty, boolean isAscending);
+    List<WebinarRecord> getList(int index, Integer count, String sProperty, boolean isAscending, Boolean active);
 
     /**
      * Creates and persists new webinar subscription.

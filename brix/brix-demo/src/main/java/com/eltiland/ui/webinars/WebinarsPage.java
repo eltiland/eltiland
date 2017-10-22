@@ -25,6 +25,7 @@ import com.eltiland.ui.common.model.GenericDBModel;
 import com.eltiland.ui.webinars.components.WebinarLoginPanel;
 import com.eltiland.ui.webinars.components.WebinarNewUserPanel;
 import com.eltiland.ui.webinars.components.multiply.WebinarAddUsersPanel;
+import com.eltiland.ui.webinars.plugin.tab.subscribe.components.WebinarListPanel;
 import com.eltiland.ui.worktop.BaseWorktopPage;
 import com.eltiland.utils.UrlUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -67,6 +68,8 @@ public class WebinarsPage extends BaseEltilandPage {
     private EmailMessageManager emailMessageManager;
     @SpringBean
     private WebinarUserPaymentManager webinarUserPaymentManager;
+    @SpringBean
+    private WebinarSubscriptionManager webinarSubscriptionManager;
 
     private IModel<User> currentUserModel = new LoadableDetachableModel<User>() {
         @Override
@@ -277,7 +280,7 @@ public class WebinarsPage extends BaseEltilandPage {
             });
             columns.add(new PropertyColumn<Webinar>(new ResourceModel("deadlineDateColumn"),
                     "registrationDeadline", "registrationDeadline"));
-            columns.add(new PriceColumn(new ResourceModel("priceColumn"), "price", "price") {
+            columns.add(new PriceColumn(new ResourceModel("priceWebinar"), "price", "price") {
                 @Override
                 protected String getZeroPrice() {
                     return getString("freePrice");
@@ -374,7 +377,7 @@ public class WebinarsPage extends BaseEltilandPage {
                                 throw new WicketRuntimeException("Can't create new record invoice", e);
                             }
                             try {
-                                if( !isFree ) {
+                                if (!isFree) {
                                     emailMessageManager.sendRecordInvitationToUser(payment);
                                 } else {
                                     InputStream pdfStream =
@@ -392,7 +395,40 @@ public class WebinarsPage extends BaseEltilandPage {
                     }
             }
         }
+    };
 
+    private ELTTable<WebinarSubscription> subscriptionGrid = new ELTTable<WebinarSubscription>("subGrid", 10) {
+        @Override
+        protected List<IColumn<WebinarSubscription>> getColumns() {
+            ArrayList<IColumn<WebinarSubscription>> columns = new ArrayList<>();
+            columns.add(new PropertyColumn<WebinarSubscription>(new ResourceModel("nameColumn"), "name", "name"));
+            columns.add(new PropertyColumn<WebinarSubscription>(new ResourceModel("descriptionColumn"), "info", "info"));
+            columns.add(new AbstractColumn<WebinarSubscription>(new ResourceModel("webinarsColumn")) {
+                @Override
+                public void populateItem(
+                        Item<ICellPopulator<WebinarSubscription>> item, String s, IModel<WebinarSubscription> iModel) {
+                    item.add(new WebinarListPanel(s, iModel));
+                }
+            });
+            columns.add(new PriceColumn(new ResourceModel("priceWebinar"), "price", "price"));
+            return columns;
+        }
+
+        @Override
+        protected Iterator getIterator(int first, int count) {
+            return webinarSubscriptionManager.getList(
+                    first, count, getSort().getProperty(), getSort().isAscending(), true).iterator();
+        }
+
+        @Override
+        protected int getSize() {
+            return webinarSubscriptionManager.getCount(true);
+        }
+
+        @Override
+        protected void onClick(IModel<WebinarSubscription> rowModel, GridAction action, AjaxRequestTarget target) {
+
+        }
     };
 
     WebMarkupContainer noWebinarsContainer = new WebMarkupContainer("noWebinarMessage") {
@@ -416,6 +452,13 @@ public class WebinarsPage extends BaseEltilandPage {
         }
     };
 
+    WebMarkupContainer subscriptionContainer = new WebMarkupContainer("subscriptionContainer") {
+        @Override
+        public boolean isVisible() {
+            return webinarSubscriptionManager.getCount(true) > 0;
+        }
+    };
+
     public WebinarsPage() {
         add(noWebinarsContainer);
         add(new EltiAjaxLink("myWebinarsButton") {
@@ -436,9 +479,14 @@ public class WebinarsPage extends BaseEltilandPage {
                 return null;
             }
         });
+
         add(availableWebinarsContainer.setOutputMarkupPlaceholderTag(true));
         add(recordsContainer.setOutputMarkupPlaceholderTag(true));
+        add(subscriptionContainer.setOutputMarkupPlaceholderTag(true));
+
         availableWebinarsContainer.add(availableTable);
+        subscriptionContainer.add(subscriptionGrid.setOutputMarkupPlaceholderTag(true));
+
         recordsContainer.add(recordsTable);
         recordsContainer.add(new BrixPanel("recordInfo", UrlUtils.createBrixPathForPanel("WEBINAR/recordInfo.html")));
         add(new BrixPanel("webinarInfo", UrlUtils.createBrixPathForPanel("WEBINAR/webinarInfo.html")));

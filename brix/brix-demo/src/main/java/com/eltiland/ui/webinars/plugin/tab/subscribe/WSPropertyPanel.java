@@ -131,6 +131,7 @@ public class WSPropertyPanel extends ELTDialogPanel
                 }
 
                 newCallback.process(new GenericDBModel<>(WebinarSubscription.class, subscription), target);
+                break;
             }
             case Save:
             {
