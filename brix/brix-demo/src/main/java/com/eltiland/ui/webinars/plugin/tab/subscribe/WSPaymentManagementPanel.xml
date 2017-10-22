@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+    <entry key="nameLabel">Название абонемента</entry>
+    <entry key="webinarLabel">Вебинары</entry>
+    <entry key="memberLabel">Участник</entry>
+    <entry key="dateLabel">Дата платежа</entry>
+    <entry key="sumLabel">Сумма</entry>
 </properties>

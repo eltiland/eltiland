@@ -17,11 +17,15 @@ import com.eltiland.model.webinar.WebinarSubscriptionPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.utils.DateUtils;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Class for managing Webinars subscription payment invoices.
@@ -109,5 +113,25 @@ public class WebinarSubscriptionPaymentManagerImpl extends ManagerImpl implement
         }
         payment.setStatus(PaidStatus.CONFIRMED);
         update(payment);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public int getCount() {
+        Criteria criteria = getCurrentSession().createCriteria(WebinarSubscriptionPayment.class);
+        criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
+        return criteria.list().size();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<WebinarSubscriptionPayment> getList(int index, Integer count, String sProperty, boolean isAscending) {
+        Criteria criteria = getCurrentSession().createCriteria(WebinarSubscriptionPayment.class);
+        criteria.add(Restrictions.eq("status", PaidStatus.CONFIRMED));
+        criteria.setFetchMode("subscription", FetchMode.JOIN);
+        criteria.addOrder(isAscending ? Order.asc(sProperty) : Order.desc(sProperty));
+        criteria.setFirstResult(index);
+        criteria.setMaxResults(count);
+        return criteria.list();
     }
 }
