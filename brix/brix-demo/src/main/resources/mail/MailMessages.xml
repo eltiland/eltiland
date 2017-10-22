@@ -57,6 +57,7 @@
     <entry key="webinarChangeRole">Изменение роли участника в вебинаре</entry>
     <entry key="webinarCertificate">Сертификат об участии в вебинаре</entry>
     <entry key="webinarListenersMessage">Сообщение слушателям вебинара</entry>
+    <entry key="subscriptionInvoiceMessage">Запрос на участие в абонементе вебинаров</entry>
 
     <entry key="courseInvoiceToCreate">Запрос на создание курса</entry>
     <entry key="courseApplyToUser">Ваш запрос на создание курса подтвержден администрацией</entry>

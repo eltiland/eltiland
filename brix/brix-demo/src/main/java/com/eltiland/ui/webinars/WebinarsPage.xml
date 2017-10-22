@@ -17,10 +17,18 @@
     <entry key="loginNeededMessage">Для формирования заявки на покупку записи вебинара или заявки на доступ к бесплатной
         записи, Вы должны зарегистрироваться на портале.
     </entry>
+    <entry key="loginSubNeededMessage">Для формирования заявки на абонемент, Вы должны зарегистрироваться на портале.
+    </entry>
     <entry key="alreadySendedError">Вам уже отправлена ссылка для доступа к записи.</entry>
     <entry key="sendedMessage">Ваш запрос на доступ к записи успешно отправлен администрации. Ожидайте письма с
         инструкциями.
     </entry>
+
+    <entry key="sendedSubMessage">Ваш запрос на доступ к абонементу успешно отправлен администрации. Ожидайте письма с
+        инструкциями.
+    </entry>
+
+    <entry key="alreadyRegSubscription">Вы уже подали заявку на регистрацию на данный абонемент.</entry>
     <entry key="nameColumn">Название</entry>
     <entry key="webinarsColumn">Вебинары</entry>
     <entry key="descriptionColumn">Описание</entry>
@@ -33,6 +41,7 @@
 
     <entry key="registerTooltip">Зарегистрироваться</entry>
     <entry key="subscribeRecord">Подать запрос на данную запись</entry>
+    <entry key="registerSubscribe">Зарегистрироваться на абонемент</entry>
     <entry key="inviteUsers">Пригласить пользователей</entry>
 
     <entry key="signupFreeMessage">Вы успено добавлены на указанный бесплатный вебинар. Ссылка на участие отправлена Вам

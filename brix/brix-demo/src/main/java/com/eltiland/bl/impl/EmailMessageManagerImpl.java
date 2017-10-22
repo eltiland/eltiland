@@ -28,10 +28,7 @@ import com.eltiland.model.subscribe.Subscriber;
 import com.eltiland.model.user.Confirmation;
 import com.eltiland.model.user.ResetCode;
 import com.eltiland.model.user.User;
-import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarMultiplyPayment;
-import com.eltiland.model.webinar.WebinarRecordPayment;
-import com.eltiland.model.webinar.WebinarUserPayment;
+import com.eltiland.model.webinar.*;
 import com.eltiland.session.EltilandSession;
 import com.eltiland.ui.paymentnew.PaymentPage;
 import com.eltiland.utils.DateUtils;
@@ -160,6 +157,8 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
     private final static String WEBINAR_MESSAGE_TO_USER = "templates/webinars/webinarMessage.fo";
     private final static String WEBINAR_MESSAGE_WITH_RECORDS_TO_USER = "templates/webinars/webinarMessageWithRecords.fo";
 
+    private final static String WEBINAR_INVOICE_SUSCRIPTION = "templates/webinars/subscription/userInvoiceToSubscription.fo";
+
     private final static String MAGAZINE_DOWNLOAD = "templates/magazine/downloadMagazine.fo";
     private final static String MAGAZINE_INFO_TO_ADMIN = "templates/magazine/adminNotifyMagazineBuy.fo";
 
@@ -178,6 +177,8 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
     private final static String WEBINAR_PAYLINK = "pay_link";
     private final static String WEBINAR_PRICE = "webinar_price";
     private final static String WEBINAR_ROLE = "webinar_role";
+
+    private final static String SUBSCRIPTION_NAME = "subscription_name";
 
     private final static String RECORD_LINKS = "record_links";
 
@@ -1509,6 +1510,37 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
         }
     }
 
+    @Override
+    public void sendSubscriptionLinkToUser(WebinarSubscriptionPayment payment) throws EmailException {
+        Map<String, Object> model = new HashMap<>();
+        genericManager.initialize(payment, payment.getSubscription());
+        genericManager.initialize(payment, payment.getUserProfile());
+
+        model.put(SUBSCRIPTION_NAME, payment.getSubscription().getName());
+        model.put(WEBINAR_PAYLINK, createSubscriptionPayPath(payment, UrlUtils.PAYMENT_LINK));
+
+        try {
+            InternetAddress recipient = new InternetAddress(payment.getUserProfile().getEmail());
+
+            String messageBody = velocityMergeTool.mergeTemplate(model, WEBINAR_INVOICE_SUSCRIPTION);
+
+            EmailMessage message = new EmailMessage();
+
+            message.setSender(new InternetAddress(
+                    mailHeadings.getProperty("robotFromEmail"),
+                    mailHeadings.getProperty("robotFromName"),
+                    "UTF-8"));
+
+            message.setSubject(mailHeadings.getProperty("subscriptionInvoiceMessage"));
+            message.setRecipients(Arrays.asList(recipient));
+            message.setText(messageBody);
+
+            mailSender.sendMessage(message);
+        } catch (AddressException | VelocityCommonException | IOException e) {
+            throw new EmailException(EmailException.SEND_MAIL_ERROR, e);
+        }
+    }
+
     private void sendRegistrationConfirmationEmail(Map<String, Object> model, InternetAddress recipient,
                                                    String template, String subject, String footer)
             throws EmailException {
@@ -1598,6 +1630,13 @@ public class EmailMessageManagerImpl implements EmailMessageManager {
     private String createCoursePayPath(ELTCourseListener listener, String basePath) {
         if (listener != null) {
             basePath += "?" + PaymentPage.PARAM_ID + "=" + listener.getId();
+        }
+        return eltilandProps.getProperty("application.base.url") + basePath;
+    }
+
+    private String createSubscriptionPayPath(WebinarSubscriptionPayment payment, String basePath) {
+        if (payment != null) {
+            basePath += "?" + PaymentPage.PARAM_ID + "=" + payment.getId();
         }
         return eltilandProps.getProperty("application.base.url") + basePath;
     }

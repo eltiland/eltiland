@@ -5,6 +5,7 @@ import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.payment.PaidEntityNew;
 import com.eltiland.model.webinar.WebinarRecordPayment;
+import com.eltiland.model.webinar.WebinarSubscriptionPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.common.OneColumnPage;
 import com.eltiland.ui.common.components.button.paybutton.PayButton;
@@ -64,12 +65,18 @@ public class PaymentPage extends OneColumnPage {
                 ELTCourseListener entity1 = courseListenerManager.getById(id);
                 if (entity1 == null) {
                     WebinarRecordPayment entity2 = genericManager.getObject(WebinarRecordPayment.class, id);
-                    if( entity2 == null ) {
+                    if (entity2 == null) {
                         WebinarUserPayment entity3 = genericManager.getObject(WebinarUserPayment.class, id);
-                        if( entity3 != null ) {
-                            return entity3;
+                        if (entity3 == null) {
+                            WebinarSubscriptionPayment entity4 =
+                                    genericManager.getObject(WebinarSubscriptionPayment.class, id);
+                            if( entity4 != null ) {
+                                return entity4;
+                            } else {
+                                return null;
+                            }
                         } else {
-                            return null;
+                            return entity3;
                         }
                     } else {
                         return entity2;
@@ -105,6 +112,8 @@ public class PaymentPage extends OneColumnPage {
                 description += " " + String.format(getString("access.limited"),
                         ((ELTCourseListener) paidEntityModel.getObject()).getCourse().getDays());
             }
+        } else {
+            description = paidEntityModel.getObject().getDescription();
         }
 
         desc.setDefaultModelObject(description);

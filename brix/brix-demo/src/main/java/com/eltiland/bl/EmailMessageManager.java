@@ -12,10 +12,7 @@ import com.eltiland.model.file.File;
 import com.eltiland.model.magazine.Client;
 import com.eltiland.model.subscribe.Email;
 import com.eltiland.model.user.User;
-import com.eltiland.model.webinar.Webinar;
-import com.eltiland.model.webinar.WebinarMultiplyPayment;
-import com.eltiland.model.webinar.WebinarRecordPayment;
-import com.eltiland.model.webinar.WebinarUserPayment;
+import com.eltiland.model.webinar.*;
 
 import javax.mail.internet.AddressException;
 import java.io.InputStream;
@@ -176,6 +173,9 @@ public interface EmailMessageManager {
      */
     void sendWebinarMessageToListeners(Webinar webinar, String text, boolean sentCertificate,
                                        boolean sentFiles, boolean sentRecords, String header) throws EmailException;
+
+
+    void sendSubscriptionLinkToUser(WebinarSubscriptionPayment payment) throws EmailException;
 
 
     /******************************************************************************************************************/

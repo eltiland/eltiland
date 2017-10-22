@@ -27,6 +27,7 @@ import com.eltiland.ui.webinars.components.WebinarNewUserPanel;
 import com.eltiland.ui.webinars.components.multiply.WebinarAddUsersPanel;
 import com.eltiland.ui.webinars.plugin.tab.subscribe.components.WebinarListPanel;
 import com.eltiland.ui.worktop.BaseWorktopPage;
+import com.eltiland.utils.DateUtils;
 import com.eltiland.utils.UrlUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.wicket.RestartResponseException;
@@ -70,6 +71,8 @@ public class WebinarsPage extends BaseEltilandPage {
     private WebinarUserPaymentManager webinarUserPaymentManager;
     @SpringBean
     private WebinarSubscriptionManager webinarSubscriptionManager;
+    @SpringBean
+    private WebinarSubscriptionPaymentManager webinarSubscriptionPaymentManager;
 
     private IModel<User> currentUserModel = new LoadableDetachableModel<User>() {
         @Override
@@ -421,13 +424,75 @@ public class WebinarsPage extends BaseEltilandPage {
         }
 
         @Override
+        protected List<GridAction> getGridActions(IModel<WebinarSubscription> rowModel) {
+            return new ArrayList<>(Arrays.asList(GridAction.APPLY));
+        }
+
+        @Override
+        protected String getActionTooltip(GridAction action) {
+            switch (action) {
+                case APPLY:
+                    return getString("registerSubscribe");
+                default:
+                    return "";
+            }
+        }
+
+        @Override
         protected int getSize() {
             return webinarSubscriptionManager.getCount(true);
         }
 
         @Override
         protected void onClick(IModel<WebinarSubscription> rowModel, GridAction action, AjaxRequestTarget target) {
+            switch (action) {
+                case APPLY:
+                    if (currentUserModel.getObject() == null) {
+                        ELTAlerts.renderErrorPopup(getString("loginSubNeededMessage"), target);
+                    } else {
+                        if (webinarSubscriptionPaymentManager.getPayment(
+                                rowModel.getObject(), currentUserModel.getObject()) != null) {
+                            ELTAlerts.renderErrorPopup(getString("alreadyRegSubscription"), target);
+                        } else {
+                            WebinarSubscriptionPayment payment = new WebinarSubscriptionPayment();
+                            payment.setUserProfile(currentUserModel.getObject());
 
+                            String[] nameParts = currentUserModel.getObject().getName().split(" ");
+                            payment.setUserSurname(nameParts[0]);
+                            if (nameParts.length > 1)
+                                payment.setUserName(nameParts[1]);
+                            if (nameParts.length > 2)
+                                payment.setPatronymic(nameParts[2]);
+
+                            payment.setSubscription(rowModel.getObject());
+                            payment.setRegistrationDate(DateUtils.getCurrentDate());
+                            payment.setStatus(PaidStatus.NEW);
+                            payment.setPrice(rowModel.getObject().getPrice());
+                            payment.setPayLink(RandomStringUtils.randomAlphanumeric(10));
+
+                            try {
+                                webinarSubscriptionPaymentManager.create(payment);
+                            } catch (WebinarException e) {
+                                LOGGER.error(e.getMessage(), e);
+                                ELTAlerts.renderErrorPopup(e.getMessage(), target);
+                                break;
+                            }
+
+                            try {
+                                emailMessageManager.sendSubscriptionLinkToUser(payment);
+                            } catch (EmailException e) {
+                                LOGGER.error(e.getMessage(), e);
+                                ELTAlerts.renderErrorPopup("Can't send mail", target);
+                                break;
+                            }
+
+                            ELTAlerts.renderOKPopup(getString("sendedSubMessage"), target);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     };
 

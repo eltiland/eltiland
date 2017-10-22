@@ -2,15 +2,18 @@ package com.eltiland.ui.paymentnew;
 
 import com.eltiland.bl.EmailMessageManager;
 import com.eltiland.bl.GenericManager;
+import com.eltiland.bl.WebinarSubscriptionPaymentManager;
 import com.eltiland.bl.WebinarUserPaymentManager;
 import com.eltiland.bl.pdf.WebinarCertificateGenerator;
 import com.eltiland.exceptions.ConstraintException;
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.EmailException;
+import com.eltiland.exceptions.WebinarException;
 import com.eltiland.model.course2.listeners.ELTCourseListener;
 import com.eltiland.model.payment.PaidEntityNew;
 import com.eltiland.model.payment.PaidStatus;
 import com.eltiland.model.webinar.WebinarRecordPayment;
+import com.eltiland.model.webinar.WebinarSubscriptionPayment;
 import com.eltiland.model.webinar.WebinarUserPayment;
 import com.eltiland.ui.webinars.plugin.tab.WUserManagementPanel;
 import com.eltiland.utils.DateUtils;
@@ -39,6 +42,8 @@ public class PaymentProcessingPage extends WebPage {
     private WebinarCertificateGenerator webinarCertificateGenerator;
     @SpringBean
     private WebinarUserPaymentManager webinarUserPaymentManager;
+    @SpringBean
+    private WebinarSubscriptionPaymentManager webinarSubscriptionPaymentManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentProcessingPage.class);
 
@@ -88,12 +93,23 @@ public class PaymentProcessingPage extends WebPage {
                 LOGGER.error(e.getMessage());
             }
         }
-        if( entity instanceof WebinarUserPayment) {
+        if (entity instanceof WebinarUserPayment) {
             WebinarUserPayment payment = webinarUserPaymentManager.getWebinarPaymentById(id);
             if (payment != null && !(payment.getStatus().equals(PaidStatus.CONFIRMED))) {
                 try {
                     webinarUserPaymentManager.payWebinarUserPayment(payment);
                 } catch (EltilandManagerException e) {
+                    LOGGER.error(e.getMessage());
+                }
+            }
+        }
+
+        if (entity instanceof WebinarSubscriptionPayment) {
+            WebinarSubscriptionPayment payment = genericManager.getObject(WebinarSubscriptionPayment.class, id);
+            if (payment != null && !(payment.getStatus().equals(PaidStatus.CONFIRMED))) {
+                try {
+                    webinarSubscriptionPaymentManager.pay(payment);
+                } catch (WebinarException e) {
                     LOGGER.error(e.getMessage());
                 }
             }
@@ -107,10 +123,15 @@ public class PaymentProcessingPage extends WebPage {
             WebinarRecordPayment payment = genericManager.getObject(WebinarRecordPayment.class, id);
             if (payment == null) {
                 WebinarUserPayment payment1 = genericManager.getObject(WebinarUserPayment.class, id);
-                if (payment1 != null) {
-                    return payment1;
+                if (payment1 == null) {
+                    WebinarSubscriptionPayment payment2 = genericManager.getObject(WebinarSubscriptionPayment.class, id);
+                    if (payment2 != null) {
+                        return payment2;
+                    } else {
+                        return null;
+                    }
                 } else {
-                    return null;
+                    return payment1;
                 }
             } else {
                 return payment;

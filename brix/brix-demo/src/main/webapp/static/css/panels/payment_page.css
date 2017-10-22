@@ -37,6 +37,10 @@
     background-image: url("../../images/item/course.png");
 }
 
+.payment-page > .main > .icon > .webinar {
+    background-image: url("../../images/item/webinar.png");
+}
+
 .payment-page > .main > .info {
     display: table-cell;
     width: 700px;
