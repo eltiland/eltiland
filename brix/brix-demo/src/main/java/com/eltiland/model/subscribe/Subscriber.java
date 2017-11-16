@@ -19,6 +19,7 @@ public class Subscriber extends AbstractIdentifiable {
     private Date creationdate;
     private boolean disabled;
     private String unsubscribe;
+    private String ipAddress;
 
     @Column(name = "email", nullable = false, length = 50)
     public String getEmail() {
@@ -54,5 +55,14 @@ public class Subscriber extends AbstractIdentifiable {
 
     public void setUnsubscribe(String unsubscribe) {
         this.unsubscribe = unsubscribe;
+    }
+
+    @Column(name = "ipaddress", nullable = false, length = 16)
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }
