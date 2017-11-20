@@ -9,6 +9,8 @@ import com.eltiland.exceptions.SubscriberException;
 import com.eltiland.model.subscribe.Subscriber;
 import com.eltiland.utils.DateUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.http.WebRequest;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -35,6 +38,12 @@ public class SubscriberManagerImpl extends ManagerImpl implements SubscriberMana
     @Override
     @Transactional
     public Subscriber createSubscriber(Subscriber subscriber) throws SubscriberException {
+        WebRequest req = (WebRequest) RequestCycle.get().getRequest();
+        HttpServletRequest httpReq = (HttpServletRequest) req.getContainerRequest();
+        String clientAddress = httpReq.getRemoteHost();
+
+        subscriber.setIpAddress(clientAddress);
+
         try {
             String code = RandomStringUtils.randomAlphanumeric(10);
             subscriber.setUnsubscribe(code);
