@@ -24,7 +24,7 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
     @Transactional(readOnly = true)
     public int getCount(Boolean isCourse) {
         Criteria criteria = getCurrentSession().createCriteria(WebinarRecord.class);
-        if (isCourse != null) {
+        if (isCourse != null && isCourse) {
             criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
             criteria.add(Restrictions.eq("webinar.course", isCourse));
         }
@@ -36,10 +36,11 @@ public class WebinarRecordManagerImpl extends ManagerImpl implements WebinarReco
     @Transactional(readOnly = true)
     public List<WebinarRecord> getList(
             int index, Integer count, String sProperty, boolean isAscending, Boolean isCourse) {
+
         Criteria criteria = getCurrentSession().createCriteria(WebinarRecord.class);
         criteria.setFetchMode("webinar", FetchMode.JOIN);
-        if (isCourse != null) {
-            criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("webinar", "webinar", JoinType.LEFT_OUTER_JOIN);
+        if (isCourse != null && isCourse) {
             criteria.add(Restrictions.eq("webinar.course", isCourse));
         }
         criteria.add(Restrictions.eq("open", true));
