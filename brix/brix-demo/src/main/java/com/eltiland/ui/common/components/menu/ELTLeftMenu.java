@@ -5,6 +5,7 @@ import com.eltiland.ui.common.TeachingPage;
 import com.eltiland.ui.common.compositepage.children.ChildrenPage;
 import com.eltiland.ui.common.compositepage.parents.ParentsPage;
 import com.eltiland.ui.common.compositepage.teachers.TeachersPage;
+import com.eltiland.ui.forum.ForumPage;
 import com.eltiland.ui.video.VideoPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -34,7 +35,7 @@ public class ELTLeftMenu extends ELTMenu {
                         new MenuData(ChildrenPage.class, getString("childPage")),
                         new MenuData(TeachersPage.class, getString("teachersPage")),
                         new MenuData(VideoPage.class, getString("videoPage")),
-                        new MenuData(VideoPage.class, getString("forumPage"))));
+                        new MenuData(ForumPage.class, getString("forumPage"))));
             }
         };
     }
