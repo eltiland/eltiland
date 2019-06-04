@@ -1,6 +1,7 @@
 package com.eltiland.ui.common.components.menu;
 
 import com.eltiland.ui.common.BaseEltilandPage;
+import com.eltiland.ui.common.StemPage;
 import com.eltiland.ui.common.TeachingPage;
 import com.eltiland.ui.common.compositepage.children.ChildrenPage;
 import com.eltiland.ui.common.compositepage.parents.ParentsPage;
@@ -35,6 +36,7 @@ public class ELTLeftMenu extends ELTMenu {
                         new MenuData(ChildrenPage.class, getString("childPage")),
                         new MenuData(TeachersPage.class, getString("teachersPage")),
                         new MenuData(VideoPage.class, getString("videoPage")),
+                        new MenuData(StemPage.class, getString("stemPage")),
                         new MenuData(ForumPage.class, getString("forumPage"))));
             }
         };
