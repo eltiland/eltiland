@@ -409,4 +409,5 @@
     <include file="changesets/2017-10-22_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2017-11-16_ap_0.xml" relativeToChangelogFile="true"/>
     <include file="changesets/2017-11-16_ap_1.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/2020-05-10_ap_0.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

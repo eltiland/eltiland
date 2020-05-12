@@ -17,14 +17,14 @@
         </static-content>
         <flow flow-name="xsl-region-body">
             <block text-align="center" font-size="16pt" font-style="italic"
-                   padding-top="9.5cm" font-weight="bold" font-family="ArialRegular">
+                   padding-top="5cm" font-weight="bold" font-family="ArialRegular">
                 $userName
             </block>
             <block text-align="center" font-size="16pt" font-style="italic" font-weight="bold"
                    font-family="ArialRegular" padding-top="2.5cm" margin-left="2.5cm" margin-right="2.5cm">
                 $webinarName
             </block>
-            <block-container absolute-position="absolute" left="12mm" top="185mm">
+            <block-container absolute-position="absolute" left="97mm" top="131mm">
                 <block font-size="11pt" font-style="normal" font-family="ArialRegular">
                     $webinarDuration
                 </block>

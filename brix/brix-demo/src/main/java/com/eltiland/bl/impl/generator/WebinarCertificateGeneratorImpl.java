@@ -103,15 +103,14 @@ public class WebinarCertificateGeneratorImpl implements WebinarCertificateGenera
     private String getDuration(Webinar webinar) {
         float hours = (float) webinar.getDuration() / 45;
 
-        String duration = (((int) hours) == hours) ? String.valueOf((int) hours) : String.valueOf(hours);
-        duration += " ";
-        if (hours == 1) {
-            duration += "академический час";
-        } else if (hours < 5) {
-            duration += "академических часа";
-        } else {
-            duration += "академических часов";
-        }
-        return duration;
+        //        duration += " ";
+//        if (hours == 1) {
+//            duration += "академический час";
+//        } else if (hours < 5) {
+//            duration += "академических часа";
+//        } else {
+//            duration += "академических часов";
+//        }
+        return (((int) hours) == hours) ? String.valueOf((int) hours) : String.valueOf(hours);
     }
 }

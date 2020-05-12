@@ -49,6 +49,7 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
     private Boolean needConfirm;
     private Long eventId;
     private List<WebinarSubscription> subscriptions;
+    private String certificatePrefix;
 
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
@@ -257,5 +258,15 @@ public class Webinar extends AbstractIdentifiable implements Serializable {
 
     public void setSubscriptions(List<WebinarSubscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+
+    @Column(name = "certificate_prefix", length = 5)
+    public String getCertificatePrefix() {
+        return certificatePrefix;
+    }
+
+    public void setCertificatePrefix(String certificatePrefix) {
+        this.certificatePrefix = certificatePrefix;
     }
 }

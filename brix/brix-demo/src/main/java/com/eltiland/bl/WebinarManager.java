@@ -2,6 +2,7 @@ package com.eltiland.bl;
 
 import com.eltiland.exceptions.EltilandManagerException;
 import com.eltiland.exceptions.WebinarException;
+import com.eltiland.model.user.User;
 import com.eltiland.model.webinar.Webinar;
 import com.eltiland.model.webinar.WebinarUserPayment;
 
@@ -127,6 +128,12 @@ public interface WebinarManager {
      * @param webinar webinar to update.
      */
     void updateFiles(Webinar webinar) throws EltilandManagerException;
+    /**
+     * Updates webinar files.
+     *
+     * @param webinar webinar to update.
+     */
+    Integer getCertificateNumber(Webinar webinar, User user);
 
 
     List<Webinar> getWebinars(String userEmail);

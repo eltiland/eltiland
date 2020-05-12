@@ -313,6 +313,12 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
 
 
     @Override
+    @Transactional(readOnly = true)
+    public Integer getCertificateNumber(Webinar webinar, User user) {
+        return null;
+    }
+
+    @Override
     @Transactional
     public void updateFiles(Webinar webinar) throws EltilandManagerException {
         Webinar oldEntity = genericManager.getObject(Webinar.class, webinar.getId());
