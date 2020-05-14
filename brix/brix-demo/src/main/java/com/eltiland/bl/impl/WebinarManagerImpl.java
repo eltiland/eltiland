@@ -63,10 +63,10 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
     @Override
     @Transactional
     public Webinar create(Webinar webinar) throws EltilandManagerException, WebinarException {
-        if (webinar.isApproved()) {
-            Long eventId = webinarServiceManager.createEvent(webinar);
-            webinar.setEventId(eventId);
-        }
+//        if (webinar.isApproved()) {
+//            Long eventId = webinarServiceManager.createEvent(webinar);
+//            webinar.setEventId(eventId);
+//        }
         try {
             genericManager.saveNew(webinar);
         } catch (ConstraintException e) {
