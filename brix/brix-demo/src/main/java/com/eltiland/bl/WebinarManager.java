@@ -133,7 +133,7 @@ public interface WebinarManager {
      *
      * @param webinar webinar to update.
      */
-    Integer getCertificateNumber(Webinar webinar, User user);
+    String getCertificateNumber(Webinar webinar, User user);
 
 
     List<Webinar> getWebinars(String userEmail);

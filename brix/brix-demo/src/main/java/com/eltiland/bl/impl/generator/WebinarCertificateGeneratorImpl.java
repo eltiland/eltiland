@@ -40,10 +40,12 @@ public class WebinarCertificateGeneratorImpl implements WebinarCertificateGenera
     private final static String WEBINAR_NAME = "webinarName";
     private final static String WEBINAR_DURATION = "webinarDuration";
     private final static String WEBINAR_DATE = "webinarDate";
+    private final static String WEBINAR_CERT_NUMBER = "webinarCertNumber";
 
     @Override
     public InputStream generateCertificate(WebinarUserPayment user) throws EltilandManagerException {
         genericManager.initialize(user, user.getWebinar());
+        genericManager.initialize(user, user.getUserProfile());
 
         Map<String, Object> map = new HashMap<>();
 
@@ -55,6 +57,7 @@ public class WebinarCertificateGeneratorImpl implements WebinarCertificateGenera
         map.put(WEBINAR_NAME, user.getWebinar().getShortDesc());
         map.put(WEBINAR_DURATION, getDuration(user.getWebinar()));
         map.put(WEBINAR_DATE, getStartDate(user.getWebinar().getStartDate()) + " г.");
+        map.put(WEBINAR_CERT_NUMBER, user.getWebinar().getCertificatePrefix() + user.getUserProfile().getId().toString());
 
         try {
             String content = velocityMergeTool.mergeTemplate(map, TEMPLATE);
@@ -75,6 +78,7 @@ public class WebinarCertificateGeneratorImpl implements WebinarCertificateGenera
         map.put(WEBINAR_NAME, user.getRecord().getWebinar().getShortDesc());
         map.put(WEBINAR_DURATION, getDuration(user.getRecord().getWebinar()));
         map.put(WEBINAR_DATE, getStartDate(user.getDate()) + " г.");
+        map.put(WEBINAR_CERT_NUMBER, user.getRecord().getWebinar().getCertificatePrefix());
 
         try {
             String content = velocityMergeTool.mergeTemplate(map, TEMPLATE);

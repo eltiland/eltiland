@@ -314,8 +314,8 @@ public class WebinarManagerImpl extends ManagerImpl implements WebinarManager {
 
     @Override
     @Transactional(readOnly = true)
-    public Integer getCertificateNumber(Webinar webinar, User user) {
-        return null;
+    public String getCertificateNumber(Webinar webinar, User user) {
+        return webinar.getCertificatePrefix() + user.getId();
     }
 
     @Override
