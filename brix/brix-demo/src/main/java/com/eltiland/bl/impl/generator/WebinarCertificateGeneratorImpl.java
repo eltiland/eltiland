@@ -57,7 +57,13 @@ public class WebinarCertificateGeneratorImpl implements WebinarCertificateGenera
         map.put(WEBINAR_NAME, user.getWebinar().getShortDesc());
         map.put(WEBINAR_DURATION, getDuration(user.getWebinar()));
         map.put(WEBINAR_DATE, getStartDate(user.getWebinar().getStartDate()) + " г.");
-        map.put(WEBINAR_CERT_NUMBER, user.getWebinar().getCertificatePrefix() + user.getUserProfile().getId().toString());
+
+        String certificate = user.getWebinar().getCertificatePrefix();
+        if (certificate != null) {
+            map.put(WEBINAR_CERT_NUMBER, certificate + user.getUserProfile().getId().toString());
+        } else {
+            map.put(WEBINAR_CERT_NUMBER, "");
+        }
 
         try {
             String content = velocityMergeTool.mergeTemplate(map, TEMPLATE);

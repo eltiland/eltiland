@@ -24,18 +24,18 @@
                    font-family="ArialRegular" padding-top="2.5cm" margin-left="2.5cm" margin-right="2.5cm">
                 $webinarName
             </block>
-            <block-container absolute-position="absolute" left="97mm" top="131mm">
+            <block-container text-align="center" absolute-position="absolute" top="131mm">
                 <block font-size="11pt" font-style="normal" font-family="ArialRegular">
                     $webinarDuration
                 </block>
             </block-container>
-            <block-container absolute-position="absolute" top="235mm" left="80mm">
+            <block-container text-align="center" absolute-position="absolute" top="235mm">
                 <block font-size="11pt" font-family="ArialRegular">
                     $webinarDate
                 </block>
             </block-container>
-             <block-container absolute-position="absolute" top="255mm" left="90mm">
-                <block font-size="11pt" font-family="ArialRegular">
+             <block-container absolute-position="absolute" top="255mm">
+                <block text-align="center" font-size="11pt" font-family="ArialRegular">
                     $webinarCertNumber
                 </block>
              </block-container>
