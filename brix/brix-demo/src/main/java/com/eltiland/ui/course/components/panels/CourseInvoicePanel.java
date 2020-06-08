@@ -90,7 +90,7 @@ public class CourseInvoicePanel extends ELTDialogPanel implements IDialogNewCall
     };
 
     ListenerType kind = ListenerType.PHYSICAL;
-    ListenerEducation education = ListenerEducation.SECONDARY;
+    ListenerEducation education = ListenerEducation.HIGH;
 
     private ELTTextField<String> nameField = new ELTTextField<String>(
             "nameField", new ResourceModel("name"), new Model<String>(), String.class, true) {
