@@ -44,7 +44,6 @@ hr {
     clear: both !important;
 }
 
-
 /*   ----------  Base page styles   ----------  */
 .eltiland-logo {
     margin: 0 auto;
@@ -106,28 +105,23 @@ hr {
     cursor: pointer;
 }
 
-.elti-banners .eltik {
-    background-image: url("../images/homepage/banners/eltik.jpg");
-    margin-top: 8px;
-}
-
 .elti-banners .elti-kudic {
     background-image: url("../images/homepage/banners/elti-kudic.jpg");
     margin-top: 8px;
 }
 
-.elti-banners .childquestion {
-    background-image: url("../images/homepage/banners/childquestion.jpg");
-    margin-top: 8px;
+.elti-banners .dogm {
+    background-image: url("../images/homepage/banners/dogm.png");
+    height: 90px;
 }
 
-.elti-banners .eltik-friends {
-    background-image: url("../images/homepage/banners/eltik_friends.jpg");
-    margin-top: 8px;
+.elti-banners .minobr {
+    background-image: url("../images/homepage/banners/minobr.png");
+    height: 90px;
 }
 
-.elti-banners .expert {
-    background-image: url("../images/homepage/banners/expert.jpg");
+.elti-banners .whitespace {
+    width: 250px;;
     height: 90px;
 }
 

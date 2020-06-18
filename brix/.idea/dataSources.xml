@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="460830284">
+    <data-source source="LOCAL" name="PostgreSQL - eltiland@localhost" uuid="292033e1-456e-4bf2-9ede-bfe50d4ed7c2">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:65432/eltiland</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>

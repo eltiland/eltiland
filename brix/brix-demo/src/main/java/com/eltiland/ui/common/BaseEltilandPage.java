@@ -3,7 +3,6 @@ package com.eltiland.ui.common;
 import com.eltiland.ui.common.components.ResourcesUtils;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.common.components.menu.ELTMainMenu;
-import com.eltiland.ui.common.compositepage.gazeta.ChildJournalPage;
 import com.eltiland.ui.common.resource.StaticImage;
 import com.eltiland.ui.course.CourseListPage;
 import com.eltiland.ui.course.TeachingModulesPage;
@@ -13,16 +12,12 @@ import com.eltiland.ui.library.LibraryPage;
 import com.eltiland.ui.login.panels.HeadLoginPanel;
 import com.eltiland.ui.login.panels.HeadSocialPanel;
 import com.eltiland.ui.webinars.WebinarsPage;
-import org.apache.wicket.ajax.AjaxEventBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -62,48 +57,6 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
         add(new BottomLinkPanel("faqLink", FaqPage.class, new ResourceModel("faqPage")));
         add(new BottomLinkPanel("forumLink", ForumPage.class, new ResourceModel("forumPage")));
 
-        WebMarkupContainer bannerEltik = new WebMarkupContainer("bannerEltik");
-        WebMarkupContainer bannerMagazine = new WebMarkupContainer("bannerMagazine");
-        WebMarkupContainer bannerEltiKudic = new WebMarkupContainer("bannerEltiKudic");
-        WebMarkupContainer bannerChildQuestion = new WebMarkupContainer("bannerChildQuestion");
-        WebMarkupContainer bannerExpert = new WebMarkupContainer("bannerExpert");
-
-        bannerEltik.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                throw new RedirectToUrlException("http://eltik.ru//");
-            }
-        });
-        bannerMagazine.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                setResponsePage(ChildJournalPage.class);
-            }
-        });
-        bannerEltiKudic.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                throw new RedirectToUrlException("http://vdm.ru/");
-            }
-        });
-        bannerChildQuestion.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                throw new RedirectToUrlException("http://detskiyvopros.ru/");
-            }
-        });
-        bannerExpert.add(new AjaxEventBehavior("onclick") {
-            @Override
-            protected void onEvent(AjaxRequestTarget target) {
-                throw new RedirectToUrlException("http://www.moo-edd.ru/");
-            }
-        });
-
-        add(bannerChildQuestion);
-        add(bannerEltiKudic);
-        add(bannerMagazine);
-        add(bannerEltik);
-        add(bannerExpert);
     }
 
     /**
