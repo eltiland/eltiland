@@ -3,6 +3,30 @@
 <body>
 <wicket:extend>
     <div wicket:id="panel"></div>
+
+    <div class="videoPage">
+        <div wicket:id="admin">
+            <div wicket:id="adminPanel"></div>
+            <div class="clear"></div>
+            <div class="breaker"></div>
+        </div>
+        <div class="sort">
+            <div class="title">
+                <wicket:message key="sortLabel"></wicket:message>
+            </div>
+            <div class="selector" wicket:id="selector"></div>
+            <div class="direction" wicket:id="dirButton"></div>
+        </div>
+        <div class="clear"></div>
+        <div wicket:id="tagFilterPanel"></div>
+        <div class="clear"></div>
+        <div wicket:id="listContainer">
+            <div wicket:id="videoList">
+                <div wicket:id="videoInfo"></div>
+            </div>
+        </div>
+        <div wicket:id="navigator"></div>
+    </div>
 </wicket:extend>
 </body>
 </html>
