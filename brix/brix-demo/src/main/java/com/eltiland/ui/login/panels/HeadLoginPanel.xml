@@ -7,6 +7,7 @@
     <entry key="profileAction">Профиль</entry>
     <entry key="adminAction">Администрирование</entry>
     <entry key="askQuestion">Задать вопрос</entry>
+    <entry key="faqAction">FAQ</entry>
     <entry key="welcome">Здравствуйте, %s</entry>
     <entry key="guest">Гость</entry>
     <entry key="questionSuccessfullySended">

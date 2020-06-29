@@ -95,3 +95,7 @@
 .login_panel > .login_action > .askQuestion {
     background-image: url("../../images/login/small_email_2.gif");
 }
+
+.login_panel > .login_action > .faqAction {
+    background-image: url("../../images/login/small_email_2.gif");
+}

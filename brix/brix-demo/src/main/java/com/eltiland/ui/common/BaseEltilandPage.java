@@ -6,7 +6,6 @@ import com.eltiland.ui.common.components.menu.ELTMainMenu;
 import com.eltiland.ui.common.resource.StaticImage;
 import com.eltiland.ui.course.CourseListPage;
 import com.eltiland.ui.course.TeachingModulesPage;
-import com.eltiland.ui.faq.FaqPage;
 import com.eltiland.ui.login.panels.HeadLoginPanel;
 import com.eltiland.ui.login.panels.HeadSocialPanel;
 import com.eltiland.ui.webinars.WebinarsPage;
@@ -51,7 +50,6 @@ public abstract class BaseEltilandPage<T> extends GenericWebPage<T> {
         add(new BottomLinkPanel("courseLink", CourseListPage.class, new ResourceModel("coursesPage")));
         add(new BottomLinkPanel("moduleLink", TeachingModulesPage.class, new ResourceModel("modulePage")));
         add(new BottomLinkPanel("webinarLink", WebinarsPage.class, new ResourceModel("webinarsPage")));
-        add(new BottomLinkPanel("faqLink", FaqPage.class, new ResourceModel("faqPage")));
 
     }
 

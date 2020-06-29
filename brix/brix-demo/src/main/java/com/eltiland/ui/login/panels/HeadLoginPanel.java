@@ -5,13 +5,12 @@ import com.eltiland.session.EltilandSession;
 import com.eltiland.ui.common.BaseEltilandPanel;
 import com.eltiland.ui.common.components.dialog.Dialog;
 import com.eltiland.ui.common.components.dialog.ELTAlerts;
-import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.common.components.dialog.callback.IDialogCloseCallback;
+import com.eltiland.ui.faq.FaqPage;
 import com.eltiland.ui.faq.components.AddQuestionPanel;
 import com.eltiland.ui.login.LoginPage;
 import com.eltiland.ui.login.LogoutPage;
 import com.eltiland.ui.login.RegisterPage;
-import com.eltiland.ui.webinars.components.multiply.WebinarAddUsersPanel;
 import com.eltiland.ui.worktop.BaseWorktopPage;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.ajax.AjaxEventBehavior;
@@ -137,6 +136,14 @@ public class HeadLoginPanel extends BaseEltilandPanel {
                 addQuestionPanelDialog.show(target);
             }
         });
+
+        add(new ActionPanel("faqPage", ButtonAction.FAQ_ACTION) {
+            @Override
+            protected void onClick(AjaxRequestTarget target) {
+                throw new RestartResponseException(FaqPage.class);
+            }
+        });
+
         add(addQuestionPanelDialog);
     }
 
@@ -146,7 +153,7 @@ public class HeadLoginPanel extends BaseEltilandPanel {
     }
 
     private enum ButtonAction {
-        LOGIN, LOGOUT, REGISTER, ADMIN, PROFILE, ASK_QUESTION;
+        LOGIN, LOGOUT, REGISTER, ADMIN, PROFILE, ASK_QUESTION, FAQ_ACTION;
 
         @Override
         public String toString() {
@@ -163,6 +170,8 @@ public class HeadLoginPanel extends BaseEltilandPanel {
                     return "profileAction";
                 case ASK_QUESTION:
                     return "askQuestion";
+                case FAQ_ACTION:
+                    return "faqAction";
                 default:
                     return "";
             }
