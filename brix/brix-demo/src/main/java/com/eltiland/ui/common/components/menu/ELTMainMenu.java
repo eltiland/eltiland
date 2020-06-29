@@ -40,7 +40,6 @@ public class ELTMainMenu extends ELTMenu {
                         new MenuData(SeminarsPage.class, getString("seminarsPage")),
                         new MenuData(TeachingModulesPage.class, getString("modulePage")),
                         new MenuData(WebinarsPage.class, getString("webinarsPage")),
-                        new MenuData(LibraryPage.class, getString("libraryPage")),
                         new MenuData(FaqPage.class, getString("faqPage"))));
             }
         };

@@ -485,7 +485,7 @@ div.menu-item {
 div.menu-item {
     display: table;
     height: 45px;
-    width: 120px;
+    width: 140px;
     line-height: 20px;
     margin: auto;
     text-align: center;
@@ -500,7 +500,7 @@ div.menu-item > a {
     margin: auto;
     height: 80px;
     text-align: center;
-    width: 945px;
+    width: 845px;
 }
 
 .elti-main-menu-new > .elti-menu-list {
