@@ -1,13 +1,9 @@
 package com.eltiland.ui.common.components.menu;
 
 import com.eltiland.ui.common.BaseEltilandPage;
-import com.eltiland.ui.common.StemPage;
-import com.eltiland.ui.common.TeachingPage;
-import com.eltiland.ui.common.compositepage.children.ChildrenPage;
-import com.eltiland.ui.common.compositepage.parents.ParentsPage;
-import com.eltiland.ui.common.compositepage.teachers.TeachersPage;
-import com.eltiland.ui.forum.ForumPage;
-import com.eltiland.ui.video.VideoPage;
+import com.eltiland.ui.common.pages.DocumentsPage;
+import com.eltiland.ui.common.pages.EducationPage;
+import com.eltiland.ui.common.pages.InfoPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
@@ -31,13 +27,9 @@ public class ELTLeftMenu extends ELTMenu {
             @Override
             protected List<MenuData> load() {
                 return new ArrayList<>(Arrays.asList(
-                        new MenuData(TeachingPage.class, getString("aboutPage")),
-                        new MenuData(ParentsPage.class, getString("parentsPage")),
-                        new MenuData(ChildrenPage.class, getString("childPage")),
-                        new MenuData(TeachersPage.class, getString("teachersPage")),
-                        new MenuData(VideoPage.class, getString("videoPage")),
-                        new MenuData(StemPage.class, getString("stemPage")),
-                        new MenuData(ForumPage.class, getString("forumPage"))));
+                        new MenuData(InfoPage.class, getString("infoPage")),
+                        new MenuData(EducationPage.class, getString("educationPage")),
+                        new MenuData(DocumentsPage.class, getString("documentsPage"))));
             }
         };
     }

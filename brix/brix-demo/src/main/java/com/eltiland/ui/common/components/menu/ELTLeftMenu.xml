@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <entry key="aboutPage">О проекте</entry>
-    <entry key="parentsPage">Родителям</entry>
-    <entry key="childPage">Детям</entry>
-    <entry key="teachersPage">Педагогам</entry>
-    <entry key="videoPage">Видеоинформация</entry>
-    <entry key="forumPage">Форум</entry>
-    <entry key="stemPage">STEM</entry>
+    <entry key="infoPage">Сведения</entry>
+    <entry key="educationPage">Образование</entry>
+    <entry key="documentsPage">Документы</entry>
 </properties>
