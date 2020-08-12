@@ -35,7 +35,7 @@
 .login_main_panel {
     margin: 0 auto;
     display: table;
-    width: 400px;
+    width: 450px;
     height: 310px;
     border: 1px solid #d3d3d3;
 }
@@ -80,7 +80,7 @@
 }
 
 .login_main_panel > .content .input_element .input {
-    width: 295px;
+    width: 345px;
     height: 40px;
     display: table-cell;
     border: none;
@@ -122,7 +122,7 @@
 }
 
 .login_main_panel > .content button {
-    width: 350px;
+    width: 400px;
     height: 40px;
     font-size: 20px;
 }
@@ -131,7 +131,7 @@
     margin-top: 25px;
     display: table;
     margin-left: 15px;
-    width: 353px;
+    width: 403px;
     margin-bottom: 10px;
 }
 

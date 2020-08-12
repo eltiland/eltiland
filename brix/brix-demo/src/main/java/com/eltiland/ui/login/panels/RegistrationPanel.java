@@ -19,6 +19,7 @@ import com.eltiland.ui.common.components.dialog.ELTAlerts;
 import com.eltiland.ui.common.components.dialog.EltiStaticAlerts;
 import com.eltiland.ui.common.components.dialog.callback.IDialogSelectCallback;
 import com.eltiland.ui.common.general.ConfirmationPage;
+import com.eltiland.ui.common.pages.PrivacyPage;
 import com.eltiland.ui.course.CourseNewPage;
 import com.eltiland.utils.StringUtils;
 import com.eltiland.utils.UrlUtils;
@@ -111,7 +112,7 @@ public class RegistrationPanel extends BaseEltilandPanel {
         form.add(subscribeCheckBox);
         form.add(confirmationCheckBox);
 
-        form.add(new BookmarkablePageLink<>("confirmLink", ConfirmationPage.class));
+        form.add(new BookmarkablePageLink<>("confirmLink", PrivacyPage.class));
 
         subscribeCheckBox.setModelObject(true);
         confirmationCheckBox.setModelObject(false);

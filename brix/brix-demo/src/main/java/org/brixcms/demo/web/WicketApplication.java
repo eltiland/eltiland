@@ -28,6 +28,7 @@ import com.eltiland.ui.common.general.ConfirmationPage;
 import com.eltiland.ui.common.pages.DocumentsPage;
 import com.eltiland.ui.common.pages.EducationPage;
 import com.eltiland.ui.common.pages.InfoPage;
+import com.eltiland.ui.common.pages.PrivacyPage;
 import com.eltiland.ui.common.resource.ImageResourceReference;
 import com.eltiland.ui.course.*;
 import com.eltiland.ui.faq.FaqPage;
@@ -306,6 +307,7 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(InfoPage.MOUNT_PATH, InfoPage.class);
         mountPage(DocumentsPage.MOUNT_PATH, DocumentsPage.class);
         mountPage(EducationPage.MOUNT_PATH, EducationPage.class);
+        mountPage(PrivacyPage.MOUNT_PATH, PrivacyPage.class);
 
 
         getSharedResources().add(ResourcesUtils.COURSE_CONTENT_FOLDER,
