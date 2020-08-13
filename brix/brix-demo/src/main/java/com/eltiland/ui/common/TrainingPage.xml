@@ -2,5 +2,4 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="active.course">Активные и ближайшие курсы повышения квалификации:</entry>
-    <entry key="past.course">Прошедшие курсы повышения квалификации:</entry>
 </properties>
