@@ -1,6 +1,7 @@
 package com.eltiland.ui.course;
 
 import com.eltiland.bl.GenericManager;
+import com.eltiland.bl.course.ELTCourseListenerManager;
 import com.eltiland.bl.course.ELTCourseManager;
 import com.eltiland.model.course2.AuthorCourse;
 import com.eltiland.model.course2.ContentStatus;
@@ -49,6 +50,8 @@ public class CourseNewPage extends BaseEltilandPage {
     private GenericManager genericManager;
     @SpringBean
     private ELTCourseManager courseManager;
+    @SpringBean
+    private ELTCourseListenerManager courseListenerManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseNewPage.class);
 
@@ -154,12 +157,11 @@ public class CourseNewPage extends BaseEltilandPage {
         add(new CourseVersionButton("full", courseIModel, ContentStatus.FULL) {
             @Override
             public boolean isVisible() {
-                if (courseIModel.getObject() instanceof TrainingCourse) {
-                    Date currentDate = DateUtils.getCurrentDate();
-                    if (!(currentDate.after(((TrainingCourse) courseIModel.getObject()).getStartDate()) &&
-                            currentDate.before(((TrainingCourse) courseIModel.getObject()).getFinishDate()))) {
-                        return false;
-                    }
+                final boolean hasAccess = courseListenerManager.hasAccess(
+                        currentUserModel.getObject(), courseIModel.getObject());
+                final boolean isOpen = ((TrainingCourse) courseIModel.getObject()).isOpen();
+                if (!isOpen && !hasAccess) {
+                    return false;
                 }
 
                 genericManager.initialize(courseIModel.getObject(), courseIModel.getObject().getContent());

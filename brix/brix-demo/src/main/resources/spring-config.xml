@@ -77,48 +77,48 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
     <bean id="shedulerBean" class="com.eltiland.bl.impl.schedule.SheduleManager">
     </bean>
 
-    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="shedulerBean"/>
-        <property name="targetMethod" value="fillVideoViewCount"/>
-        <property name="concurrent" value="false"/>
-    </bean>
+<!--    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+<!--        <property name="targetObject" ref="shedulerBean"/>-->
+<!--        <property name="targetMethod" value="fillVideoViewCount"/>-->
+<!--        <property name="concurrent" value="false"/>-->
+<!--    </bean>-->
 
-    <bean id="jobGoogleDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="shedulerBean"/>
-        <property name="targetMethod" value="publishGoogleDocument"/>
-        <property name="concurrent" value="false"/>
-    </bean>
+<!--    <bean id="jobGoogleDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+<!--        <property name="targetObject" ref="shedulerBean"/>-->
+<!--        <property name="targetMethod" value="publishGoogleDocument"/>-->
+<!--        <property name="concurrent" value="false"/>-->
+<!--    </bean>-->
 
-    <bean id="jobLibraryDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="shedulerBean"/>
-        <property name="targetMethod" value="reindexLibraryItems"/>
-        <property name="concurrent" value="false"/>
-    </bean>
+<!--    <bean id="jobLibraryDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+<!--        <property name="targetObject" ref="shedulerBean"/>-->
+<!--        <property name="targetMethod" value="reindexLibraryItems"/>-->
+<!--        <property name="concurrent" value="false"/>-->
+<!--    </bean>-->
 
-    <bean id="videoTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
-        <property name="jobDetail" ref="jobDetail"/>
-        <property name="repeatInterval" value="28800000"/>
-    </bean>
+<!--    <bean id="videoTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">-->
+<!--        <property name="jobDetail" ref="jobDetail"/>-->
+<!--        <property name="repeatInterval" value="28800000"/>-->
+<!--    </bean>-->
 
-    <bean id="googleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
-        <property name="jobDetail" ref="jobGoogleDetail"/>
-        <property name="repeatInterval" value="480000"/>
-    </bean>
+<!--    <bean id="googleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">-->
+<!--        <property name="jobDetail" ref="jobGoogleDetail"/>-->
+<!--        <property name="repeatInterval" value="480000"/>-->
+<!--    </bean>-->
 
-    <bean id="libraryTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
-        <property name="jobDetail" ref="jobLibraryDetail"/>
-        <property name="repeatInterval" value="960000"/>
-    </bean>
+<!--    <bean id="libraryTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">-->
+<!--        <property name="jobDetail" ref="jobLibraryDetail"/>-->
+<!--        <property name="repeatInterval" value="960000"/>-->
+<!--    </bean>-->
 
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list>
-                <ref bean="videoTrigger"/>
-                <ref bean="googleTrigger"/>
-                <ref bean="libraryTrigger"/>
-            </list>
-        </property>
-    </bean>
+<!--    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+<!--        <property name="triggers">-->
+<!--            <list>-->
+<!--                <ref bean="videoTrigger"/>-->
+<!--                <ref bean="googleTrigger"/>-->
+<!--                <ref bean="libraryTrigger"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 
 
     <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
