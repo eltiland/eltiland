@@ -159,7 +159,7 @@ public class CourseNewPage extends BaseEltilandPage {
             public boolean isVisible() {
                 final boolean hasAccess = courseListenerManager.hasAccess(
                         currentUserModel.getObject(), courseIModel.getObject());
-                final boolean isOpen = ((TrainingCourse) courseIModel.getObject()).isOpen();
+                final boolean isOpen = !isTraining || ((TrainingCourse) courseIModel.getObject()).isOpen();
                 if (!isOpen && !hasAccess) {
                     return false;
                 }
