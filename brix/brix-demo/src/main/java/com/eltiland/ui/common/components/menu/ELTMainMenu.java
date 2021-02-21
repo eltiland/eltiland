@@ -1,9 +1,6 @@
 package com.eltiland.ui.common.components.menu;
 
-import com.eltiland.ui.common.BaseEltilandPage;
-import com.eltiland.ui.common.HomePage;
-import com.eltiland.ui.common.SeminarsPage;
-import com.eltiland.ui.common.TrainingPage;
+import com.eltiland.ui.common.*;
 import com.eltiland.ui.course.TeachingModulesPage;
 import com.eltiland.ui.webinars.WebinarsPage;
 import org.apache.wicket.model.IModel;
@@ -35,6 +32,7 @@ public class ELTMainMenu extends ELTMenu {
             protected List<MenuData> load() {
                 return new ArrayList<>(Arrays.asList(
                         new MenuData(HomePage.class, getString("homePage")),
+                        new MenuData(FestivalPage.class, getString("festivalPage")),
                         new MenuData(TrainingPage.class, getString("trainPage")),
                         new MenuData(SeminarsPage.class, getString("seminarsPage")),
                         new MenuData(TeachingModulesPage.class, getString("modulePage")),

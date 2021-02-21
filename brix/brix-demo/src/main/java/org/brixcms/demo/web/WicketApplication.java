@@ -289,6 +289,7 @@ public final class WicketApplication extends AbstractWicketApplication {
         mountPage(ImagePreviewPage.MOUNT_PATH, ImagePreviewPage.class);
         mountPage(TeachingPage.MOUNT_PATH, TeachingPage.class);
         mountPage(TrainingPage.MOUNT_PATH, TrainingPage.class);
+        mountPage(FestivalPage.MOUNT_PATH, FestivalPage.class);
         mountPage(SeminarsPage.MOUNT_PATH, SeminarsPage.class);
         mountPage(CourseControlPage.MOUNT_PATH, CourseControlPage.class);
         mountPage(CourseNewContentPage.MOUNT_PATH, CourseNewContentPage.class);
