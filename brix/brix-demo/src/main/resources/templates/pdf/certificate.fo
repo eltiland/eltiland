@@ -26,7 +26,7 @@
             </block>
             <block-container text-align="center" absolute-position="absolute" top="131mm" font-style="italic">
                 <block font-size="11pt" font-family="ArialRegular">
-                    в объеме $webinarDuration ак. ч.
+                    в объеме $webinarDuration академических часов
                 </block>
             </block-container>
             <block-container text-align="center" absolute-position="absolute" top="235mm" font-style="italic">
