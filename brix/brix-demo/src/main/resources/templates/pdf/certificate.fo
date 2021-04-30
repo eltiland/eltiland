@@ -24,9 +24,9 @@
                    font-family="ArialRegular" padding-top="2.5cm" margin-left="2.5cm" margin-right="2.5cm">
                 $webinarName
             </block>
-            <block-container text-align="center" absolute-position="absolute" top="131mm">
-                <block font-size="11pt" font-style="normal" font-family="ArialRegular">
-                    $webinarDuration
+            <block-container text-align="center" absolute-position="absolute" top="131mm" font-style="italic">
+                <block font-size="11pt" font-family="ArialRegular">
+                    в объеме $webinarDuration ак. ч.
                 </block>
             </block-container>
             <block-container text-align="center" absolute-position="absolute" top="235mm" font-style="italic">
@@ -34,9 +34,9 @@
                     $webinarDate
                 </block>
             </block-container>
-             <block-container absolute-position="absolute" top="255mm">
+             <block-container absolute-position="absolute" top="247mm" font-style="italic">
                 <block text-align="center" font-size="11pt" font-family="ArialRegular">
-                    $webinarCertNumber
+                    Москва 2021
                 </block>
              </block-container>
         </flow>
